@@ -272,7 +272,7 @@
         </div>
       </div>
 
-      <a href="index.html#about" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
+      <a href="about.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
     </nav>
 
     <div style="display:flex;align-items:center;gap:14px">
@@ -310,7 +310,7 @@
         <a href="services.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Services Index</a>
         <a href="prp.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#C7A470">PRP — The Signature</a>
         <a href="sofwave.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Sofwave™ Lifting</a>
-        <a href="index.html#about" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
+        <a href="about.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
         <a href="index.html#technology" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Technology Index</a>
         <a href="index.html#clinic" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Mayfair Clinic</a>
       </div>
@@ -751,9 +751,9 @@
       <div>
         <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Legal</div>
         <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
-          <a href="index.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Terms &amp; Conditions</a>
-          <a href="index.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">GDPR &amp; Privacy</a>
-          <a href="#consultation" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Consultation policy</a>
+          <a href="terms-conditions.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Terms &amp; Conditions</a>
+          <a href="gdpr.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">GDPR &amp; Privacy</a>
+          <a href="terms-conditions.html#booking-fees" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Consultation policy</a>
         </div>
       </div>
     </div>
@@ -932,7 +932,22 @@ class Component extends DCLogic {
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
             h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
-            after.push(() => { h.style.clipPath = 'inset(0 0 0% 0)'; });
+            after.push(() => {
+              h.style.clipPath = 'inset(0 0 0% 0)';
+              // Then drop the mask entirely. The headings run line-height:1, so their box
+              // is a few px shorter than Jost's glyphs need, and a clip-path parked at 0%
+              // shaves the descender off g/y/p permanently ("Technology index" lost the
+              // tail of its g). Guard on propertyName: when the heading IS the reveal
+              // target it also transitions opacity, and clearing on that event would kill
+              // the sweep halfway. The timeout is the backstop if transitionend never fires.
+              const unmask = e => {
+                if (e && e.propertyName !== 'clip-path') return;
+                h.style.clipPath = 'none';
+                h.removeEventListener('transitionend', unmask);
+              };
+              h.addEventListener('transitionend', unmask);
+              setTimeout(unmask, delay + 40 + 1200);
+            });
           });
 
           // Framed media only — an image with no clipping frame is left alone.

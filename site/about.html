@@ -3,17 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Services — TPL Clinic Mayfair · Every Treatment, One Protocol Library</title>
-<meta name="description" content="The full TPL Clinic treatment index — PRP, Sofwave™, Morpheus8®, XERF™, laser, injectables and more. Face, hair and body, combined into one protocol. Mayfair, London.">
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- ══ ABOUT PAGE HEAD ══ -->
+<title>About TPL Clinic Mayfair · One Specialty, Led by Mr Kam Dogan</title>
+<meta name="description" content="The UK's first clinic specialising in Platelet Rich Plasma. Meet Mr Kam Dogan and the GMC, NMC and GDC-registered team at 22 Seymour Street, London W1H 7HY.">
 <script src="./support.js"></script>
-<style>
-  html.lenis, html.lenis body { height: auto; }
-  .lenis.lenis-smooth { scroll-behavior: auto !important; }
-  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-  .lenis.lenis-stopped { overflow: hidden; }
-  .lenis.lenis-smooth iframe { pointer-events: none; }
-</style>
 </head>
 <body>
 <x-dc>
@@ -22,72 +15,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
   html { scroll-behavior: smooth; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
   body { margin: 0; background: #ffffff; color: #242424; font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: #B8925D; text-decoration: none; }
   a:hover { color: #B8925D; }
   ::selection { background: #B8925D; color: #fff; }
   input, select, textarea, button { font-family: inherit; }
 
-  /* Responsive & Mega Menu Layout — identical to index.html */
+  /* Responsive & mega menu — identical to index.html / services.html */
   .tpl-desktop-nav { display: flex; align-items: center; gap: 32px; }
   .tpl-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px 0; align-items: center; gap: 10px; color: inherit; }
   .tpl-has-mega { padding-bottom: 10px; margin-bottom: -10px; }
   .tpl-mega-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-top: 14px;
+    position: absolute; top: 100%; left: 50%; margin-top: 14px;
     width: min(1080px, calc(100vw - 48px));
     background: rgba(8, 19, 89, 0.96);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(184, 146, 93, 0.35);
     box-shadow: 0 24px 60px rgba(0,0,0,0.6);
     padding: 34px 38px 30px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 30px 28px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translate(-50%, -8px);
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 28px;
+    opacity: 0; visibility: hidden; transform: translate(-50%, -8px);
     transition: opacity .28s ease, transform .28s ease, visibility .28s;
-    pointer-events: none;
-    z-index: 199;
-    box-sizing: border-box;
-    text-align: left;
+    pointer-events: none; z-index: 199; box-sizing: border-box; text-align: left;
   }
-  /* Invisible bridge over the header gap — without it the pointer drops out of
-     :hover between the trigger and the panel and the menu snaps shut. */
-  .tpl-mega-menu::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -22px;
-    height: 22px;
-  }
+  .tpl-mega-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 22px; }
   .tpl-has-mega:hover .tpl-mega-menu,
   .tpl-has-mega:focus-within .tpl-mega-menu,
-  .tpl-mega-menu.is-active {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
-  }
+  .tpl-mega-menu.is-active { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
   .tpl-mega-title { line-height: 1.4; min-height: 2.8em; }
   .tpl-mega-link { text-decoration: none; }
   .tpl-mega-link:hover { color: #C7A470 !important; }
   .tpl-mega-foot {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-    padding-top: 24px;
+    grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+    gap: 28px; flex-wrap: wrap; margin-top: 4px; padding-top: 24px;
     border-top: 1px solid rgba(184, 146, 93, 0.28);
   }
   header.is-light .tpl-mega-foot { border-top-color: rgba(8, 19, 89, 0.14); }
@@ -105,113 +72,61 @@
   header.is-light .tpl-mega-link { color: #5E5E5E !important; }
   header.is-light .tpl-mega-link:hover { color: #B8925D !important; }
 
-  /* Real brand logo — white ring over dark, gold ring over light */
   .tpl-logo-img { height: 54px; width: auto; display: block; }
   .tpl-logo-light { display: none; }
   header.is-light .tpl-logo-dark { display: none; }
   header.is-light .tpl-logo-light { display: block; }
 
   .tpl-mobile-drawer {
-    position: fixed;
-    inset: 0;
-    background: #081359;
-    z-index: 300;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 24px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(100%);
+    position: fixed; inset: 0; background: #081359; z-index: 300;
+    display: flex; flex-direction: column; padding: 30px 24px;
+    opacity: 0; visibility: hidden; transform: translateX(100%);
     transition: opacity .35s ease, transform .35s cubic-bezier(0.16, 1, 0.3, 1), visibility .35s;
-    overflow-y: auto;
-    box-sizing: border-box;
+    overflow-y: auto; box-sizing: border-box;
   }
-  .tpl-mobile-drawer.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-  }
+  .tpl-mobile-drawer.is-open { opacity: 1; visibility: visible; transform: translateX(0); }
 
   @media (max-width: 1023px) {
     .tpl-desktop-nav { display: none !important; }
     .tpl-mobile-toggle { display: flex !important; }
     header[data-nav="1"] { padding: 16px 20px !important; }
     section { padding-left: 20px !important; padding-right: 20px !important; }
-    .tpl-card-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     .tpl-hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-signature { grid-template-columns: minmax(0,1fr) !important; gap: 44px !important; }
-    .tpl-protocols { grid-template-columns: minmax(0,1fr) !important; }
+    .tpl-founder { grid-template-columns: minmax(0,1fr) !important; gap: 44px !important; }
+    .tpl-team-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .tpl-split { grid-template-columns: minmax(0,1fr) !important; gap: 40px !important; }
+    .tpl-three { grid-template-columns: minmax(0,1fr) !important; }
   }
-
   @media (max-width: 640px) {
-    .tpl-card-grid { grid-template-columns: minmax(0,1fr) !important; }
+    .tpl-team-grid { grid-template-columns: minmax(0,1fr) !important; }
   }
 
-  /* ══ Services index — treatment cards ══
-     Hairline-seam grid: the 1px gaps ARE the rules, so no card borders. */
-  .tpl-card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 1px;
-    background: rgba(36,36,36,.12);
-    border: 1px solid rgba(36,36,36,.12);
+  /* ══ About — team grid. Hairline-seam grid: the 1px gaps ARE the rules. ══ */
+  .tpl-team-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px;
+    background: rgba(36,36,36,.12); border: 1px solid rgba(36,36,36,.12);
   }
-  .tpl-card {
-    position: relative;
-    background: #ffffff;
-    padding: 34px 30px 30px;
-    display: flex;
-    flex-direction: column;
-    min-height: 286px;
-    color: inherit;
+  .tpl-team-card {
+    background: #ffffff; padding: 0 0 34px; display: flex; flex-direction: column;
     transition: background .35s ease;
   }
-  .tpl-card:hover { background: #FAF8F5; }
-  /* 120px. The source PNGs are now normalised so the gold ring is a fixed 89.3% of
-     every canvas — before that the dead canvas varied and the ring landed anywhere
-     between 85px and 101px across the grid at the same box size. With the ratio
-     fixed, the box IS the control: 120 renders every ring at ~107px, up from ~93px
-     average. 120 is the ceiling — past it the card's footer crowds the description
-     and the icon starts rivalling the treatment name for weight.
-     Left-aligned on the card's single text axis. The negative margin cancels the
-     canvas padding so the ring's left edge sits flush with the type below it:
-     (120 - 107) / 2 = 6.4px, hence -6px. It was -9px when the padding was ~8%. */
-  .tpl-card-icon { width: 120px; height: 120px; object-fit: contain; display: block; margin-left: -6px; transition: transform .45s cubic-bezier(.22,1,.36,1); }
-  .tpl-card:hover .tpl-card-icon { transform: scale(1.07); }
-  .tpl-card-arrow { opacity: 0; transform: translateX(-6px); transition: opacity .35s ease, transform .35s ease; }
-  .tpl-card:hover .tpl-card-arrow { opacity: 1; transform: translateX(0); }
-  .tpl-card:focus-visible { outline: 2px solid #B8925D; outline-offset: -2px; }
-  .tpl-card:focus-visible .tpl-card-arrow { opacity: 1; transform: translateX(0); }
-  .tpl-filter-pill {
-    background: none;
-    border: 1px solid rgba(36,36,36,.22);
-    border-radius: 0;
-    padding: 11px 18px;
-    font-family: Jost, sans-serif;
-    font-size: 10.5px;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: #55555F;
-    cursor: pointer;
-    transition: background .25s ease, color .25s ease, border-color .25s ease;
-  }
-  .tpl-filter-pill:hover { border-color: #B8925D; color: #8A6F44; }
-  .tpl-filter-pill.is-on { background: #081359; border-color: #081359; color: #ffffff; }
+  .tpl-team-card:hover { background: #FAF8F5; }
+  .tpl-team-photo { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: #F0EDE8; }
+  .tpl-team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.92); transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+  .tpl-team-card:hover .tpl-team-photo img { transform: scale(1.03); }
+  .tpl-accred img { max-height: 84px; max-width: 100%; width: auto; display: block; filter: grayscale(1) contrast(1.05); opacity: .82; }
 </style>
 </helmet>
 
 <div style="width:100%;overflow-x:clip">
 
   <!-- ═══════════════════════ SHARED CHROME — identical to index.html (links page-adjusted) ═══════════════════════ -->
-  <!-- Fixed Glassmorphism Luxury Header -->
   <header data-nav="1" style="position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(8,19,89,0);border-bottom:1px solid rgba(184,146,93,0);transition:background .35s ease,border-color .35s ease,padding .35s ease,backdrop-filter .35s ease,-webkit-backdrop-filter .35s ease,box-shadow .35s ease">
-    <!-- Brand Logo -->
-    <a href="index.html" data-logo="1" onClick="{{ onCloseMobileMenu }}" style="display:flex;align-items:baseline;gap:10px;color:#ffffff;text-decoration:none">
+    <a href="index.html" data-logo="1" style="display:flex;align-items:baseline;gap:10px;color:#ffffff;text-decoration:none">
       <img class="tpl-logo-img tpl-logo-dark" src="assets/brand/tpl-logo.png" alt="TPL Clinic" width="300" height="300" />
       <img class="tpl-logo-img tpl-logo-light" src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" />
     </a>
 
-    <!-- Desktop Navigation Links -->
     <nav class="tpl-desktop-nav">
       <a href="index.html#face" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">Face</a>
       <a href="index.html#body" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">Body</a>
@@ -220,14 +135,14 @@
         <a href="services.html" style="display:flex;align-items:center;gap:6px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1">
           <span>Services</span>
           <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="transition:transform .3s ease">
-            <path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
           </svg>
         </a>
-        <div class="tpl-mega-menu {{ megaMenuOpen ? 'is-active' : '' }}">
+        <div class="tpl-mega-menu">
           <div>
             <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">01 — Regenerative</div>
             <div style="display:flex;flex-direction:column;gap:11px">
-              <a href="prp.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Platelet Rich Plasma</a>
+              <a href="prp.html" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Platelet Rich Plasma</a>
               <a href="https://www.tplclinic.com/enhanced-prp-mct" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Enhanced PRP &amp; Exosomes</a>
               <a href="https://www.tplclinic.com/prf-biofiller" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">PRF Biofiller</a>
               <a href="https://www.tplclinic.com/regenera-activa" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Regenera Activa®</a>
@@ -237,7 +152,7 @@
           <div>
             <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">02 — Energy &amp; Laser</div>
             <div style="display:flex;flex-direction:column;gap:11px">
-              <a href="sofwave.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Sofwave™</a>
+              <a href="sofwave.html" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Sofwave™</a>
               <a href="https://www.tplclinic.com/morpheus-8" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® Burst</a>
               <a href="https://www.xerf.clinic/london" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">XERF™</a>
               <a href="https://www.tplclinic.com/lasemd-ultra" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LaseMD Ultra®</a>
@@ -261,7 +176,7 @@
               <a href="https://treatment.tplclinic.com/koreanstack/" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Korean Glass Skin</a>
               <a href="https://www.tplclinic.com/services" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LDM Triple</a>
               <a href="https://www.tplclinic.com/led-phototherapy" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LED Phototherapy</a>
-              <a href="index.html#consultation" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Consultation</a>
+              <a href="#consultation" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Consultation</a>
             </div>
           </div>
           <div class="tpl-mega-foot">
@@ -269,19 +184,18 @@
               <div data-eyebrow style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
               <div style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;line-height:1.25;color:#ffffff;margin-top:8px">Twenty treatments. One combined protocol.</div>
             </div>
-            <a href="services.html" onClick="{{ onCloseMegaMenu }}" style="flex:none;padding:12px 22px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
+            <a href="services.html" style="flex:none;padding:12px 22px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
           </div>
         </div>
       </div>
 
-      <a href="about.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
+      <a href="about.html" aria-current="page" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" data-nav-current="1" style-hover="color:#B8925D">About us</a>
     </nav>
 
-    <!-- Header Actions -->
     <div style="display:flex;align-items:center;gap:14px">
       <a href="https://wa.me/442079987077" class="tpl-desktop-nav" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">WhatsApp</a>
       <a href="#consultation" data-btn="1" style="display:inline-block;padding:12px 22px;border:1px solid #C7A470;background:rgba(8,19,89,.4);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,color .3s ease,border-color .3s ease;backdrop-filter:blur(8px);white-space:nowrap" style-hover="background:#B8925D;border-color:#B8925D;color:#ffffff">Book Consultation</a>
-      <button class="tpl-mobile-toggle" onClick="{{ onToggleMobileMenu }}" aria-label="Toggle menu" style="color:inherit">
+      <button class="tpl-mobile-toggle" aria-label="Toggle menu" style="color:inherit">
         <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase">Menu</span>
         <div style="display:flex;flex-direction:column;gap:4px;width:18px">
           <span style="display:block;width:100%;height:1.5px;background:currentColor"></span>
@@ -291,11 +205,10 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="tpl-mobile-drawer {{ mobileMenuOpen ? 'is-open' : '' }}">
+  <div class="tpl-mobile-drawer">
     <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(184,146,93,0.3)">
       <img src="assets/brand/tpl-logo.png" alt="TPL Clinic" width="300" height="300" style="height:52px;width:auto;display:block" />
-      <button onClick="{{ onCloseMobileMenu }}" style="background:none;border:none;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px">
+      <button style="background:none;border:none;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px">
         <span>Close</span>
         <span style="font-size:16px">✕</span>
       </button>
@@ -304,68 +217,61 @@
       <div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:12px">Treatments</div>
         <div style="display:flex;flex-direction:column;gap:14px;padding-left:12px;border-left:1px solid rgba(184,146,93,0.3)">
-          <a href="index.html#face" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">01 — Face Protocols</a>
-          <a href="index.html#hair" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">02 — Hair Restoration</a>
-          <a href="index.html#body" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">03 — Body Quality</a>
+          <a href="index.html#face" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">01 — Face Protocols</a>
+          <a href="index.html#hair" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">02 — Hair Restoration</a>
+          <a href="index.html#body" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">03 — Body Quality</a>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:18px;margin-top:8px">
-        <a href="services.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#C7A470">Services Index</a>
-        <a href="prp.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">PRP — The Signature</a>
+        <a href="services.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Services Index</a>
+        <a href="prp.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">PRP — The Signature</a>
         <a href="sofwave.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Sofwave™ Lifting</a>
-        <a href="about.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
-        <a href="index.html#technology" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Technology Index</a>
-        <a href="index.html#clinic" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Mayfair Clinic</a>
+        <a href="about.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#C7A470">About Us</a>
+        <a href="index.html#technology" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Technology Index</a>
+        <a href="index.html#clinic" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Mayfair Clinic</a>
       </div>
     </div>
     <div style="margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-direction:column;gap:14px">
-      <a href="#consultation" onClick="{{ onCloseMobileMenu }}" style="display:block;width:100%;padding:16px 20px;background:#B8925D;color:#ffffff;text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;box-sizing:border-box">Book Consultation</a>
+      <a href="#consultation" style="display:block;width:100%;padding:16px 20px;background:#B8925D;color:#ffffff;text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;box-sizing:border-box">Book Consultation</a>
       <a href="https://wa.me/442079987077" style="display:block;width:100%;padding:14px 20px;border:1px solid rgba(255,255,255,0.4);color:#ffffff;text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;box-sizing:border-box">WhatsApp 020 7998 7077</a>
       <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,0.5);text-align:center">22 SEYMOUR STREET · MAYFAIR W1H 7HY</div>
     </div>
   </div>
   <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
 
-  <!-- Page Header — navy band, mirrors the homepage's dark-first paint -->
-  <section id="top" data-dark="1" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
-    <!-- Purpose-shot establishing plate: empty treatment room, held right back -->
-    <picture>
-      <source type="image/avif" srcset="assets/images/services/services-hero-800w.avif 800w, assets/images/services/services-hero-1200w.avif 1200w, assets/images/services/services-hero-1920w.avif 1920w" sizes="100vw">
-      <source type="image/webp" srcset="assets/images/services/services-hero-800w.webp 800w, assets/images/services/services-hero-1200w.webp 1200w, assets/images/services/services-hero-1920w.webp 1920w" sizes="100vw">
-      <img src="assets/images/services/services-hero-1200w.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;pointer-events:none" />
-    </picture>
+  <!-- ══ PAGE HEADER — navy band, mirrors services.html ══ -->
+  <section id="top" data-dark="1" data-screen-label="About — hero" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
+    <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;pointer-events:none" />
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.62) 0%,rgba(8,19,89,.45) 40%,rgba(8,19,89,.92) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 80% -10%,rgba(184,146,93,.14),transparent 60%);pointer-events:none"></div>
-    <!-- Oversized ghost word — same device as the homepage hero -->
-    <div aria-hidden="true" style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">SERVICES</div>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">ABOUT</div>
     <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
-      <div data-reveal="1" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Services — Mayfair</div>
-      <h1 data-reveal="1" style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(42px,5.8vw,92px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:13ch">Every treatment.<br />One <span style="color:#C7A470">protocol library.</span></h1>
+      <div data-reveal="1" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">About — Mayfair</div>
+      <h1 data-reveal="1" style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(42px,5.8vw,92px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:15ch">One specialty.<br />Everything built <span style="color:#C7A470">outward from it.</span></h1>
       <div data-reveal="1" style="margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:24px 48px">
-        <p style="margin:0;max-width:480px;font-size:16px;line-height:1.85;color:rgba(255,255,255,.72)">Treatments here are rarely booked alone. Each one below is an instrument — your plan is the combination, sequenced after diagnostics.</p>
+        <p style="margin:0;max-width:500px;font-size:16px;line-height:1.85;color:rgba(255,255,255,.72)">The first clinic in the UK specialising in, and devoted to, Platelet Rich Plasma — over 5,000 treatments a year, delivered by a team led by Mr Kam Dogan.</p>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">20 treatments · Face, Hair &amp; Body</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C7A470">One specialty: Platelet Rich Plasma</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">Nine practitioners &amp; staff</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#C7A470">Specialist Aesthetic Clinic of the Year 2026/27</span>
         </div>
       </div>
       <div data-reveal="1" style="margin-top:44px;display:flex;flex-wrap:wrap;gap:14px">
-        <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
-        <a href="prp.html" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)">The Signature — PRP</a>
+        <a href="#team" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Meet the team</a>
+        <a href="#consultation" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)">Book Consultation</a>
       </div>
 
-      <!-- Hero data strip — hairline-seam, sits on the fold edge -->
       <div data-reveal="1" class="tpl-hero-stats" style="margin-top:72px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
         <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#ffffff">20</div>
-          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Treatments</div>
-        </div>
-        <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#ffffff">03</div>
-          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Regions — face, hair, body</div>
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#ffffff">5,000+</div>
+          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Treatments a year</div>
         </div>
         <div style="background:#081359;padding:28px 26px">
           <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#ffffff">01</div>
-          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Foundation — your own plasma</div>
+          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Specialty — your own plasma</div>
+        </div>
+        <div style="background:#081359;padding:28px 26px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#ffffff">09</div>
+          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Practitioners &amp; clinic staff</div>
         </div>
         <div style="background:#081359;padding:28px 26px">
           <div style="font-family:Jost,sans-serif;font-weight:200;font-size:44px;line-height:1;color:#C7A470">W1</div>
@@ -375,106 +281,221 @@
     </div>
   </section>
 
-  <!-- ══ THE SIGNATURE — PRP gets its own beat before the library ══ -->
-  <section style="background:#F7F5F2;padding:0 48px">
-    <div data-reveal="1" class="tpl-signature" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;align-items:center;padding:96px 0">
+  <!-- ══ PHILOSOPHY ══ -->
+  <section id="philosophy" data-screen-label="About — philosophy" style="background:#F7F5F2;padding:0 48px">
+    <div style="max-width:1280px;margin:0 auto;padding:96px 0 100px">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:18px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Philosophy — 01</span>
+        <span style="flex:1;height:1px;background:rgba(36,36,36,.14)"></span>
+      </div>
+      <div data-reveal="1" class="tpl-split" style="margin-top:40px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:end">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.8vw,62px);line-height:1.08;letter-spacing:-.015em;color:#242424;text-wrap:pretty">Bespoke because the <span style="color:#B8925D">evidence</span> differs, not as a selling point.</h2>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <p style="margin:0;font-size:16px;line-height:1.9;color:#5E5E5E">Client-centred quality, results and safety run through every part of the clinic. Treatment plans are built to target individual needs, so each patient gets the maximum of what we have to offer.</p>
+          <p style="margin:0;font-size:16px;line-height:1.9;color:#5E5E5E">We believe in natural-looking results. The aim is to enhance your features, not to change them.</p>
+        </div>
+      </div>
+      <div data-reveal="1" class="tpl-three" style="margin-top:64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div style="background:#F7F5F2;padding:40px 32px 44px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#B8925D">01</div>
+          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Client-centred</div>
+          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">A culture and ethos of quality, results and safety, held across the clinic rather than left to individual practitioners.</p>
+        </div>
+        <div style="background:#F7F5F2;padding:40px 32px 44px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#B8925D">02</div>
+          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Results-driven</div>
+          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Over 5,000 treatments a year, delivered with precision. Plans are tailored to the patient in front of us, then reviewed.</p>
+        </div>
+        <div style="background:#F7F5F2;padding:40px 32px 44px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#B8925D">03</div>
+          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Natural-looking</div>
+          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Regenerative first, and conservative with everything else. Enhancement of your own features is the brief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOUNDER ══ -->
+  <section id="founder" data-screen-label="About — founder" style="padding:110px 48px 0;background:#ffffff">
+    <div data-reveal="1" class="tpl-founder" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:72px;align-items:center">
+      <div style="position:relative;overflow:hidden;aspect-ratio:4/5;background:#F0EDE8">
+        <img src="assets/images/about/kam-dogan.jpg" alt="Mr Kam Dogan, Founder, Director and Lead Practitioner" width="1000" height="1250" style="width:100%;height:100%;object-fit:cover;display:block" />
+      </div>
       <div>
         <div style="display:flex;align-items:center;gap:18px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The signature — 01</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The founder — 02</span>
           <span style="flex:1;height:1px;background:rgba(36,36,36,.14)"></span>
         </div>
-        <h2 style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.8vw,74px);line-height:1;letter-spacing:-.02em;color:#242424">Platelet Rich Plasma</h2>
-        <p style="margin:24px 0 0;max-width:540px;font-size:16px;line-height:1.9;color:#5E5E5E">The treatment the clinic was built around, and the layer beneath almost everything else on this page. A small draw of your own blood, separated in-clinic, reintroduced where regeneration is needed — for face, hair and body alike.</p>
-        <div style="margin-top:34px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-          <a href="prp.html" style="display:inline-block;padding:16px 30px;background:#242424;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease" style-hover="background:#B8925D">The PRP page</a>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Face · Hair · Body</span>
+        <h2 style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(36px,4.4vw,70px);line-height:1;letter-spacing:-.02em;color:#242424">Mr Kam Dogan</h2>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8A6F44">Founder, Director &amp; Lead Practitioner</div>
+        <div style="margin-top:26px;display:flex;flex-direction:column;gap:18px;max-width:600px">
+          <p style="margin:0;font-size:15.5px;line-height:1.9;color:#5E5E5E">Kam graduated from the University of Westminster in Biomedical Sciences in 2014, then spent four years at The Doctors Laboratory and UCL Hospitals. An interest in haematology turned into PRP research during his first Master's degree.</p>
+          <p style="margin:0;font-size:15.5px;line-height:1.9;color:#5E5E5E">He moved into aesthetics in 2017, motivated by the gap between what the science showed and what the industry was offering. He trains and manages every member of staff, and owns the clinic's quality and safety standards.</p>
+          <p style="margin:0;font-size:15.5px;line-height:1.9;color:#5E5E5E">He is currently reading Dermatology in Clinical Practice — a second Master's, and a third university degree.</p>
         </div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;background:#ffffff;border:1px solid rgba(36,36,36,.1);position:relative;aspect-ratio:1/1;max-width:400px;width:100%;justify-self:end">
-        <div style="position:absolute;inset:14px;border:1px solid rgba(184,146,93,.3);pointer-events:none"></div>
-        <!-- 59%, not 64% — prp.png's canvas was tightened from 400px to 370px when the
-             icon set was normalised, so the same percentage would have rendered the ring
-             8% larger here. 64 x 370/400 holds the signature panel exactly as drawn. -->
-        <img src="assets/icons/prp.png" alt="Platelet Rich Plasma" width="400" height="400" style="width:59%;height:auto;display:block;position:relative;z-index:2" />
+        <div style="margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+          <a href="prp.html" style="display:inline-block;padding:16px 30px;background:#242424;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease" style-hover="background:#B8925D">The PRP method</a>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Founded as The PRP Lab</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ SERVICES INDEX ══ -->
-  <section id="index" style="padding:96px 48px 40px;background:#ffffff">
+  <!-- ══ TEAM ══ -->
+  <section id="team" data-screen-label="About — team" style="padding:110px 48px 40px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:26px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,58px);line-height:1;letter-spacing:-.01em;color:#242424">The index</h2>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A"><span id="tpl-count">20 of 20</span> shown · icons drawn by the clinic</div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Our team — 03</div>
+          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,58px);line-height:1;letter-spacing:-.01em;color:#242424">Who you will meet</h2>
+        </div>
+        <p style="margin:0;max-width:430px;font-size:15px;line-height:1.85;color:#5E5E5E">The team, led by Kam, is constantly ensuring the clinic carries the most innovative technologies and techniques within its treatment repertoire.</p>
       </div>
 
-      <!-- Filter pills — driven by vanilla JS in componentDidMount (the runtime is render-once) -->
-      <div data-reveal="1" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px">
-        <button class="tpl-filter-pill is-on" data-filter="all">All treatments</button>
-        <button class="tpl-filter-pill" data-filter="face">01 — Face</button>
-        <button class="tpl-filter-pill" data-filter="hair">02 — Hair</button>
-        <button class="tpl-filter-pill" data-filter="body">03 — Body</button>
-      </div>
+      <div data-reveal="1" class="tpl-team-grid" style="margin-top:34px">
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/jameel-mohammed.jpg" alt="Dr Jameel Mohammed" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Dr Jameel Mohammed</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentist &amp; Aesthetic Doctor</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Studied Dentistry in Bulgaria, graduating in 2022, with interests beyond it in facial aesthetics and hair restoration.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">He treats both face and hair — Morpheus8 for skin tightening and revitalisation, and PRP protocols for hair loss, using our bespoke methods to stimulate growth and restore density.</p>
+          </div>
+        </div>
 
-      <!-- Cards — icon-led grid. Kam's own hand-drawn icons at full size. -->
-      <div data-reveal="1" class="tpl-card-grid" style="margin-top:26px">
-        <sc-for list="{{ rows }}" as="t" hint-placeholder-count="20">
-          <a class="tpl-card" href="{{ t.url }}" target="{{ t.tgt }}" rel="noopener" data-cats="{{ t.cat }}">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
-              <!-- the clinic's own treatment icons, preserved from tplclinic.com -->
-              <img class="tpl-card-icon" src="{{ t.icon }}" alt="" loading="lazy" width="400" height="400" />
-              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#B8925D">{{ t.n }}</span>
-            </div>
-            <div style="margin-top:26px;font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;letter-spacing:.01em;color:#242424">{{ t.name }}</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E;text-wrap:pretty">{{ t.desc }}</p>
-            <div style="margin-top:auto;padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:12px">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A8A8A">{{ t.tag }}</span>
-              <span class="tpl-card-arrow" style="display:flex;align-items:center;gap:8px;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">{{ t.cta }} →</span>
-            </div>
-          </a>
-        </sc-for>
-      </div>
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/kenan-koca.jpg" alt="Dr Kenan Koca" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Dr Kenan Koca</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Medical Doctor</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">GMC registered, with over twenty years in trauma and orthopaedic surgery — back and neck, hand and foot, sports injuries and limb deformities.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Over forty published research papers in orthopaedics and MSK injections, and fellowships in Türkiye, Germany, Switzerland and the USA. At TPL he specialises in PRP for hair loss.</p>
+          </div>
+        </div>
 
-      <div data-reveal="1" style="margin-top:36px;display:flex;align-items:center;gap:14px">
-        <span style="width:6px;height:6px;background:#B8925D;display:inline-block"></span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A6F44">XERF™ appointments available from September</span>
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/nazife-basaran.jpg" alt="Nazife Basaran" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Nazife Basaran</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Advanced Nurse Practitioner &amp; QA Manager</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Twenty years with the NHS, now consulting in healthcare on best practice, compliance and training for private clinics and hospitals.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">As in-house Quality Assurance Manager she holds HR, health and safety and staff training, and treats as an Advanced Nurse Practitioner.</p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/derya-geyik.jpg" alt="Ms Derya Geyik" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Ms Derya Geyik</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Hair &amp; Laboratory Technician</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Trained as a hair transplant technician in established Istanbul clinics before joining Mayfair.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">She now conducts the clinic's laboratory work, with extensive knowledge of hair loss treatment.</p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/seher-keklicekpinari.jpg" alt="Ms Seher Keklicekpinari" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Ms Seher Keklicekpinari</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Registered Nurse Practitioner</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">A law degree first, then an interest in aesthetics and medicine, and years of training here.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Now a Registered Nurse Practitioner offering PRP for hair loss, energy-based treatments, anti-wrinkle injections and skin boosters.</p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/rosa-dere.jpg" alt="Ms Rosa Dere" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Ms Rosa Dere</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Clinic &amp; Marketing Manager</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Journalism at UCA in Surrey, then editorial and public relations, and later digital marketing.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Rosa is responsible for customer service and the clinic's day-to-day running, and is our in-house Marketing Manager. Collaboration and partnership enquiries: <a href="mailto:rosa@theprplab.com" style="color:#8A6F44;border-bottom:1px solid rgba(184,146,93,.5)">rosa@theprplab.com</a></p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/nathan-samuel.jpg" alt="Mr Nathan Samuel" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Mr Nathan Samuel</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Clinic &amp; Finance Manager</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">A finance advisor at his local council before TPL, with years of experience in customer service and finance.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Nathan manages our Mayfair clinic — customer service, day-to-day activities and finances.</p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card">
+          <div class="tpl-team-photo"><img src="assets/images/about/muruvet-oz.jpg" alt="Mrs Muruvet Oz" loading="lazy" width="750" height="938" /></div>
+          <div style="padding:30px 30px 0">
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:23px;line-height:1.2;color:#242424">Mrs Muruvet Oz</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Clinic Manager</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Many years in healthcare across GP practices, and the medical knowledge that came with it.</p>
+            <p data-bio-extra="1" style="margin:14px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">Miros looks after customer service and day-to-day activities, and is PA to our lead practitioner, Kam.</p>
+          </div>
+        </div>
+
+        <div class="tpl-team-card" style="justify-content:center;padding:44px 34px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Surgical enquiries</div>
+          <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:26px;line-height:1.25;color:#242424">Hair transplantation is booked with the operating surgeon.</div>
+          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Invisible Hair Transplant™ consultations are arranged directly, not through the clinic diary.</p>
+          <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" style="margin-top:26px;display:inline-flex;align-items:center;gap:8px;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">Surgeon consultation →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ HOW WE CHOOSE — continuity strip from the homepage philosophy ══ -->
-  <section style="padding:100px 48px 120px;background:#ffffff">
+  <!-- ══ REGULATION ══ -->
+  <section id="regulation" data-screen-label="About — regulation" style="padding:100px 48px 120px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:64px;align-items:end;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.12;letter-spacing:-.01em;color:#242424">Which of these do <span style="color:#B8925D">you</span> need?<br />That isn't chosen from a list.</h2>
-        <p style="margin:0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Every plan starts with diagnostics — a consultation, blood work where relevant, TrichoComp™ analysis for hair. The treatments above are then combined and sequenced around what the evidence shows. <a href="index.html#prp" style="color:#8A6F44;border-bottom:1px solid rgba(184,146,93,.5)">Read the PRP method</a>.</p>
+      <div data-reveal="1" class="tpl-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:64px;align-items:end;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.12;letter-spacing:-.01em;color:#242424">Regulated, <span style="color:#B8925D">registered</span>,<br />and trained in-house.</h2>
+        <p style="margin:0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Practitioners are registered with their own professional bodies, and every member of staff is trained and managed against a single set of clinic standards. Quality assurance is held in-house rather than outsourced. <a href="#consultation" style="color:#8A6F44;border-bottom:1px solid rgba(184,146,93,.5)">Read the consultation policy</a>.</p>
       </div>
-      <!-- The three real protocols. Replaces the generic Diagnose/Combine/Sustain
-           3-up, which is already stated verbatim on the homepage. -->
-      <div data-reveal="1" class="tpl-protocols" style="margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
-        <div style="background:#ffffff;padding:40px 32px 44px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">Protocol 01 — Face</div>
-          <div style="margin-top:22px;font-family:Jost,sans-serif;font-weight:300;font-size:26px;line-height:1.25;color:#242424">PRP + Sofwave™ + LaseMD Ultra®</div>
-          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Lift from ultrasound, resurfacing from fractional laser, and plasma to carry the collagen response between sessions.</p>
+      <div data-reveal="1" class="tpl-accred tpl-three" style="margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
+          <div style="height:96px;display:flex;align-items:center">
+            <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="500" height="200" />
+          </div>
+          <div>
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:22px;line-height:1.25;color:#242424">General Medical Council</div>
+            <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Doctors — GMC registered</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator that licenses doctors to practise in the UK. Our medical doctors hold current GMC registration.</p>
+          </div>
         </div>
-        <div style="background:#ffffff;padding:40px 32px 44px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">Protocol 02 — Hair</div>
-          <div style="margin-top:22px;font-family:Jost,sans-serif;font-weight:300;font-size:26px;line-height:1.25;color:#242424">Diagnostics + Enhanced PRP + Regenera Activa®</div>
-          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Analysis first. Restoring a follicle that is still alive is a different problem from replacing one that isn't.</p>
+        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
+          <div style="height:96px;display:flex;align-items:center">
+            <img src="assets/images/about/general-dental-council.png" alt="General Dental Council" loading="lazy" width="500" height="200" />
+          </div>
+          <div>
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:22px;line-height:1.25;color:#242424">General Dental Council</div>
+            <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentists — GDC registered</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator for dental professionals. Dentists treating at the clinic are registered and practise within their scope.</p>
+          </div>
         </div>
-        <div style="background:#ffffff;padding:40px 32px 44px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">Protocol 03 — Body</div>
-          <div style="margin-top:22px;font-family:Jost,sans-serif;font-weight:300;font-size:26px;line-height:1.25;color:#242424">Morpheus8® + Micro-needling + PRP</div>
-          <p style="margin:16px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E">Skin below the neck responds to the same logic — it simply needs more depth, more energy and more patience.</p>
+        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
+          <div style="height:96px;display:flex;align-items:center">
+            <img src="assets/images/about/nursing-and-midwifery-council.png" alt="Nursing and Midwifery Council" loading="lazy" width="500" height="200" />
+          </div>
+          <div>
+            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:22px;line-height:1.25;color:#242424">Nursing &amp; Midwifery Council</div>
+            <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Nurses — NMC registered</div>
+            <p style="margin:18px 0 0;font-size:14px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator for nurses. Our Advanced and Registered Nurse Practitioners are on the NMC register.</p>
+          </div>
         </div>
+      </div>
+
+      <div data-reveal="1" style="margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:6px;height:6px;background:#B8925D;display:inline-block"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8A6F44">Prescribing, consent and record-keeping to clinic standard</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8A8A">Results vary person to person and treatment to treatment</span>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════ SHARED CHROME — consultation + footer + modal (identical to index.html) ═══════════════════════ -->
-  <!-- Consultation Section -->
-  <section id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
-    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
+  <section id="consultation" data-dark="1" data-screen-label="About — consultation" style="padding:120px 48px;background:#081359;color:#ffffff">
+    <div class="tpl-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
         <h2 style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.6vw,72px);line-height:1.02;letter-spacing:-.01em;color:#ffffff">Every plan starts<br />in the room.</h2>
@@ -500,23 +521,23 @@
         <div style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
-            <input type="text" value="{{ firstName }}" onChange="{{ onFirstName }}" placeholder="" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Last name</span>
-            <input type="text" value="{{ lastName }}" onChange="{{ onLastName }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Email</span>
-            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <input type="email" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Telephone</span>
-            <input type="tel" value="{{ phone }}" onChange="{{ onPhone }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <input type="tel" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Area of interest</span>
-            <select value="{{ area }}" onChange="{{ onArea }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D">
+            <select style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D">
               <option>Face — skin &amp; anti-ageing</option>
               <option>Hair — thinning or loss</option>
               <option>Body — skin quality</option>
@@ -527,11 +548,11 @@
           </label>
           <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Message</span>
-            <textarea rows="4" value="{{ message }}" onChange="{{ onMessage }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none;resize:vertical" style-focus="border-color:#B8925D"></textarea>
+            <textarea rows="4" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none;resize:vertical"></textarea>
           </label>
         </div>
         <label style="margin-top:20px;display:flex;align-items:flex-start;gap:12px;cursor:pointer">
-          <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="margin-top:3px;width:14px;height:14px;accent-color:#B8925D" />
+          <input type="checkbox" style="margin-top:3px;width:14px;height:14px;accent-color:#B8925D" />
           <span style="font-size:12.5px;line-height:1.7;color:#6E6E6E">I consent to TPL Clinic contacting me about my enquiry, in line with the privacy policy.</span>
         </label>
         <button data-submit="1" style="margin-top:26px;width:100%;padding:17px 24px;background:#242424;color:#ffffff;border:1px solid #242424;border-radius:0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease" style-hover="background:#B8925D;border-color:#B8925D">Send enquiry</button>
@@ -539,7 +560,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
     <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
       <div>
@@ -580,7 +600,6 @@
     </div>
   </footer>
 
-  <!-- Enquiry-received modal — toggled by vanilla JS (id) rather than sc-if state -->
   <div id="tpl-modal" style="display:none;position:fixed;inset:0;z-index:400;background:rgba(8,19,89,.55);align-items:center;justify-content:center;padding:24px">
     <div style="background:#ffffff;max-width:520px;width:100%;padding:52px 46px;border-top:2px solid #B8925D">
       <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Enquiry received</div>
@@ -592,20 +611,34 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFullBios&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Team&quot;},&quot;teamColumns&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;2&quot;,&quot;3&quot;],&quot;default&quot;:&quot;3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Team&quot;},&quot;showAccreditations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Regulation&quot;}}">
 class Component extends DCLogic {
-  state = { firstName:"", lastName:"", email:"", phone:"", area:"Face — skin & anti-ageing", message:"", consent:false, submitted:false, mobileMenuOpen:false, megaMenuOpen:false, filter:"all" };
-
   componentDidMount() {
+    // Guard: this runtime can mount twice — a second pass would re-clip headings
+    // that the first pass already settled, leaving them permanently masked.
+    if (window.__tplAboutMounted) return;
+    window.__tplAboutMounted = true;
+
     this.nav = document.querySelector('[data-nav]');
     this.darkSections = Array.from(document.querySelectorAll('[data-dark]'));
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobilePhone = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth < 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
 
-    // Ambient loops are decoration, not content. Under prefers-reduced-motion they
-    // must not autoplay — drop the attribute before first play and hold the poster,
-    // which is exactly the frame the loop opens on.
+    // ── Props applied as DOM tweaks (the deployed runtime renders once) ──
+    if (this.props.showFullBios === false) {
+      document.querySelectorAll('[data-bio-extra]').forEach(p => { p.style.display = 'none'; });
+    }
+    if (this.props.showAccreditations === false) {
+      const acc = document.querySelector('.tpl-accred');
+      if (acc) acc.style.display = 'none';
+    }
+    const cols = this.props.teamColumns;
+    if (cols === '2' || cols === 2) {
+      const grid = document.querySelector('.tpl-team-grid');
+      if (grid && window.innerWidth > 1023) grid.style.gridTemplateColumns = 'repeat(2, minmax(0,1fr))';
+    }
+
     if (prefersReducedMotion) {
       document.querySelectorAll('video[autoplay]').forEach(v => {
         v.removeAttribute('autoplay');
@@ -627,33 +660,29 @@ class Component extends DCLogic {
         if (this.lenis) {
           this.lenis.raf(time);
           this.animId = requestAnimationFrame(lenisRaf);
-
-        // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
-        // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
-        this.onAnchorClick = (e) => {
-          const a = e.target.closest('a[href*="#"]');
-          if (!a) return;
-          const href = a.getAttribute('href') || '';
-          const hash = href.slice(href.indexOf('#'));
-          // ignore cross-page links (e.g. index.html#face when we're not on index)
-          const path = href.slice(0, href.indexOf('#'));
-          if (path && !location.pathname.endsWith(path)) return;
-          if (hash.length < 2) return;
-          const target = document.querySelector(hash);
-          if (!target) return;
-          e.preventDefault();
-          if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
-          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', hash);
-        };
-        document.addEventListener('click', this.onAnchorClick);
         }
       };
       this.animId = requestAnimationFrame(lenisRaf);
+
+      // Lenis owns scrolling, so native #hash jumps do nothing — route anchors through it.
+      this.onAnchorClick = (e) => {
+        const a = e.target.closest('a[href*="#"]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const hash = href.slice(href.indexOf('#'));
+        const path = href.slice(0, href.indexOf('#'));
+        if (path && !location.pathname.endsWith(path)) return;
+        if (hash.length < 2) return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+        history.replaceState(null, '', hash);
+      };
+      document.addEventListener('click', this.onAnchorClick);
     }
 
-    // Nav theme: dark over navy [data-dark] bands, light everywhere else —
-    // exact style values from the homepage's renderFrame()
+    // Nav theme: dark over navy [data-dark] bands, light everywhere else
     this.applyNavTheme = () => {
       if (!this.nav) return;
       const navHeight = 80;
@@ -662,13 +691,11 @@ class Component extends DCLogic {
         return r.top <= navHeight && r.bottom >= 0;
       });
 
-      const logo = this.nav.querySelector('[data-logo]');
-      const logoTpl = logo ? logo.querySelector('span:first-child') : null;
-      const logoClinic = logo ? logo.querySelector('span:last-child') : null;
       const navLinks = this.nav.querySelectorAll('[data-nav-link="1"]');
       const whatsappLink = this.nav.querySelector('a[href*="wa.me"]');
       const btn = this.nav.querySelector('[data-btn]');
       const toggleBtn = this.nav.querySelector('.tpl-mobile-toggle');
+      const current = this.nav.querySelector('[data-nav-current]');
 
       if (overDark) {
         this.nav.classList.remove('is-light');
@@ -678,8 +705,6 @@ class Component extends DCLogic {
         this.nav.style.borderBottom = '1px solid rgba(184,146,93,0)';
         this.nav.style.boxShadow = 'none';
         this.nav.style.padding = '22px 40px';
-        if (logoTpl) logoTpl.style.color = '#ffffff';
-        if (logoClinic) logoClinic.style.color = '#C7A470';
         navLinks.forEach(link => { link.style.color = '#ffffff'; });
         if (whatsappLink) whatsappLink.style.color = 'rgba(255,255,255,.9)';
         if (toggleBtn) toggleBtn.style.color = '#ffffff';
@@ -688,6 +713,7 @@ class Component extends DCLogic {
           btn.style.color = '#ffffff';
           btn.style.borderColor = '#C7A470';
         }
+        if (current) current.style.color = '#C7A470';
       } else {
         this.nav.classList.add('is-light');
         this.nav.style.background = 'rgba(255, 255, 255, 0.88)';
@@ -696,8 +722,6 @@ class Component extends DCLogic {
         this.nav.style.borderBottom = '1px solid rgba(184, 146, 93, 0.3)';
         this.nav.style.boxShadow = '0 10px 30px rgba(8, 19, 89, 0.08)';
         this.nav.style.padding = '16px 40px';
-        if (logoTpl) logoTpl.style.color = '#242424';
-        if (logoClinic) logoClinic.style.color = '#B8925D';
         navLinks.forEach(link => { link.style.color = '#242424'; });
         if (whatsappLink) whatsappLink.style.color = '#242424';
         if (toggleBtn) toggleBtn.style.color = '#242424';
@@ -706,6 +730,7 @@ class Component extends DCLogic {
           btn.style.color = '#ffffff';
           btn.style.borderColor = '#081359';
         }
+        if (current) current.style.color = '#B8925D';
       }
     };
     window.addEventListener('scroll', this.applyNavTheme, { passive: true });
@@ -713,26 +738,6 @@ class Component extends DCLogic {
     this.applyNavTheme();
 
     // ── Vanilla interactivity ──────────────────────────────────────────
-    // The exported dc-runtime renders the template once; setState does not
-    // re-render. All stateful UI is therefore driven directly here.
-
-    // Index filter pills
-    const pills = Array.from(document.querySelectorAll('.tpl-filter-pill'));
-    const rowEls = Array.from(document.querySelectorAll('.tpl-card'));
-    const countEl = document.getElementById('tpl-count');
-    const applyFilter = (f) => {
-      let shown = 0;
-      rowEls.forEach(r => {
-        const on = f === 'all' || (r.getAttribute('data-cats') || '').split(' ').includes(f);
-        r.style.display = on ? '' : 'none';
-        if (on) shown++;
-      });
-      pills.forEach(p => p.classList.toggle('is-on', p.getAttribute('data-filter') === f));
-      if (countEl) countEl.textContent = String(shown).padStart(2, '0') + ' of 20';
-    };
-    pills.forEach(p => p.addEventListener('click', () => applyFilter(p.getAttribute('data-filter'))));
-
-    // Mobile drawer
     const drawer = document.querySelector('.tpl-mobile-drawer');
     const toggleBtnEl = document.querySelector('.tpl-mobile-toggle');
     const closeDrawer = () => drawer && drawer.classList.remove('is-open');
@@ -741,15 +746,11 @@ class Component extends DCLogic {
       drawer.querySelectorAll('a, button').forEach(el => el.addEventListener('click', closeDrawer));
     }
 
-    // Mega menu (click-toggle for touch; hover handled by CSS)
-    // The trigger is the <a> inside .tpl-has-mega (there is no <button>).
-    // Hover is handled in CSS; this adds keyboard/touch toggling and click-outside close.
     const megaWrap = document.querySelector('.tpl-has-mega');
     const megaBtn = megaWrap ? megaWrap.querySelector(':scope > a') : null;
     const megaMenu = document.querySelector('.tpl-mega-menu');
     if (megaBtn && megaMenu) {
       megaBtn.addEventListener('click', (e) => {
-        // On a fine pointer the link should still navigate to services.html.
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
         e.preventDefault();
         e.stopPropagation();
@@ -761,7 +762,6 @@ class Component extends DCLogic {
       megaMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => megaMenu.classList.remove('is-active')));
     }
 
-    // Enquiry form → confirmation modal
     const modal = document.getElementById('tpl-modal');
     const submitBtn = document.querySelector('[data-submit]');
     if (submitBtn && modal) {
@@ -775,16 +775,12 @@ class Component extends DCLogic {
 
     // Reveal animations — identical to the homepage
     if ('IntersectionObserver' in window) {
-      // Three layers, all CSS + this one observer — no motion library.
-      //   1. siblings and grid children enter in sequence, not as one block
-      //   2. headings mask up from the baseline instead of fading with the body copy
-      //   3. framed media settles from a hair of over-scale (Tier S: 1.0 -> 1.04, no more)
-      // Under prefers-reduced-motion all three are dropped and it degrades to a plain fade.
       const EASE = 'cubic-bezier(.22,1,.36,1)';
       const calm = prefersReducedMotion;
       const targets = Array.from(document.querySelectorAll('[data-reveal]'));
 
       targets.forEach(el => {
+        if (el.dataset.tplSettled) return;
         const sibs = el.parentElement
           ? Array.from(el.parentElement.children).filter(n => n.hasAttribute && n.hasAttribute('data-reveal'))
           : [];
@@ -796,7 +792,6 @@ class Component extends DCLogic {
         el.style.transition = 'opacity .9s ' + EASE + ' ' + delay + 'ms, transform .9s ' + EASE + ' ' + delay + 'ms';
 
         if (!calm) {
-          // Cells of a grid that reveals as a single unit still arrive one after another.
           if (/grid/.test(getComputedStyle(el).display)) {
             Array.from(el.children).forEach((k, i) => {
               if (k.hasAttribute('data-reveal')) return;
@@ -808,7 +803,6 @@ class Component extends DCLogic {
             });
           }
 
-          // Headings — the argument beats, separated from the prose around them.
           const heads = el.matches('h1, h2') ? [el] : Array.from(el.querySelectorAll('h1, h2'));
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
@@ -817,10 +811,9 @@ class Component extends DCLogic {
               h.style.clipPath = 'inset(0 0 0% 0)';
               // Then drop the mask entirely. The headings run line-height:1, so their box
               // is a few px shorter than Jost's glyphs need, and a clip-path parked at 0%
-              // shaves the descender off g/y/p permanently ("Technology index" lost the
-              // tail of its g). Guard on propertyName: when the heading IS the reveal
-              // target it also transitions opacity, and clearing on that event would kill
-              // the sweep halfway. The timeout is the backstop if transitionend never fires.
+              // shaves the descender off g/y/p permanently. Guard on propertyName: when the
+              // heading IS the reveal target it also transitions opacity, and clearing on
+              // that event would kill the sweep halfway. The timeout is the backstop.
               const unmask = e => {
                 if (e && e.propertyName !== 'clip-path') return;
                 h.style.clipPath = 'none';
@@ -831,7 +824,6 @@ class Component extends DCLogic {
             });
           });
 
-          // Framed media only — an image with no clipping frame is left alone.
           Array.from(el.querySelectorAll('img')).forEach(img => {
             const frame = img.parentElement && img.parentElement.closest('div');
             if (!frame || getComputedStyle(frame).overflow !== 'hidden') return;
@@ -845,6 +837,7 @@ class Component extends DCLogic {
       });
 
       const settle = el => {
+        el.dataset.tplSettled = '1';
         el.style.opacity = '1';
         el.style.transform = 'none';
         (el._tplAfter || []).forEach(fn => fn());
@@ -869,77 +862,14 @@ class Component extends DCLogic {
       window.removeEventListener('scroll', this.applyNavTheme);
       window.removeEventListener('resize', this.applyNavTheme);
     }
+    if (this.onAnchorClick) document.removeEventListener('click', this.onAnchorClick);
     if (this.lenis) this.lenis.destroy();
     if (this.animId) cancelAnimationFrame(this.animId);
     if (this.io) this.io.disconnect();
     if (this.safety) clearTimeout(this.safety);
   }
 
-  set(k) { return e => this.setState({ [k]: e.target.value }); }
-
-  renderVals() {
-    // ══ THE INDEX — all 20 treatments from tplclinic.com/services ══
-    // cats: which filter pills match. url: prp.html is the rebuilt template;
-    // everything else points at its current live page until Kam clones it locally.
-    const T = (n, name, desc, tag, cats, url, external, slug) => ({
-      n, name, desc, tag, cats, url,
-      cat: cats.join(" "),
-      icon: "assets/icons/" + slug + ".png",
-      tgt: external ? "_blank" : "_self",
-      cta: external ? "Live page" : "View"
-    });
-    const all = [
-      T("01","Platelet Rich Plasma","Your own platelets, concentrated and reintroduced — the treatment the clinic is built around.","Signature",["face","hair","body"],"prp.html",false,"prp"),
-      T("02","Enhanced PRP & Exosomes","PRP carrying stem-cell-derived exosomes, for hair loss and skin renewal.","Face · Hair",["face","hair"],"https://www.tplclinic.com/enhanced-prp-mct",true,"enhanced-prp"),
-      T("03","PRF Biofiller","Platelet-rich fibrin prepared as a wholly natural volumising filler.","Face",["face"],"https://www.tplclinic.com/prf-biofiller",true,"prf"),
-      T("04","Regenera Activa®","Micrograft stem-cell precursor therapy for thinning hair.","Hair",["hair"],"https://www.tplclinic.com/regenera-activa",true,"regenera"),
-      T("05","Sofwave™","Ultrasound collagen lifting — brow, jawline and neck, one session.","Lifting",["face"],"sofwave.html",false,"sofwave"),
-      T("06","Invisible Hair Transplant™","Surgeon-led transplantation, designed to be undetectable.","Surgical",["hair"],"https://treatment.tplclinic.com/hair-transplant/",true,"hair-transplant"),
-      T("07","Morpheus8® Burst","Radiofrequency microneedling for deep remodelling of skin.","RF",["face","body"],"https://www.tplclinic.com/morpheus-8",true,"morpheus8"),
-      T("08","LDM Triple","Ultrasound-driven skin conditioning, calming and repair.","Skin",["face"],"https://www.tplclinic.com/services",true,"ldm"),
-      T("09","XERF™","Dual-frequency monopolar RF — deep tightening without downtime.","New",["face"],"https://www.xerf.clinic/london",true,"xerf"),
-      T("10","LED Phototherapy","Clinical light therapy to calm, heal and stimulate.","Light",["face","hair"],"https://www.tplclinic.com/led-phototherapy",true,"led"),
-      T("11","LaseMD Ultra®","Fractional laser resurfacing for tone, texture and glow.","Laser",["face"],"https://www.tplclinic.com/lasemd-ultra",true,"lasemd"),
-      T("12","Soprano Ice Titanium™","Ice-cooled laser hair removal for all skin types.","Laser",["body"],"https://www.tplclinic.com/soprano-ice-titanium",true,"soprano"),
-      T("13","Wrinkle Relaxation Injections","Prescription-only anti-wrinkle treatment, conservatively placed.","Injectable",["face"],"https://www.tplclinic.com/botox",true,"wrinkle"),
-      T("14","HydraFacial®","Deep-cleansing hydradermabrasion in a single sitting.","Facial",["face"],"https://www.tplclinic.com/hydrafacial",true,"hydrafacial"),
-      T("15","Skin Boosters","Injectable hydration beneath the surface of the skin.","Injectable",["face"],"https://www.tplclinic.com/skin-boosters",true,"skin-boosters"),
-      T("16","Korean Glass Skin","The Yuri Pibu glass-skin protocol, layered and sealed.","Facial",["face"],"https://treatment.tplclinic.com/koreanstack/",true,"korean"),
-      T("17","Chemical Peels","Medical-grade resurfacing, matched to your skin.","Resurfacing",["face","body"],"https://www.tplclinic.com/chemical-peels-2",true,"chemical-peels"),
-      T("18","Micro-needling","Controlled collagen induction for texture and scarring.","Collagen",["face","body"],"https://www.tplclinic.com/microneedling",true,"microneedling"),
-      T("19","Dermal Fillers","Hyaluronic-acid restoration of structure and volume.","Injectable",["face"],"https://www.tplclinic.com/dermal-fillers",true,"dermal-fillers"),
-      T("20","Consultation","Where every plan starts — assessment before any recommendation.","Start here",["face","hair","body"],"#consultation",false,"consultation")
-    ];
-
-    const f = this.state.filter;
-    const rows = f === "all" ? all : all.filter(t => t.cats.includes(f));
-
-    return {
-      rows,
-      shownCount: String(rows.length).padStart(2, "0") + " of 20",
-      isAll: f === "all", isFace: f === "face", isHair: f === "hair", isBody: f === "body",
-      onFilterAll: () => this.setState({ filter: "all" }),
-      onFilterFace: () => this.setState({ filter: "face" }),
-      onFilterHair: () => this.setState({ filter: "hair" }),
-      onFilterBody: () => this.setState({ filter: "body" }),
-      firstName: this.state.firstName, lastName: this.state.lastName,
-      email: this.state.email, phone: this.state.phone,
-      area: this.state.area, message: this.state.message,
-      consent: this.state.consent, submitted: this.state.submitted,
-      mobileMenuOpen: this.state.mobileMenuOpen,
-      megaMenuOpen: this.state.megaMenuOpen,
-      onToggleMobileMenu: () => this.setState({ mobileMenuOpen: !this.state.mobileMenuOpen }),
-      onCloseMobileMenu: () => this.setState({ mobileMenuOpen: false }),
-      onToggleMegaMenu: () => this.setState({ megaMenuOpen: !this.state.megaMenuOpen }),
-      onCloseMegaMenu: () => this.setState({ megaMenuOpen: false }),
-      onFirstName: this.set('firstName'), onLastName: this.set('lastName'),
-      onEmail: this.set('email'), onPhone: this.set('phone'),
-      onArea: this.set('area'), onMessage: this.set('message'),
-      onConsent: e => this.setState({ consent: e.target.checked }),
-      onSubmit: () => this.setState({ submitted: true }),
-      onClose: () => this.setState({ submitted: false, firstName:"", lastName:"", email:"", phone:"", message:"", consent:false })
-    };
-  }
+  renderVals() { return {}; }
 }
 </script>
 </body>
