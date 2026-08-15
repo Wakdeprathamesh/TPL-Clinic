@@ -6,6 +6,10 @@ docs/
 Services page design system*/
 Services page design system*.zip
 
+# Raw generation output — the processed, named derivatives under
+# site/assets/images/ are what ship. Originals stay local.
+site/assets/Higgsfield Images/
+
 # Tooling / OS
 .claude/
 .DS_Store
