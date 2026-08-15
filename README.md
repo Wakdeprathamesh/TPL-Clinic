@@ -45,6 +45,20 @@ site/
 
 Adding a treatment page? See [site/README-HANDOFF.md](site/README-HANDOFF.md) — it covers cloning a page, which content is fenced for editing, and how to deploy.
 
+## Deploying to Vercel
+
+`index.html` lives in `site/`, not at the repo root, so Vercel needs to be told where to
+serve from. [vercel.json](vercel.json) does that with `"outputDirectory": "site"`, and sets
+cache headers — the 446-frame hero sequence is immutable for a year, other assets get a week
+with `stale-while-revalidate`, HTML always revalidates.
+
+There is no build step. Import the repo and deploy; leave the framework preset as **Other**
+and the build command empty.
+
+> If the root URL 404s after the first deploy, the `outputDirectory` key didn't take — set
+> **Root Directory** to `site` in Project Settings → General instead, and clear the
+> `outputDirectory` line. One or the other, not both.
+
 ## Design constraints
 
 - **Light theme only.** White and grey led, gold `#B8925D` as a restrained accent.

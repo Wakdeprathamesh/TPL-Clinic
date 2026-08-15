@@ -752,6 +752,17 @@ class Component extends DCLogic {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobilePhone = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth < 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
 
+    // Ambient loops are decoration, not content. Under prefers-reduced-motion they
+    // must not autoplay — drop the attribute before first play and hold the poster,
+    // which is exactly the frame the loop opens on.
+    if (prefersReducedMotion) {
+      document.querySelectorAll('video[autoplay]').forEach(v => {
+        v.removeAttribute('autoplay');
+        v.autoplay = false;
+        try { v.pause(); v.currentTime = 0; } catch (err) {}
+      });
+    }
+
     if (!prefersReducedMotion && !isMobilePhone && typeof window.Lenis !== 'undefined') {
       this.lenis = new window.Lenis({
         duration: 1.1,
@@ -849,23 +860,77 @@ class Component extends DCLogic {
 
     // Reveals — identical to the homepage
     if ('IntersectionObserver' in window) {
+      // Three layers, all CSS + this one observer — no motion library.
+      //   1. siblings and grid children enter in sequence, not as one block
+      //   2. headings mask up from the baseline instead of fading with the body copy
+      //   3. framed media settles from a hair of over-scale (Tier S: 1.0 -> 1.04, no more)
+      // Under prefers-reduced-motion all three are dropped and it degrades to a plain fade.
+      const EASE = 'cubic-bezier(.22,1,.36,1)';
+      const calm = prefersReducedMotion;
       const targets = Array.from(document.querySelectorAll('[data-reveal]'));
+
       targets.forEach(el => {
+        const sibs = el.parentElement
+          ? Array.from(el.parentElement.children).filter(n => n.hasAttribute && n.hasAttribute('data-reveal'))
+          : [];
+        const delay = calm ? 0 : Math.min(Math.max(sibs.indexOf(el), 0) * 70, 420);
+        const after = [];
+
         el.style.opacity = '0';
-        el.style.transform = 'translateY(26px)';
-        el.style.transition = 'opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)';
+        if (!calm) el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .9s ' + EASE + ' ' + delay + 'ms, transform .9s ' + EASE + ' ' + delay + 'ms';
+
+        if (!calm) {
+          // Cells of a grid that reveals as a single unit still arrive one after another.
+          if (/grid/.test(getComputedStyle(el).display)) {
+            Array.from(el.children).forEach((k, i) => {
+              if (k.hasAttribute('data-reveal')) return;
+              const d = delay + 60 + Math.min(i, 11) * 55;
+              k.style.opacity = '0';
+              k.style.transform = 'translateY(16px)';
+              k.style.transition = 'opacity .75s ' + EASE + ' ' + d + 'ms, transform .75s ' + EASE + ' ' + d + 'ms';
+              after.push(() => { k.style.opacity = '1'; k.style.transform = 'none'; });
+            });
+          }
+
+          // Headings — the argument beats, separated from the prose around them.
+          const heads = el.matches('h1, h2') ? [el] : Array.from(el.querySelectorAll('h1, h2'));
+          heads.forEach(h => {
+            h.style.clipPath = 'inset(0 0 108% 0)';
+            h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
+            after.push(() => { h.style.clipPath = 'inset(0 0 0% 0)'; });
+          });
+
+          // Framed media only — an image with no clipping frame is left alone.
+          Array.from(el.querySelectorAll('img')).forEach(img => {
+            const frame = img.parentElement && img.parentElement.closest('div');
+            if (!frame || getComputedStyle(frame).overflow !== 'hidden') return;
+            img.style.transform = 'scale(1.04)';
+            img.style.transition = 'transform 1.4s ' + EASE + ' ' + delay + 'ms';
+            after.push(() => { img.style.transform = 'none'; });
+          });
+        }
+
+        el._tplAfter = after;
       });
+
+      const settle = el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        (el._tplAfter || []).forEach(fn => fn());
+        el._tplAfter = null;
+      };
+
       this.io = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            e.target.style.opacity = '1';
-            e.target.style.transform = 'none';
+            settle(e.target);
             this.io.unobserve(e.target);
           }
         });
       }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
       targets.forEach(el => this.io.observe(el));
-      this.safety = setTimeout(() => targets.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }), 4000);
+      this.safety = setTimeout(() => targets.forEach(settle), 4000);
     }
 
     // ── Vanilla interactivity (the exported runtime is render-once) ──
