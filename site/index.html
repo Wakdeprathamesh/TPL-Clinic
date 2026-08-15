@@ -34,35 +34,68 @@
   /* Responsive & Mega Menu Layout */
   .tpl-desktop-nav { display: flex; align-items: center; gap: 32px; }
   .tpl-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px 0; align-items: center; gap: 10px; color: inherit; }
+  .tpl-has-mega { padding-bottom: 10px; margin-bottom: -10px; }
   .tpl-mega-menu {
     position: absolute;
-    top: calc(100% + 18px);
-    left: -120px;
-    width: 860px;
+    top: 100%;
+    left: 50%;
+    margin-top: 14px;
+    width: min(1080px, calc(100vw - 48px));
     background: rgba(8, 19, 89, 0.96);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(184, 146, 93, 0.35);
     box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-    padding: 36px 40px;
+    padding: 34px 38px 30px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr) 250px;
-    gap: 32px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px 28px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity .3s ease, transform .3s ease, visibility .3s;
+    transform: translate(-50%, -8px);
+    transition: opacity .28s ease, transform .28s ease, visibility .28s;
     pointer-events: none;
     z-index: 199;
     box-sizing: border-box;
     text-align: left;
   }
+  /* Invisible bridge over the header gap — without it the pointer drops out of
+     :hover between the trigger and the panel and the menu snaps shut. */
+  .tpl-mega-menu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -22px;
+    height: 22px;
+  }
   .tpl-has-mega:hover .tpl-mega-menu,
+  .tpl-has-mega:focus-within .tpl-mega-menu,
   .tpl-mega-menu.is-active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
     pointer-events: auto;
+  }
+  .tpl-mega-title { line-height: 1.4; min-height: 2.8em; }
+  .tpl-mega-link { text-decoration: none; }
+  .tpl-mega-link:hover { color: #C7A470 !important; }
+  .tpl-mega-foot {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(184, 146, 93, 0.28);
+  }
+  header.is-light .tpl-mega-foot { border-top-color: rgba(8, 19, 89, 0.14); }
+  header.is-light .tpl-mega-foot div { color: #242424 !important; }
+  header.is-light .tpl-mega-foot [data-eyebrow] { color: #8A6F44 !important; }
+  @media (max-width: 1200px) {
+    .tpl-mega-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(640px, calc(100vw - 48px)); }
   }
   header.is-light .tpl-mega-menu {
     background: rgba(255, 255, 255, 0.97);
@@ -72,8 +105,6 @@
   header.is-light .tpl-mega-title { color: #081359 !important; }
   header.is-light .tpl-mega-link { color: #5E5E5E !important; }
   header.is-light .tpl-mega-link:hover { color: #B8925D !important; }
-  header.is-light .tpl-mega-card { background: #F8F6F3 !important; }
-  header.is-light .tpl-mega-card div { color: #242424 !important; }
 
   /* Real brand logo — white ring over dark, gold ring over light */
   .tpl-logo-img { height: 54px; width: auto; display: block; }
@@ -145,40 +176,51 @@
         <!-- Treatments Mega Menu Panel -->
         <div class="tpl-mega-menu {{ megaMenuOpen ? 'is-active' : '' }}">
           <div>
-            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">01 — Face</div>
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <a href="prp.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">PRP &amp; PRF Biofiller</a>
-              <a href="sofwave.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Sofwave™ Collagen Lifting</a>
-              <a href="#face" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® RF Burst</a>
-              <a href="#face" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">LaseMD Ultra® Resurfacing</a>
-              <a href="#face" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Korean Glass Skin Protocol</a>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">01 — Regenerative</div>
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <a href="prp.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Platelet Rich Plasma</a>
+              <a href="https://www.tplclinic.com/enhanced-prp-mct" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Enhanced PRP &amp; Exosomes</a>
+              <a href="https://www.tplclinic.com/prf-biofiller" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">PRF Biofiller</a>
+              <a href="https://www.tplclinic.com/regenera-activa" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Regenera Activa®</a>
+              <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Invisible Hair Transplant™</a>
             </div>
           </div>
           <div>
-            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">02 — Hair</div>
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <a href="prp.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Enhanced PRP &amp; Exosomes</a>
-              <a href="#hair" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Regenera Activa® Protocol</a>
-              <a href="#hair" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">TrichoComp Diagnostics</a>
-              <a href="#hair" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Invisible Hair Transplant™</a>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">02 — Energy &amp; Laser</div>
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <a href="sofwave.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Sofwave™</a>
+              <a href="https://www.tplclinic.com/morpheus-8" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® Burst</a>
+              <a href="https://www.xerf.clinic/london" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">XERF™</a>
+              <a href="https://www.tplclinic.com/lasemd-ultra" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LaseMD Ultra®</a>
+              <a href="https://www.tplclinic.com/soprano-ice-titanium" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Soprano Ice Titanium™</a>
             </div>
           </div>
           <div>
-            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">03 — Body</div>
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <a href="prp.html" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">PRP Regenerative Body</a>
-              <a href="#body" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® RF Remodeling</a>
-              <a href="#body" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Targeted Mesotherapy</a>
-              <a href="#body" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Soprano Ice Titanium™</a>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">03 — Injectables &amp; Resurfacing</div>
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <a href="https://www.tplclinic.com/botox" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Wrinkle Relaxation Injections</a>
+              <a href="https://www.tplclinic.com/dermal-fillers" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Dermal Fillers</a>
+              <a href="https://www.tplclinic.com/skin-boosters" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Skin Boosters</a>
+              <a href="https://www.tplclinic.com/microneedling" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Micro-needling</a>
+              <a href="https://www.tplclinic.com/chemical-peels-2" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Chemical Peels</a>
             </div>
           </div>
-          <div class="tpl-mega-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(184,146,93,0.3);padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">04 — Skin Health &amp; Facials</div>
+            <div style="display:flex;flex-direction:column;gap:11px">
+              <a href="https://www.tplclinic.com/hydrafacial" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">HydraFacial®</a>
+              <a href="https://treatment.tplclinic.com/koreanstack/" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Korean Glass Skin</a>
+              <a href="https://www.tplclinic.com/services" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LDM Triple</a>
+              <a href="https://www.tplclinic.com/led-phototherapy" target="_blank" rel="noopener" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">LED Phototherapy</a>
+              <a href="#consultation" onClick="{{ onCloseMegaMenu }}" class="tpl-mega-link" style="font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.85);transition:color .2s">Consultation</a>
+            </div>
+          </div>
+          <div class="tpl-mega-foot">
             <div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
-              <div style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;line-height:1.25;color:#ffffff;margin-top:10px">Twenty treatments. One combined protocol.</div>
-              <p style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.7);margin:10px 0 0">Every instrument in the clinic, indexed on one page.</p>
+              <div data-eyebrow style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
+              <div style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;line-height:1.25;color:#ffffff;margin-top:8px">Twenty treatments. One combined protocol.</div>
             </div>
-            <a href="services.html" onClick="{{ onCloseMegaMenu }}" style="margin-top:20px;display:inline-block;padding:10px 16px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
+            <a href="services.html" onClick="{{ onCloseMegaMenu }}" style="flex:none;padding:12px 22px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
           </div>
         </div>
       </div>
@@ -664,14 +706,6 @@
             <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C7A470;letter-spacing:.18em">03</span>
             <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Out of hours? Leave your details — we call back the next working morning.</span>
           </div>
-        </div>
-        <div style="position:relative;aspect-ratio:4/3;max-width:460px;margin-top:40px;background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden">
-          <picture>
-            <source type="image/avif" srcset="assets/images/consultation/consultation-room-400w.avif 400w, assets/images/consultation/consultation-room-800w.avif 800w, assets/images/consultation/consultation-room-1200w.avif 1200w, assets/images/consultation/consultation-room-1600w.avif 1600w" sizes="(max-width: 1023px) 100vw, 40vw">
-            <source type="image/webp" srcset="assets/images/consultation/consultation-room-400w.webp 400w, assets/images/consultation/consultation-room-800w.webp 800w, assets/images/consultation/consultation-room-1200w.webp 1200w, assets/images/consultation/consultation-room-1600w.webp 1600w" sizes="(max-width: 1023px) 100vw, 40vw">
-            <img src="assets/images/consultation/consultation-room-800w.jpg" alt="The consulting room at 22 Seymour Street — two chairs, one conversation" loading="lazy" width="800" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-          </picture>
-          <div style="position:absolute;inset:14px;border:1px solid rgba(184,146,93,.4);pointer-events:none;z-index:2"></div>
         </div>
       </div>
 
