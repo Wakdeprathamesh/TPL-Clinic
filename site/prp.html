@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ══ TREATMENT PAGE HEAD — edit title + description per treatment ══ -->
+<title>PRP — Platelet Rich Plasma at TPL Clinic Mayfair · The Signature Treatment</title>
+<meta name="description" content="Platelet Rich Plasma at the UK's first PRP-devoted clinic. Your own platelets, concentrated up to 18× and reintroduced for skin and hair regeneration. Arthrex ACP® & Angel® systems. Mayfair, London.">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="./support.js"></script>
+<style>
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+</style>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #242424; font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #B8925D; text-decoration: none; }
+  a:hover { color: #B8925D; }
+  ::selection { background: #B8925D; color: #fff; }
+  input, select, textarea, button { font-family: inherit; }
+
+  /* Responsive & Mega Menu Layout — identical to index.html */
+  .tpl-desktop-nav { display: flex; align-items: center; gap: 32px; }
+  .tpl-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px 0; align-items: center; gap: 10px; color: inherit; }
+  .tpl-mega-menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: -120px;
+    width: 860px;
+    background: rgba(8, 19, 89, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(184, 146, 93, 0.35);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 250px;
+    gap: 32px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity .3s ease, transform .3s ease, visibility .3s;
+    pointer-events: none;
+    z-index: 199;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  .tpl-has-mega:hover .tpl-mega-menu,
+  .tpl-mega-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  header.is-light .tpl-mega-menu {
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(184, 146, 93, 0.3);
+    box-shadow: 0 20px 50px rgba(8, 19, 89, 0.14);
+  }
+  header.is-light .tpl-mega-title { color: #081359 !important; }
+  header.is-light .tpl-mega-link { color: #5E5E5E !important; }
+  header.is-light .tpl-mega-link:hover { color: #B8925D !important; }
+  header.is-light .tpl-mega-card { background: #F8F6F3 !important; }
+  header.is-light .tpl-mega-card div { color: #242424 !important; }
+
+  /* Real brand logo — white ring over dark, gold ring over light */
+  .tpl-logo-img { height: 54px; width: auto; display: block; }
+  .tpl-logo-light { display: none; }
+  header.is-light .tpl-logo-dark { display: none; }
+  header.is-light .tpl-logo-light { display: block; }
+
+  .tpl-mobile-drawer {
+    position: fixed;
+    inset: 0;
+    background: #081359;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 24px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity .35s ease, transform .35s cubic-bezier(0.16, 1, 0.3, 1), visibility .35s;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  .tpl-mobile-drawer.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 1023px) {
+    .tpl-desktop-nav { display: none !important; }
+    .tpl-mobile-toggle { display: flex !important; }
+    header[data-nav="1"] { padding: 16px 20px !important; }
+    section { padding-left: 20px !important; padding-right: 20px !important; }
+    .tpl-hero-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
+    .tpl-2col { grid-template-columns: 1fr !important; gap: 44px !important; }
+    .tpl-glance { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .tpl-steps { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .tpl-areas { grid-template-columns: 1fr !important; }
+    .tpl-why { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .tpl-results { grid-template-columns: 1fr !important; }
+    .tpl-price-row { grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) !important; }
+    .tpl-anchorbar { display: none !important; }
+    .tpl-combine-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .tpl-timeline { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  }
+
+  @media (max-width: 640px) {
+    .tpl-combine-grid { grid-template-columns: minmax(0,1fr) !important; }
+    .tpl-timeline { grid-template-columns: minmax(0,1fr) !important; }
+  }
+
+  /* In-page anchor bar */
+  .tpl-anchorbar {
+    position: sticky;
+    top: 63px;
+    z-index: 150;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(36,36,36,.1);
+  }
+  .tpl-anchorbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; gap: 34px; overflow-x: auto; }
+  .tpl-anchorbar a {
+    font-family: Jost, sans-serif; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+    color: #6E6E6E; padding: 15px 0; white-space: nowrap; border-bottom: 1px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .tpl-anchorbar a:hover { color: #8A6F44; border-bottom-color: #B8925D; }
+  /* Active section — set by the scroll-spy in componentDidMount */
+  .tpl-anchorbar a.is-current { color: #242424; border-bottom-color: #B8925D; }
+
+  /* FAQ accordion */
+  .tpl-faq { border-bottom: 1px solid rgba(36,36,36,.1); }
+  .tpl-faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    padding: 24px 6px; text-align: left;
+    transition: background .3s ease, padding .3s ease;
+  }
+  .tpl-faq-q:hover { background: #FAF8F5; padding-left: 14px; }
+  .tpl-faq-q .q-text { font-family: Jost, sans-serif; font-weight: 300; font-size: 19px; letter-spacing: .01em; color: #242424; }
+  .tpl-faq-q .q-mark { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #B8925D; transition: transform .35s ease; flex: none; }
+  .tpl-faq.is-open .q-mark { transform: rotate(45deg); }
+  .tpl-faq-a { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.22,1,.36,1); }
+  .tpl-faq-a p { margin: 0; padding: 0 6px 26px; max-width: 720px; font-size: 14.5px; line-height: 1.85; color: #5E5E5E; }
+
+  /* Pricing rows */
+  .tpl-price-row {
+    display: grid;
+    grid-template-columns: minmax(0,1.8fr) minmax(0,1fr) minmax(0,1fr);
+    gap: 24px;
+    align-items: baseline;
+    padding: 20px 6px;
+    border-bottom: 1px solid rgba(36,36,36,.08);
+    transition: background .3s ease, padding .3s ease;
+  }
+  .tpl-price-row:hover { background: #FAF8F5; padding-left: 14px; }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:clip">
+
+  <!-- ═══════════════════════ SHARED CHROME — identical to index.html (links page-adjusted) ═══════════════════════ -->
+  <header data-nav="1" style="position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(8,19,89,0);border-bottom:1px solid rgba(184,146,93,0);transition:background .35s ease,border-color .35s ease,padding .35s ease,backdrop-filter .35s ease,-webkit-backdrop-filter .35s ease,box-shadow .35s ease">
+    <a href="index.html" data-logo="1" style="display:flex;align-items:baseline;gap:10px;color:#ffffff;text-decoration:none">
+      <img class="tpl-logo-img tpl-logo-dark" src="assets/brand/tpl-logo.png" alt="TPL Clinic" width="300" height="300" />
+      <img class="tpl-logo-img tpl-logo-light" src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" />
+    </a>
+
+    <nav class="tpl-desktop-nav">
+      <a href="index.html#face" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">Face</a>
+      <a href="index.html#body" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">Body</a>
+      <a href="index.html#hair" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">Hair</a>
+      <div class="tpl-has-mega" style="position:relative">
+        <a href="services.html" style="display:flex;align-items:center;gap:6px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1">
+          <span>Services</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="transition:transform .3s ease">
+            <path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <div class="tpl-mega-menu">
+          <div>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">01 — Face</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <a href="prp.html" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">PRP &amp; PRF Biofiller</a>
+              <a href="sofwave.html" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Sofwave™ Collagen Lifting</a>
+              <a href="index.html#face" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® RF Burst</a>
+              <a href="index.html#face" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">LaseMD Ultra® Resurfacing</a>
+              <a href="index.html#face" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Korean Glass Skin Protocol</a>
+            </div>
+          </div>
+          <div>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">02 — Hair</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <a href="prp.html" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Enhanced PRP &amp; Exosomes</a>
+              <a href="index.html#hair" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Regenera Activa® Protocol</a>
+              <a href="index.html#hair" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">TrichoComp Diagnostics</a>
+              <a href="index.html#hair" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Invisible Hair Transplant™</a>
+            </div>
+          </div>
+          <div>
+            <div class="tpl-mega-title" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:16px">03 — Body</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <a href="prp.html" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">PRP Regenerative Body</a>
+              <a href="index.html#body" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Morpheus8® RF Remodeling</a>
+              <a href="index.html#body" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Targeted Mesotherapy</a>
+              <a href="index.html#body" class="tpl-mega-link" style="font-size:13.5px;color:rgba(255,255,255,.85);transition:color .2s">Soprano Ice Titanium™</a>
+            </div>
+          </div>
+          <div class="tpl-mega-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(184,146,93,0.3);padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
+              <div style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;line-height:1.25;color:#ffffff;margin-top:10px">Twenty treatments. One combined protocol.</div>
+              <p style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.7);margin:10px 0 0">Every instrument in the clinic, indexed on one page.</p>
+            </div>
+            <a href="services.html" style="margin-top:20px;display:inline-block;padding:10px 16px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#about" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="https://wa.me/442079987077" class="tpl-desktop-nav" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">WhatsApp</a>
+      <a href="#consultation" data-btn="1" style="display:inline-block;padding:12px 22px;border:1px solid #C7A470;background:rgba(8,19,89,.4);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,color .3s ease,border-color .3s ease;backdrop-filter:blur(8px);white-space:nowrap" style-hover="background:#B8925D;border-color:#B8925D;color:#ffffff">Book Consultation</a>
+      <button class="tpl-mobile-toggle" aria-label="Toggle menu" style="color:inherit">
+        <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase">Menu</span>
+        <div style="display:flex;flex-direction:column;gap:4px;width:18px">
+          <span style="display:block;width:100%;height:1.5px;background:currentColor"></span>
+          <span style="display:block;width:100%;height:1.5px;background:currentColor"></span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="tpl-mobile-drawer">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(184,146,93,0.3)">
+      <img src="assets/brand/tpl-logo.png" alt="TPL Clinic" width="300" height="300" style="height:52px;width:auto;display:block" />
+      <button style="background:none;border:none;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px">
+        <span>Close</span>
+        <span style="font-size:16px">✕</span>
+      </button>
+    </div>
+    <div style="margin-top:32px;display:flex;flex-direction:column;gap:24px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:12px">Treatments</div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding-left:12px;border-left:1px solid rgba(184,146,93,0.3)">
+          <a href="index.html#face" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">01 — Face Protocols</a>
+          <a href="index.html#hair" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">02 — Hair Restoration</a>
+          <a href="index.html#body" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">03 — Body Quality</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:8px">
+        <a href="services.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Services Index</a>
+        <a href="prp.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#C7A470">PRP — The Signature</a>
+        <a href="sofwave.html" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Sofwave™ Lifting</a>
+        <a href="index.html#about" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
+        <a href="index.html#technology" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Technology Index</a>
+        <a href="index.html#clinic" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Mayfair Clinic</a>
+      </div>
+    </div>
+    <div style="margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-direction:column;gap:14px">
+      <a href="#consultation" style="display:block;width:100%;padding:16px 20px;background:#B8925D;color:#ffffff;text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;box-sizing:border-box">Book Consultation</a>
+      <a href="https://wa.me/442079987077" style="display:block;width:100%;padding:14px 20px;border:1px solid rgba(255,255,255,0.4);color:#ffffff;text-align:center;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;box-sizing:border-box">WhatsApp 020 7998 7077</a>
+      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,0.5);text-align:center">22 SEYMOUR STREET · MAYFAIR W1H 7HY</div>
+    </div>
+  </div>
+  <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       TREATMENT CONTENT — edit everything between these fences when
+       cloning this file for another treatment (sofwave.html, etc.)
+       ══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Treatment Hero — navy band -->
+  <section id="top" data-dark="1" style="background:#081359;padding:180px 48px 100px;color:#ffffff;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 85% -10%,rgba(184,146,93,.16),transparent 60%);pointer-events:none"></div>
+    <div class="tpl-hero-grid" style="max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;align-items:center">
+      <div>
+        <div data-reveal="1" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Treatment 01 — The Signature</span>
+          <span style="width:5px;height:5px;background:#B8925D;display:inline-block"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)">Scalp · Face · Body</span>
+        </div>
+        <h1 data-reveal="1" style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px,5.6vw,88px);line-height:.98;letter-spacing:-.02em;color:#ffffff">Platelet<br />Rich Plasma</h1>
+        <p data-reveal="1" style="margin:26px 0 0;max-width:480px;font-size:16.5px;line-height:1.85;color:rgba(255,255,255,.75)">Your own biology, concentrated. A small volume of blood, separated in-clinic, and returned where regeneration is needed — no donor material, no synthetic filler.</p>
+        <div data-reveal="1" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:14px">
+          <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
+          <a href="https://wa.me/442079987077" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)">WhatsApp</a>
+        </div>
+        <div data-reveal="1" style="margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55)">Complimentary platelet count with every PRP consultation</div>
+      </div>
+      <div data-reveal="1" style="position:relative;aspect-ratio:4/3.4;background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden">
+        <picture>
+          <source type="image/avif" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.avif 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.avif 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.avif 1200w" sizes="(max-width: 1023px) 100vw, 42vw">
+          <source type="image/webp" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.webp 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.webp 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.webp 1200w" sizes="(max-width: 1023px) 100vw, 42vw">
+          <img src="assets/images/prp-method/prp-plasma-vial-macro-800w.jpg" alt="Platelet Rich Plasma — the golden fraction, separated" width="1280" height="960" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+        </picture>
+        <div style="position:absolute;inset:16px;border:1px solid rgba(184,146,93,.4);pointer-events:none;z-index:2"></div>
+        <div style="position:absolute;left:16px;bottom:16px;right:16px;padding:14px 16px;background:rgba(8,19,89,.55);backdrop-filter:blur(8px);z-index:3">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#E8C89A">The golden fraction — plasma is the colour of this clinic</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- In-page anchor bar -->
+  <nav class="tpl-anchorbar" aria-label="On this page">
+    <div class="tpl-anchorbar-inner">
+      <a href="#overview">Overview</a>
+      <a href="#process">The Process</a>
+      <a href="#areas">Areas Treated</a>
+      <a href="#combine">Combinations</a>
+      <a href="#difference">Why TPL</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#results">Results</a>
+      <a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- At a glance -->
+  <section style="padding:72px 48px 0;background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" class="tpl-glance" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">Sessions</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">3–4</div>
+        </div>
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">Spacing</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">4–6 weeks</div>
+        </div>
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">In clinic</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">45–60 min</div>
+        </div>
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">Downtime</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">12–48 hrs</div>
+        </div>
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">First results</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">~3 weeks</div>
+        </div>
+        <div style="background:#ffffff;padding:26px 22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A">Lasts</div>
+          <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">Up to 24 mo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" style="padding:96px 48px;background:#ffffff;scroll-margin-top:120px">
+    <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
+      <div data-reveal="1">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">What it is</div>
+        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.1;letter-spacing:-.01em;color:#242424">The signal your tissue already responds to, <span style="color:#B8925D">concentrated.</span></h2>
+        <p style="margin:24px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">PRP is a non-surgical, regenerative treatment that uses components of your own blood — making it a natural option with minimal risk of reaction. Platelets, once concentrated and activated, release at least seven key growth factors that stimulate collagen production, improve blood supply, reduce inflammation and encourage cellular renewal.</p>
+        <p style="margin:18px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">Results build gradually as tissue responds — which is why PRP is planned as a course, and why it pairs so well with energy-based treatments in the same sitting.</p>
+      </div>
+      <div data-reveal="1" style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+        <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-plasma-separation-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <source src="assets/videos/prp-method/prp-plasma-separation-loop.webm" type="video/webm">
+          <source src="assets/videos/prp-method/prp-plasma-separation-loop.mp4" type="video/mp4">
+        </video>
+        <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process — same four steps as the homepage, for continuity -->
+  <section id="process" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:28px">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Four steps. All of them yours.</h2>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">In clinic · single visit</div>
+      </div>
+      <div data-reveal="1" class="tpl-steps" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
+          <div style="position:relative;z-index:2">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">STEP 01</div>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Draw</div>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">A standard blood draw, taken by a medical practitioner in the treatment room.</p>
+          </div>
+        </div>
+        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
+          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-plasma-separation-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none">
+            <source src="assets/videos/prp-method/prp-plasma-separation-loop.webm" type="video/webm">
+            <source src="assets/videos/prp-method/prp-plasma-separation-loop.mp4" type="video/mp4">
+          </video>
+          <div style="position:relative;z-index:2">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">STEP 02</div>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Separate</div>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Centrifuged to isolate platelets and growth factors — concentrations of up to 18× baseline, adjusted to your blood work.</p>
+          </div>
+        </div>
+        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
+          <div style="position:relative;z-index:2">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">STEP 03</div>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Activate</div>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Prepared as plasma, fibrin biofiller or an exosome-enhanced formulation, depending on your protocol.</p>
+          </div>
+        </div>
+        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
+          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-syringe-drop-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none">
+            <source src="assets/videos/prp-method/prp-syringe-drop-loop.webm" type="video/webm">
+            <source src="assets/videos/prp-method/prp-syringe-drop-loop.mp4" type="video/mp4">
+          </video>
+          <div style="position:relative;z-index:2">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;color:#B8925D">STEP 04</div>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Reintroduce</div>
+            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Delivered by injection or microneedling — frequently alongside RF or laser the same day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas treated -->
+  <section id="areas" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Where it works</h2>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Scalp · Face · Body</div>
+      </div>
+      <div class="tpl-areas" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 56px">
+        <div data-reveal="1" style="padding:44px 0 36px">
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-bottom:28px">
+            <img src="assets/section-images-webp/frame-05-into-the-hair.webp" alt="PRP for the scalp — follicle-level treatment" loading="lazy" width="800" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;color:#B8925D">01</span>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:34px;color:#242424">Scalp</h3>
+          </div>
+          <p style="margin:18px 0 0;font-size:14.5px;line-height:1.85;color:#5E5E5E">For thinning and hair loss where follicles are still viable. Growth factors improve blood supply around the follicle, calm inflammation and extend the active growth phase — thicker shafts, slower loss.</p>
+          <div style="margin-top:22px;border-top:1px solid rgba(36,36,36,.12)">
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Androgenetic (pattern) hair loss</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Alopecia areata · barbae · totalis</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Post-transplant recovery</div>
+          </div>
+        </div>
+        <div data-reveal="1" style="padding:44px 0 36px">
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-bottom:28px">
+            <img src="assets/section-images-webp/frame-03-into-the-face.webp" alt="PRP for the face — collagen and structure" loading="lazy" width="800" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;color:#B8925D">02</span>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:34px;color:#242424">Face</h3>
+          </div>
+          <p style="margin:18px 0 0;font-size:14.5px;line-height:1.85;color:#5E5E5E">Collagen and elastin production restores firmness and structure from within. Fine lines soften, tone evens, hydration improves — without altering expression.</p>
+          <div style="margin-top:22px;border-top:1px solid rgba(36,36,36,.12)">
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Fine lines &amp; early laxity</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Dull or uneven complexion</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Sun-damaged skin</div>
+          </div>
+        </div>
+        <div data-reveal="1" style="padding:44px 0 36px">
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-bottom:28px">
+            <img src="assets/section-images-webp/frame-07-into-the-torso.webp" alt="PRP for the body — texture and scarring" loading="lazy" width="800" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;color:#B8925D">03</span>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:34px;color:#242424">Body</h3>
+          </div>
+          <p style="margin:18px 0 0;font-size:14.5px;line-height:1.85;color:#5E5E5E">Concentrated growth factors delivered into scarred or stressed skin trigger repair and remodelling — texture smooths, tone evens over a course.</p>
+          <div style="margin-top:22px;border-top:1px solid rgba(36,36,36,.12)">
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Surgical &amp; acne scarring</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Stretch marks</div>
+            <div style="padding:11px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:13.5px;color:#242424">Thin or uneven skin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMBINATIONS — PRP is the layer beneath, not a standalone ══ -->
+  <section id="combine" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px;align-items:end;border-bottom:1px solid rgba(36,36,36,.14);padding-bottom:30px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Combinations</div>
+          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">PRP rarely works alone</h2>
+        </div>
+        <p style="margin:0;max-width:520px;font-size:16px;line-height:1.9;color:#5E5E5E">We routinely combine PRP with Morpheus8®, exosomes — primarily for hair loss — micro-needling and mesotherapy, layering the regenerative signal with an energy or delivery device for compounding effect.</p>
+      </div>
+
+      <div data-reveal="1" class="tpl-combine-grid" style="margin-top:52px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div class="tpl-combine-cell" style="background:#F7F5F2;padding:36px 30px 42px">
+          <img src="assets/icons/morpheus8.png" alt="" loading="lazy" width="400" height="400" style="width:64px;height:64px;object-fit:contain;display:block;margin-left:-4px" />
+          <div style="margin-top:24px;font-family:Jost,sans-serif;font-weight:300;font-size:21px;color:#242424">Morpheus8®</div>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">RF microneedling to remodel deeper, with plasma carrying the healing response.</p>
+        </div>
+        <div class="tpl-combine-cell" style="background:#F7F5F2;padding:36px 30px 42px">
+          <img src="assets/icons/enhanced-prp.png" alt="" loading="lazy" width="400" height="400" style="width:64px;height:64px;object-fit:contain;display:block;margin-left:-4px" />
+          <div style="margin-top:24px;font-family:Jost,sans-serif;font-weight:300;font-size:21px;color:#242424">Exosomes</div>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Stem-cell-derived vesicles carrying growth factors, proteins and RNA — primarily for hair loss.</p>
+        </div>
+        <div class="tpl-combine-cell" style="background:#F7F5F2;padding:36px 30px 42px">
+          <img src="assets/icons/microneedling.png" alt="" loading="lazy" width="400" height="400" style="width:64px;height:64px;object-fit:contain;display:block;margin-left:-4px" />
+          <div style="margin-top:24px;font-family:Jost,sans-serif;font-weight:300;font-size:21px;color:#242424">Micro-needling</div>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Controlled collagen induction, with PRP delivered into the channels it creates.</p>
+        </div>
+        <div class="tpl-combine-cell" style="background:#F7F5F2;padding:36px 30px 42px">
+          <img src="assets/icons/skin-boosters.png" alt="" loading="lazy" width="400" height="400" style="width:64px;height:64px;object-fit:contain;display:block;margin-left:-4px" />
+          <div style="margin-top:24px;font-family:Jost,sans-serif;font-weight:300;font-size:21px;color:#242424">Mesotherapy</div>
+          <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Targeted micro-injections that place actives exactly where they are needed.</p>
+        </div>
+      </div>
+
+      <!-- Enhanced PRP feature block — asymmetric on purpose, breaks the 4-up rhythm -->
+      <div data-reveal="1" class="tpl-2col" style="margin-top:1px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12);border-top:none">
+        <div style="background:#081359;color:#ffffff;padding:56px 48px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Enhanced PRP</div>
+          <h3 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(28px,3vw,44px);line-height:1.1;color:#ffffff">Nature's own communication system</h3>
+          <p style="margin:22px 0 0;max-width:560px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.74)">Exosomes are tiny vesicles that carry messages between cells to promote repair and regeneration. Extracted from stem cells, they are loaded with growth factors, proteins and RNA that stimulate collagen synthesis, regulate pigment production, refine texture and restore luminosity.</p>
+          <a href="services.html" style="margin-top:34px;display:inline-block;padding:15px 28px;border:1px solid rgba(232,200,154,.7);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:rgba(255,255,255,.1);border-color:#E8C89A">See the full index</a>
+        </div>
+        <div style="position:relative;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);min-height:360px;overflow:hidden">
+          <img src="assets/section-images-webp/section-hair.webp" alt="Hair restoration with enhanced PRP" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;inset:16px;border:1px solid rgba(184,146,93,.35);pointer-events:none;z-index:2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why TPL -->
+  <section id="difference" data-dark="1" style="padding:110px 48px;background:#081359;color:#ffffff;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:start">
+        <div data-reveal="1">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Why TPL</div>
+          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,62px);line-height:1.05;letter-spacing:-.01em;color:#ffffff">PRP is not the same in every clinic.</h2>
+          <p style="margin:24px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">The result depends on the system that separates your blood and the protocol that plans your course. We use the Arthrex ACP® and Angel® systems — the Angel® delivers platelet concentrations of up to 18× baseline with adjustable white-cell content, set against your own blood work.</p>
+          <p style="margin:18px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">Before treating, we run a complimentary platelet count — because a protocol planned on evidence outperforms one planned on habit.</p>
+        </div>
+        <div data-reveal="1" class="tpl-why" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16)">
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">18×</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Platelet concentration, adjustable</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">5,000+</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Treatments delivered each year</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">Arthrex</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">ACP® &amp; Angel® separation systems</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">№1</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">The UK's first PRP-devoted clinic</div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="1" style="margin-top:56px;border-top:1px solid rgba(255,255,255,.16);padding-top:26px;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#C7A470">Rarely booked alone</span>
+        <span style="font-size:14px;color:rgba(255,255,255,.75)">PRP is routinely combined with Morpheus8®, exosomes, micro-needling and mesotherapy for compound effect.</span>
+        <a href="services.html" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;border-bottom:1px solid rgba(232,200,154,.5);padding-bottom:2px">See the full index →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Pricing</h2>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Courses planned at consultation</div>
+      </div>
+      <!-- ⚠ PLACEHOLDER PRICES — the live site publishes no PRP prices.
+           Structure is final; values to be confirmed by the clinic before launch. -->
+      <div data-reveal="1">
+        <div class="tpl-price-row" style="border-bottom:1px solid rgba(36,36,36,.12)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#9A9A9A">Area</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#9A9A9A">Single session</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#9A9A9A">Course of 3</span>
+        </div>
+        <div class="tpl-price-row">
+          <span style="font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">Face</span>
+          <span style="font-size:15px;color:#242424">£350</span>
+          <span style="font-size:15px;color:#242424">£900 <span style="font-size:11.5px;color:#8A6F44;letter-spacing:.06em">— save £150</span></span>
+        </div>
+        <div class="tpl-price-row">
+          <span style="font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">Scalp — hair loss</span>
+          <span style="font-size:15px;color:#242424">£400</span>
+          <span style="font-size:15px;color:#242424">£1,050 <span style="font-size:11.5px;color:#8A6F44;letter-spacing:.06em">— save £150</span></span>
+        </div>
+        <div class="tpl-price-row">
+          <span style="font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">Face &amp; scalp combined</span>
+          <span style="font-size:15px;color:#242424">£650</span>
+          <span style="font-size:15px;color:#242424">£1,700 <span style="font-size:11.5px;color:#8A6F44;letter-spacing:.06em">— save £250</span></span>
+        </div>
+        <div class="tpl-price-row">
+          <span style="font-family:Jost,sans-serif;font-weight:300;font-size:19px;color:#242424">Body — per area</span>
+          <span style="font-size:15px;color:#242424">From £400</span>
+          <span style="font-size:15px;color:#242424">Planned at consultation</span>
+        </div>
+      </div>
+      <div data-reveal="1" style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px 36px;align-items:center">
+        <span style="display:flex;align-items:center;gap:12px"><i style="width:5px;height:5px;background:#B8925D;display:inline-block"></i><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A6F44">Indicative — confirmed at consultation</span></span>
+        <span style="font-size:13.5px;color:#6E6E6E">Consultation £50 · with the surgeon £200 · refundable if cancelled 48 hours ahead.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TIMELINE — sets expectation before the results gallery ══ -->
+  <section id="timeline" data-dark="1" style="background:#081359;color:#ffffff;padding:100px 48px;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">What to expect</div>
+        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,62px);line-height:1;letter-spacing:-.01em;color:#ffffff">Results arrive on a calendar</h2>
+      </div>
+      <div data-reveal="1" class="tpl-timeline" style="margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.26);border:1px solid rgba(232,200,154,.26)">
+        <div style="background:#081359;padding:38px 30px 44px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:42px;line-height:1;color:#C7A470">3 wks</div>
+          <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#ffffff">Skin texture &amp; tone</div>
+          <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.7)">Improvement in texture and tone is noticeable within three weeks of treatment.</p>
+        </div>
+        <div style="background:#081359;padding:38px 30px 44px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:42px;line-height:1;color:#C7A470">8 wks</div>
+          <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#ffffff">Reduction in hair loss</div>
+          <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.7)">Shedding slows first; regrowth is usually seen 3–6 months after the last treatment.</p>
+        </div>
+        <div style="background:#081359;padding:38px 30px 44px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:42px;line-height:1;color:#C7A470">3 mths</div>
+          <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#ffffff">Full collagen regeneration</div>
+          <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.7)">The complete collagen response takes up to three months to express itself.</p>
+        </div>
+        <div style="background:#081359;padding:38px 30px 44px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:42px;line-height:1;color:#C7A470">24 mths</div>
+          <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#ffffff">Results maintained</div>
+          <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.7)">In most patients results last up to 24 months after a course of four, with touch-ups every 3–6 months.</p>
+        </div>
+      </div>
+      <div data-reveal="1" style="margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)">Results vary from person to person · discussed in full at consultation</div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:34px">
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Results</h2>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Individual results vary</div>
+      </div>
+      <div data-reveal="1" class="tpl-results" style="margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+        <!-- Before/after slots — replace with the clinic's approved photography -->
+        <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;inset:12px;border:1px dashed rgba(184,146,93,.45);pointer-events:none"></div>
+          <div style="text-align:center;padding:20px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A6F44">Before / After</div>
+            <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#A8A29A">Scalp — clinic asset pending</div>
+          </div>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;inset:12px;border:1px dashed rgba(184,146,93,.45);pointer-events:none"></div>
+          <div style="text-align:center;padding:20px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A6F44">Before / After</div>
+            <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#A8A29A">Face — clinic asset pending</div>
+          </div>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;inset:12px;border:1px dashed rgba(184,146,93,.45);pointer-events:none"></div>
+          <div style="text-align:center;padding:20px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A6F44">Before / After</div>
+            <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#A8A29A">Body — clinic asset pending</div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="1" style="margin-top:30px;display:flex;flex-wrap:wrap;gap:12px 36px">
+        <span style="font-size:14px;color:#5E5E5E">Skin texture and tone improve within ~3 weeks; collagen builds for up to 3 months.</span>
+        <span style="font-size:14px;color:#5E5E5E">Hair: shedding slows within ~8 weeks; regrowth typically shows 3–6 months after the course.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" style="padding:0 48px 110px;background:#ffffff;scroll-margin-top:120px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
+        <div data-reveal="1">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Questions</div>
+          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.08;letter-spacing:-.01em;color:#242424">Asked before every first session.</h2>
+          <p style="margin:22px 0 0;max-width:360px;font-size:14.5px;line-height:1.85;color:#5E5E5E">Anything unanswered — call 020 7998 7077 or <a href="https://wa.me/442079987077" style="color:#8A6F44;border-bottom:1px solid rgba(184,146,93,.5)">message us on WhatsApp</a>.</p>
+        </div>
+        <div data-reveal="1" style="border-top:1px solid rgba(36,36,36,.12)">
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">Does it hurt?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>On the face, discomfort is minimal — a topical anaesthetic cream numbs the area first. Scalp injections can be more noticeable, so we use specific tools to keep treatment as comfortable as possible; every pain threshold is different.</p></div>
+          </div>
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">How many sessions will I need?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>Most people need 3–4 sessions, spaced roughly 4–6 weeks apart. Your practitioner sets the protocol against your skin or scalp condition — and for hair, against your TrichoComp™ analysis.</p></div>
+          </div>
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">When will I see results?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>Skin texture and tone improve within about three weeks; full collagen regeneration takes up to three months. For hair, reduced shedding is noticeable within eight weeks, with regrowth typically visible 3–6 months after the final session.</p></div>
+          </div>
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">Are there side effects?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>Mild to moderate swelling and redness for 12–48 hours is normal, occasionally with light bruising. Because PRP uses your own blood, the risk of allergic reaction is minimal.</p></div>
+          </div>
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">How long do results last?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>In most patients, results last up to 24 months after a course of four treatments. Touch-up sessions every 3–6 months maintain the effect.</p></div>
+          </div>
+          <div class="tpl-faq">
+            <button class="tpl-faq-q"><span class="q-text">Can it be combined with other treatments?</span><span class="q-mark">+</span></button>
+            <div class="tpl-faq-a"><p>Routinely — that's the clinic's philosophy. PRP is layered with Morpheus8®, exosomes, micro-needling and mesotherapy, frequently in the same sitting, because combination protocols outperform stand-alone treatments.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       END TREATMENT CONTENT
+       ══════════════════════════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════ SHARED CHROME — consultation + footer + modal ═══════════════════════ -->
+  <section id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
+    <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
+      <div data-reveal="1">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
+        <h2 style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.6vw,72px);line-height:1.02;letter-spacing:-.01em;color:#ffffff">Every plan starts<br />in the room.</h2>
+        <p style="margin:26px 0 0;max-width:460px;font-size:16px;line-height:1.9;color:rgba(255,255,255,.72)">Consultations are booked by our team, not by an algorithm. Tell us what you'd like to address and we'll call you back to arrange a time with the right practitioner.</p>
+        <div style="margin-top:44px;display:flex;flex-direction:column;gap:16px;max-width:460px">
+          <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C7A470;letter-spacing:.18em">01</span>
+            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Consultations are paid in advance and fully refundable if cancelled 48 hours ahead.</span>
+          </div>
+          <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C7A470;letter-spacing:.18em">02</span>
+            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">A complimentary platelet count is included with every PRP consultation.</span>
+          </div>
+          <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:14px 0">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C7A470;letter-spacing:.18em">03</span>
+            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Out of hours? Leave your details — we call back the next working morning.</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="1" style="background:#ffffff;padding:44px 40px 40px;color:#242424">
+        <div style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Request a call back</div>
+        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
+            <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Last name</span>
+            <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Email</span>
+            <input type="email" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Telephone</span>
+            <input type="tel" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Area of interest</span>
+            <select style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D">
+              <option>PRP consultation</option>
+              <option>Face — skin &amp; anti-ageing</option>
+              <option>Hair — thinning or loss</option>
+              <option>Body — skin quality</option>
+              <option>Invisible Hair Transplant™</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
+            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Message</span>
+            <textarea rows="4" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none;resize:vertical" style-focus="border-color:#B8925D"></textarea>
+          </label>
+        </div>
+        <label style="margin-top:20px;display:flex;align-items:flex-start;gap:12px;cursor:pointer">
+          <input type="checkbox" style="margin-top:3px;width:14px;height:14px;accent-color:#B8925D" />
+          <span style="font-size:12.5px;line-height:1.7;color:#6E6E6E">I consent to TPL Clinic contacting me about my enquiry, in line with the privacy policy.</span>
+        </label>
+        <button data-submit="1" style="margin-top:26px;width:100%;padding:17px 24px;background:#242424;color:#ffffff;border:1px solid #242424;border-radius:0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease" style-hover="background:#B8925D;border-color:#B8925D">Send enquiry</button>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
+      <div>
+        <img src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" style="height:72px;width:auto;display:block" />
+        <p style="margin:20px 0 0;max-width:300px;font-size:13.5px;line-height:1.9;color:#6E6E6E">The UK's first clinic specialising in Platelet Rich Plasma. Specialist Aesthetic Clinic of the Year 2026/27.</p>
+      </div>
+      <div>
+        <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Treatments</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
+          <a href="services.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">All services</a>
+          <a href="prp.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">PRP — the signature</a>
+          <a href="index.html#face" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Face</a>
+          <a href="index.html#hair" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Hair</a>
+          <a href="index.html#body" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Body</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Clinic</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
+          <span style="font-size:13.5px;color:#242424">22 Seymour Street, W1H 7HY</span>
+          <span style="font-size:13.5px;color:#242424">020 7998 7077</span>
+          <span style="font-size:13.5px;color:#242424">info@tplclinic.com</span>
+          <a href="https://www.instagram.com/tplcliniclondon" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">@tplcliniclondon</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Legal</div>
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
+          <a href="index.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Terms &amp; Conditions</a>
+          <a href="index.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">GDPR &amp; Privacy</a>
+          <a href="#consultation" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Consultation policy</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:56px auto 0;padding-top:22px;border-top:1px solid rgba(36,36,36,.1);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9A9A9A">© 2026 TPL Clinic · London</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9A9A9A">Regenerative aesthetics</span>
+    </div>
+  </footer>
+
+  <!-- Enquiry-received modal -->
+  <div id="tpl-modal" style="display:none;position:fixed;inset:0;z-index:400;background:rgba(8,19,89,.55);align-items:center;justify-content:center;padding:24px">
+    <div style="background:#ffffff;max-width:520px;width:100%;padding:52px 46px;border-top:2px solid #B8925D">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Enquiry received</div>
+      <h3 style="margin:20px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:38px;line-height:1.1;color:#242424">Thank you. We will contact you.</h3>
+      <p style="margin:18px 0 0;font-size:15px;line-height:1.85;color:#5E5E5E">A member of the TPL Clinic team will call you to arrange your consultation. If your enquiry is urgent, please call 020 7998 7077 or message us on WhatsApp.</p>
+      <button data-modal-close="1" style="margin-top:32px;padding:15px 30px;background:#242424;color:#ffffff;border:1px solid #242424;border-radius:0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer" style-hover="background:#B8925D;border-color:#B8925D">Close</button>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {};
+
+  componentDidMount() {
+    this.nav = document.querySelector('[data-nav]');
+    this.darkSections = Array.from(document.querySelectorAll('[data-dark]'));
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobilePhone = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth < 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+
+    if (!prefersReducedMotion && !isMobilePhone && typeof window.Lenis !== 'undefined') {
+      this.lenis = new window.Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.6,
+      });
+      const lenisRaf = (time) => {
+        if (this.lenis) {
+          this.lenis.raf(time);
+          this.animId = requestAnimationFrame(lenisRaf);
+
+        // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
+        // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
+        this.onAnchorClick = (e) => {
+          const a = e.target.closest('a[href*="#"]');
+          if (!a) return;
+          const href = a.getAttribute('href') || '';
+          const hash = href.slice(href.indexOf('#'));
+          // ignore cross-page links (e.g. index.html#face when we're not on index)
+          const path = href.slice(0, href.indexOf('#'));
+          if (path && !location.pathname.endsWith(path)) return;
+          if (hash.length < 2) return;
+          const target = document.querySelector(hash);
+          if (!target) return;
+          e.preventDefault();
+          if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', hash);
+        };
+        document.addEventListener('click', this.onAnchorClick);
+        }
+      };
+      this.animId = requestAnimationFrame(lenisRaf);
+    }
+
+    // Nav theme — dark over navy [data-dark] bands, light otherwise
+    this.applyNavTheme = () => {
+      if (!this.nav) return;
+      const navHeight = 80;
+      const overDark = this.darkSections.some(s => {
+        const r = s.getBoundingClientRect();
+        return r.top <= navHeight && r.bottom >= 0;
+      });
+      const logo = this.nav.querySelector('[data-logo]');
+      const logoTpl = logo ? logo.querySelector('span:first-child') : null;
+      const logoClinic = logo ? logo.querySelector('span:last-child') : null;
+      const navLinks = this.nav.querySelectorAll('[data-nav-link="1"]');
+      const whatsappLink = this.nav.querySelector('a[href*="wa.me"]');
+      const btn = this.nav.querySelector('[data-btn]');
+      const toggleBtn = this.nav.querySelector('.tpl-mobile-toggle');
+
+      if (overDark) {
+        this.nav.classList.remove('is-light');
+        this.nav.style.background = 'rgba(8,19,89,0)';
+        this.nav.style.backdropFilter = 'none';
+        this.nav.style.webkitBackdropFilter = 'none';
+        this.nav.style.borderBottom = '1px solid rgba(184,146,93,0)';
+        this.nav.style.boxShadow = 'none';
+        this.nav.style.padding = '22px 40px';
+        if (logoTpl) logoTpl.style.color = '#ffffff';
+        if (logoClinic) logoClinic.style.color = '#C7A470';
+        navLinks.forEach(link => { link.style.color = '#ffffff'; });
+        if (whatsappLink) whatsappLink.style.color = 'rgba(255,255,255,.9)';
+        if (toggleBtn) toggleBtn.style.color = '#ffffff';
+        if (btn) {
+          btn.style.background = 'rgba(8,19,89,.4)';
+          btn.style.color = '#ffffff';
+          btn.style.borderColor = '#C7A470';
+        }
+      } else {
+        this.nav.classList.add('is-light');
+        this.nav.style.background = 'rgba(255, 255, 255, 0.88)';
+        this.nav.style.backdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.borderBottom = '1px solid rgba(184, 146, 93, 0.3)';
+        this.nav.style.boxShadow = '0 10px 30px rgba(8, 19, 89, 0.08)';
+        this.nav.style.padding = '16px 40px';
+        if (logoTpl) logoTpl.style.color = '#242424';
+        if (logoClinic) logoClinic.style.color = '#B8925D';
+        navLinks.forEach(link => { link.style.color = '#242424'; });
+        if (whatsappLink) whatsappLink.style.color = '#242424';
+        if (toggleBtn) toggleBtn.style.color = '#242424';
+        if (btn) {
+          btn.style.background = '#081359';
+          btn.style.color = '#ffffff';
+          btn.style.borderColor = '#081359';
+        }
+      }
+    };
+    window.addEventListener('scroll', this.applyNavTheme, { passive: true });
+    window.addEventListener('resize', this.applyNavTheme);
+    this.applyNavTheme();
+
+    // Reveals — identical to the homepage
+    if ('IntersectionObserver' in window) {
+      const targets = Array.from(document.querySelectorAll('[data-reveal]'));
+      targets.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)';
+      });
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            this.io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      targets.forEach(el => this.io.observe(el));
+      this.safety = setTimeout(() => targets.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }), 4000);
+    }
+
+    // ── Vanilla interactivity (the exported runtime is render-once) ──
+
+    // FAQ accordion
+    document.querySelectorAll('.tpl-faq').forEach(faq => {
+      const q = faq.querySelector('.tpl-faq-q');
+      const a = faq.querySelector('.tpl-faq-a');
+      q.addEventListener('click', () => {
+        const open = faq.classList.toggle('is-open');
+        a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
+      });
+    });
+
+    // Mobile drawer
+    const drawer = document.querySelector('.tpl-mobile-drawer');
+    const toggleBtnEl = document.querySelector('.tpl-mobile-toggle');
+    const closeDrawer = () => drawer && drawer.classList.remove('is-open');
+    if (toggleBtnEl && drawer) {
+      toggleBtnEl.addEventListener('click', () => drawer.classList.toggle('is-open'));
+      drawer.querySelectorAll('a, button').forEach(el => el.addEventListener('click', closeDrawer));
+    }
+
+    // Mega menu (click-toggle for touch; hover handled by CSS)
+    // The trigger is the <a> inside .tpl-has-mega (there is no <button>).
+    // Hover is handled in CSS; this adds keyboard/touch toggling and click-outside close.
+    const megaWrap = document.querySelector('.tpl-has-mega');
+    const megaBtn = megaWrap ? megaWrap.querySelector(':scope > a') : null;
+    const megaMenu = document.querySelector('.tpl-mega-menu');
+    if (megaBtn && megaMenu) {
+      megaBtn.addEventListener('click', (e) => {
+        // On a fine pointer the link should still navigate to services.html.
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        e.preventDefault();
+        e.stopPropagation();
+        megaMenu.classList.toggle('is-active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!megaMenu.contains(e.target) && !megaBtn.contains(e.target)) megaMenu.classList.remove('is-active');
+      });
+      megaMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => megaMenu.classList.remove('is-active')));
+    }
+
+    // ── Anchor-bar scroll spy ──────────────────────────────────────────
+    // Marks the section currently under the header as .is-current.
+    // Uses scroll position rather than IntersectionObserver so that the
+    // *topmost visible* section wins rather than whichever fires last.
+    const barLinks = Array.from(document.querySelectorAll('.tpl-anchorbar a'));
+    if (barLinks.length) {
+      const spyTargets = barLinks
+        .map(a => {
+          const id = (a.getAttribute('href') || '').replace('#', '');
+          const el = id ? document.getElementById(id) : null;
+          return el ? { a, el } : null;
+        })
+        .filter(Boolean);
+
+      this.onSpy = () => {
+        const probe = window.scrollY + 150; // header + anchor bar height
+        let current = spyTargets[0];
+        for (const t of spyTargets) {
+          if (t.el.offsetTop <= probe) current = t;
+        }
+        spyTargets.forEach(t => t.a.classList.toggle('is-current', t === current));
+      };
+      window.addEventListener('scroll', this.onSpy, { passive: true });
+      window.addEventListener('resize', this.onSpy);
+      this.onSpy();
+    }
+
+    // Enquiry form → confirmation modal
+    const modal = document.getElementById('tpl-modal');
+    const submitBtn = document.querySelector('[data-submit]');
+    if (submitBtn && modal) {
+      submitBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+      modal.querySelectorAll('[data-modal-close]').forEach(b => b.addEventListener('click', () => { modal.style.display = 'none'; }));
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeDrawer(); if (modal) modal.style.display = 'none'; if (megaMenu) megaMenu.classList.remove('is-active'); }
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.applyNavTheme) {
+      window.removeEventListener('scroll', this.applyNavTheme);
+      window.removeEventListener('resize', this.applyNavTheme);
+    }
+    if (this.lenis) this.lenis.destroy();
+    if (this.animId) cancelAnimationFrame(this.animId);
+    if (this.onSpy) {
+      window.removeEventListener('scroll', this.onSpy);
+      window.removeEventListener('resize', this.onSpy);
+    }
+    if (this.io) this.io.disconnect();
+    if (this.safety) clearTimeout(this.safety);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

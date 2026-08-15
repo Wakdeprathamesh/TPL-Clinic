@@ -1,0 +1,12 @@
+# Internal working material — never publish
+PROJECT-NOTES.md
+client-inputs/
+archive/
+docs/
+Services page design system*/
+Services page design system*.zip
+
+# Tooling / OS
+.claude/
+.DS_Store
+**/.DS_Store
