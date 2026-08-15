@@ -146,6 +146,13 @@
       max-width: 100% !important;
     }
   }
+
+  /* ══ Regulator strip (homepage) ══
+     Stacks rather than shrinking — at three-up on a phone each logo would be
+     ~110px wide, which is below the point where the wordmarks stay legible. */
+  @media (max-width: 860px) {
+    .tpl-accred-strip { grid-template-columns: minmax(0,1fr) !important; }
+  }
 </style>
 </helmet>
 
@@ -225,7 +232,7 @@
         </div>
       </div>
 
-      <a href="#about" onClick="{{ onCloseMegaMenu }}" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
+      <a href="about.html" onClick="{{ onCloseMegaMenu }}" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:inherit;transition:color .35s ease;text-shadow:0 2px 10px rgba(0,0,0,0.5)" data-nav-link="1" style-hover="color:#B8925D">About us</a>
     </nav>
 
     <!-- Header Actions (WhatsApp & Consultation CTA) -->
@@ -268,7 +275,7 @@
         <a href="services.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#C7A470">Services Index</a>
         <a href="prp.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">PRP — The Signature</a>
         <a href="sofwave.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Sofwave™ Lifting</a>
-        <a href="#about" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
+        <a href="about.html" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">About Us</a>
         <a href="#technology" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Technology Index</a>
         <a href="#clinic" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:20px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:#ffffff">Mayfair Clinic</a>
       </div>
@@ -647,7 +654,7 @@
   </sc-if>
 
   <!-- Clinic Section -->
-  <section id="clinic" style="padding:0 48px 120px;background:#ffffff">
+  <section id="clinic" style="padding:0 48px;background:#ffffff">
     <div data-reveal="1" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
       <div style="position:relative;background:linear-gradient(150deg,#FBFAF8 0%,#F3EFEA 100%);min-height:440px;overflow:hidden">
         <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="TPL Clinic Mayfair premises" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
@@ -682,6 +689,43 @@
           </div>
         </div>
         <a href="https://wa.me/442079987077" style="margin-top:36px;display:inline-block;padding:15px 26px;border:1px solid #242424;color:#242424;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,color .3s ease" style-hover="background:#242424;color:#ffffff">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ REGULATORS ══
+       The last thing before the enquiry form: the reassurance a visitor wants
+       at the point of handing over their details. No hairline rule here — the
+       clinic card above is already a bordered block, and a full-width rule
+       under it reads as a stray line. Height-matched, not width-matched: the three
+       lockups run 1.26 to 1.86 in aspect, so equal height is what makes the
+       wordmarks read at the same size. Detail of who holds what lives on
+       about.html#regulation. -->
+  <section id="regulated" style="padding:110px 48px 120px;background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px 40px;flex-wrap:wrap">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Practitioners registered with</div>
+        <a href="about.html#regulation" style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">How we are regulated &rarr;</a>
+      </div>
+      <div data-reveal="1" class="tpl-accred-strip" style="margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
+        <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+          <div style="height:58px;display:flex;align-items:center">
+            <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="192" height="152" style="height:56px;width:auto;object-fit:contain;display:block" />
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Doctors &mdash; GMC registered</div>
+        </div>
+        <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+          <div style="height:58px;display:flex;align-items:center">
+            <img src="assets/images/about/general-dental-council.png" alt="General Dental Council" loading="lazy" width="259" height="139" style="height:56px;width:auto;object-fit:contain;display:block" />
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentists &mdash; GDC registered</div>
+        </div>
+        <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+          <div style="height:58px;display:flex;align-items:center">
+            <img src="assets/images/about/nursing-and-midwifery-council.png" alt="Nursing and Midwifery Council" loading="lazy" width="227" height="149" style="height:56px;width:auto;object-fit:contain;display:block" />
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Nurses &mdash; NMC registered</div>
+        </div>
       </div>
     </div>
   </section>
@@ -782,9 +826,9 @@
       <div>
         <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Legal</div>
         <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
-          <a href="#top" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Terms &amp; Conditions</a>
-          <a href="#top" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">GDPR &amp; Privacy</a>
-          <a href="#consultation" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Consultation policy</a>
+          <a href="terms-conditions.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Terms &amp; Conditions</a>
+          <a href="gdpr.html" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">GDPR &amp; Privacy</a>
+          <a href="terms-conditions.html#booking-fees" style="font-size:13.5px;color:#242424" style-hover="color:#B8925D">Consultation policy</a>
         </div>
       </div>
     </div>
@@ -965,7 +1009,22 @@ class Component extends DCLogic {
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
             h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
-            after.push(() => { h.style.clipPath = 'inset(0 0 0% 0)'; });
+            after.push(() => {
+              h.style.clipPath = 'inset(0 0 0% 0)';
+              // Then drop the mask entirely. The headings run line-height:1, so their box
+              // is a few px shorter than Jost's glyphs need, and a clip-path parked at 0%
+              // shaves the descender off g/y/p permanently ("Technology index" lost the
+              // tail of its g). Guard on propertyName: when the heading IS the reveal
+              // target it also transitions opacity, and clearing on that event would kill
+              // the sweep halfway. The timeout is the backstop if transitionend never fires.
+              const unmask = e => {
+                if (e && e.propertyName !== 'clip-path') return;
+                h.style.clipPath = 'none';
+                h.removeEventListener('transitionend', unmask);
+              };
+              h.addEventListener('transitionend', unmask);
+              setTimeout(unmask, delay + 40 + 1200);
+            });
           });
 
           // Framed media only — an image with no clipping frame is left alone.
