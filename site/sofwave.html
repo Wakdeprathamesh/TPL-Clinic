@@ -2,12 +2,34 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- ══ TREATMENT PAGE HEAD — edit title + description per treatment ══ -->
 <title>Sofwave™ at TPL Clinic Mayfair · Lift, Tighten & Rejuvenate in One Session</title>
+<meta name="theme-color" content="#081359">
 <meta name="description" content="Sofwave™ ultrasound collagen lifting at TPL Clinic Mayfair. Brow, jawline and neck — usually one session, no downtime. Introductory offers. Combine with XERF™ for deeper remodelling.">
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- ══ Runtime ══
+     React, ReactDOM and Lenis are served from this repo rather than unpkg.
+     They were render-blocking third-party requests on the critical path, and
+     because the whole page is built by the runtime, a CDN that failed to
+     answer left a phone looking at a blank white screen. __resources is the
+     dc runtime's own override hook — support.js reads it before it fetches. -->
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/vendor/react-18.3.1.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
+  };
+  /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
+     scripts gate it off there — so they are not asked to download it. */
+  if (!window.matchMedia('(max-width: 767px)').matches) {
+    var l = document.createElement('script');
+    l.src = 'assets/vendor/lenis-1.1.18.min.js';
+    l.async = false;
+    document.head.appendChild(l);
+  }
+</script>
+<link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
+<script src="assets/js/tpl-mobile.js" defer></script>
 <style>
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -19,7 +41,7 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -133,20 +155,15 @@
     transform: translateX(0);
   }
 
+  /* ══ Below 1024px ══
+     The mobile layout lives in assets/css/tpl-mobile.css — one file for the
+     whole phone and tablet layer, rather than a media query per page drifting
+     out of step with the others. What stays here is the one rule that has to:
+     swapping the desktop nav for the drawer toggle, which is what makes the
+     drawer reachable at all. */
   @media (max-width: 1023px) {
     .tpl-desktop-nav { display: none !important; }
     .tpl-mobile-toggle { display: flex !important; }
-    header[data-nav="1"] { padding: 16px 20px !important; }
-    section { padding-left: 20px !important; padding-right: 20px !important; }
-    .tpl-hero-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
-    .tpl-2col { grid-template-columns: 1fr !important; gap: 44px !important; }
-    .tpl-glance { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-steps { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-areas { grid-template-columns: 1fr !important; }
-    .tpl-why { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-results { grid-template-columns: 1fr !important; }
-    .tpl-price-row { grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) !important; }
-    .tpl-anchorbar { display: none !important; }
   }
 
   /* In-page anchor bar */
@@ -329,7 +346,7 @@
        ══════════════════════════════════════════════════════════════════ -->
 
   <!-- Treatment Hero — navy band -->
-  <section id="top" data-dark="1" style="background:#081359;padding:180px 48px 100px;color:#ffffff;position:relative;overflow:hidden">
+  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:180px 48px 100px;color:#ffffff;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 85% -10%,rgba(184,146,93,.16),transparent 60%);pointer-events:none"></div>
     <div class="tpl-hero-grid" style="max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:72px;align-items:center">
       <div>
@@ -371,7 +388,7 @@
   </nav>
 
   <!-- At a glance -->
-  <section style="padding:72px 48px 0;background:#ffffff">
+  <section class="tpl-sec--head" style="padding:72px 48px 0;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" class="tpl-glance" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
         <div style="background:#ffffff;padding:26px 22px">
@@ -403,7 +420,7 @@
   </section>
 
   <!-- Overview -->
-  <section id="overview" style="padding:96px 48px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec" id="overview" style="padding:96px 48px;background:#ffffff;scroll-margin-top:120px">
     <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
       <div data-reveal="1">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">What it is</div>
@@ -429,7 +446,7 @@
   </section>
 
   <!-- Surf & XERF -->
-  <section id="surfxerf" data-dark="1" style="padding:110px 48px;background:#081359;color:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec" id="surfxerf" data-dark="1" style="padding:110px 48px;background:#081359;color:#ffffff;scroll-margin-top:120px">
     <div style="max-width:1280px;margin:0 auto">
       <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:start">
         <div data-reveal="1">
@@ -466,7 +483,7 @@
   </section>
 
   <!-- ══ COMPARISON — where Sofwave sits against the other tightening options ══ -->
-  <section id="compare" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:120px">
+  <section class="tpl-sec" id="compare" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:120px">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
         <h2 style="margin:0;max-width:640px;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1.05;letter-spacing:-.01em;color:#242424">Sofwave™ compared to other skin tightening treatments</h2>
@@ -519,7 +536,7 @@
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec" id="pricing" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
         <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Pricing</h2>
@@ -570,7 +587,7 @@
   </section>
 
   <!-- Results -->
-  <section id="results" style="padding:20px 48px 100px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec--foot" id="results" style="padding:20px 48px 100px;background:#ffffff;scroll-margin-top:120px">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(36,36,36,.12);padding-top:56px;padding-bottom:34px">
         <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Results</h2>
@@ -614,7 +631,7 @@
   </section>
 
   <!-- FAQs -->
-  <section id="faqs" style="padding:0 48px 110px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec--foot" id="faqs" style="padding:0 48px 110px;background:#ffffff;scroll-margin-top:120px">
     <div style="max-width:1280px;margin:0 auto">
       <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
         <div data-reveal="1">
@@ -657,7 +674,7 @@
        ══════════════════════════════════════════════════════════════════ -->
 
   <!-- ═══════════════════════ SHARED CHROME — consultation + footer + modal ═══════════════════════ -->
-  <section id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
+  <section class="tpl-sec" id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
     <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
@@ -681,7 +698,7 @@
 
       <div data-reveal="1" style="background:#ffffff;padding:44px 40px 40px;color:#242424">
         <div style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Request a call back</div>
-        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
+        <div class="tpl-m-form" style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
             <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
@@ -724,7 +741,7 @@
   </section>
 
   <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
-    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
+    <div class="tpl-m-footer" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
       <div>
         <img src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" style="height:72px;width:auto;display:block" />
         <p style="margin:20px 0 0;max-width:300px;font-size:13.5px;line-height:1.9;color:#6E6E6E">The UK's first clinic specialising in Platelet Rich Plasma. Specialist Aesthetic Clinic of the Year 2026/27.</p>
@@ -809,29 +826,32 @@ class Component extends DCLogic {
         if (this.lenis) {
           this.lenis.raf(time);
           this.animId = requestAnimationFrame(lenisRaf);
-
-        // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
-        // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
-        this.onAnchorClick = (e) => {
-          const a = e.target.closest('a[href*="#"]');
-          if (!a) return;
-          const href = a.getAttribute('href') || '';
-          const hash = href.slice(href.indexOf('#'));
-          // ignore cross-page links (e.g. index.html#face when we're not on index)
-          const path = href.slice(0, href.indexOf('#'));
-          if (path && !location.pathname.endsWith(path)) return;
-          if (hash.length < 2) return;
-          const target = document.querySelector(hash);
-          if (!target) return;
-          e.preventDefault();
-          if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
-          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', hash);
-        };
-        document.addEventListener('click', this.onAnchorClick);
         }
       };
       this.animId = requestAnimationFrame(lenisRaf);
+
+      // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
+      // Route every in-page anchor through lenis.scrollTo (the offset clears
+      // the fixed header). Registered ONCE, here — this block used to sit
+      // inside lenisRaf, which meant a new closure was bound as a click
+      // listener on every animation frame, for the life of the page.
+      this.onAnchorClick = (e) => {
+        const a = e.target.closest('a[href*="#"]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const hash = href.slice(href.indexOf('#'));
+        // ignore cross-page links (e.g. index.html#face when we're not on index)
+        const path = href.slice(0, href.indexOf('#'));
+        if (path && !location.pathname.endsWith(path)) return;
+        if (hash.length < 2) return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', hash);
+      };
+      document.addEventListener('click', this.onAnchorClick);
     }
 
     // Nav theme — dark over navy [data-dark] bands, light otherwise
@@ -928,7 +948,13 @@ class Component extends DCLogic {
           }
 
           // Headings — the argument beats, separated from the prose around them.
-          const heads = el.matches('h1, h2') ? [el] : Array.from(el.querySelectorAll('h1, h2'));
+          // Descendants only. When the reveal target IS the heading, masking it
+          // sets clip-path: inset(0 0 108% 0) on the very element the observer
+          // is watching, and Chrome then reports it as 0% intersecting — so it
+          // never settles, and only the 4s safety timer below rescues it. The
+          // legal pages' <h1> sat blank for four seconds because of this. A
+          // heading that is its own target gets the fade and rise, no mask.
+          const heads = Array.from(el.querySelectorAll('h1, h2'));
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
             h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
@@ -977,7 +1003,10 @@ class Component extends DCLogic {
             this.io.unobserve(e.target);
           }
         });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+      // threshold 0, not 0.08: a block taller than the viewport can never
+      // reach 8% intersection on a phone — the legal pages' 4,600px body
+      // peaked at 3% and waited out the safety timer instead of revealing.
       targets.forEach(el => this.io.observe(el));
       this.safety = setTimeout(() => targets.forEach(settle), 4000);
     }

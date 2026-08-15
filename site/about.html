@@ -2,20 +2,42 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- ══ ABOUT PAGE HEAD ══ -->
 <title>About TPL Clinic Mayfair · One Specialty, Led by Mr Kam Dogan</title>
+<meta name="theme-color" content="#081359">
 <meta name="description" content="The UK's first clinic specialising in Platelet Rich Plasma. Meet Mr Kam Dogan and the GMC, NMC and GDC-registered team at 22 Seymour Street, London W1H 7HY.">
+<!-- ══ Runtime ══
+     React, ReactDOM and Lenis are served from this repo rather than unpkg.
+     They were render-blocking third-party requests on the critical path, and
+     because the whole page is built by the runtime, a CDN that failed to
+     answer left a phone looking at a blank white screen. __resources is the
+     dc runtime's own override hook — support.js reads it before it fetches. -->
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/vendor/react-18.3.1.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
+  };
+  /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
+     scripts gate it off there — so they are not asked to download it. */
+  if (!window.matchMedia('(max-width: 767px)').matches) {
+    var l = document.createElement('script');
+    l.src = 'assets/vendor/lenis-1.1.18.min.js';
+    l.async = false;
+    document.head.appendChild(l);
+  }
+</script>
+<link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
+<script src="assets/js/tpl-mobile.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
   html { scroll-behavior: smooth; }
   html.lenis, html.lenis body { height: auto; }
@@ -86,19 +108,15 @@
   }
   .tpl-mobile-drawer.is-open { opacity: 1; visibility: visible; transform: translateX(0); }
 
+  /* ══ Below 1024px ══
+     The mobile layout lives in assets/css/tpl-mobile.css — one file for the
+     whole phone and tablet layer, rather than a media query per page drifting
+     out of step with the others. What stays here is the one rule that has to:
+     swapping the desktop nav for the drawer toggle, which is what makes the
+     drawer reachable at all. */
   @media (max-width: 1023px) {
     .tpl-desktop-nav { display: none !important; }
     .tpl-mobile-toggle { display: flex !important; }
-    header[data-nav="1"] { padding: 16px 20px !important; }
-    section { padding-left: 20px !important; padding-right: 20px !important; }
-    .tpl-hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-founder { grid-template-columns: minmax(0,1fr) !important; gap: 44px !important; }
-    .tpl-team-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-    .tpl-split { grid-template-columns: minmax(0,1fr) !important; gap: 40px !important; }
-    .tpl-three { grid-template-columns: minmax(0,1fr) !important; }
-  }
-  @media (max-width: 640px) {
-    .tpl-team-grid { grid-template-columns: minmax(0,1fr) !important; }
   }
 
   /* ══ About — team grid. Hairline-seam grid: the 1px gaps ARE the rules. ══ */
@@ -240,7 +258,7 @@
   <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
 
   <!-- ══ PAGE HEADER — navy band, mirrors services.html ══ -->
-  <section id="top" data-dark="1" data-screen-label="About — hero" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
+  <section class="tpl-sec--hero" id="top" data-dark="1" data-screen-label="About — hero" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
     <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;pointer-events:none" />
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.62) 0%,rgba(8,19,89,.45) 40%,rgba(8,19,89,.92) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 80% -10%,rgba(184,146,93,.14),transparent 60%);pointer-events:none"></div>
@@ -316,7 +334,7 @@
   </section>
 
   <!-- ══ FOUNDER ══ -->
-  <section id="founder" data-screen-label="About — founder" style="padding:110px 48px 0;background:#ffffff">
+  <section class="tpl-sec--head" id="founder" data-screen-label="About — founder" style="padding:110px 48px 0;background:#ffffff">
     <div data-reveal="1" class="tpl-founder" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:72px;align-items:center">
       <div style="position:relative;overflow:hidden;aspect-ratio:4/5;background:#F0EDE8">
         <img src="assets/images/about/kam-dogan.jpg" alt="Mr Kam Dogan, Founder, Director and Lead Practitioner" width="1000" height="1250" style="width:100%;height:100%;object-fit:cover;display:block" />
@@ -342,7 +360,7 @@
   </section>
 
   <!-- ══ TEAM ══ -->
-  <section id="team" data-screen-label="About — team" style="padding:110px 48px 40px;background:#ffffff">
+  <section class="tpl-sec--head" id="team" data-screen-label="About — team" style="padding:110px 48px 40px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:26px">
         <div>
@@ -444,7 +462,7 @@
   </section>
 
   <!-- ══ REGULATION ══ -->
-  <section id="regulation" data-screen-label="About — regulation" style="padding:100px 48px 120px;background:#ffffff">
+  <section class="tpl-sec" id="regulation" data-screen-label="About — regulation" style="padding:100px 48px 120px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" class="tpl-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:64px;align-items:end;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
         <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.12;letter-spacing:-.01em;color:#242424">Regulated, <span style="color:#B8925D">registered</span>,<br />and trained in-house.</h2>
@@ -494,7 +512,7 @@
   </section>
 
   <!-- ═══════════════════════ SHARED CHROME — consultation + footer + modal (identical to index.html) ═══════════════════════ -->
-  <section id="consultation" data-dark="1" data-screen-label="About — consultation" style="padding:120px 48px;background:#081359;color:#ffffff">
+  <section class="tpl-sec" id="consultation" data-dark="1" data-screen-label="About — consultation" style="padding:120px 48px;background:#081359;color:#ffffff">
     <div class="tpl-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
@@ -518,7 +536,7 @@
 
       <div data-reveal="1" style="background:#ffffff;padding:44px 40px 40px;color:#242424">
         <div style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Request a call back</div>
-        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
+        <div class="tpl-m-form" style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
             <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
@@ -561,7 +579,7 @@
   </section>
 
   <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
-    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
+    <div class="tpl-m-footer" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
       <div>
         <img src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" style="height:72px;width:auto;display:block" />
         <p style="margin:20px 0 0;max-width:300px;font-size:13.5px;line-height:1.9;color:#6E6E6E">The UK's first clinic specialising in Platelet Rich Plasma. Specialist Aesthetic Clinic of the Year 2026/27.</p>
@@ -803,7 +821,12 @@ class Component extends DCLogic {
             });
           }
 
-          const heads = el.matches('h1, h2') ? [el] : Array.from(el.querySelectorAll('h1, h2'));
+          // Descendants only. When the reveal target IS the heading, masking it
+          // sets clip-path: inset(0 0 108% 0) on the very element the observer
+          // is watching, and Chrome then reports it as 0% intersecting — so it
+          // never settles, and only the 4s safety timer below rescues it. A
+          // heading that is its own target gets the fade and rise, no mask.
+          const heads = Array.from(el.querySelectorAll('h1, h2'));
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
             h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
@@ -851,7 +874,10 @@ class Component extends DCLogic {
             this.io.unobserve(e.target);
           }
         });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+      // threshold 0, not 0.08: a block taller than the viewport can never
+      // reach 8% intersection on a phone — the legal pages' 4,600px body
+      // peaked at 3% and waited out the safety timer instead of revealing.
       targets.forEach(el => this.io.observe(el));
       this.safety = setTimeout(() => targets.forEach(settle), 4000);
     }

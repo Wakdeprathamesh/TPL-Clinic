@@ -30,6 +30,49 @@ driven by plain DOM listeners added in `componentDidMount` — look for the
 kept only for first-render content (e.g. the row lists). **When cloning pages, follow this
 pattern — do not rely on `setState`.**
 
+## The mobile layer
+
+Everything below 1024px lives in two shared files, linked from the `<head>` of
+every page. Nothing about the phone layout is per-page any more.
+
+```
+assets/css/tpl-mobile.css   the whole phone + tablet layout
+assets/js/tpl-mobile.js     the chrome and behaviour that CSS cannot express
+```
+
+Each page keeps exactly one mobile rule of its own — swapping the desktop nav
+for the drawer toggle — and nothing else. Adding a mobile behaviour means
+editing one file, not seven.
+
+**Working in the CSS.** The pages are built from inline `style=` attributes, so
+almost every rule needs `!important` to reach them. The `.tpl-m-*` classes are
+a vocabulary of shapes (`tpl-m-split`, `tpl-m-rail`, `tpl-m-form`, …) applied in
+the markup: to collapse a new grid, add the class rather than write a selector.
+Section rhythm works the same way — `tpl-sec`, `tpl-sec--hero`, `tpl-sec--head`,
+`tpl-sec--foot`.
+
+**Two traps, both already worked around, both easy to walk back into:**
+
+1. **Wait for the swap, not for the header.** The runtime parses `<x-dc>` into a
+   React tree and discards the original nodes. Anything bound before that swap
+   is bound to DOM that is about to be thrown away — and attributes written to
+   the template get baked into the props. `tpl-mobile.js` waits for `<x-dc>` to
+   leave the document.
+
+2. **`[style*="…"]` selectors must match React's spelling.** The markup is
+   authored `font-size:16px`, but the runtime re-serialises every style
+   attribute, which comes out `font-size: 16px` — spaced, with leading decimals
+   normalised (`.3em` → `0.3em`). The stylesheet carries both spellings.
+
+**What the JS adds:** the header light/dark theme (read from `[data-dark]` bands
+under the bar — mark any new navy section with it), the drawer rebuild, the
+fixed Call / WhatsApp / Book action bar, the anchor-rail scrollspy, form
+autofill hints and validation, `tel:` links, and the phone video policy.
+
+The drawer's treatment list is **cloned from the desktop mega menu** at runtime,
+so the two cannot drift apart. Add a treatment to the mega menu and it appears
+in the drawer.
+
 ## Cloning a treatment page (for the other ~17)
 
 1. `cp prp.html sofwave.html`

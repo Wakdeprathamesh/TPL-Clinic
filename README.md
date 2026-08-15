@@ -31,8 +31,13 @@ site/
 ├── services.html       filterable 20-treatment index
 ├── prp.html            treatment template
 ├── sofwave.html        treatment template, cloned from prp.html
+├── about.html          the clinic, the founder, the team
+├── terms-conditions.html · gdpr.html
 ├── support.js          runtime (generated — do not edit)
 └── assets/
+    ├── css/tpl-mobile.css     the entire phone + tablet layout, one file
+    ├── js/tpl-mobile.js       mobile chrome: drawer, action bar, anchor rail
+    ├── vendor/                React, ReactDOM and Lenis, served from here
     ├── brand/                 logo, white + gold variants
     ├── icons/                 20 treatment icons
     ├── hero-frames-webp/      446 frames — the homepage hero sequence
@@ -59,6 +64,24 @@ and the build command empty.
 > **Root Directory** to `site` in Project Settings → General instead, and clear the
 > `outputDirectory` line. One or the other, not both.
 
+## Mobile
+
+Everything below 1024px is in `assets/css/tpl-mobile.css` and
+`assets/js/tpl-mobile.js`, linked from every page. Each page keeps one mobile
+rule of its own — the nav-to-drawer swap — and nothing else, so a change to the
+phone layout is a change to one file.
+
+Three things a phone gets that a desktop does not: a fixed **Call · WhatsApp ·
+Book** bar within thumb reach (the clinic takes no online bookings, so those
+three *are* the conversion path); a **drawer carrying all twenty treatments**,
+cloned at runtime from the desktop mega menu so the two cannot drift apart; and
+a **swipeable four-beat deck** below the homepage hero, which carries the
+Face / Hair / Body / Diagnostics story the 446-frame scroll-scrub tells on a
+desktop and a phone otherwise never sees.
+
+`site/README-HANDOFF.md` documents the class vocabulary and the two runtime
+traps worth knowing about before editing either file.
+
 ## Design constraints
 
 - **Light theme only.** White and grey led, gold `#B8925D` as a restrained accent.
@@ -74,3 +97,12 @@ and the build command empty.
 ## Performance note
 
 The homepage hero streams 446 WebP frames (~33 MB total) for the scroll-scrub effect. Phones are served `assets/hero-fallback/hero-mobile.mp4` instead. Consider a CDN in front of `assets/` in production.
+
+React, ReactDOM and Lenis are served from `assets/vendor/` rather than unpkg.
+They were render-blocking third-party requests on the critical path of every
+page, and because the runtime builds the whole document, a CDN that failed to
+answer left the visitor looking at a blank white screen. Lenis is not sent to
+phones at all — they scroll natively. The eight ambient video loops no longer
+autoplay on a phone: the two sitting at 18% opacity behind text are dropped
+outright, and the films that are content (philosophy, the Sofwave treatment)
+hold their poster behind a play control.
