@@ -102,8 +102,16 @@ textarea:focus-visible,
 
   .tpl-logo-img,
   header[data-nav="1"] a[data-logo="1"] img {
-    height: 40px !important;
+    height: 48px !important;
   }
+
+  /* The desktop rule insets the mark from the corner; on a 64px-tall mobile
+     header there is no room to spare, so it goes back to the edge. */
+  header[data-nav="1"] a[data-logo="1"] { margin-left: 0 !important; }
+
+  /* Footer mark scales with the header one, capped so it does not dominate
+     the stacked footer. */
+  .tpl-footer-logo { height: 64px !important; }
 
   /* The hamburger is the one control in the header, so it gets a real target:
      44px tall, and padded out to the screen edge so the corner counts. */
@@ -1156,19 +1164,28 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
     font-size: clamp(32px, 7vw, 46px) !important;
     line-height: 1.06 !important;
   }
+  /* The label is the section's heading here too, so it stays above the body
+     scale — 15px against 15.5px body reads as a peer once the weight and the
+     tracking are counted, where the old 11px read as a caption. */
   .tpl-sec-label {
-    font-size: 11px !important;
-    letter-spacing: .28em !important;
-    margin-bottom: 18px !important;
+    font-size: 15px !important;
+    letter-spacing: .18em !important;
+    margin-bottom: 16px !important;
   }
-  .tpl-sec-label::after { width: 48px !important; }
+  .tpl-sec-label::before,
+  .tpl-sec-label::after { width: 32px !important; }
   .tpl-sec-head {
     flex-direction: column;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: 14px !important;
   }
-  .tpl-sec-meta { white-space: normal !important; }
+  .tpl-sec-meta { white-space: normal !important; text-align: center; }
   .tpl-sec-lede { font-size: 15.5px !important; max-width: none !important; }
+
+  /* Left-aligned opt-outs keep their alignment at every width. */
+  .tpl-sec-label--start { justify-content: flex-start !important; }
+  .tpl-sec-title--start { text-align: left !important; }
+  .tpl-sec-lede--start { text-align: left !important; }
 
   .tpl-combine-icon { width: 96px !important; height: 96px !important; margin-left: -6px !important; }
 
