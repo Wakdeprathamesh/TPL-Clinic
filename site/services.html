@@ -132,7 +132,21 @@
   header.is-light .tpl-mega-link:hover { color: #B8925D !important; }
 
   /* Real brand logo — white ring over dark, gold ring over light */
-  .tpl-logo-img { height: 54px; width: auto; display: block; }
+  .tpl-logo-img { height: 68px; width: auto; display: block; }
+  header[data-nav] > a:first-of-type { margin-left: clamp(0px, 3.5vw, 60px); }
+  /* Header height is locked so the brand mark has a fixed bar to sit in and
+     the chrome stays identical page to page. The header is position:fixed, so
+     this changes the bar only — no content below it moves. */
+  @media (min-width: 1024px) {
+    header[data-nav] {
+      box-sizing: border-box;
+      height: 92px;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
+  .tpl-footer-logo { height: 92px; width: auto; display: block; }
   .tpl-logo-light { display: none; }
   header.is-light .tpl-logo-dark { display: none; }
   header.is-light .tpl-logo-light { display: block; }
@@ -568,8 +582,8 @@
   <!-- Footer -->
   <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
     <div class="tpl-m-footer" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
-      <div>
-        <img src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" style="height:72px;width:auto;display:block" />
+      <div style="padding-left:clamp(0px,2.5vw,44px)">
+        <img class="tpl-footer-logo" src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" />
         <p style="margin:20px 0 0;max-width:300px;font-size:13.5px;line-height:1.9;color:#6E6E6E">The UK's first clinic specialising in Platelet Rich Plasma. Specialist Aesthetic Clinic of the Year 2026/27.</p>
       </div>
       <div>
