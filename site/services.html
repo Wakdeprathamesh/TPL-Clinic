@@ -18,8 +18,12 @@
     "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
   };
   /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
-     scripts gate it off there — so they are not asked to download it. */
-  if (!window.matchMedia('(max-width: 767px)').matches) {
+     scripts gate it off there — so they are not asked to download it. The test
+     must match the one the page script uses to pick a hero engine, or a narrow
+     desktop window loads Lenis for a branch that never runs (and, worse, the
+     scrub engine runs without it). */
+  if (!(window.matchMedia('(max-width: 767px)').matches
+        || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     var l = document.createElement('script');
     l.src = 'assets/vendor/lenis-1.1.18.min.js';
     l.async = false;
@@ -186,6 +190,9 @@
     transition: background .35s ease;
   }
   .tpl-card:hover { background: #FAF8F5; }
+  /* Filter state. Specificity (0,2,0) so it wins over any single-class
+     .tpl-card display rule, at every breakpoint. */
+  .tpl-card.is-filtered-out { display: none !important; }
   /* 120px. The source PNGs are now normalised so the gold ring is a fixed 89.3% of
      every canvas — before that the dead canvas varied and the ring landed anywhere
      between 85px and 101px across the grid at the same box size. With the ratio
@@ -746,7 +753,11 @@ class Component extends DCLogic {
       let shown = 0;
       rowEls.forEach(r => {
         const on = f === 'all' || (r.getAttribute('data-cats') || '').split(' ').includes(f);
-        r.style.display = on ? '' : 'none';
+        // A class, not r.style.display. The mobile stylesheet sets the card to
+        // display:grid with !important to lay it out as a row, and an inline
+        // display:none loses to that — so below 768px the filter counted
+        // correctly but every card stayed on screen.
+        r.classList.toggle('is-filtered-out', !on);
         if (on) shown++;
       });
       pills.forEach(p => p.classList.toggle('is-on', p.getAttribute('data-filter') === f));

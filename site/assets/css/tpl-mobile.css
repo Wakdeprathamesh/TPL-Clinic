@@ -895,86 +895,94 @@ body.tpl-locked {
    reads at the top, the argument sits above the fold line where the thumb is,
    and the two calls to action are reachable without moving your hand. */
 
-@media (max-width: 767px) {
-  [data-hero="1"] { height: 100svh !important; }
-  [data-hero="1"] > div { height: 100svh !important; }
+/* Scoped to the attribute index.html stamps on <html>, not to a width query.
+   The page decides which hero engine runs — video or 446-frame scrub — and the
+   styling has to follow that decision rather than take its own view. While the
+   two were allowed to disagree (a desktop user agent in a window narrowed to
+   phone width), the scrub engine ran against a hero this file had already cut
+   to one screen tall: zero scroll travel, progress pinned to 1 on the first
+   event, dead canvas. Anyone checking the mobile layout by resizing hit it.
 
-  [data-hero-intro="1"] {
-    padding-top: 0 !important;
-    /* Clears the action bar, which is fixed over the bottom of the hero. */
-    padding-bottom: calc(var(--tpl-actionbar-h) + 26px) !important;
-    align-items: flex-end !important;
-    pointer-events: auto !important;
-  }
-  [data-hero-intro="1"] > div {
-    text-align: left !important;
-    padding: 0 var(--tpl-gutter) !important;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  [data-hero-intro="1"] h1 {
-    margin-top: 20px !important;
-    font-size: clamp(38px, 11.2vw, 56px) !important;
-    line-height: 1.0 !important;
-  }
-  [data-hero-intro="1"] p {
-    margin: 18px 0 0 !important;
-    max-width: 34ch !important;
-    font-size: 15px !important;
-    line-height: 1.62 !important;
-  }
-  [data-hero-intro="1"] .tpl-badge {
-    padding: 7px 13px !important;
-    gap: 9px !important;
-  }
-  [data-hero-intro="1"] .tpl-badge span:last-child {
-    font-size: 9px !important;
-    letter-spacing: .18em !important;
-  }
+   It also means a phone in landscape — wider than 767px but still a phone —
+   gets the phone hero rather than 33MB of frames. */
+html[data-tpl-mobile="1"] [data-hero="1"],
+html[data-tpl-mobile="1"] [data-hero="1"] > div { height: 100svh !important; }
 
-  /* The desktop "SCROLL" cue is replaced by real buttons — a phone visitor
-     who has decided already should not have to scroll to act. */
-  .tpl-hero-scrollcue { display: none !important; }
-  .tpl-hero-actions {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 26px;
-  }
-  .tpl-hero-actions a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 54px;
-    padding: 12px 10px;
-    font-family: Jost, sans-serif;
-    font-size: 10.5px;
-    line-height: 1.5;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-sizing: border-box;
-  }
-  .tpl-hero-actions .primary { background: var(--tpl-gold); color: #ffffff !important; }
-  .tpl-hero-actions .ghost {
-    border: 1px solid rgba(255, 255, 255, .55);
-    color: #ffffff !important;
-    background: rgba(8, 19, 89, .3);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  /* Furniture belonging to the scroll-scrub engine, which does not run here:
-     the outline word behind the copy, the frame counter, the segment rail,
-     the floating segment copy and the scrub progress bar. The story those
-     last two carried is delivered by the deck below the hero instead. */
-  [data-stage="1"],
-  [data-rail="1"],
-  [data-frame="1"],
-  [data-hero-copy="1"],
-  [data-hero="1"] [data-progress="1"] { display: none !important; }
+html[data-tpl-mobile="1"] [data-hero-intro="1"] {
+  padding-top: 0 !important;
+  /* Clears the action bar, which is fixed over the bottom of the hero. */
+  padding-bottom: calc(var(--tpl-actionbar-h) + 26px) !important;
+  align-items: flex-end !important;
+  pointer-events: auto !important;
 }
+html[data-tpl-mobile="1"] [data-hero-intro="1"] > div {
+  text-align: left !important;
+  padding: 0 var(--tpl-gutter) !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+html[data-tpl-mobile="1"] [data-hero-intro="1"] h1 {
+  margin-top: 20px !important;
+  font-size: clamp(38px, 11.2vw, 56px) !important;
+  line-height: 1.0 !important;
+}
+html[data-tpl-mobile="1"] [data-hero-intro="1"] p {
+  margin: 18px 0 0 !important;
+  max-width: 34ch !important;
+  font-size: 15px !important;
+  line-height: 1.62 !important;
+}
+html[data-tpl-mobile="1"] [data-hero-intro="1"] .tpl-badge {
+  padding: 7px 13px !important;
+  gap: 9px !important;
+}
+html[data-tpl-mobile="1"] [data-hero-intro="1"] .tpl-badge span:last-child {
+  font-size: 9px !important;
+  letter-spacing: .18em !important;
+}
+
+/* The desktop "SCROLL" cue is replaced by real buttons — a phone visitor who
+   has decided already should not have to scroll to act. */
+html[data-tpl-mobile="1"] .tpl-hero-scrollcue { display: none !important; }
+html[data-tpl-mobile="1"] .tpl-hero-actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 26px;
+}
+html[data-tpl-mobile="1"] .tpl-hero-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 54px;
+  padding: 12px 10px;
+  font-family: Jost, sans-serif;
+  font-size: 10.5px;
+  line-height: 1.5;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+html[data-tpl-mobile="1"] .tpl-hero-actions .primary { background: var(--tpl-gold); color: #ffffff !important; }
+html[data-tpl-mobile="1"] .tpl-hero-actions .ghost {
+  border: 1px solid rgba(255, 255, 255, .55);
+  color: #ffffff !important;
+  background: rgba(8, 19, 89, .3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Furniture belonging to the scroll-scrub engine, which does not run here:
+   the outline word behind the copy, the frame counter, the segment rail, the
+   floating segment copy and the scrub progress bar. The story those last two
+   carried is delivered by the deck below the hero instead. */
+html[data-tpl-mobile="1"] [data-stage="1"],
+html[data-tpl-mobile="1"] [data-rail="1"],
+html[data-tpl-mobile="1"] [data-frame="1"],
+html[data-tpl-mobile="1"] [data-hero-copy="1"],
+html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !important; }
 
 .tpl-hero-actions { display: none; }
 

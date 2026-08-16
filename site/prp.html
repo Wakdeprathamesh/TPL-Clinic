@@ -19,8 +19,12 @@
     "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
   };
   /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
-     scripts gate it off there — so they are not asked to download it. */
-  if (!window.matchMedia('(max-width: 767px)').matches) {
+     scripts gate it off there — so they are not asked to download it. The test
+     must match the one the page script uses to pick a hero engine, or a narrow
+     desktop window loads Lenis for a branch that never runs (and, worse, the
+     scrub engine runs without it). */
+  if (!(window.matchMedia('(max-width: 767px)').matches
+        || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     var l = document.createElement('script');
     l.src = 'assets/vendor/lenis-1.1.18.min.js';
     l.async = false;
@@ -625,14 +629,6 @@
           <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,62px);line-height:1.05;letter-spacing:-.01em;color:#ffffff">PRP is not the same in every clinic.</h2>
           <p style="margin:24px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">The result depends on the system that separates your blood and the protocol that plans your course. We use the Arthrex ACP® and Angel® systems — the Angel® delivers platelet concentrations of up to 18× baseline with adjustable white-cell content, set against your own blood work.</p>
           <p style="margin:18px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">Before treating, we run a complimentary platelet count — because a protocol planned on evidence outperforms one planned on habit.</p>
-          <div style="position:relative;aspect-ratio:4/3;max-width:480px;margin-top:38px;background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden">
-            <picture>
-              <source type="image/avif" srcset="assets/images/prp-method/prp-centrifuge-400w.avif 400w, assets/images/prp-method/prp-centrifuge-800w.avif 800w, assets/images/prp-method/prp-centrifuge-1200w.avif 1200w" sizes="(max-width: 1023px) 100vw, 40vw">
-              <source type="image/webp" srcset="assets/images/prp-method/prp-centrifuge-400w.webp 400w, assets/images/prp-method/prp-centrifuge-800w.webp 800w, assets/images/prp-method/prp-centrifuge-1200w.webp 1200w" sizes="(max-width: 1023px) 100vw, 40vw">
-              <img src="assets/images/prp-method/prp-centrifuge-800w.jpg" alt="Separation — plasma drawn off above the red cell layer" loading="lazy" width="800" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            </picture>
-            <div style="position:absolute;inset:14px;border:1px solid rgba(184,146,93,.4);pointer-events:none;z-index:2"></div>
-          </div>
         </div>
         <div data-reveal="1" class="tpl-why" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16)">
           <div style="background:#081359;padding:30px 26px">

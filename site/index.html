@@ -23,8 +23,12 @@
     "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
   };
   /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
-     scripts gate it off there — so they are not asked to download it. */
-  if (!window.matchMedia('(max-width: 767px)').matches) {
+     scripts gate it off there — so they are not asked to download it. The test
+     must match the one the page script uses to pick a hero engine, or a narrow
+     desktop window loads Lenis for a branch that never runs (and, worse, the
+     scrub engine runs without it). */
+  if (!(window.matchMedia('(max-width: 767px)').matches
+        || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     var l = document.createElement('script');
     l.src = 'assets/vendor/lenis-1.1.18.min.js';
     l.async = false;
@@ -986,9 +990,29 @@ class Component extends DCLogic {
     this.currentProgress = 0;
     this.isLooping = false;
 
-    // Accurate Device Gate: Mobile phones run hardware video fallback, Desktops/Laptops run interactive canvas engine!
+    // ══ Device gate ══
+    // Phones run the hardware video fallback; desktops run the 446-frame canvas
+    // scrub. Two things matter about how this is decided.
+    //
+    // First, a narrow window counts. The old test was user-agent-only (plus a
+    // touch check), so dragging a desktop browser down to phone width kept the
+    // scrub engine running while the stylesheet — which can only see width —
+    // had already switched the hero to one screen tall. The engine measures its
+    // progress as (heroHeight - viewportHeight); at 100svh that is zero, so
+    // progress pinned to 1 on the first scroll event and the hero sat dead.
+    // Anyone checking the mobile layout by resizing hit it immediately.
+    //
+    // Second, the user-agent test stays, on top of the width test rather than
+    // instead of it: a phone held in landscape is over 768px wide, and pushing
+    // 33MB of frames at it would be worse than the bug above.
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobilePhone = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth < 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+    const isMobilePhone = window.matchMedia('(max-width: 767px)').matches
+      || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Stamped so the stylesheet can follow the same decision instead of
+    // guessing at it. Every hero rule in tpl-mobile.css keys off this, which is
+    // what makes it impossible for the two to disagree again.
+    document.documentElement.setAttribute('data-tpl-mobile', isMobilePhone ? '1' : '0');
 
     // Ambient loops are decoration, not content. Under prefers-reduced-motion they
     // must not autoplay — drop the attribute before first play and hold the poster,
