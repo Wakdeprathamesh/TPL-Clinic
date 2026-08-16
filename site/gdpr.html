@@ -2,12 +2,38 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- ══ LEGAL PAGE HEAD ══ -->
 <title>GDPR &amp; Subject Access Requests &middot; TPL Clinic Mayfair</title>
+<meta name="theme-color" content="#081359">
 <meta name="description" content="How to request the personal information and clinical records TPL Clinic holds on you, under the General Data Protection Regulation.">
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- ══ Runtime ══
+     React, ReactDOM and Lenis are served from this repo rather than unpkg.
+     They were render-blocking third-party requests on the critical path, and
+     because the whole page is built by the runtime, a CDN that failed to
+     answer left a phone looking at a blank white screen. __resources is the
+     dc runtime's own override hook — support.js reads it before it fetches. -->
+<script>
+  window.__resources = {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/vendor/react-18.3.1.production.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/vendor/react-dom-18.3.1.production.min.js"
+  };
+  /* Lenis drives the desktop smooth-scroll. Phones scroll natively — the page
+     scripts gate it off there — so they are not asked to download it. The test
+     must match the one the page script uses to pick a hero engine, or a narrow
+     desktop window loads Lenis for a branch that never runs (and, worse, the
+     scrub engine runs without it). */
+  if (!(window.matchMedia('(max-width: 767px)').matches
+        || /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    var l = document.createElement('script');
+    l.src = 'assets/vendor/lenis-1.1.18.min.js';
+    l.async = false;
+    document.head.appendChild(l);
+  }
+</script>
+<link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
+<script src="assets/js/tpl-mobile.js" defer></script>
 <style>
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -19,7 +45,7 @@
 <body>
 <x-dc>
 <helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -318,7 +344,7 @@
   </div>
   <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
   <!-- Legal hero — same navy band as every other page top -->
-  <section id="top" data-dark="1" style="background:#081359;padding:180px 48px 96px;color:#ffffff;position:relative;overflow:hidden">
+  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:180px 48px 96px;color:#ffffff;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 85% -10%,rgba(184,146,93,.16),transparent 60%);pointer-events:none"></div>
     <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
       <div data-reveal="1" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Subject Access Requests</div>
@@ -327,7 +353,7 @@
     </div>
   </section>
 
-  <section style="padding:88px 48px 96px;background:#ffffff">
+  <section class="tpl-sec" style="padding:88px 48px 96px;background:#ffffff">
     <div data-reveal="1" style="max-width:1280px;margin:0 auto">
       <div class="tpl-legal-row is-first" style="scroll-margin-top:132px">
         <div class="tpl-legal-num">&mdash;</div>
@@ -349,14 +375,14 @@
   </section>
 
   <!-- Cross-link so the two legal pages are reachable from one another -->
-  <section style="padding:0 48px 104px;background:#ffffff">
+  <section class="tpl-sec--foot" style="padding:0 48px 104px;background:#ffffff">
     <div data-reveal="1" style="max-width:1280px;margin:0 auto;padding-top:34px;border-top:1px solid rgba(36,36,36,.12);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Also in legal</span>
       <a href="terms-conditions.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">Terms &amp; Conditions &rarr;</a>
     </div>
   </section>
   <!-- ═══════════════════════ SHARED CHROME — consultation + footer + modal ═══════════════════════ -->
-  <section id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
+  <section class="tpl-sec" id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
     <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
@@ -380,7 +406,7 @@
 
       <div data-reveal="1" style="background:#ffffff;padding:44px 40px 40px;color:#242424">
         <div style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Request a call back</div>
-        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
+        <div class="tpl-m-form" style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
             <input type="text" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
@@ -423,7 +449,7 @@
   </section>
 
   <footer style="background:#ffffff;padding:80px 48px 40px;border-top:1px solid rgba(36,36,36,.12)">
-    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
+    <div class="tpl-m-footer" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px">
       <div>
         <img src="assets/brand/tpl-logo-gold.png" alt="TPL Clinic" width="1000" height="1000" style="height:72px;width:auto;display:block" />
         <p style="margin:20px 0 0;max-width:300px;font-size:13.5px;line-height:1.9;color:#6E6E6E">The UK's first clinic specialising in Platelet Rich Plasma. Specialist Aesthetic Clinic of the Year 2026/27.</p>
@@ -508,29 +534,32 @@ class Component extends DCLogic {
         if (this.lenis) {
           this.lenis.raf(time);
           this.animId = requestAnimationFrame(lenisRaf);
-
-        // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
-        // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
-        this.onAnchorClick = (e) => {
-          const a = e.target.closest('a[href*="#"]');
-          if (!a) return;
-          const href = a.getAttribute('href') || '';
-          const hash = href.slice(href.indexOf('#'));
-          // ignore cross-page links (e.g. index.html#face when we're not on index)
-          const path = href.slice(0, href.indexOf('#'));
-          if (path && !location.pathname.endsWith(path)) return;
-          if (hash.length < 2) return;
-          const target = document.querySelector(hash);
-          if (!target) return;
-          e.preventDefault();
-          if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
-          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', hash);
-        };
-        document.addEventListener('click', this.onAnchorClick);
         }
       };
       this.animId = requestAnimationFrame(lenisRaf);
+
+      // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
+      // Route every in-page anchor through lenis.scrollTo (the offset clears
+      // the fixed header). Registered ONCE, here — this block used to sit
+      // inside lenisRaf, which meant a new closure was bound as a click
+      // listener on every animation frame, for the life of the page.
+      this.onAnchorClick = (e) => {
+        const a = e.target.closest('a[href*="#"]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const hash = href.slice(href.indexOf('#'));
+        // ignore cross-page links (e.g. index.html#face when we're not on index)
+        const path = href.slice(0, href.indexOf('#'));
+        if (path && !location.pathname.endsWith(path)) return;
+        if (hash.length < 2) return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', hash);
+      };
+      document.addEventListener('click', this.onAnchorClick);
     }
 
     // Nav theme — dark over navy [data-dark] bands, light otherwise
@@ -627,7 +656,13 @@ class Component extends DCLogic {
           }
 
           // Headings — the argument beats, separated from the prose around them.
-          const heads = el.matches('h1, h2') ? [el] : Array.from(el.querySelectorAll('h1, h2'));
+          // Descendants only. When the reveal target IS the heading, masking it
+          // sets clip-path: inset(0 0 108% 0) on the very element the observer
+          // is watching, and Chrome then reports it as 0% intersecting — so it
+          // never settles, and only the 4s safety timer below rescues it. The
+          // legal pages' <h1> sat blank for four seconds because of this. A
+          // heading that is its own target gets the fade and rise, no mask.
+          const heads = Array.from(el.querySelectorAll('h1, h2'));
           heads.forEach(h => {
             h.style.clipPath = 'inset(0 0 108% 0)';
             h.style.transition = 'clip-path 1.05s ' + EASE + ' ' + (delay + 40) + 'ms';
@@ -676,7 +711,10 @@ class Component extends DCLogic {
             this.io.unobserve(e.target);
           }
         });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+      // threshold 0, not 0.08: a block taller than the viewport can never
+      // reach 8% intersection on a phone — the legal pages' 4,600px body
+      // peaked at 3% and waited out the safety timer instead of revealing.
       targets.forEach(el => this.io.observe(el));
       this.safety = setTimeout(() => targets.forEach(settle), 4000);
     }

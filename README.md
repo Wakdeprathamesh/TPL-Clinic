@@ -31,8 +31,13 @@ site/
 ├── services.html       filterable 20-treatment index
 ├── prp.html            treatment template
 ├── sofwave.html        treatment template, cloned from prp.html
+├── about.html          the clinic, the founder, the team
+├── terms-conditions.html · gdpr.html
 ├── support.js          runtime (generated — do not edit)
 └── assets/
+    ├── css/tpl-mobile.css     the entire phone + tablet layout, one file
+    ├── js/tpl-mobile.js       mobile chrome: drawer, action bar, anchor rail
+    ├── vendor/                React, ReactDOM and Lenis, served from here
     ├── brand/                 logo, white + gold variants
     ├── icons/                 20 treatment icons
     ├── hero-frames-webp/      446 frames — the homepage hero sequence
@@ -49,8 +54,23 @@ Adding a treatment page? See [site/README-HANDOFF.md](site/README-HANDOFF.md) �
 
 `index.html` lives in `site/`, not at the repo root, so Vercel needs to be told where to
 serve from. [vercel.json](vercel.json) does that with `"outputDirectory": "site"`, and sets
-cache headers — the 446-frame hero sequence is immutable for a year, other assets get a week
-with `stale-while-revalidate`, HTML always revalidates.
+cache headers in four bands:
+
+| Path | Policy | Why |
+|---|---|---|
+| `assets/hero-frames-webp/` | immutable, 1 year | 446 frames that never change; the filename is the version |
+| `assets/css/`, `assets/js/` | always revalidate | code, coupled to the markup — see below |
+| everything else in `assets/` | 1 week + `stale-while-revalidate` | images, video, icons, vendored libraries |
+| `*.html` | always revalidate | |
+
+The stylesheet and runtime are deliberately **not** cached like media. They are coupled to
+the markup through the `.tpl-m-*` class vocabulary and the `data-tpl-mobile` attribute, and
+the HTML revalidates on every request — so a week-long cache on them would let a returning
+visitor pair fresh markup with a stale stylesheet, which renders the desktop grids on a
+phone rather than degrading quietly. The revalidation is a 304 and costs nothing.
+
+The three `assets/` rules are written to be mutually exclusive (note the lookahead in the
+third) rather than relying on which overlapping rule Vercel gives precedence to.
 
 There is no build step. Import the repo and deploy; leave the framework preset as **Other**
 and the build command empty.
@@ -58,6 +78,24 @@ and the build command empty.
 > If the root URL 404s after the first deploy, the `outputDirectory` key didn't take — set
 > **Root Directory** to `site` in Project Settings → General instead, and clear the
 > `outputDirectory` line. One or the other, not both.
+
+## Mobile
+
+Everything below 1024px is in `assets/css/tpl-mobile.css` and
+`assets/js/tpl-mobile.js`, linked from every page. Each page keeps one mobile
+rule of its own — the nav-to-drawer swap — and nothing else, so a change to the
+phone layout is a change to one file.
+
+Three things a phone gets that a desktop does not: a fixed **Call · WhatsApp ·
+Book** bar within thumb reach (the clinic takes no online bookings, so those
+three *are* the conversion path); a **drawer carrying all twenty treatments**,
+cloned at runtime from the desktop mega menu so the two cannot drift apart; and
+a **swipeable four-beat deck** below the homepage hero, which carries the
+Face / Hair / Body / Diagnostics story the 446-frame scroll-scrub tells on a
+desktop and a phone otherwise never sees.
+
+`site/README-HANDOFF.md` documents the class vocabulary and the two runtime
+traps worth knowing about before editing either file.
 
 ## Design constraints
 
@@ -74,3 +112,12 @@ and the build command empty.
 ## Performance note
 
 The homepage hero streams 446 WebP frames (~33 MB total) for the scroll-scrub effect. Phones are served `assets/hero-fallback/hero-mobile.mp4` instead. Consider a CDN in front of `assets/` in production.
+
+React, ReactDOM and Lenis are served from `assets/vendor/` rather than unpkg.
+They were render-blocking third-party requests on the critical path of every
+page, and because the runtime builds the whole document, a CDN that failed to
+answer left the visitor looking at a blank white screen. Lenis is not sent to
+phones at all — they scroll natively. The eight ambient video loops no longer
+autoplay on a phone: the two sitting at 18% opacity behind text are dropped
+outright, and the films that are content (philosophy, the Sofwave treatment)
+hold their poster behind a play control.
