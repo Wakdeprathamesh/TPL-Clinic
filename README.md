@@ -54,8 +54,23 @@ Adding a treatment page? See [site/README-HANDOFF.md](site/README-HANDOFF.md) �
 
 `index.html` lives in `site/`, not at the repo root, so Vercel needs to be told where to
 serve from. [vercel.json](vercel.json) does that with `"outputDirectory": "site"`, and sets
-cache headers — the 446-frame hero sequence is immutable for a year, other assets get a week
-with `stale-while-revalidate`, HTML always revalidates.
+cache headers in four bands:
+
+| Path | Policy | Why |
+|---|---|---|
+| `assets/hero-frames-webp/` | immutable, 1 year | 446 frames that never change; the filename is the version |
+| `assets/css/`, `assets/js/` | always revalidate | code, coupled to the markup — see below |
+| everything else in `assets/` | 1 week + `stale-while-revalidate` | images, video, icons, vendored libraries |
+| `*.html` | always revalidate | |
+
+The stylesheet and runtime are deliberately **not** cached like media. They are coupled to
+the markup through the `.tpl-m-*` class vocabulary and the `data-tpl-mobile` attribute, and
+the HTML revalidates on every request — so a week-long cache on them would let a returning
+visitor pair fresh markup with a stale stylesheet, which renders the desktop grids on a
+phone rather than degrading quietly. The revalidation is a 304 and costs nothing.
+
+The three `assets/` rules are written to be mutually exclusive (note the lookahead in the
+third) rather than relying on which overlapping rule Vercel gives precedence to.
 
 There is no build step. Import the repo and deploy; leave the framework preset as **Other**
 and the build command empty.
