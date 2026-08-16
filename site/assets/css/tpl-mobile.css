@@ -1139,3 +1139,44 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
     scroll-snap-type: none;
   }
 }
+
+
+/* ══ 15. Section header system ═════════════════════════════════════════════
+   The treatment pages set their section labels and titles from one place
+   (see the page's own <style>). Those desktop sizes — a title clamped up to
+   84px — need bringing down here, and the label/meta pair that sits on one
+   line at desktop widths has to stack.
+
+   The combination illustrations are also brought back up. They were pinned
+   at 64px for the stacked card layout, which left the picture smaller than
+   the words beside it — the opposite of what an illustration is for. */
+
+@media (max-width: 1023px) {
+  .tpl-sec-title {
+    font-size: clamp(32px, 7vw, 46px) !important;
+    line-height: 1.06 !important;
+  }
+  .tpl-sec-label {
+    font-size: 11px !important;
+    letter-spacing: .28em !important;
+    margin-bottom: 18px !important;
+  }
+  .tpl-sec-label::after { width: 48px !important; }
+  .tpl-sec-head {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 14px !important;
+  }
+  .tpl-sec-meta { white-space: normal !important; }
+  .tpl-sec-lede { font-size: 15.5px !important; max-width: none !important; }
+
+  .tpl-combine-icon { width: 96px !important; height: 96px !important; margin-left: -6px !important; }
+
+  /* Services index cards — the icon pass raised these to 120px on desktop and
+     this file was holding them at 64px, below the 74px they started at. */
+  .tpl-card-icon { width: 96px !important; height: 96px !important; }
+
+  /* WhatsApp CTAs keep the mark and label on one line at any width. */
+  .tpl-cta-wa { display: inline-flex !important; align-items: center; gap: 9px; }
+  .tpl-wa-mark { flex: none; }
+}
