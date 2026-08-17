@@ -162,6 +162,15 @@
         '</div>';
     }).join('');
 
+    /* about.html has no consultation section of its own — it was removed on
+       the client's instruction — so an in-page "#consultation" from the drawer
+       would scroll nowhere there. Same fallback initActionBar() already uses:
+       stay on the page when the section exists, otherwise send the visitor to
+       the homepage's. */
+    var drawerBookHref = document.querySelector('#consultation')
+      ? '#consultation'
+      : 'index.html#consultation';
+
     drawer.innerHTML = '' +
       '<div class="tpl-drawer-head">' +
         '<a href="' + homeHref + '" aria-label="TPL Clinic — home">' +
@@ -188,7 +197,7 @@
       '</div>' +
 
       '<div class="tpl-drawer-foot">' +
-        '<a class="tpl-drawer-cta tpl-drawer-cta--gold" href="#consultation">Book a consultation</a>' +
+        '<a class="tpl-drawer-cta tpl-drawer-cta--gold" href="' + drawerBookHref + '">Book a consultation</a>' +
         '<div class="tpl-drawer-row">' +
           '<a class="tpl-drawer-cta tpl-drawer-cta--ghost" href="tel:' + TEL + '">Call</a>' +
           '<a class="tpl-drawer-cta tpl-drawer-cta--ghost" href="' + WHATSAPP + '">WhatsApp</a>' +
