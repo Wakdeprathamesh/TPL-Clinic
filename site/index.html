@@ -363,6 +363,9 @@
         <div data-region="3" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">FACE</div>
         </div>
+        <div data-region="4" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
+          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:20vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">SHELF</div>
+        </div>
       </div>
 
       <!-- Hero Intro Copy (Shown on initial paint) -->
@@ -396,30 +399,72 @@
       </div>
 
       <!-- Completely Box-Less Floating Luxury Segment Copy -->
-      <div data-hero-copy="1" style="position:absolute;left:72px;bottom:72px;max-width:500px;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;z-index:10;pointer-events:none">
+      <div data-hero-copy="1" style="position:absolute;left:72px;bottom:72px;max-width:560px;opacity:0;transform:translateY(14px);z-index:10;pointer-events:none" data-note="opacity and transform are driven per frame by the scroll engine; a CSS transition here would lag the scrub">
         <div data-copy="0" style="display:block">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">01 — DIAGNOSTICS</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">It begins with<br />your own blood.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">A single draw, spun in-clinic, separated into the platelet-rich fraction that drives every protocol.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Blood Draw · PRP / PRF Fraction · Custom Protocol</div>
+          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Blood Draw</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">PRP / PRF Fraction</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Custom Protocol</a>
+          </div>
         </div>
         <div data-copy="1" style="display:none">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">02 — HAIR</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Density, restored<br />at the root.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Thinning, receding hairlines and early pattern loss — diagnosed first, then treated at the follicle.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Enhanced PRP · Regenera Activa® · TrichoComp</div>
+          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Enhanced PRP</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Regenera Activa®</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Invisible Hair Transplant™</a>
+          </div>
         </div>
         <div data-copy="2" style="display:none">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">03 — BODY</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Skin quality,<br />below the neck.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Cellulite, scarring and stretch marks — remodelled with radiofrequency, needling and plasma.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Morpheus8® · Mesotherapy · Soprano Ice Titanium™</div>
+          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Morpheus8®</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Mesotherapy</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Soprano Ice Titanium™</a>
+          </div>
         </div>
         <div data-copy="3" style="display:none">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">04 — FACE</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Structure, tone,<br />and light.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Fine lines, laxity and volume loss — treated in combination, never in isolation.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">PRP · Sofwave™ · Morpheus8® · LaseMD Ultra®</div>
+          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">PRP</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="sofwave.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Sofwave™</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Morpheus8®</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">LaseMD Ultra®</a>
+          </div>
+        </div>
+        <div data-copy="4" style="display:none">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">05 — DISPENSARY</div>
+          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">What you take<br />home with you.</h2>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">The protocol continues between visits. Dispensed at the clinic, chosen against your plan.</p>
+          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">SkinCeuticals</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Korean Skincare</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">La Roche-Posay</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">CeraVe</a>
+            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
+            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Hair Care</a>
+          </div>
         </div>
       </div>
 
@@ -444,6 +489,11 @@
           <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">04</span>
           <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Face</span>
           <span data-rail-bar="3" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
+        </div>
+        <div data-rail-item="4" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">05</span>
+          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Dispensary</span>
+          <span data-rail-bar="4" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
         </div>
       </div>
 
@@ -999,6 +1049,12 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.TOTAL_FRAMES = 499;
+    // The two frames Hero V5 cuts on rather than moves through — see the
+    // dissolve in drawFrameOnCanvas. Found by scanning every adjacent pair in
+    // the film, not by eye: these two are the only deltas above six times the
+    // mean. HERO_CUT_FRAMES is how many frames of scroll the dissolve spans.
+    this.HERO_CUTS = [104, 380];
+    this.HERO_CUT_FRAMES = 8;
     // Same scrim the canvas hero carries in markup. The phone and reduced-motion
     // engines rebuild heroMedia's innerHTML from scratch, so without this they
     // render Hero V5's white rooms with no scrim at all and the nav, the WhatsApp
@@ -1374,6 +1430,33 @@ class Component extends DCLogic {
       offsetY = 0;
     }
 
+    // ══ Dissolve across the film's two hard cuts ══
+    // Measured frame to frame, Hero V5 is continuous camera movement almost
+    // everywhere: mean delta 8.5, typical motion 4.4. Two joins spike — 104→105
+    // into the consultation close-up at 67, and 380→381 into the theatre at 85.
+    // Scrubbed, those two read as the slide change the client rejected: "it's
+    // just like a very simple almost like a PowerPoint presentation, going from
+    // one page to the other… I think it should kind of move from one room to
+    // the other." Everything either side of them already flows, so rather than
+    // re-cutting the film the last frame of the outgoing shot is held underneath
+    // and the incoming one faded up over it across HERO_CUT_FRAMES of scroll.
+    //
+    // The base is the OUTGOING frame, not the current one — fading the incoming
+    // shot over itself would do nothing.
+    const cut = this.HERO_CUTS.find(c => frameNum > c && frameNum <= c + this.HERO_CUT_FRAMES);
+    if (cut !== undefined) {
+      const outgoing = this.frames[this.findNearestLoadedFrame(cut)];
+      if (outgoing) {
+        this.ctx.drawImage(outgoing, offsetX, offsetY, drawW, drawH);
+        this.ctx.save();
+        this.ctx.globalAlpha = (frameNum - cut) / (this.HERO_CUT_FRAMES + 1);
+        this.ctx.drawImage(bitmap, offsetX, offsetY, drawW, drawH);
+        this.ctx.restore();
+        this.lastDrawnFrame = frameIndex;
+        return;
+      }
+    }
+
     this.ctx.drawImage(bitmap, offsetX, offsetY, drawW, drawH);
     this.lastDrawnFrame = frameIndex;
   }
@@ -1536,11 +1619,35 @@ class Component extends DCLogic {
       this.intro.style.transform = 'translateY(' + (-introFade * 26).toFixed(1) + 'px)';
     }
     const revealed = p > 0.14;
-    if (this.heroCopy) {
-      this.heroCopy.style.opacity = revealed ? '1' : '0';
-      this.heroCopy.style.transform = revealed ? 'none' : 'translateY(14px)';
-    }
     if (this.rail) this.rail.style.opacity = revealed ? '1' : '0';
+
+    // ══ The copy builds as you scroll into a beat ══
+    // It used to snap on at 14% and then hard-swap at each boundary, so the
+    // treatment list was simply there. The client described the opposite: "as
+    // you're scrolling the text should start to appear slowly, so that they know
+    // that when they finish scrolling they're gonna see the treatments at the
+    // end of it. So they're scrolling, the writing is appearing, boom. Now the
+    // writing is in block colour, you can see the treatments available."
+    //
+    // So the copy fades across the first BUILD of each beat and is solid for the
+    // rest of it — the beat's own rest point, where the treatments are readable
+    // and clickable. Because the boundaries are the film's cuts, the build lands
+    // on the camera settling rather than on an arbitrary scroll percentage.
+    const SEG_START = [1, 124, 256, 346, 415];
+    const BUILD = 0.45;
+    let seg = 0;
+    while (seg < SEG_START.length - 1 && targetFrame >= SEG_START[seg + 1]) seg++;
+    const segEnd = seg + 1 < SEG_START.length ? SEG_START[seg + 1] - 1 : this.TOTAL_FRAMES;
+    const segSpan = Math.max(1, segEnd - SEG_START[seg]);
+    const withinSeg = (targetFrame - SEG_START[seg]) / segSpan;
+    const build = Math.max(0, Math.min(1, withinSeg / BUILD));
+    // The intro owns the screen until 14%; the first beat cannot outrun it.
+    const introGate = Math.max(0, Math.min(1, (p - 0.10) / 0.05));
+    const copyIn = Math.min(build, introGate);
+    if (this.heroCopy) {
+      this.heroCopy.style.opacity = copyIn.toFixed(3);
+      this.heroCopy.style.transform = 'translateY(' + ((1 - copyIn) * 14).toFixed(1) + 'px)';
+    }
 
     // Beat boundaries are the film's own cuts, not even quarters. Hero V5 is a
     // ten-shot clinic journey, and its beats do not fall on 25% lines: the
@@ -1549,7 +1656,7 @@ class Component extends DCLogic {
     // Even slices used to put the wrong label over the wrong footage — "01 FACE"
     // over the reception desk. Held as frame numbers rather than progress, so
     // re-cutting the film only means re-reading the contact sheet.
-    const SEG_END = [123, 255, 345, this.TOTAL_FRAMES];
+    const SEG_END = [123, 255, 345, 414, this.TOTAL_FRAMES];
     let idx = 0;
     while (idx < SEG_END.length - 1 && targetFrame > SEG_END[idx]) idx++;
     if (idx !== this.active) {
