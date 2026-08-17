@@ -128,7 +128,21 @@ textarea:focus-visible,
   /* Header theme is driven by tpl-mobile.js, which reads what is under the bar
      and stamps data-theme. The page scripts also write inline styles onto the
      header; !important is what keeps the two from fighting. */
+  /* Dark theme, scrolled: a solid navy bar. This used to be transparent for the
+     whole dark theme, which meant every mid-page navy band — the results
+     timeline, the consultation form — scrolled straight through the header and
+     collided with the nav labels. */
   header[data-nav="1"][data-theme="dark"] {
+    background: rgba(8, 19, 89, .94) !important;
+    border-bottom: 1px solid rgba(184, 146, 93, .28) !important;
+    box-shadow: 0 6px 24px rgba(4, 10, 38, .30) !important;
+    backdrop-filter: blur(18px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+  }
+  /* The one case that earns transparency: floating over the hero, where there is
+     nothing to collide with and the film should read edge to edge.
+     data-float is stamped by tpl-mobile.js. */
+  header[data-nav="1"][data-theme="dark"][data-float="1"] {
     background: transparent !important;
     border-bottom-color: transparent !important;
     box-shadow: none !important;
@@ -225,8 +239,9 @@ textarea:focus-visible,
   }
 
   .tpl-drawer-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
     letter-spacing: .3em;
     text-transform: uppercase;
     color: var(--tpl-gold-light);
@@ -251,8 +266,9 @@ textarea:focus-visible,
     text-decoration: none;
   }
   .tpl-drawer-link .idx {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
     letter-spacing: .2em;
     color: var(--tpl-gold-light);
   }
@@ -280,7 +296,8 @@ textarea:focus-visible,
     cursor: pointer;
   }
   .tpl-drawer-group-btn .mark {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
     font-size: 15px;
     color: var(--tpl-gold-light);
     transition: transform .3s ease;
@@ -331,11 +348,18 @@ textarea:focus-visible,
   }
   .tpl-drawer-cta--gold { background: var(--tpl-gold); color: #ffffff !important; }
   .tpl-drawer-cta--ghost { border: 1px solid rgba(255, 255, 255, .4); color: #ffffff !important; }
+  /* The drawer's WhatsApp button carries the green mark, as every other
+     WhatsApp call to action on the site now does. The letter-spacing it
+     inherits is trailing whitespace after the last glyph, so the gap is
+     deliberately tighter than the desktop 10px to look even. */
+  .tpl-drawer-cta--wa { gap: 7px; }
+  .tpl-drawer-cta--wa svg { flex: none; width: 15px; height: 15px; display: block; }
   .tpl-drawer-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .tpl-drawer-addr {
     margin-top: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
     line-height: 1.9;
     letter-spacing: .16em;
     color: rgba(255, 255, 255, .55);
@@ -777,15 +801,17 @@ body.tpl-locked {
     padding: 0 var(--tpl-gutter);
   }
   .tpl-mstory-head .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
     letter-spacing: .26em;
     text-transform: uppercase;
     color: var(--tpl-gold-light);
   }
   .tpl-mstory-head .hint {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 10px;
     letter-spacing: .2em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, .45);
@@ -849,8 +875,9 @@ body.tpl-locked {
     left: 16px;
     bottom: 14px;
     z-index: 2;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
     letter-spacing: .3em;
     text-transform: uppercase;
     color: var(--tpl-gold-light);
@@ -1013,6 +1040,11 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
      One swipeable row instead, full-bleed so it reads as scrollable. */
   .tpl-filter-row {
     flex-wrap: nowrap !important;
+    /* The pills are centred on desktop. Here the row is a horizontal scroller,
+       and centring an overflowing flex line pushes its first item off the start
+       edge where scrolling cannot reach it — so the desktop centring is
+       explicitly undone rather than inherited. */
+    justify-content: flex-start !important;
     overflow-x: auto;
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
@@ -1045,17 +1077,30 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
     column-gap: 18px;
     align-content: start;
   }
-  .tpl-card > *:nth-child(1) {
+  /* Placed by class, not by nth-child. These were positional rules until the
+     icon was centred on desktop, which meant lifting the row number out of the
+     icon's flex row — that renumbered every child and silently moved the name
+     into the icon's rail. Classes cannot drift that way. */
+  .tpl-card-icon {
     grid-column: 1;
-    grid-row: 1 / span 3;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
+    grid-row: 1;
+    width: 64px !important;
+    height: 64px !important;
+    margin: 0 !important;
   }
-  .tpl-card > *:nth-child(2) { grid-column: 2; grid-row: 1; margin-top: 0 !important; font-size: 20px !important; }
-  .tpl-card > *:nth-child(3) { grid-column: 2; grid-row: 2; }
-  .tpl-card > *:nth-child(4) { grid-column: 2; grid-row: 3; margin-top: 8px !important; padding-top: 12px !important; }
-  .tpl-card-icon { width: 64px !important; height: 64px !important; margin-left: 0 !important; }
+  /* Back into the rail, under the icon. The desktop rule pins this to the
+     card's top-right corner, which on a 64px-rail row would land it on top of
+     the treatment name. */
+  .tpl-card-num {
+    position: static !important;
+    grid-column: 1;
+    grid-row: 2;
+    width: 64px;
+    margin-top: 8px;
+  }
+  .tpl-card-name { grid-column: 2; grid-row: 1; margin-top: 0 !important; font-size: 20px !important; }
+  .tpl-card-desc { grid-column: 2; grid-row: 2; }
+  .tpl-card-foot { grid-column: 2; grid-row: 3; margin-top: 8px !important; padding-top: 12px !important; }
   /* There is no hover on a phone, so the call to action has to be there from
      the start rather than revealed by a pointer that never arrives. */
   .tpl-card-arrow { opacity: 1 !important; transform: none !important; }
@@ -1094,6 +1139,20 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
     padding: 20px 6px !important;
   }
   .tpl-price-row > *:last-child { text-align: left !important; }
+
+  /* The compact two-column list on sofwave.html. Name and price sit on one line
+     at desktop width; at 350px "Surf & XERF™ — Full Face & Neck" against
+     "£4,000 bespoke" leaves the name about eight characters, so the price drops
+     onto its own line and both align left. */
+  .tpl-price-line {
+    display: block !important;
+    padding: 13px 6px !important;
+  }
+  .tpl-price-line .tpl-price-val {
+    display: block;
+    margin-top: 3px;
+    white-space: normal;
+  }
 
   .tpl-faq-q { min-height: 60px; padding-top: 18px !important; padding-bottom: 18px !important; }
   .tpl-faq-q .q-text { font-size: 17px !important; line-height: 1.35 !important; }
