@@ -38,7 +38,12 @@
 
   var icon = {
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>',
-    whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1 0 12 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.1Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5a1.7 1.7 0 0 0 .2-.4.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.1 11.1 0 0 0 4.3 3.8 8.2 8.2 0 0 0 1.4.5 3.4 3.4 0 0 0 1.6.1 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>',
+    /* Brand green, not currentColor. Every WhatsApp call to action on the
+       desktop pages carries the mark in #25D366 and the label in the site's own
+       colours; this bar and the drawer are the two places a phone sees one, so
+       they follow the same rule. Call and Book stay in currentColor — they are
+       ours, not a third party's. */
+    whatsapp: '<svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1 0 12 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.1Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5 0a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5a1.7 1.7 0 0 0 .2-.4.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.1 11.1 0 0 0 4.3 3.8 8.2 8.2 0 0 0 1.4.5 3.4 3.4 0 0 0 1.6.1 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>',
     calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>'
   };
 
@@ -95,6 +100,17 @@
         return r.top <= probe && r.bottom >= probe;
       });
       nav.setAttribute('data-theme', overDark ? 'dark' : 'light');
+
+      // A dark band under the bar is not on its own a reason to go transparent.
+      // The bar may only drop its background while it is floating over the hero;
+      // over a mid-page navy band (the results timeline, the consultation form)
+      // a transparent header let the page scroll straight through it and the nav
+      // labels collided with the content behind them. data-float marks the one
+      // case that earns transparency — see tpl-mobile.css.
+      var heroEl = document.querySelector('.tpl-sec--hero, [data-hero="1"]');
+      var inHero = heroEl ? heroEl.getBoundingClientRect().bottom > probe : false;
+      if (overDark && inHero) nav.setAttribute('data-float', '1');
+      else nav.removeAttribute('data-float');
     };
 
     // --tpl-header-h drives the anchor offsets and the sticky anchor rail, so
@@ -200,7 +216,7 @@
         '<a class="tpl-drawer-cta tpl-drawer-cta--gold" href="' + drawerBookHref + '">Book a consultation</a>' +
         '<div class="tpl-drawer-row">' +
           '<a class="tpl-drawer-cta tpl-drawer-cta--ghost" href="tel:' + TEL + '">Call</a>' +
-          '<a class="tpl-drawer-cta tpl-drawer-cta--ghost" href="' + WHATSAPP + '">WhatsApp</a>' +
+          '<a class="tpl-drawer-cta tpl-drawer-cta--ghost tpl-drawer-cta--wa" href="' + WHATSAPP + '">' + icon.whatsapp + 'WhatsApp</a>' +
         '</div>' +
         '<div class="tpl-drawer-addr">22 SEYMOUR STREET · MAYFAIR W1H 7HY<br />' + TEL_DISPLAY + '</div>' +
       '</div>';
