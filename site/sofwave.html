@@ -48,7 +48,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
 <style>
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #ffffff; color: #242424; font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -152,6 +152,99 @@
   header.is-light .tpl-logo-dark { display: none; }
   header.is-light .tpl-logo-light { display: block; }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     SECTION HEADERS — the same system prp.html uses, ported verbatim so the
+     two treatment pages open their sections identically. This page had been
+     styling every heading inline, section by section, at four different sizes
+     with three different eyebrow treatments and two sections carrying no
+     eyebrow at all.
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /* The label is the section's name in the anchor bar, repeated in place. It
+     is the section's heading in practice, so it sits ABOVE the body scale —
+     centred, with a rule either side, so the header reads as one unit. */
+  .tpl-sec-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0 0 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #836742;
+  }
+  .tpl-sec-label::before,
+  .tpl-sec-label::after {
+    content: "";
+    flex: none;
+    width: 64px;
+    height: 1px;
+    background: rgba(184, 146, 93, .38);
+  }
+  [data-dark] .tpl-sec-label { color: #C7A470; }
+  [data-dark] .tpl-sec-label::before,
+  [data-dark] .tpl-sec-label::after { background: rgba(232, 200, 154, .38); }
+  .tpl-sec-label--start { justify-content: flex-start; }
+  .tpl-sec-label--start::before { display: none; }
+
+  .tpl-sec-title {
+    margin: 0 auto;
+    max-width: 22ch;
+    text-align: center;
+    font-family: Jost, sans-serif;
+    font-weight: 200;
+    font-size: clamp(40px, 5.4vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -.022em;
+    color: #242424;
+  }
+  [data-dark] .tpl-sec-title { color: #ffffff; }
+  .tpl-sec-title em { font-style: normal; color: #B8925D; }
+  [data-dark] .tpl-sec-title em { color: #E8C89A; }
+  .tpl-sec-title--start { margin-inline: 0; max-width: none; text-align: left; }
+
+  .tpl-sec-lede {
+    margin: 26px auto 0;
+    max-width: 62ch;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #5E5E5E;
+  }
+  [data-dark] .tpl-sec-lede { color: rgba(255, 255, 255, .72); }
+  .tpl-sec-lede--start { margin-inline: 0; max-width: 48ch; text-align: left; }
+
+  .tpl-card-copy { margin: 12px 0 0; font-size: 14.5px; line-height: 1.75; color: #6E6E6E; }
+  [data-dark] .tpl-card-copy { color: rgba(255, 255, 255, .7); }
+
+  .tpl-sec-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: #6E6E6E;
+    white-space: nowrap;
+  }
+  [data-dark] .tpl-sec-meta { color: rgba(255, 255, 255, .55); }
+
+  .tpl-sec-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  /* One padding step for every section, so the page scrolls at an even beat. */
+  @media (min-width: 1024px) {
+    .tpl-sec { padding-top: 120px !important; padding-bottom: 120px !important; }
+    .tpl-sec--head { padding-top: 84px !important; }
+    .tpl-sec--foot { padding-bottom: 120px !important; }
+    .tpl-anchorbar a { font-size: 11px; padding: 16px 0; }
+  }
+
   .tpl-mobile-drawer {
     position: fixed;
     inset: 0;
@@ -187,7 +280,7 @@
   /* In-page anchor bar */
   .tpl-anchorbar {
     position: sticky;
-    top: 63px;
+    top: 92px;
     z-index: 150;
     background: rgba(255,255,255,.94);
     backdrop-filter: blur(14px);
@@ -209,18 +302,21 @@
 
   /* FAQ accordion */
   .tpl-faq { border-bottom: 1px solid rgba(36,36,36,.1); }
+  /* Identical to prp.html: question centred on a three-track grid with the
+     marker held at the right edge, answer centred beneath on a tight measure.
+     Sizes were 19px/14.5px here against 22px/15px there — matched now. */
   .tpl-faq-q {
     width: 100%; background: none; border: none; cursor: pointer;
-    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
-    padding: 24px 6px; text-align: left;
-    transition: background .3s ease, padding .3s ease;
+    display: grid; grid-template-columns: 32px 1fr 32px; align-items: baseline; gap: 24px;
+    padding: 30px 6px; text-align: center;
+    transition: background .3s ease;
   }
-  .tpl-faq-q:hover { background: #FAF8F5; padding-left: 14px; }
-  .tpl-faq-q .q-text { font-family: Jost, sans-serif; font-weight: 300; font-size: 19px; letter-spacing: .01em; color: #242424; }
-  .tpl-faq-q .q-mark { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #B8925D; transition: transform .35s ease; flex: none; }
+  .tpl-faq-q:hover { background: #FAF8F5; }
+  .tpl-faq-q .q-text { grid-column: 2; font-family: Jost, sans-serif; font-weight: 300; font-size: 22px; letter-spacing: .01em; color: #242424; }
+  .tpl-faq-q .q-mark { grid-column: 3; justify-self: end; font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #836742; transition: transform .35s ease; flex: none; }
   .tpl-faq.is-open .q-mark { transform: rotate(45deg); }
   .tpl-faq-a { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.22,1,.36,1); }
-  .tpl-faq-a p { margin: 0; padding: 0 6px 26px; max-width: 720px; font-size: 14.5px; line-height: 1.85; color: #5E5E5E; }
+  .tpl-faq-a p { margin: 0 auto; padding: 0 6px 30px; max-width: 68ch; text-align: center; font-size: 15px; line-height: 1.8; color: #5E5E5E; }
 
   /* Pricing rows */
   .tpl-price-row {
@@ -397,8 +493,8 @@
   <nav class="tpl-anchorbar" aria-label="On this page">
     <div class="tpl-anchorbar-inner">
       <a href="#overview">Overview</a>
-      <a href="#surfxerf">Surf &amp; XERF™</a>
       <a href="#compare">Comparison</a>
+      <a href="#surfxerf">Surf &amp; XERF™</a>
       <a href="#pricing">Pricing</a>
       <a href="#results">Results</a>
       <a href="#faqs">FAQs</a>
@@ -438,14 +534,16 @@
   </section>
 
   <!-- Overview -->
-  <section class="tpl-sec" id="overview" style="padding:96px 48px;background:#ffffff;scroll-margin-top:120px">
-    <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
+  <section class="tpl-sec" id="overview" style="padding:96px 48px;background:#ffffff;scroll-margin-top:146px">
+    <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">What it is</div>
-        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.1;letter-spacing:-.01em;color:#242424">Going beyond <span style="color:#B8925D">just collagen.</span></h2>
-        <p style="margin:24px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">From your mid-20s, collagen production naturally slows — fine lines appear, firmness fades. Sofwave™ works beneath the surface, using synchronous ultrasound beams to stimulate collagen, elastin <em>and</em> hyaluronic acid in the mid-dermis — restoring smoother, firmer, healthier-looking skin.</p>
-        <p style="margin:18px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">It is completely non-invasive, with no downtime — and many clients see a noticeable improvement after a single treatment, with results building for up to a year.</p>
-        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px">
+        <!-- Label reads "Overview" to match the anchor bar, as on prp.html;
+             "What it is" named the same section by a different word. -->
+        <div class="tpl-sec-label">Overview</div>
+        <h2 class="tpl-sec-title">Going beyond <em>just collagen.</em></h2>
+        <p class="tpl-sec-lede">From your mid-20s, collagen production naturally slows — fine lines appear, firmness fades. Sofwave™ works beneath the surface, using synchronous ultrasound beams to stimulate collagen, elastin and hyaluronic acid in the mid-dermis — restoring smoother, firmer, healthier-looking skin.</p>
+        <p class="tpl-sec-lede">It is completely non-invasive, with no downtime — and many clients see a noticeable improvement after a single treatment, with results building for up to a year.</p>
+        <div style="margin-top:34px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
           <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A6F44;border:1px solid rgba(184,146,93,.4);padding:8px 14px">Face</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A6F44;border:1px solid rgba(184,146,93,.4);padding:8px 14px">Jawline</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A6F44;border:1px solid rgba(184,146,93,.4);padding:8px 14px">Neck</span>
@@ -453,7 +551,10 @@
           <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A6F44;border:1px solid rgba(184,146,93,.4);padding:8px 14px">Under-chin</span>
         </div>
       </div>
-      <div data-reveal="1" style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+      <!-- The result photograph was sharing the row with the copy at roughly
+           600px wide. Full width under a centred header it runs at 960px, so
+           the picture carries the weight the words were carrying alone. -->
+      <div data-reveal="1" style="position:relative;margin:56px auto 0;max-width:960px;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
         <img src="assets/images/sofwave/sofwave-ba1.jpg" alt="Sofwave result — lower face and neck, real TPL Clinic patient" loading="lazy" width="880" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
         <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
         <div style="position:absolute;left:12px;bottom:12px;right:12px;padding:12px 14px;background:rgba(8,19,89,.5);backdrop-filter:blur(6px);z-index:3">
@@ -463,49 +564,16 @@
     </div>
   </section>
 
-  <!-- Surf & XERF -->
-  <section class="tpl-sec" id="surfxerf" data-dark="1" style="padding:110px 48px;background:#081359;color:#ffffff;scroll-margin-top:120px">
-    <div style="max-width:1280px;margin:0 auto">
-      <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:start">
-        <div data-reveal="1">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">The TPL protocol — Surf &amp; XERF™</div>
-          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,4vw,62px);line-height:1.05;letter-spacing:-.01em;color:#ffffff">This or that?<br />Why choose — <span style="color:#E8C89A">have both.</span></h2>
-          <p style="margin:24px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">Most clinics position Sofwave™ or XERF™ as the "better" treatment. We see it differently. They work at different depths, on different tissue responses — Sofwave™ rebuilds collagen in the mid-dermis; XERF™ delivers deeper monopolar-RF remodelling for jawline definition and laxity.</p>
-          <p style="margin:18px 0 0;max-width:480px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">Layered strategically, 6–8 weeks apart, the combination achieves rejuvenation neither modality reaches alone.</p>
-        </div>
-        <div data-reveal="1" class="tpl-why" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16)">
-          <div style="background:#081359;padding:30px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">2 in 1</div>
-            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Dual-modality tightening protocol</div>
-          </div>
-          <div style="background:#081359;padding:30px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">2 depths</div>
-            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Mid-dermis ultrasound + deep RF</div>
-          </div>
-          <div style="background:#081359;padding:30px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">6–8 wks</div>
-            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Between the two sessions</div>
-          </div>
-          <div style="background:#081359;padding:30px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">£4,000</div>
-            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Surf &amp; XERF™ — full face &amp; neck</div>
-          </div>
-        </div>
-      </div>
-      <div data-reveal="1" style="margin-top:56px;border-top:1px solid rgba(255,255,255,.16);padding-top:26px;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#C7A470">In the press</span>
-        <span style="font-size:14px;color:rgba(255,255,255,.75)">NewBeauty — "Kim and Khloé Kardashian are obsessed with this skin-tightening treatment."</span>
-        <a href="services.html" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;border-bottom:1px solid rgba(232,200,154,.5);padding-bottom:2px">See the full index →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ COMPARISON — where Sofwave sits against the other tightening options ══ -->
-  <section class="tpl-sec" id="compare" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:120px">
+  <section class="tpl-sec" id="compare" style="background:#F7F5F2;padding:100px 48px;scroll-margin-top:146px">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
-        <h2 style="margin:0;max-width:640px;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1.05;letter-spacing:-.01em;color:#242424">Sofwave™ compared to other skin tightening treatments</h2>
-        <p style="margin:0;max-width:400px;font-size:15px;line-height:1.85;color:#5E5E5E">There are many non-surgical options, each using different technology to achieve different results. Our practitioners recommend the most appropriate treatment based on your skin, goals and medical history.</p>
+      <!-- Was a title-left / paragraph-right split with no eyebrow at all —
+           the same shape the Combinations header on prp.html was corrected
+           from. Centred stack, with the label the anchor bar uses. -->
+      <div data-reveal="1" style="border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:44px">
+        <div class="tpl-sec-label">Comparison</div>
+        <h2 class="tpl-sec-title">Where Sofwave™ <em>sits</em></h2>
+        <p class="tpl-sec-lede">There are many non-surgical options, each using different technology to achieve different results. Our practitioners recommend the most appropriate treatment based on your skin, goals and medical history.</p>
       </div>
 
       <!-- Wide table: scrolls inside its own container rather than the page -->
@@ -549,16 +617,60 @@
           <div style="background:#ffffff;padding:28px 24px;font-size:14.5px;color:#5E5E5E">Moderate</div>
         </div>
       </div>
-      <div data-reveal="1" style="margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8A8A">Comparison is indicative · the right choice is set at consultation</div>
+      <div data-reveal="1" style="margin-top:22px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8A8A">Comparison is indicative · the right choice is set at consultation</div>
+    </div>
+  </section>
+
+  <!-- ══ SURF & XERF — the combination protocol, deliberately placed after
+       the comparison table. It is the advanced/upsell option, so it reads
+       better once Sofwave itself has been explained and positioned than it
+       did sitting third on the page, ahead of either. ══ -->
+  <section class="tpl-sec" id="surfxerf" data-dark="1" style="padding:110px 48px;background:#081359;color:#ffffff;scroll-margin-top:146px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1">
+        <div class="tpl-sec-label">Surf &amp; XERF™</div>
+        <h2 class="tpl-sec-title">This or that? Why choose — <em>have both.</em></h2>
+        <p class="tpl-sec-lede">Most clinics position Sofwave™ or XERF™ as the "better" treatment. We see it differently. They work at different depths, on different tissue responses — Sofwave™ rebuilds collagen in the mid-dermis; XERF™ delivers deeper monopolar-RF remodelling for jawline definition and laxity.</p>
+        <p class="tpl-sec-lede">Layered strategically, 6–8 weeks apart, the combination achieves rejuvenation neither modality reaches alone.</p>
+      </div>
+      <!-- Four figures, previously a 2×2 block in the right half of the row.
+           One row of four under a centred header, matching the same treatment
+           given to Why TPL on prp.html. -->
+      <div data-reveal="1" class="tpl-why" style="margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16)">
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">2 in 1</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Dual-modality tightening protocol</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">2 depths</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Mid-dermis ultrasound + deep RF</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">6–8 wks</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Between the two sessions</div>
+          </div>
+          <div style="background:#081359;padding:30px 26px">
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;color:#E8C89A">£4,000</div>
+            <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">Surf &amp; XERF™ — full face &amp; neck</div>
+          </div>
+      </div>
+      <div data-reveal="1" style="margin-top:56px;border-top:1px solid rgba(255,255,255,.16);padding-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;align-items:center">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#C7A470">In the press</span>
+        <span style="font-size:14px;color:rgba(255,255,255,.75)">NewBeauty — "Kim and Khloé Kardashian are obsessed with this skin-tightening treatment."</span>
+        <a href="services.html" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;border-bottom:1px solid rgba(232,200,154,.5);padding-bottom:2px">See the full index →</a>
+      </div>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section class="tpl-sec" id="pricing" style="padding:100px 48px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec" id="pricing" style="padding:100px 48px;background:#ffffff;scroll-margin-top:146px">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Pricing</h2>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Introductory offers · one session</div>
+      <div data-reveal="1" style="border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:44px">
+        <div class="tpl-sec-label">Pricing</div>
+        <div class="tpl-sec-head">
+          <h2 class="tpl-sec-title">What a session costs</h2>
+          <div class="tpl-sec-meta">Introductory offers · one session</div>
+        </div>
       </div>
       <div data-reveal="1">
         <div class="tpl-price-row" style="border-bottom:1px solid rgba(36,36,36,.12)">
@@ -597,7 +709,7 @@
           <span style="font-size:15px;color:#9A9A9A">Bespoke protocol</span>
         </div>
       </div>
-      <div data-reveal="1" style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px 36px;align-items:center">
+      <div data-reveal="1" style="margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 36px;align-items:center">
         <span style="display:flex;align-items:center;gap:12px"><i style="width:5px;height:5px;background:#B8925D;display:inline-block"></i><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A6F44">Finance options available**</span></span>
         <span style="font-size:13.5px;color:#6E6E6E">Consultation £50 · refundable if cancelled 48 hours ahead. **Finance subject to availability and application.</span>
       </div>
@@ -605,13 +717,16 @@
   </section>
 
   <!-- Results -->
-  <section class="tpl-sec--foot" id="results" style="padding:20px 48px 100px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec--foot" id="results" style="padding:20px 48px 100px;background:#ffffff;scroll-margin-top:146px">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(36,36,36,.12);padding-top:56px;padding-bottom:34px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.6vw,56px);line-height:1;letter-spacing:-.01em;color:#242424">Results</h2>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Real TPL patients · results vary</div>
+      <div data-reveal="1" style="border-top:1px solid rgba(36,36,36,.12);padding-top:84px;padding-bottom:44px">
+        <div class="tpl-sec-label">Results</div>
+        <div class="tpl-sec-head">
+          <h2 class="tpl-sec-title">Before and after</h2>
+          <div class="tpl-sec-meta">Real TPL patients · results vary</div>
+        </div>
       </div>
-      <div data-reveal="1" class="tpl-results" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <div data-reveal="1" class="tpl-results" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
         <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden">
           <img src="assets/images/sofwave/sofwave-ba2.jpg" alt="Sofwave before and after — TPL Clinic patient" loading="lazy" width="880" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
           <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
@@ -624,8 +739,6 @@
           <img src="assets/images/sofwave/sofwave-ba4.jpg" alt="Sofwave before and after — TPL Clinic patient" loading="lazy" width="880" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
           <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
         </div>
-      </div>
-      <div data-reveal="1" style="margin-top:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px" class="tpl-results">
         <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden">
           <img src="assets/images/sofwave/sofwave-ba5.jpg" alt="Sofwave before and after — TPL Clinic patient" loading="lazy" width="880" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
           <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
@@ -642,20 +755,22 @@
           </div>
         </div>
       </div>
-      <div data-reveal="1" style="margin-top:30px;display:flex;flex-wrap:wrap;gap:12px 36px">
+      <div data-reveal="1" style="margin-top:34px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 36px">
         <span style="font-size:14px;color:#5E5E5E">Best results typically appear after 6–12 weeks as collagen rebuilds — and can continue improving for up to a year.</span>
       </div>
     </div>
   </section>
 
   <!-- FAQs -->
-  <section class="tpl-sec--foot" id="faqs" style="padding:0 48px 110px;background:#ffffff;scroll-margin-top:120px">
+  <section class="tpl-sec--foot" id="faqs" style="padding:0 48px 110px;background:#ffffff;scroll-margin-top:146px">
     <div style="max-width:1280px;margin:0 auto">
-      <div class="tpl-2col" style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start;border-top:1px solid rgba(36,36,36,.12);padding-top:64px">
-        <div data-reveal="1">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Questions</div>
-          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1.08;letter-spacing:-.01em;color:#242424">Asked before every first session.</h2>
-          <p style="margin:22px 0 0;max-width:360px;font-size:14.5px;line-height:1.85;color:#5E5E5E">Anything unanswered — call 020 7998 7077 or <a href="https://wa.me/442079987077" style="color:#8A6F44;border-bottom:1px solid rgba(184,146,93,.5)">message us on WhatsApp</a>.</p>
+      <!-- Was a two-column split — heading left, questions right — while
+           prp.html runs one full-width stack. Matched to that, so both
+           treatment pages close the same way. -->
+      <div style="border-top:1px solid rgba(36,36,36,.12);padding-top:84px">
+        <div data-reveal="1" style="padding-bottom:44px">
+          <div class="tpl-sec-label">FAQ</div>
+          <h2 class="tpl-sec-title">Questions, <em>answered</em></h2>
         </div>
         <div data-reveal="1" style="border-top:1px solid rgba(36,36,36,.12)">
           <div class="tpl-faq">
@@ -683,6 +798,11 @@
             <div class="tpl-faq-a"><p>The face (cheeks, jawline, forehead), the neck, the brow area for lifting, and under the chin. Arms can also be treated for skin quality.</p></div>
           </div>
         </div>
+        <!-- The one line of prose the section keeps, carrying the WhatsApp CTA. -->
+        <div data-reveal="1" style="margin-top:44px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px 28px">
+          <span style="font-size:15px;color:#5E5E5E">Still unanswered? Call 020 7998 7077.</span>
+          <a href="https://wa.me/442079987077" class="tpl-cta-wa" style="padding:14px 26px;border:1px solid rgba(184,146,93,.6);color:#836742;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#FAF8F5;border-color:#B8925D"><svg class="tpl-wa-mark" viewBox="0 0 24 24" width="16" height="16" fill="#25D366" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Message on WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>
@@ -695,9 +815,11 @@
   <section class="tpl-sec" id="consultation" data-dark="1" style="padding:120px 48px;background:#081359;color:#ffffff">
     <div class="tpl-2col" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
-        <h2 style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.6vw,72px);line-height:1.02;letter-spacing:-.01em;color:#ffffff">Every plan starts<br />in the room.</h2>
-        <p style="margin:26px 0 0;max-width:460px;font-size:16px;line-height:1.9;color:rgba(255,255,255,.72)">Consultations are booked by our team, not by an algorithm. Tell us what you'd like to address and we'll call you back to arrange a time with the right practitioner.</p>
+        <!-- Sits beside the callback form, so it takes the left-aligned
+             opt-out rather than the centred default — same as prp.html. -->
+        <div class="tpl-sec-label tpl-sec-label--start">Consultation</div>
+        <h2 class="tpl-sec-title tpl-sec-title--start">Every plan starts<br />in the room.</h2>
+        <p class="tpl-sec-lede tpl-sec-lede--start">Consultations are booked by our team, not by an algorithm. Tell us what you'd like to address and we'll call you back to arrange a time with the right practitioner.</p>
         <div style="margin-top:44px;display:flex;flex-direction:column;gap:16px;max-width:460px">
           <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px">
             <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C7A470;letter-spacing:.18em">01</span>
