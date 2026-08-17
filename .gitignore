@@ -12,6 +12,13 @@ TPL Clinic About Page*.zip
 # site/assets/images/ are what ship. Originals stay local.
 site/assets/Higgsfield Images/
 
+# Hero master footage. Hero V5.mp4 is 94MB, past the size GitHub will warn on
+# and near the limit it refuses outright. What ships is what the encode produces:
+# site/assets/hero-frames-webp/ (the scrub), hero-poster/ (poster + LQIP) and
+# hero-fallback/hero-mobile.mp4 (phones). Keep the master in the drive, not here.
+Hero V*.mp4
+hero-master*.mp4
+
 # Tooling / OS
 .claude/
 .DS_Store
