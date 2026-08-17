@@ -338,14 +338,21 @@
       <!-- Full-bleed Background Hero Media Canvas -->
       <div data-hero-media="1" style="position:absolute;inset:0;width:100%;height:100%;overflow:hidden">
         <canvas data-hero-canvas="1" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block;background:url('assets/hero-poster/hero-poster.webp') center/cover no-repeat"></canvas>
-        <!-- Soft Transparent Vignette Gradient Overlay (100% Unobscured Video Visibility) -->
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0.65) 100%);z-index:2;pointer-events:none"></div>
+        <!-- Scrim. Hero V5 is shot in a white room — mean luma 194-213 against the
+             old hero's 136-181 — so the old single gradient, which thinned to 0.05
+             at 45%, left white type sitting on a near-white wall. Two layers now:
+             a vertical pass that holds the nav, the segment copy and the progress
+             rule, and a radial vignette that protects the left copy and the right
+             index while leaving the centre of frame — where the subject always is —
+             essentially untouched. Tinted brand navy rather than black so the
+             darkening reads as house colour instead of grey wash. -->
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,38,0.60) 0%, rgba(4,10,38,0.26) 40%, rgba(4,10,38,0.30) 58%, rgba(4,10,38,0.72) 100%), radial-gradient(ellipse 118% 96% at 50% 50%, rgba(4,10,38,0) 42%, rgba(4,10,38,0.34) 100%);z-index:2;pointer-events:none"></div>
       </div>
 
       <!-- Stage & Background Region Text -->
       <div data-stage="1" style="position:absolute;inset:0;z-index:3;pointer-events:none">
         <div data-region="0" style="position:absolute;inset:0;opacity:1;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">FACE</div>
+          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:20vw;line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">PLASMA</div>
         </div>
         <div data-region="1" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">HAIR</div>
@@ -354,13 +361,19 @@
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">BODY</div>
         </div>
         <div data-region="3" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:20vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">PLASMA</div>
+          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">FACE</div>
         </div>
       </div>
 
       <!-- Hero Intro Copy (Shown on initial paint) -->
       <div data-hero-intro="1" style="position:absolute;left:0;right:0;top:0;bottom:0;padding-top:120px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:10;transition:opacity .5s ease,transform .5s ease">
-        <div style="text-align:center;padding:0 24px;max-width:1100px">
+        <!-- Intro-only scrim. The h1 sits dead centre, which on the opening
+             reception shot is the brightest part of frame and the one place the
+             vignette above deliberately leaves alone. Nested inside the intro so it
+             inherits the intro's own opacity fade for free — it is gone by 13% of
+             scroll, so the rest of the film never pays for it. -->
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 76% 62% at 50% 52%, rgba(4,10,38,0.52) 0%, rgba(4,10,38,0.34) 45%, rgba(4,10,38,0) 78%);pointer-events:none"></div>
+        <div style="position:relative;text-align:center;padding:0 24px;max-width:1100px">
           <div class="tpl-badge" style="display:inline-flex;align-items:center;gap:12px;padding:9px 18px;border:1px solid rgba(184,146,93,.7);background:rgba(8,19,89,.4);backdrop-filter:blur(8px)">
             <span style="width:6px;height:6px;background:#B8925D;display:inline-block;flex:none"></span>
             <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#E8C89A">Specialist Aesthetic Clinic of the Year 2026/27</span>
@@ -385,58 +398,58 @@
       <!-- Completely Box-Less Floating Luxury Segment Copy -->
       <div data-hero-copy="1" style="position:absolute;left:72px;bottom:72px;max-width:500px;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;z-index:10;pointer-events:none">
         <div data-copy="0" style="display:block">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#C7A470;text-shadow:0 2px 10px rgba(0,0,0,0.9)">01 — FACE</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Structure, tone,<br />and light.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Fine lines, laxity and volume loss — treated in combination, never in isolation.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">PRP · Sofwave™ · Morpheus8® · LaseMD Ultra®</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">01 — DIAGNOSTICS</div>
+          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">It begins with<br />your own blood.</h2>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">A single draw, spun in-clinic, separated into the platelet-rich fraction that drives every protocol.</p>
+          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Blood Draw · PRP / PRF Fraction · Custom Protocol</div>
         </div>
         <div data-copy="1" style="display:none">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#C7A470;text-shadow:0 2px 10px rgba(0,0,0,0.9)">02 — HAIR</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">02 — HAIR</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Density, restored<br />at the root.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Thinning, receding hairlines and early pattern loss — diagnosed first, then treated at the follicle.</p>
           <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Enhanced PRP · Regenera Activa® · TrichoComp</div>
         </div>
         <div data-copy="2" style="display:none">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#C7A470;text-shadow:0 2px 10px rgba(0,0,0,0.9)">03 — BODY</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">03 — BODY</div>
           <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Skin quality,<br />below the neck.</h2>
           <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Cellulite, scarring and stretch marks — remodelled with radiofrequency, needling and plasma.</p>
           <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Morpheus8® · Mesotherapy · Soprano Ice Titanium™</div>
         </div>
         <div data-copy="3" style="display:none">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#C7A470;text-shadow:0 2px 10px rgba(0,0,0,0.9)">04 — DIAGNOSTICS</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">It begins with<br />your own blood.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">A single draw, spun in-clinic, separated into the platelet-rich fraction that drives every protocol.</p>
-          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">Blood Draw · PRP / PRF Fraction · Custom Protocol</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">04 — FACE</div>
+          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Structure, tone,<br />and light.</h2>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Fine lines, laxity and volume loss — treated in combination, never in isolation.</p>
+          <div style="margin-top:18px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,0.9)">PRP · Sofwave™ · Morpheus8® · LaseMD Ultra®</div>
         </div>
       </div>
 
       <!-- Completely Box-Less Floating Right Side Rail -->
       <div data-rail="1" style="position:absolute;right:72px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:18px;opacity:0;transition:opacity .6s ease;z-index:10;pointer-events:none">
         <div data-rail-item="0" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C7A470;letter-spacing:.2em;text-shadow:0 2px 8px rgba(0,0,0,0.9)">01</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#ffffff;transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Face</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">01</span>
+          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#ffffff;transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Diagnostics</span>
           <span data-rail-bar="0" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(1);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
         </div>
         <div data-rail-item="1" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C7A470;letter-spacing:.2em;text-shadow:0 2px 8px rgba(0,0,0,0.9)">02</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Hair</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">02</span>
+          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Hair</span>
           <span data-rail-bar="1" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
         </div>
         <div data-rail-item="2" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C7A470;letter-spacing:.2em;text-shadow:0 2px 8px rgba(0,0,0,0.9)">03</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Body</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">03</span>
+          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Body</span>
           <span data-rail-bar="2" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
         </div>
         <div data-rail-item="3" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C7A470;letter-spacing:.2em;text-shadow:0 2px 8px rgba(0,0,0,0.9)">04</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Diagnostics</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">04</span>
+          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Face</span>
           <span data-rail-bar="3" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
         </div>
       </div>
 
       <!-- Completely Box-Less Floating Frame HUD Counter Overlay -->
       <div style="position:absolute;bottom:28px;right:72px;z-index:10;pointer-events:none">
-        <span data-frame="1" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.26em;color:rgba(232,200,154,.9);text-shadow:0 2px 10px rgba(0,0,0,0.95);display:inline-block">FRAME 0001 / 0446</span>
+        <span data-frame="1" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.26em;color:rgba(232,200,154,.9);text-shadow:0 2px 10px rgba(0,0,0,0.95);display:inline-block">FRAME 0001 / 0499</span>
       </div>
 
       <!-- Progress Line -->
@@ -448,9 +461,9 @@
   </section>
 
   <!-- ══ THE FOUR BEATS — phones only ══
-       The desktop hero is a 460vh scroll stage: 446 frames of film that move
-       through Face, Hair, Body and the plasma diagnostics underneath all
-       three, with a line of copy floating over each. Phones are served a
+       The desktop hero is a 460vh scroll stage: 499 frames of film that walk
+       the clinic in its own order — the plasma diagnostics first, then Hair,
+       Body, and Face — with a line of copy floating over each. Phones are served a
        looping video instead of the scrub, and the copy panels are driven by
        the same scroll engine — which never runs on a phone. So the argument
        the hero exists to make reached nobody on a phone at all.
@@ -985,7 +998,12 @@ class Component extends DCLogic {
   state = { firstName:"", lastName:"", email:"", phone:"", area:"Face — skin & anti-ageing", message:"", consent:false, submitted:false, mobileMenuOpen:false, megaMenuOpen:false };
 
   componentDidMount() {
-    this.TOTAL_FRAMES = 446;
+    this.TOTAL_FRAMES = 499;
+    // Same scrim the canvas hero carries in markup. The phone and reduced-motion
+    // engines rebuild heroMedia's innerHTML from scratch, so without this they
+    // render Hero V5's white rooms with no scrim at all and the nav, the WhatsApp
+    // link and the scroll cue all disappear into the wall.
+    this.HERO_SCRIM = '<div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,38,0.60) 0%, rgba(4,10,38,0.26) 40%, rgba(4,10,38,0.30) 58%, rgba(4,10,38,0.72) 100%), radial-gradient(ellipse 118% 96% at 50% 50%, rgba(4,10,38,0) 42%, rgba(4,10,38,0.34) 100%);z-index:2;pointer-events:none"></div>';
     this.hero = document.querySelector('[data-hero]');
     this.nav = document.querySelector('[data-nav]');
     this.consultSection = document.querySelector('#consultation');
@@ -1005,7 +1023,7 @@ class Component extends DCLogic {
     this.isLooping = false;
 
     // ══ Device gate ══
-    // Phones run the hardware video fallback; desktops run the 446-frame canvas
+    // Phones run the hardware video fallback; desktops run the 499-frame canvas
     // scrub. Two things matter about how this is decided.
     //
     // First, a narrow window counts. The old test was user-agent-only (plus a
@@ -1045,7 +1063,7 @@ class Component extends DCLogic {
     if (this.isReducedMotion) {
       if (this.hero) this.hero.style.height = 'auto';
       if (this.heroMedia) {
-        this.heroMedia.innerHTML = '<img src="assets/hero-poster/hero-poster.webp" alt="TPL Clinic" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1" />';
+        this.heroMedia.innerHTML = '<img src="assets/hero-poster/hero-poster.webp" alt="TPL Clinic" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1" />' + this.HERO_SCRIM;
       }
       if (this.intro) {
         this.intro.style.opacity = '1';
@@ -1058,10 +1076,10 @@ class Component extends DCLogic {
       // Mobile Phones: Lightweight hardware-accelerated video fallback for 100% crash-free 60fps performance
       if (this.hero) this.hero.style.height = '100vh';
       if (this.heroMedia) {
-        this.heroMedia.innerHTML = '<video src="assets/hero-fallback/hero-mobile.mp4" poster="assets/hero-poster/hero-poster.webp" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video><div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0.65) 100%);z-index:2;pointer-events:none"></div>';
+        this.heroMedia.innerHTML = '<video src="assets/hero-fallback/hero-mobile.mp4" poster="assets/hero-poster/hero-poster.webp" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>' + this.HERO_SCRIM;
       }
     } else {
-      // Desktop & Laptops: Ultra-Smooth 446 Frame Interactive Canvas Engine
+      // Desktop & Laptops: Ultra-Smooth 499 Frame Interactive Canvas Engine
       const depth = this.props.heroScrollDepth ?? 460;
       if (this.hero) this.hero.style.height = depth + 'vh';
 
@@ -1524,15 +1542,23 @@ class Component extends DCLogic {
     }
     if (this.rail) this.rail.style.opacity = revealed ? '1' : '0';
 
-    const seg = Math.min(3, Math.floor(((p - 0.12) / 0.88) * 4));
-    const idx = Math.max(0, seg);
+    // Beat boundaries are the film's own cuts, not even quarters. Hero V5 is a
+    // ten-shot clinic journey, and its beats do not fall on 25% lines: the
+    // bloods-and-tablet shot runs out at frame 123, the hair block at 255, the
+    // body contour at 345, and the theatre-through-retail tail takes the rest.
+    // Even slices used to put the wrong label over the wrong footage — "01 FACE"
+    // over the reception desk. Held as frame numbers rather than progress, so
+    // re-cutting the film only means re-reading the contact sheet.
+    const SEG_END = [123, 255, 345, this.TOTAL_FRAMES];
+    let idx = 0;
+    while (idx < SEG_END.length - 1 && targetFrame > SEG_END[idx]) idx++;
     if (idx !== this.active) {
       this.active = idx;
       this.regions.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
       this.copies.forEach((el, i) => { el.style.display = i === idx ? 'block' : 'none'; });
       this.railItems.forEach((el, i) => {
         const label = el.children[1];
-        if (label) label.style.color = i === idx ? '#ffffff' : 'rgba(255,255,255,.45)';
+        if (label) label.style.color = i === idx ? '#ffffff' : 'rgba(255,255,255,.62)';
       });
       this.railBars.forEach((el, i) => { el.style.transform = i === idx ? 'scaleX(1)' : 'scaleX(0)'; });
     }

@@ -10,7 +10,7 @@ index.html      — approved homepage (hero untouched; nav/footer now link to th
 services.html   — NEW: full 20-treatment index with Face/Hair/Body filtering
 prp.html        — NEW: the treatment-page template ("between the live PRP page and Sofwave")
 support.js      — dc-runtime (unchanged)
-assets/         — all demo assets incl. 446 hero frames, videos, images
+assets/         — all demo assets incl. 499 hero frames, videos, images
 uploads/        — original brief + colour tokens (from the zip)
 ```
 
