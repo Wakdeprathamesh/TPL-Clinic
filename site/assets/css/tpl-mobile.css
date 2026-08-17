@@ -543,7 +543,13 @@ body.tpl-locked {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 34px 20px !important;
   }
+  /* The brand block is the first cell on the pages still carrying the original
+     four-column footer, and it needs the full width there. On the treatment
+     pages the mark has moved to its own centred row above this grid, so the
+     first cell is an ordinary link column — --links opts those out, otherwise
+     "Treatments" would stretch the width of the footer. */
   .tpl-m-footer > *:first-child { grid-column: 1 / -1; }
+  .tpl-m-footer--links > *:first-child { grid-column: auto; }
 
   /* Form grid → one field per row. */
   .tpl-m-form {
@@ -711,6 +717,10 @@ body.tpl-locked {
   .tpl-anchorbar-inner {
     padding: 0 var(--tpl-gutter) !important;
     gap: 0 !important;
+    /* The bar centres on desktop. Here it is a scroller wider than the screen,
+       and a centred flex row whose content overflows pushes the first chip off
+       the left edge with no way to scroll back to it. Start-aligned. */
+    justify-content: flex-start !important;
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
@@ -1054,7 +1064,17 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   .tpl-team-grid { grid-template-columns: minmax(0, 1fr) !important; }
 
   /* — Treatment pages ——————————————————————————————————————— */
-  .tpl-glance { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  /* At a glance: six gold discs go two across. The disc comes down from 118px
+     so two of them plus the gap clear a 320px screen with room for the label
+     beneath, and the row gap opens up because each cell is now three stacked
+     elements rather than two lines of text in a bordered box. */
+  .tpl-glance {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 38px 16px !important;
+  }
+  .tpl-glance-disc { width: 96px !important; height: 96px !important; }
+  .tpl-glance-disc svg { width: 46px !important; height: 46px !important; }
+  .tpl-glance-key { margin-top: 18px !important; }
   .tpl-steps,
   .tpl-why,
   .tpl-combine-grid,
@@ -1187,7 +1207,10 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   .tpl-sec-title--start { text-align: left !important; }
   .tpl-sec-lede--start { text-align: left !important; }
 
-  .tpl-combine-icon { width: 96px !important; height: 96px !important; margin-left: -6px !important; }
+  /* Centred, matching the cards themselves — the negative left margin here was
+     optically nudging the illustration back to the cell's text edge, which is
+     the alignment the client asked to be dropped. */
+  .tpl-combine-icon { width: 96px !important; height: 96px !important; margin-inline: auto !important; }
 
   /* Services index cards — the icon pass raised these to 120px on desktop and
      this file was holding them at 64px, below the 74px they started at. */
