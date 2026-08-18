@@ -450,18 +450,27 @@
     align-items: center;
     text-align: center;
   }
+  /* A fine gold ring on near-white, not a solid gold puck.
+     The disc was 118px of saturated #B8925D with a white icon dropped on it —
+     the heaviest, most saturated element on a page that is otherwise white,
+     navy and restraint. It also ignored the icon language the site already has:
+     services.html sets every treatment icon inside a thin gold ring on white,
+     and the signature panel does the same. Matching that makes the row lighter
+     AND consistent, which is most of what "premium" means here. */
   .tpl-glance-disc {
     width: 118px;
     height: 118px;
     border-radius: 50%;
-    background: #B8925D;
+    background: #FBFAF8;
+    border: 1px solid rgba(184, 146, 93, .45);
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1), border-color .5s ease;
   }
-  .tpl-glance-item:hover .tpl-glance-disc { transform: translateY(-5px); }
-  .tpl-glance-disc svg { width: 56px; height: 56px; display: block; }
+  .tpl-glance-item:hover .tpl-glance-disc { transform: translateY(-5px); border-color: #B8925D; }
+  .tpl-glance-disc svg { width: 52px; height: 52px; display: block; }
   .tpl-glance-key {
     margin-top: 24px;
     font-family: Jost, sans-serif;
@@ -647,7 +656,7 @@
       <img src="assets/images/prp-method/prp-hero-plate-1200w.jpg" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16;mix-blend-mode:luminosity;pointer-events:none" />
     </picture>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 85% -10%,rgba(184,146,93,.16),transparent 60%);pointer-events:none"></div>
-    <div class="tpl-hero-grid" style="max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;align-items:center">
+    <div class="tpl-hero-grid" style="max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:64px;align-items:center">
       <div>
         <div data-reveal="1" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Treatment 01 — The Signature</span>
@@ -655,7 +664,7 @@
           <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)">Scalp · Face · Body</span>
         </div>
         <h1 data-reveal="1" style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:.98;letter-spacing:-.02em;color:#ffffff">Platelet<br />Rich Plasma</h1>
-        <p data-reveal="1" style="margin:26px 0 0;max-width:480px;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.75)">Your own biology, concentrated. A small volume of blood, separated in-clinic, and returned where regeneration is needed — no donor material, no synthetic filler.</p>
+        <p data-reveal="1" style="margin:26px 0 0;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.75)">Your own biology, concentrated. A small volume of blood, separated in-clinic, and returned where regeneration is needed — no donor material, no synthetic filler.</p>
         <div data-reveal="1" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:14px">
           <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
           <a href="https://wa.me/442079987077" class="tpl-cta-wa" style="padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)"><svg class="tpl-wa-mark" viewBox="0 0 24 24" width="16" height="16" fill="#25D366" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
@@ -706,8 +715,9 @@
   <section class="tpl-sec--head" style="padding:72px 48px 0;background:#ffffff">
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
       <symbol id="g-results" viewBox="0 0 48 48">
-        <path d="M15 21.5v16.5H9.5A2.5 2.5 0 0 1 7 35.5V24a2.5 2.5 0 0 1 2.5-2.5H15Z"/>
-        <path d="M15 22.4 21.9 9.6a3.4 3.4 0 0 1 6.4 1.6v7.6h8.4a3.4 3.4 0 0 1 3.3 4.2l-2.8 11.6A3.4 3.4 0 0 1 33.9 38H15Z"/>
+        <circle cx="24" cy="24" r="15.5"/>
+        <circle cx="24" cy="24" r="8"/>
+        <circle cx="24" cy="24" r="1.6" fill="#B8925D" stroke="none"/>
       </symbol>
       <symbol id="g-cost" viewBox="0 0 48 48">
         <path d="M32 15.4A7.8 7.8 0 0 0 18.8 21v9c0 3.6-1.6 6.5-4.8 8.2"/>
@@ -754,32 +764,32 @@
       <div data-reveal="1" class="tpl-sec-label">PRP at a glance</div>
       <div data-reveal="1" class="tpl-glance" style="margin-top:12px">
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-results"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-results"/></svg></div>
           <div class="tpl-glance-key">Best results</div>
           <div class="tpl-glance-val">A course of treatments</div>
         </div>
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-cost"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-cost"/></svg></div>
           <div class="tpl-glance-key">Cost</div>
           <div class="tpl-glance-val">From £350</div>
         </div>
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-time"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-time"/></svg></div>
           <div class="tpl-glance-key">Procedure time</div>
           <div class="tpl-glance-val">1 hour</div>
         </div>
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-work"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-work"/></svg></div>
           <div class="tpl-glance-key">Back to work</div>
           <div class="tpl-glance-val">Immediately</div>
         </div>
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-anaesthetic"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-anaesthetic"/></svg></div>
           <div class="tpl-glance-key">Anaesthetics</div>
           <div class="tpl-glance-val">Topical anaesthetic cream if needed</div>
         </div>
         <div class="tpl-glance-item">
-          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-downtime"/></svg></div>
+          <div class="tpl-glance-disc"><svg viewBox="0 0 48 48" fill="none" stroke="#B8925D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#g-downtime"/></svg></div>
           <div class="tpl-glance-key">Downtime</div>
           <div class="tpl-glance-val">Minimal</div>
         </div>
