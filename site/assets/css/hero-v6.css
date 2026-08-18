@@ -39,7 +39,12 @@
      per-row alignment below decide which way a tall block spills. */
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
-  padding: clamp(84px, 9vh, 120px) clamp(28px, 5vw, 88px) clamp(56px, 7vh, 96px);
+  /* The top inset has to clear the fixed header, which is 92px. The floor was
+     84px, so on any viewport short enough for the clamp to bottom out, every
+     top-row beat started 8px UNDER the bar and had its kicker clipped. The floor
+     is now 112px: 92 for the header plus 20 of air, so the copy never touches
+     it. Bottom inset clears the scroll cue and the frame readout. */
+  padding: clamp(112px, 12vh, 148px) clamp(28px, 5vw, 88px) clamp(56px, 7vh, 96px);
   pointer-events: none;
 }
 .hv6-cell {
