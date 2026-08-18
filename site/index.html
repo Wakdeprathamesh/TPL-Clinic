@@ -1049,9 +1049,44 @@ class Component extends DCLogic {
        listener now, so it keeps working on a page whose hero is a separate
        script — and on phones and under reduced motion, where that loop never
        ran at all. */
-    this.onNavScroll = () => this.syncNavTheme();
+    /* ── Auto-hide ─────────────────────────────────────────────────────────
+       Away on the way down, back on the way up. The hero is ten screens; a bar
+       pinned over the film for all of it stops being chrome and starts being
+       furniture. Hiding it while the reader moves forward gives the film the
+       screen, and one flick of the wheel brings it back — which matters here
+       more than on most sites, because the clinic takes no online bookings, so
+       the WhatsApp and Book buttons in that bar ARE the conversion path. They
+       cannot be ten screens away.
+
+       The 6px threshold is deliberate: a smooth-scroll library emits a lot of
+       sub-pixel deltas, and reacting to every one makes the bar flicker. The bar
+       is also always shown near the top, so the page never opens hidden. */
+    this.navHidden = false;
+    this.lastNavY = window.scrollY;
+    this.setNavHidden = (hide) => {
+      if (this.navHidden === hide) return;
+      this.navHidden = hide;
+      this.nav.style.transform = hide ? 'translateY(-100%)' : 'translateY(0)';
+    };
+    this.nav.style.transition =
+      (this.nav.style.transition ? this.nav.style.transition + ',' : '') +
+      'transform .45s cubic-bezier(.22,1,.36,1)';
+    this.nav.style.willChange = 'transform';
+
+    this.onNavScroll = () => {
+      const y = window.scrollY;
+      const dy = y - this.lastNavY;
+      if (y < 120) this.setNavHidden(false);          // never hidden at the top
+      else if (dy > 6) this.setNavHidden(true);       // moving down
+      else if (dy < -6) this.setNavHidden(false);     // moving up
+      if (Math.abs(dy) > 1) this.lastNavY = y;
+      this.syncNavTheme();
+    };
     window.addEventListener('scroll', this.onNavScroll, { passive: true });
     window.addEventListener('resize', this.onNavScroll);
+    /* The mega menu and the drawer are useless if the bar they live in has
+       slid away, so any attempt to open one brings it back first. */
+    this.nav.addEventListener('focusin', () => this.setNavHidden(false));
     this.syncNavTheme();
 
     // Reveal animations setup
@@ -1239,6 +1274,33 @@ class Component extends DCLogic {
       const consultRect = this.consultSection ? this.consultSection.getBoundingClientRect() : null;
       const isOverConsultation = consultRect ? (consultRect.top <= navHeight && consultRect.bottom >= 0) : false;
 
+      /* Over the hero the bar is TRANSPARENT — the client's call, so the film
+         reads edge to edge with no chrome sitting on it.
+
+         The legibility problem that creates is real and was measured across all
+         500 frames, on the three strips the bar actually occupies (logo, links,
+         CTAs). Dark labels clear AA on 323 of 500. White labels clear it on
+         NONE — the clinic is too bright. And on 177 frames (35%) neither colour
+         works in all three strips at once, because the band is mixed: white
+         wall behind the logo, a dark head behind the links. So switching colour
+         per frame does not rescue it either; that was tried first.
+
+         Two things make a transparent bar work anyway:
+
+         1. The bar auto-hides on the way down, so for most of a ten-screen
+            hero it is not on the film at all — see the hide logic below.
+         2. When it is showing, the labels carry a soft WHITE halo. It is
+            self-masking: invisible against a white wall, and on the frames
+            where something dark passes under the bar it lifts the glyphs off
+            it. That is the technique cinematic sites use for type over film.
+
+         Worth knowing: WCAG gives no formal credit for a text shadow. If the
+         nav has to be provably AA on every frame, the frosted bar is the only
+         option — this is legible, but it is legible by craft, not by the
+         contrast formula. */
+      const heroRect = this.hero.getBoundingClientRect();
+      const isOverHero = heroRect.bottom > navHeight;
+
       const isDarkTheme = isOverConsultation;
 
       const logoTpl = this.nav.querySelector('a[href="#top"] span:first-child');
@@ -1277,19 +1339,31 @@ class Component extends DCLogic {
         }
       } else {
         this.nav.classList.add('is-light');
-        this.nav.style.background = 'rgba(255, 255, 255, 0.88)';
-        this.nav.style.backdropFilter = 'blur(20px) saturate(180%)';
-        this.nav.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
-        this.nav.style.borderBottom = '1px solid rgba(184, 146, 93, 0.3)';
-        this.nav.style.boxShadow = '0 10px 30px rgba(8, 19, 89, 0.08)';
-        this.nav.style.padding = '16px 40px';
+        /* Transparent on the film, frosted once the film is behind you. Past the
+           hero the page is white sections and a frosted bar is the right read;
+           on the film it would be chrome laid over the picture. */
+        this.nav.style.background = isOverHero ? 'transparent' : 'rgba(255, 255, 255, 0.88)';
+        this.nav.style.backdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
+        this.nav.style.webkitBackdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
+        this.nav.style.borderBottom = isOverHero ? '1px solid transparent' : '1px solid rgba(184, 146, 93, 0.3)';
+        this.nav.style.boxShadow = isOverHero ? 'none' : '0 10px 30px rgba(8, 19, 89, 0.08)';
+        this.nav.style.padding = isOverHero ? '22px 40px' : '16px 40px';
 
         if (logoTpl) logoTpl.style.color = '#242424';
         if (logoClinic) logoClinic.style.color = '#B8925D';
 
-        navLinks.forEach(link => { link.style.color = '#242424'; });
-        if (whatsappLink) whatsappLink.style.color = '#242424';
-        if (toggleBtn) toggleBtn.style.color = '#242424';
+        /* Self-masking halo. On a white wall a white glow is invisible; on the
+           frames where something dark passes under the bar it lifts the glyphs
+           off it. Only applied while the bar is transparent — over a frosted
+           bar it would just soften the type. */
+        const halo = isOverHero
+          ? '0 1px 2px rgba(255,255,255,.95), 0 0 14px rgba(255,255,255,.85)'
+          : 'none';
+        navLinks.forEach(link => { link.style.color = '#242424'; link.style.textShadow = halo; });
+        if (whatsappLink) { whatsappLink.style.color = '#242424'; whatsappLink.style.textShadow = halo; }
+        if (toggleBtn) { toggleBtn.style.color = '#242424'; toggleBtn.style.textShadow = halo; }
+        if (logoTpl) logoTpl.style.textShadow = halo;
+        if (logoClinic) logoClinic.style.textShadow = halo;
 
         if (btn) {
           btn.style.background = '#081359';
