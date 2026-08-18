@@ -12,11 +12,16 @@ TPL Clinic About Page*.zip
 # site/assets/images/ are what ship. Originals stay local.
 site/assets/Higgsfield Images/
 
-# Hero master footage. Hero V5.mp4 is 94MB, past the size GitHub will warn on
-# and near the limit it refuses outright. What ships is what the encode produces:
-# site/assets/hero-frames-webp/ (the scrub), hero-poster/ (poster + LQIP) and
-# hero-fallback/hero-mobile.mp4 (phones). Keep the master in the drive, not here.
+# Hero master footage. Hero V5.mp4 is 94MB and HeroV6.mp4 is 80MB — both past the
+# size GitHub warns on and near the limit it refuses outright. What ships is what
+# the encode produces: the frame sequence, the poster + LQIP, and the phone mp4.
+# Keep the masters in the drive, not here.
+#
+# Both spellings are listed on purpose. V5 arrived as "Hero V5.mp4" and V6 as
+# "HeroV6.mp4" — no space — so the original pattern silently stopped matching and
+# an 80MB master was staged for commit. Add whichever spelling the next one uses.
 Hero V*.mp4
+HeroV*.mp4
 hero-master*.mp4
 
 # Tooling / OS

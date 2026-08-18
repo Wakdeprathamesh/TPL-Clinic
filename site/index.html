@@ -35,9 +35,11 @@
     document.head.appendChild(l);
   }
 </script>
+<link rel="stylesheet" href="assets/css/hero-v6.css">
 <link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
 <script src="assets/js/tpl-mobile.js" defer></script>
+<script src="assets/js/hero-v6.js" defer></script>
 <style>
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -52,6 +54,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link rel="preload" as="image" href="assets/hero-v6-frames-webp/frame-0001.webp" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
   html { scroll-behavior: smooth; }
@@ -374,178 +377,21 @@
        The desktop engine works this out inside its scroll loop; the mobile
        runtime reads these attributes instead, because that loop never runs
        on a phone. -->
-  <section id="top" data-hero="1" data-dark="1" style="position:relative;height:760vh;background:#081359">
-    <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#081359">
-
-      <!-- Full-bleed Background Hero Media Canvas -->
-      <div data-hero-media="1" style="position:absolute;inset:0;width:100%;height:100%;overflow:hidden">
-        <canvas data-hero-canvas="1" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block;background:url('assets/hero-poster/hero-poster.webp') center/cover no-repeat"></canvas>
-        <!-- Scrim. Hero V5 is shot in a white room — mean luma 194-213 against the
-             old hero's 136-181 — so the old single gradient, which thinned to 0.05
-             at 45%, left white type sitting on a near-white wall. Two layers now:
-             a vertical pass that holds the nav, the segment copy and the progress
-             rule, and a radial vignette that protects the left copy and the right
-             index while leaving the centre of frame — where the subject always is —
-             essentially untouched. Tinted brand navy rather than black so the
-             darkening reads as house colour instead of grey wash. -->
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,38,0.60) 0%, rgba(4,10,38,0.26) 40%, rgba(4,10,38,0.30) 58%, rgba(4,10,38,0.72) 100%), radial-gradient(ellipse 118% 96% at 50% 50%, rgba(4,10,38,0) 42%, rgba(4,10,38,0.34) 100%);z-index:2;pointer-events:none"></div>
-      </div>
-
-      <!-- Stage & Background Region Text -->
-      <div data-stage="1" style="position:absolute;inset:0;z-index:3;pointer-events:none">
-        <div data-region="0" style="position:absolute;inset:0;opacity:1;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:20vw;line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">PLASMA</div>
-        </div>
-        <div data-region="1" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">HAIR</div>
-        </div>
-        <div data-region="2" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">BODY</div>
-        </div>
-        <div data-region="3" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:24vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">SURGICAL</div>
-        </div>
-        <div data-region="4" style="position:absolute;inset:0;opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)">
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:20vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);white-space:nowrap;user-select:none">SHELF</div>
-        </div>
-      </div>
-
-      <!-- Hero Intro Copy (Shown on initial paint) -->
-      <div data-hero-intro="1" style="position:absolute;left:0;right:0;top:0;bottom:0;padding-top:120px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:10;transition:opacity .5s ease,transform .5s ease">
-        <!-- Intro-only scrim. The h1 sits dead centre, which on the opening
-             reception shot is the brightest part of frame and the one place the
-             vignette above deliberately leaves alone. Nested inside the intro so it
-             inherits the intro's own opacity fade for free — it is gone by 13% of
-             scroll, so the rest of the film never pays for it. -->
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 76% 62% at 50% 52%, rgba(4,10,38,0.52) 0%, rgba(4,10,38,0.34) 45%, rgba(4,10,38,0) 78%);pointer-events:none"></div>
-        <div style="position:relative;text-align:center;padding:0 24px;max-width:1100px">
-          <div class="tpl-badge" style="display:inline-flex;align-items:center;gap:12px;padding:9px 18px;border:1px solid rgba(184,146,93,.7);background:rgba(8,19,89,.4);backdrop-filter:blur(8px)">
-            <span style="width:6px;height:6px;background:#B8925D;display:inline-block;flex:none"></span>
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#E8C89A">Specialist Aesthetic Clinic of the Year 2026/27</span>
-          </div>
-          <h1 style="margin:28px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(46px,7.4vw,116px);line-height:.94;letter-spacing:-.02em;color:#ffffff;text-shadow:0 2px 24px rgba(0,0,0,0.7);text-wrap:balance">The body already knows<br /><span style="font-style:normal;color:#C7A470">how to repair itself.</span></h1>
-          <p style="margin:26px auto 0;max-width:640px;font-size:16.5px;line-height:1.85;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.8);text-wrap:pretty">TPL Clinic is the UK's first clinic built entirely around Platelet Rich Plasma — regenerative medicine, combined with advanced technology, in Mayfair since day one.</p>
-          <div class="tpl-hero-scrollcue" style="margin-top:40px;display:flex;align-items:center;justify-content:center;gap:12px">
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 2px 8px rgba(0,0,0,0.8)">Scroll</span>
-            <span style="display:block;width:1px;height:46px;background:linear-gradient(180deg,#B8925D,rgba(184,146,93,0));animation:tplDrift 1.6s ease-in-out infinite alternate"></span>
-          </div>
-
-          <!-- Phones only. The desktop hero asks you to scroll because the
-               scroll IS the film; on a phone there is no film to scrub, so the
-               hero ends with the two things a visitor actually came to do. -->
-          <div class="tpl-hero-actions">
-            <a class="primary" href="#consultation">Book consultation</a>
-            <a class="ghost tpl-cta-wa" href="https://wa.me/442079987077" rel="noopener"><svg class="tpl-wa-mark" viewBox="0 0 24 24" width="16" height="16" fill="#25D366" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Completely Box-Less Floating Luxury Segment Copy -->
-      <div data-hero-copy="1" style="position:absolute;left:72px;bottom:72px;max-width:560px;opacity:0;transform:translateY(14px);z-index:10;pointer-events:none" data-note="opacity and transform are driven per frame by the scroll engine; a CSS transition here would lag the scrub">
-        <div data-copy="0" style="display:block">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">01 — CONSULTATION</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">It begins with<br />a conversation.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Assessment first, then diagnostics. Nothing is planned before we know what we are treating.</p>
-          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Consultation</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Diagnostics</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">TrichoComp™</a>
-          </div>
-        </div>
-        <div data-copy="1" style="display:none">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">02 — HAIR</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Density, restored<br />at the root.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Thinning, receding hairlines and early pattern loss — diagnosed first, then treated at the follicle.</p>
-          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-            <a href="prp.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Enhanced PRP</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Regenera Activa®</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Invisible Hair Transplant™</a>
-          </div>
-        </div>
-        <div data-copy="2" style="display:none">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">03 — BODY</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">Skin quality,<br />below the neck.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Cellulite, scarring and stretch marks — remodelled with radiofrequency, needling and plasma.</p>
-          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Morpheus8®</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Soprano Ice Titanium™</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Mesotherapy</a>
-          </div>
-        </div>
-        <div data-copy="3" style="display:none">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">04 — SURGICAL</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">The Invisible<br />Hair Transplant™</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">Booked with the operating surgeon, not through the clinic diary.</p>
-          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-            <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Invisible Hair Transplant™</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="https://treatment.tplclinic.com/hair-transplant/" target="_blank" rel="noopener" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Surgeon consultation</a>
-          </div>
-        </div>
-        <div data-copy="4" style="display:none">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.36em;color:#E8C89A;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 12px rgba(0,0,0,.85)">05 — DISPENSARY</div>
-          <h2 style="margin:12px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.5vw,62px);line-height:1.05;color:#ffffff;text-shadow:0 3px 20px rgba(0,0,0,0.95);letter-spacing:-.01em">What you take<br />home with you.</h2>
-          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,0.95)">The protocol continues between visits. Dispensed at the clinic, chosen against your plan.</p>
-          <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">SkinCeuticals</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Korean Skincare</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">La Roche-Posay</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">CeraVe</a>
-            <span style="color:rgba(232,200,154,.5)" aria-hidden="true">·</span>
-            <a href="services.html" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A;text-shadow:0 2px 10px rgba(0,0,0,.9);text-decoration:none;border-bottom:1px solid rgba(232,200,154,.42);padding-bottom:2px;pointer-events:auto;transition:color .25s ease,border-color .25s ease" style-hover="color:#ffffff;border-color:#ffffff">Hair Care</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Completely Box-Less Floating Right Side Rail -->
-      <div data-rail="1" style="position:absolute;right:72px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:18px;opacity:0;transition:opacity .6s ease;z-index:10;pointer-events:none">
-        <div data-rail-item="0" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">01</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#ffffff;transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Consultation</span>
-          <span data-rail-bar="0" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(1);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
-        </div>
-        <div data-rail-item="1" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">02</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Hair</span>
-          <span data-rail-bar="1" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
-        </div>
-        <div data-rail-item="2" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">03</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Body</span>
-          <span data-rail-bar="2" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
-        </div>
-        <div data-rail-item="3" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">04</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Surgical</span>
-          <span data-rail-bar="3" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
-        </div>
-        <div data-rail-item="4" style="display:flex;align-items:center;gap:14px;padding:6px 0;width:180px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;color:#E8C89A;letter-spacing:.2em;text-shadow:0 1px 3px rgba(4,10,38,.95),0 2px 10px rgba(0,0,0,.85)">05</span>
-          <span style="font-family:Jost,sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62);transition:color .4s ease;text-shadow:0 2px 10px rgba(0,0,0,0.95)">Dispensary</span>
-          <span data-rail-bar="4" style="margin-left:auto;display:block;width:32px;height:1px;background:#C7A470;transform:scaleX(0);transform-origin:right;transition:transform .5s ease;box-shadow:0 0 6px rgba(199,164,112,0.8)"></span>
-        </div>
-      </div>
-
-      <!-- Completely Box-Less Floating Frame HUD Counter Overlay -->
-      <div style="position:absolute;bottom:28px;right:72px;z-index:10;pointer-events:none">
-        <span data-frame="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.26em;color:rgba(232,200,154,.9);text-shadow:0 2px 10px rgba(0,0,0,0.95);display:inline-block">FRAME 0001 / 0499</span>
-      </div>
-
-      <!-- Progress Line -->
-      <div style="position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.15);z-index:10">
-        <div data-progress="1" style="height:100%;width:100%;background:#C7A470;transform:scaleX(0);transform-origin:left"></div>
-      </div>
-
+  <!-- ══════════════════════════════════════════════════════════════════════
+       HERO V6 — the scroll film
+       Markup only. The engine is assets/js/hero-v6.js, which waits for <x-dc>
+       to leave the document before it binds: the render-once runtime discards
+       the template copy, taking any listener bound to it along with it.
+       Beat timings, copy zones and contrast all come from
+       hero-v6/hero-v6-spec.json. Height is set by the engine from its own
+       timeline, not here.
+       ══════════════════════════════════════════════════════════════════════ -->
+  <section class="hv6" id="top" data-hv6 data-hero="1" aria-label="TPL Clinic — the clinic on film">
+    <div class="hv6-stage" data-hv6-stage>
+      <canvas data-hv6-canvas aria-hidden="true"></canvas>
+      <div data-hv6-copy></div>
+      <div class="hv6-frame" data-hv6-frame>FRAME 0001 / 500</div>
+      <div class="hv6-cue" data-hv6-cue><i></i>Scroll<i></i></div>
     </div>
   </section>
 
@@ -1092,73 +938,17 @@ class Component extends DCLogic {
   state = { firstName:"", lastName:"", email:"", phone:"", area:"Face — skin & anti-ageing", message:"", consent:false, submitted:false, mobileMenuOpen:false, megaMenuOpen:false };
 
   componentDidMount() {
-    this.TOTAL_FRAMES = 499;
-    // The two frames Hero V5 cuts on rather than moves through — see the
-    // dissolve in drawFrameOnCanvas. Found by scanning every adjacent pair in
-    // the film, not by eye: these two are the only deltas above six times the
-    // mean. HERO_CUT_FRAMES is how many frames of scroll the dissolve spans.
-    this.HERO_CUTS = [104, 380];
-    this.HERO_CUT_FRAMES = 8;
-    // Same scrim the canvas hero carries in markup. The phone and reduced-motion
-    // engines rebuild heroMedia's innerHTML from scratch, so without this they
-    // render Hero V5's white rooms with no scrim at all and the nav, the WhatsApp
-    // link and the scroll cue all disappear into the wall.
-    this.HERO_SCRIM = '<div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,10,38,0.60) 0%, rgba(4,10,38,0.26) 40%, rgba(4,10,38,0.30) 58%, rgba(4,10,38,0.72) 100%), radial-gradient(ellipse 118% 96% at 50% 50%, rgba(4,10,38,0) 42%, rgba(4,10,38,0.34) 100%);z-index:2;pointer-events:none"></div>';
+    /* The hero is Hero V6 and it runs itself — assets/js/hero-v6.js owns the
+       canvas, the frames, the copy, the beat timeline and its own phone and
+       reduced-motion fallbacks. Everything that used to live here (frame
+       counts, cut lists, the scrim, the copy rail, the frame ramp) went with
+       it. There is no scrim any more: V6 puts dark ink straight on the film,
+       measured at 7.06:1 to 13.24:1 against every copy zone.
+
+       What is still needed here is the page around the hero. */
     this.hero = document.querySelector('[data-hero]');
     this.nav = document.querySelector('[data-nav]');
     this.consultSection = document.querySelector('#consultation');
-    this.regions = Array.from(document.querySelectorAll('[data-region]'));
-    this.copies = Array.from(document.querySelectorAll('[data-copy]'));
-    this.railItems = Array.from(document.querySelectorAll('[data-rail-item]'));
-    this.railBars = Array.from(document.querySelectorAll('[data-rail-bar]'));
-    this.intro = document.querySelector('[data-hero-intro]');
-    this.heroCopy = document.querySelector('[data-hero-copy]');
-    this.rail = document.querySelector('[data-rail]');
-    this.progress = document.querySelector('[data-progress]');
-    this.frame = document.querySelector('[data-frame]');
-    this.heroMedia = document.querySelector('[data-hero-media]');
-    this.active = -1;
-    this.targetProgress = 0;
-    this.currentProgress = 0;
-    this.isLooping = false;
-
-    // ══════════════════════════════════════════════════════════════════════
-    //  THE STOPS
-    //  Hero V5 travels and settles on its own. Every adjacent frame pair was
-    //  compared on a 192x108 luma downsample: mean motion 8.55, and anything
-    //  under 3.85 is the camera holding still. That found eleven plateaus —
-    //  44% of the film is at rest.
-    //
-    //  Five of them are long enough to read at and have somewhere to put type.
-    //  They are the stops. The rest are travel, or short close-ups that carry
-    //  no copy by design.
-    //
-    //  This is the shape the client described: "scroll, scroll, scroll, stop,
-    //  the treatments available… zoom in, zoom out, next."
-    // ══════════════════════════════════════════════════════════════════════
-    this.STOPS = [
-      { a:  23, b:  48 },   // 1 Consultation
-      { a: 135, b: 162 },   // 2 Hair
-      { a: 261, b: 331 },   // 3 Body — spans the side-to-top rotation, one block
-      // 4 Surgical. The measured plateau is 350–367, but 18 frames is the
-      // thinnest hold in the film and the message here is a flagship service.
-      // Extended across the whole theatre shot, which runs to the cut at 380 —
-      // the camera is only pushing gently over 368–378, so the copy stays
-      // readable rather than being yanked off mid-sentence. Stops short of 381
-      // so it never overlaps the graft close-up.
-      { a: 346, b: 378 },
-      { a: 424, b: 499 },   // 5 Dispensary, through to the brand plaques
-    ];
-    // Close-ups that hold but are full-bleed — no room for type, so they get a
-    // little extra dwell and no copy.
-    this.TEXTURE = [{ a: 74, b: 79 }, { a: 190, b: 200 }, { a: 226, b: 235 }, { a: 394, b: 405 }];
-
-    // ══ Weighted scroll ══
-    // Linear mapping gave every frame the same slice of scroll, so a 26-frame
-    // hold passed in a quarter of a screen — the picture stopped but the reader
-    // was never held there. Rest frames are worth 3x a travel frame, which
-    // turns each stop into roughly 0.6 of a screen on the 760vh stage.
-    this.buildFrameRamp(3.0, 1.5);
 
     // ══ Device gate ══
     // Phones run the hardware video fallback; desktops run the 499-frame canvas
@@ -1198,82 +988,60 @@ class Component extends DCLogic {
     this.isReducedMotion = prefersReducedMotion;
     this.isMobile = isMobilePhone;
 
-    if (this.isReducedMotion) {
-      if (this.hero) this.hero.style.height = 'auto';
-      if (this.heroMedia) {
-        this.heroMedia.innerHTML = '<img src="assets/hero-poster/hero-poster.webp" alt="TPL Clinic" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1" />' + this.HERO_SCRIM;
-      }
-      if (this.intro) {
-        this.intro.style.opacity = '1';
-        this.intro.style.transform = 'none';
-      }
-      if (this.frame) {
-        this.frame.textContent = 'HERO POSTER';
-      }
-    } else if (this.isMobile) {
-      // Mobile Phones: Lightweight hardware-accelerated video fallback for 100% crash-free 60fps performance
-      if (this.hero) this.hero.style.height = '100vh';
-      if (this.heroMedia) {
-        this.heroMedia.innerHTML = '<video src="assets/hero-fallback/hero-mobile.mp4" poster="assets/hero-poster/hero-poster.webp" autoplay loop muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>' + this.HERO_SCRIM;
-      }
-    } else {
-      // Desktop & Laptops: Ultra-Smooth 499 Frame Interactive Canvas Engine
-      const depth = this.props.heroScrollDepth ?? 760;
-      if (this.hero) this.hero.style.height = depth + 'vh';
+    /* Hero V6 handles its own device gating — poster under reduced motion, the
+       mp4 on phones, the frame scrub otherwise — so there is no hero media to
+       build here any more. What still belongs to the page is the stamp the
+       stylesheet reads, the ambient-video policy, and Lenis. */
+    if (!this.isReducedMotion && !this.isMobile) {
+    // Initialize Lenis Smooth Scroll for buttery luxury inertial scrolling
+    if (typeof window.Lenis !== 'undefined') {
+      this.lenis = new window.Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.6,
+      });
 
-      this.canvas = document.querySelector('[data-hero-canvas]');
-      this.ctx = this.canvas ? this.canvas.getContext('2d', { alpha: false, desynchronized: true }) : null;
-      this.frames = new Array(this.TOTAL_FRAMES + 1);
-      this.lastDrawnFrame = -1;
+      const lenisRaf = (time) => {
+        if (this.lenis) {
+          this.lenis.raf(time);
+          this.animId = requestAnimationFrame(lenisRaf);
+        }
+      };
+      this.animId = requestAnimationFrame(lenisRaf);
 
-      // Update & Cache Canvas dimensions once on init & resize
-      this.updateCanvasDimensions();
-
-      // Initialize Lenis Smooth Scroll for buttery luxury inertial scrolling
-      if (typeof window.Lenis !== 'undefined') {
-        this.lenis = new window.Lenis({
-          duration: 1.1,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          wheelMultiplier: 1.0,
-          touchMultiplier: 1.6,
-        });
-
-        const lenisRaf = (time) => {
-          if (this.lenis) {
-            this.lenis.raf(time);
-            this.animId = requestAnimationFrame(lenisRaf);
-          }
-        };
-        this.animId = requestAnimationFrame(lenisRaf);
-
-        // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
-        // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
-        // Registered ONCE here — never inside the rAF loop.
-        this.onAnchorClick = (e) => {
-          const a = e.target.closest('a[href*="#"]');
-          if (!a) return;
-          const href = a.getAttribute('href') || '';
-          const hash = href.slice(href.indexOf('#'));
-          // ignore cross-page links (e.g. index.html#face when we're not on index)
-          const path = href.slice(0, href.indexOf('#'));
-          if (path && !location.pathname.endsWith(path)) return;
-          if (hash.length < 2) return;
-          const target = document.querySelector(hash);
-          if (!target) return;
-          e.preventDefault();
-          if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
-          else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', hash);
-        };
-        document.addEventListener('click', this.onAnchorClick);
-      }
-
-      // Fast 2-Pass Priority Preloading: Pass 1 keyframes (instant playback), Pass 2 intermediate density
-      this.preloadAllFramesPriority(16);
-
-      this.initScrollEngine();
+      // Anchor links: Lenis owns scrolling, so native #hash jumps do nothing.
+      // Route every in-page anchor through lenis.scrollTo (offset clears the fixed header).
+      // Registered ONCE here — never inside the rAF loop.
+      this.onAnchorClick = (e) => {
+        const a = e.target.closest('a[href*="#"]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const hash = href.slice(href.indexOf('#'));
+        // ignore cross-page links (e.g. index.html#face when we're not on index)
+        const path = href.slice(0, href.indexOf('#'));
+        if (path && !location.pathname.endsWith(path)) return;
+        if (hash.length < 2) return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        if (this.lenis) this.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', hash);
+      };
+      document.addEventListener('click', this.onAnchorClick);
     }
+    }
+
+    /* The header theme used to ride the hero's frame loop. It has its own
+       listener now, so it keeps working on a page whose hero is a separate
+       script — and on phones and under reduced motion, where that loop never
+       ran at all. */
+    this.onNavScroll = () => this.syncNavTheme();
+    window.addEventListener('scroll', this.onNavScroll, { passive: true });
+    window.addEventListener('resize', this.onNavScroll);
+    this.syncNavTheme();
 
     // Reveal animations setup
     if (this.props.revealAnimations !== false && 'IntersectionObserver' in window) {
@@ -1416,226 +1184,12 @@ class Component extends DCLogic {
     });
   }
 
-  updateCanvasDimensions() {
-    if (!this.canvas) return;
-    const cssWidth = window.innerWidth;
-    const cssHeight = window.innerHeight;
-    if (cssWidth <= 0 || cssHeight <= 0) return;
-
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-
-    const targetW = Math.round(cssWidth * dpr);
-    const targetH = Math.round(cssHeight * dpr);
-
-    if (this.canvas.width !== targetW || this.canvas.height !== targetH) {
-      this.canvas.width = targetW;
-      this.canvas.height = targetH;
-    }
-    this.targetW = targetW;
-    this.targetH = targetH;
-    this.canvasAspect = targetW / targetH;
-  }
-
-  preloadAllFramesPriority(concurrency = 16) {
-    const pass1 = [];
-    for (let i = 1; i <= this.TOTAL_FRAMES; i += 4) pass1.push(i);
-    if (pass1[pass1.length - 1] !== this.TOTAL_FRAMES) pass1.push(this.TOTAL_FRAMES);
-
-    const pass1Set = new Set(pass1);
-    const pass2 = [];
-    for (let i = 1; i <= this.TOTAL_FRAMES; i++) {
-      if (!pass1Set.has(i)) pass2.push(i);
-    }
-
-    const queue = [...pass1, ...pass2];
-
-    const fetchFrame = async (index) => {
-      const src = `assets/hero-frames-webp/frame-${String(index).padStart(4, '0')}.webp`;
-      try {
-        const res = await fetch(src);
-        const blob = await res.blob();
-        const bitmap = await createImageBitmap(blob);
-        this.frames[index] = bitmap;
-        if (index === 1 && this.lastDrawnFrame === -1) {
-          this.drawFrameOnCanvas(1);
-        }
-      } catch (err) {
-        // Fallback for network glitches
-      }
-    };
-
-    const worker = async () => {
-      while (queue.length > 0) {
-        const index = queue.shift();
-        if (!index) break;
-        await fetchFrame(index);
-      }
-    };
-
-    for (let i = 0; i < concurrency; i++) {
-      worker();
-    }
-  }
-
-  findNearestLoadedFrame(requested) {
-    if (this.frames[requested]) return requested;
-    let delta = 1;
-    while (delta < this.TOTAL_FRAMES) {
-      if (requested - delta >= 1 && this.frames[requested - delta]) return requested - delta;
-      if (requested + delta <= this.TOTAL_FRAMES && this.frames[requested + delta]) return requested + delta;
-      delta++;
-    }
-    return requested;
-  }
-
-  /* Cumulative scroll position of each frame, 0..1. Built once: frames inside a
-     stop consume `hold` units, close-ups `tex`, everything else 1. Inverting it
-     per scroll event is a binary search over 499 entries. */
-  buildFrameRamp(hold, tex) {
-    const inAny = (f, ranges) => ranges.some(r => f >= r.a && f <= r.b);
-    this.frameRamp = new Float32Array(this.TOTAL_FRAMES + 1);
-    let acc = 0;
-    for (let f = 1; f <= this.TOTAL_FRAMES; f++) {
-      this.frameRamp[f] = acc;
-      acc += inAny(f, this.STOPS) ? hold : (inAny(f, this.TEXTURE) ? tex : 1);
-    }
-    for (let f = 1; f <= this.TOTAL_FRAMES; f++) this.frameRamp[f] /= acc;
-  }
-
-  frameForProgress(p) {
-    if (!this.frameRamp) {
-      return Math.max(1, Math.min(this.TOTAL_FRAMES, Math.round(p * (this.TOTAL_FRAMES - 1)) + 1));
-    }
-    let lo = 1, hi = this.TOTAL_FRAMES;
-    while (lo < hi) {
-      const mid = (lo + hi + 1) >> 1;
-      if (this.frameRamp[mid] <= p) lo = mid; else hi = mid - 1;
-    }
-    return lo;
-  }
-
-  /* Which stop a frame belongs to, and how far into it — drives both the copy
-     swap and the build-up. -1 when the camera is travelling. */
-  stopAt(frame) {
-    for (let i = 0; i < this.STOPS.length; i++) {
-      const s = this.STOPS[i];
-      if (frame >= s.a && frame <= s.b) {
-        return { index: i, t: (frame - s.a) / Math.max(1, s.b - s.a) };
-      }
-    }
-    return { index: -1, t: 0 };
-  }
-
-  drawFrameOnCanvas(frameNum) {
-    if (!this.canvas || !this.ctx || !this.targetW) return;
-    const frameIndex = this.findNearestLoadedFrame(frameNum);
-    const bitmap = this.frames[frameIndex];
-    if (!bitmap) return;
-
-    const imgW = bitmap.width;
-    const imgH = bitmap.height;
-    const imgAspect = imgW / imgH;
-
-    let drawW, drawH, offsetX, offsetY;
-
-    if (this.canvasAspect > imgAspect) {
-      drawW = this.targetW;
-      drawH = this.targetW / imgAspect;
-      offsetX = 0;
-      offsetY = (this.targetH - drawH) / 2;
-    } else {
-      drawH = this.targetH;
-      drawW = this.targetH * imgAspect;
-      offsetX = (this.targetW - drawW) / 2;
-      offsetY = 0;
-    }
-
-    // ══ Dissolve across the film's two hard cuts ══
-    // Measured frame to frame, Hero V5 is continuous camera movement almost
-    // everywhere: mean delta 8.5, typical motion 4.4. Two joins spike — 104→105
-    // into the consultation close-up at 67, and 380→381 into the theatre at 85.
-    // Scrubbed, those two read as the slide change the client rejected: "it's
-    // just like a very simple almost like a PowerPoint presentation, going from
-    // one page to the other… I think it should kind of move from one room to
-    // the other." Everything either side of them already flows, so rather than
-    // re-cutting the film the last frame of the outgoing shot is held underneath
-    // and the incoming one faded up over it across HERO_CUT_FRAMES of scroll.
-    //
-    // The base is the OUTGOING frame, not the current one — fading the incoming
-    // shot over itself would do nothing.
-    const cut = this.HERO_CUTS.find(c => frameNum > c && frameNum <= c + this.HERO_CUT_FRAMES);
-    if (cut !== undefined) {
-      const outgoing = this.frames[this.findNearestLoadedFrame(cut)];
-      if (outgoing) {
-        this.ctx.drawImage(outgoing, offsetX, offsetY, drawW, drawH);
-        this.ctx.save();
-        this.ctx.globalAlpha = (frameNum - cut) / (this.HERO_CUT_FRAMES + 1);
-        this.ctx.drawImage(bitmap, offsetX, offsetY, drawW, drawH);
-        this.ctx.restore();
-        this.lastDrawnFrame = frameIndex;
-        return;
-      }
-    }
-
-    this.ctx.drawImage(bitmap, offsetX, offsetY, drawW, drawH);
-    this.lastDrawnFrame = frameIndex;
-  }
-
-  initScrollEngine() {
-    this.onScroll = () => {
-      if (!this.hero) return;
-      const vh = window.innerHeight;
-      const total = this.hero.offsetHeight - vh;
-      this.targetProgress = Math.min(1, Math.max(0, (window.scrollY - this.hero.offsetTop) / Math.max(1, total)));
-
-      // Resume RAF lerp loop if paused
-      if (!this.isLooping) {
-        this.isLooping = true;
-        this.startLerpLoop();
-      }
-    };
-
-    this.onResize = () => {
-      this.updateCanvasDimensions();
-      this.onScroll();
-    };
-
-    window.addEventListener('scroll', this.onScroll, { passive: true });
-    window.addEventListener('touchmove', this.onScroll, { passive: true });
-    window.addEventListener('resize', this.onResize);
-    this.onScroll();
-  }
-
-  startLerpLoop() {
-    const loop = () => {
-      if (this.destroyed) {
-        this.isLooping = false;
-        return;
-      }
-
-      const lerpFactor = 0.14; // Ultra smooth 120fps dampening factor
-      const diff = this.targetProgress - this.currentProgress;
-
-      if (Math.abs(diff) > 0.00002) {
-        this.currentProgress += diff * lerpFactor;
-        this.renderFrame(this.currentProgress);
-        this.rafId = requestAnimationFrame(loop);
-      } else {
-        this.currentProgress = this.targetProgress;
-        this.renderFrame(this.currentProgress);
-        this.isLooping = false; // Steady state reached: pause RAF loop to save 100% CPU/GPU when idle!
-      }
-    };
-
-    this.rafId = requestAnimationFrame(loop);
-  }
 
   componentWillUnmount() {
     this.destroyed = true;
-    if (this.onScroll) {
-      window.removeEventListener('scroll', this.onScroll);
-      window.removeEventListener('touchmove', this.onScroll);
-      window.removeEventListener('resize', this.onResize);
+    if (this.onNavScroll) {
+      window.removeEventListener('scroll', this.onNavScroll);
+      window.removeEventListener('resize', this.onNavScroll);
     }
     if (this.onAnchorClick) document.removeEventListener('click', this.onAnchorClick);
     if (this.lenis) {
@@ -1651,21 +1205,30 @@ class Component extends DCLogic {
     if (this.safety) clearTimeout(this.safety);
   }
 
-  renderFrame(p) {
-    if (this.isReducedMotion) return;
-    if (!this.hero) return;
-
+  /* ── Header theme ─────────────────────────────────────────────────────────
+     All that survives of the old hero engine's render loop. This was the top of
+     renderFrame(p), which also drew the canvas, moved the hero copy and ran the
+     rail — all of which now belongs to assets/js/hero-v6.js. It is bound to
+     scroll directly rather than riding a frame loop it no longer needs. */
+  syncNavTheme() {
+    if (!this.nav || !this.hero) return;
     // Smart Glassmorphism Header
     if (this.nav) {
       const navHeight = 80;
-      const vh = window.innerHeight;
-      const heroFinishedScroll = (this.hero.offsetHeight - vh) - 40;
-      const isPastHero = window.scrollY >= heroFinishedScroll;
 
+      /* Hero V5 was navy, so "over the hero" meant "go dark". Hero V6 is the
+         opposite — white rooms, mean luma above 200 — and carrying the old rule
+         over put WHITE nav labels on a WHITE film, which is invisible. The hero
+         is no longer a reason to go dark at all.
+
+         What is left that is genuinely dark is the navy consultation band, so
+         that is the only thing the dark theme now answers to. Everything else,
+         the hero included, gets the light bar: white at 88% with a blur, which
+         is exactly the treatment the preview page settled on. */
       const consultRect = this.consultSection ? this.consultSection.getBoundingClientRect() : null;
       const isOverConsultation = consultRect ? (consultRect.top <= navHeight && consultRect.bottom >= 0) : false;
 
-      const isDarkTheme = !isPastHero || isOverConsultation;
+      const isDarkTheme = isOverConsultation;
 
       const logoTpl = this.nav.querySelector('a[href="#top"] span:first-child');
       const logoClinic = this.nav.querySelector('a[href="#top"] span:last-child');
@@ -1676,19 +1239,18 @@ class Component extends DCLogic {
 
       if (isDarkTheme) {
         this.nav.classList.remove('is-light');
-        // Transparent only while the bar is floating over the hero film. It used
-        // to be transparent for the whole dark theme, which includes the navy
-        // consultation band — so once the reader scrolled that far the page ran
-        // straight through the header and the nav labels collided with the form
-        // behind them. Over the consultation band the bar now takes a solid
-        // navy fill; only the hero keeps the floating treatment.
-        const floating = !isPastHero;
-        this.nav.style.background = floating ? 'rgba(8,19,89,0)' : 'rgba(8,19,89,.94)';
-        this.nav.style.backdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
-        this.nav.style.webkitBackdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
-        this.nav.style.borderBottom = floating ? '1px solid rgba(184,146,93,0)' : '1px solid rgba(184,146,93,.32)';
-        this.nav.style.boxShadow = floating ? 'none' : '0 10px 30px rgba(4,10,38,.32)';
-        this.nav.style.padding = floating ? '22px 40px' : '16px 40px';
+        /* Always solid here. This branch used to have a "floating" case — a
+           fully transparent bar — for the hero, back when the hero was navy.
+           Hero V6 is white and takes the light theme instead, so the only thing
+           left in the dark branch is the navy consultation band, and a
+           transparent bar over that is the bug that let the form scroll
+           straight through the header. There is nothing left to float over. */
+        this.nav.style.background = 'rgba(8,19,89,.94)';
+        this.nav.style.backdropFilter = 'blur(20px) saturate(160%)';
+        this.nav.style.webkitBackdropFilter = 'blur(20px) saturate(160%)';
+        this.nav.style.borderBottom = '1px solid rgba(184,146,93,.32)';
+        this.nav.style.boxShadow = '0 10px 30px rgba(4,10,38,.32)';
+        this.nav.style.padding = '16px 40px';
 
         if (logoTpl) logoTpl.style.color = '#ffffff';
         if (logoClinic) logoClinic.style.color = '#C7A470';
@@ -1725,91 +1287,8 @@ class Component extends DCLogic {
         }
       }
     }
-
-    if (this.progress) this.progress.style.transform = 'scaleX(' + p + ')';
-
-    const targetFrame = this.frameForProgress(p);
-
-    if (this.frame) {
-      this.frame.textContent = 'FRAME ' + String(targetFrame).padStart(4, '0') + ' / ' + String(this.TOTAL_FRAMES).padStart(4, '0');
-    }
-
-    if (!this.isMobile && this.canvas) {
-      if (targetFrame !== this.lastDrawnFrame) {
-        this.drawFrameOnCanvas(targetFrame);
-      }
-    }
-
-    const introFade = Math.min(1, p / 0.13);
-    if (this.intro) {
-      this.intro.style.opacity = String(1 - introFade);
-      this.intro.style.transform = 'translateY(' + (-introFade * 26).toFixed(1) + 'px)';
-    }
-    // Frame-based for the same reason as the copy gate below.
-    if (this.rail) this.rail.style.opacity = targetFrame > 18 ? '1' : '0';
-
-    // ══ Copy builds on approach, holds at the stop ══
-    // "As you're scrolling the text should start to appear slowly, so that they
-    // know that when they finish scrolling they're gonna see the treatments at
-    // the end of it. So they're scrolling, the writing is appearing, boom."
-    //
-    // Which means the build has to finish BEFORE the camera settles, not during
-    // the hold. LEAD is how far ahead of a stop the copy starts coming up — the
-    // approach — so by the time the camera arrives the block is already solid
-    // and the treatments are readable for the whole plateau.
-    const LEAD = 26;
-    let copyIn = 0;
-    let idx = -1;
-    const at = this.stopAt(targetFrame);
-
-    if (at.index >= 0) {
-      idx = at.index;
-      copyIn = 1;                                   // settled: hold it solid
-    } else {
-      // Travelling. Find the stop we are approaching and fade toward it.
-      for (let i = 0; i < this.STOPS.length; i++) {
-        const gap = this.STOPS[i].a - targetFrame;
-        if (gap > 0 && gap <= LEAD) {
-          idx = i;
-          copyIn = 1 - (gap / LEAD);
-          break;
-        }
-        // Just left a stop — carry the block out on a short fade rather than
-        // cutting it, so leaving reads as leaving and not as a swap.
-        const out = targetFrame - this.STOPS[i].b;
-        if (out > 0 && out <= 12) { idx = i; copyIn = 1 - (out / 12); }
-      }
-    }
-
-    // The intro owns the screen through the reception shot. This has to be
-    // measured in FRAMES, not in scroll percentage: the ramp now spends its
-    // scroll unevenly, so reception (frames 1–22) is over by about 2% of the
-    // stage. A percentage gate written for the old linear mapping suppressed
-    // stop 1 completely — it never reached full opacity at all.
-    const introGate = Math.max(0, Math.min(1, (targetFrame - 12) / 10));
-    copyIn = Math.min(copyIn, introGate);
-
-    if (this.heroCopy) {
-      this.heroCopy.style.opacity = copyIn.toFixed(3);
-      this.heroCopy.style.transform = 'translateY(' + ((1 - copyIn) * 14).toFixed(1) + 'px)';
-      // Nothing under the pointer while the block is fading — otherwise a
-      // half-visible treatment link is still clickable mid-travel.
-      this.heroCopy.style.visibility = copyIn < 0.04 ? 'hidden' : 'visible';
-    }
-
-    // Which block is mounted. Only changes when the approached stop changes, so
-    // the DOM is not touched on every frame of a hold.
-    if (idx !== this.active) {
-      this.active = idx;
-      this.regions.forEach((el, i) => { el.style.opacity = i === idx ? '1' : '0'; });
-      this.copies.forEach((el, i) => { el.style.display = i === idx ? 'block' : 'none'; });
-      this.railItems.forEach((el, i) => {
-        const label = el.children[1];
-        if (label) label.style.color = i === idx ? '#ffffff' : 'rgba(255,255,255,.62)';
-      });
-      this.railBars.forEach((el, i) => { el.style.transform = i === idx ? 'scaleX(1)' : 'scaleX(0)'; });
-    }
   }
+
 
   set(k) { return e => this.setState({ [k]: e.target.value }); }
 
