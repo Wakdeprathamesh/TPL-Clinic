@@ -9,8 +9,8 @@
 <meta property="og:title" content="TPL Clinic Mayfair — The UK's First Platelet Rich Plasma Clinic">
 <meta property="og:description" content="Regenerative medicine combined with advanced technology. Twenty treatments, one combined protocol. Mayfair, London.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/hero-poster/hero-poster.webp">
-<link rel="preload" as="image" href="assets/hero-poster/hero-poster.webp" fetchpriority="high">
+<meta property="og:image" content="assets/hero-v6/hero-poster.webp">
+<link rel="preload" as="image" href="assets/hero-v6/hero-poster.webp" fetchpriority="high">
 <!-- ══ Runtime ══
      React, ReactDOM and Lenis are served from this repo rather than unpkg.
      They were render-blocking third-party requests on the critical path, and
@@ -238,6 +238,17 @@
   /* Footer link columns, under the already-centred mark. */
   .tpl-m-footer--links > div { text-align: center; }
   .tpl-m-footer--links > div > div { align-items: center; }
+
+  /* ══ Vertical rhythm ══
+     Same rule prp.html and sofwave.html already carry, so all five content
+     pages scroll at one beat. Sections here were on 80 / 96 / 100 / 110 / 120 /
+     130 / 190px of padding more or less at random, which is what made
+     band-to-band transitions read as accidental. */
+  @media (min-width: 1024px) {
+    .tpl-sec { padding-top: 120px !important; padding-bottom: 120px !important; }
+    .tpl-sec--head { padding-top: 84px !important; }
+    .tpl-sec--foot { padding-bottom: 120px !important; }
+  }
 </style>
 </helmet>
 
@@ -309,10 +320,10 @@
           </div>
           <div class="tpl-mega-foot">
             <div>
-              <div data-eyebrow style="font-family:Jost,sans-serif;font-weight:500;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
+              <div data-eyebrow style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#C7A470">The full library</div>
               <div style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;line-height:1.25;color:#ffffff;margin-top:8px">Twenty treatments. One combined protocol.</div>
             </div>
-            <a href="services.html" onClick="{{ onCloseMegaMenu }}" style="flex:none;padding:12px 22px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
+            <a href="services.html" onClick="{{ onCloseMegaMenu }}" style="flex:none;padding:12px 22px;background:#B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-align:center;text-decoration:none">Services Index</a>
           </div>
         </div>
       </div>
@@ -342,7 +353,7 @@
       <img src="assets/brand/tpl-logo.png" alt="TPL Clinic" width="300" height="300" style="height:52px;width:auto;display:block" />
       <button onClick="{{ onCloseMobileMenu }}" style="background:none;border:none;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px">
         <span>Close</span>
-        <span style="font-size:16px">✕</span>
+        <span style="font-size:15.5px">✕</span>
       </button>
     </div>
 
@@ -350,9 +361,9 @@
       <div>
         <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470;margin-bottom:12px">Treatments</div>
         <div style="display:flex;flex-direction:column;gap:14px;padding-left:12px;border-left:1px solid rgba(184,146,93,0.3)">
-          <a href="#face" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">01 — Face Protocols</a>
-          <a href="#hair" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">02 — Hair Restoration</a>
-          <a href="#body" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:16px;letter-spacing:.1em;color:#ffffff">03 — Body Quality</a>
+          <a href="#face" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:15.5px;letter-spacing:.1em;color:#ffffff">01 — Face Protocols</a>
+          <a href="#hair" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:15.5px;letter-spacing:.1em;color:#ffffff">02 — Hair Restoration</a>
+          <a href="#body" onClick="{{ onCloseMobileMenu }}" style="font-family:Jost,sans-serif;font-size:15.5px;letter-spacing:.1em;color:#ffffff">03 — Body Quality</a>
         </div>
       </div>
 
@@ -490,22 +501,22 @@
         </div>
       </div>
       <div data-reveal="1">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,58px);line-height:1.16;letter-spacing:-.01em;color:#242424;text-wrap:pretty">One treatment rarely changes a face. A <span style="color:#B8925D">combination</span> of the right ones, sequenced correctly, always does.</h2>
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.16;letter-spacing:-.01em;color:#242424;text-wrap:pretty">One treatment rarely changes a face. A <span style="color:#B8925D">combination</span> of the right ones, sequenced correctly, always does.</h2>
         <div class="tpl-m-3 tpl-cells" style="margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12)">
           <div style="background:#ffffff;padding:32px 26px">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">01</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Diagnose</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Consultation, imaging and — for hair — TrichoComp analysis before anything is recommended.</p>
+            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Diagnose</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Consultation, imaging and — for hair — TrichoComp analysis before anything is recommended.</p>
           </div>
           <div style="background:#ffffff;padding:32px 26px">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">02</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Combine</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Plasma with radiofrequency, laser, injectables or light — layered for compounding effect.</p>
+            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Combine</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Plasma with radiofrequency, laser, injectables or light — layered for compounding effect.</p>
           </div>
           <div style="background:#ffffff;padding:32px 26px">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">03</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Sustain</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Results maintained over a calendar, not chased with one-off appointments.</p>
+            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Sustain</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Results maintained over a calendar, not chased with one-off appointments.</p>
           </div>
         </div>
       </div>
@@ -529,18 +540,18 @@
         <div class="tpl-m-first">
           <div style="display:flex;align-items:baseline;gap:18px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">01</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#242424">Face</h3>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Face</h3>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:16px;line-height:1.9;color:#5E5E5E">Fine lines and wrinkles, acne, pigmentation, sun damage, enlarged pores, rosacea, scarring, laxity and facial volume loss — addressed at the level of collagen, not concealed at the surface.</p>
+          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Fine lines and wrinkles, acne, pigmentation, sun damage, enlarged pores, rosacea, scarring, laxity and facial volume loss — addressed at the level of collagen, not concealed at the surface.</p>
           <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">PRP &amp; PRF biofiller</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Sofwave™ lifting</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Morpheus8® Burst</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">LaseMD Ultra® resurfacing</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Dermal fillers</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Wrinkle relaxation</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">HydraFacial® &amp; peels</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Korean glass skin</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">PRP &amp; PRF biofiller</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Sofwave™ lifting</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Morpheus8® Burst</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">LaseMD Ultra® resurfacing</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Dermal fillers</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Wrinkle relaxation</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">HydraFacial® &amp; peels</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Korean glass skin</div>
           </div>
         </div>
       </div>
@@ -554,16 +565,16 @@
         <div>
           <div style="display:flex;align-items:baseline;gap:18px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">02</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#242424">Hair</h3>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Hair</h3>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:16px;line-height:1.9;color:#5E5E5E">Thinning, receding hairlines and pattern loss. Every plan starts with diagnostics — because restoring a follicle that is still alive is a different problem from replacing one that isn't.</p>
+          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Thinning, receding hairlines and pattern loss. Every plan starts with diagnostics — because restoring a follicle that is still alive is a different problem from replacing one that isn't.</p>
           <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Enhanced PRP &amp; exosomes</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Regenera Activa®</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">TrichoComp diagnostics</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">LED phototherapy</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Invisible Hair Transplant™</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Surgeon consultation</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Enhanced PRP &amp; exosomes</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Regenera Activa®</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">TrichoComp diagnostics</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">LED phototherapy</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Invisible Hair Transplant™</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Surgeon consultation</div>
           </div>
         </div>
         <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
@@ -609,16 +620,16 @@
         <div class="tpl-m-first">
           <div style="display:flex;align-items:baseline;gap:18px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">03</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#242424">Body</h3>
+            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Body</h3>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:16px;line-height:1.9;color:#5E5E5E">Cellulite, scarring and stretch marks. Skin below the neck responds to the same regenerative logic — it simply needs more depth, more energy and more patience.</p>
+          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Cellulite, scarring and stretch marks. Skin below the neck responds to the same regenerative logic — it simply needs more depth, more energy and more patience.</p>
           <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">PRP body protocols</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Morpheus8® RF</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Mesotherapy</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Microneedling</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Chemical peels</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14px;color:#242424">Soprano Ice Titanium™</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">PRP body protocols</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Morpheus8® RF</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Mesotherapy</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Microneedling</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Chemical peels</div>
+            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Soprano Ice Titanium™</div>
           </div>
         </div>
       </div>
@@ -631,8 +642,8 @@
       <div data-reveal="1" class="tpl-m-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
         <div>
           <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The specialty</div>
-          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.6vw,88px);line-height:.98;letter-spacing:-.02em;color:#242424">Platelet<br />Rich Plasma</h2>
-          <p style="margin:26px 0 0;font-size:16px;line-height:1.9;color:#5E5E5E">A small volume of your own blood, separated in-clinic into its platelet-rich fraction and reintroduced where regeneration is needed. No donor material. No synthetic filler. The signal your tissue already responds to, concentrated.</p>
+          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:.98;letter-spacing:-.02em;color:#242424">Platelet<br />Rich Plasma</h2>
+          <p style="margin:26px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">A small volume of your own blood, separated in-clinic into its platelet-rich fraction and reintroduced where regeneration is needed. No donor material. No synthetic filler. The signal your tissue already responds to, concentrated.</p>
         </div>
         <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
           <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
@@ -658,8 +669,8 @@
         <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
           <div style="position:relative;z-index:2">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 01</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Draw</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">A standard blood draw, taken by a medical practitioner in the treatment room.</p>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Draw</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">A standard blood draw, taken by a medical practitioner in the treatment room.</p>
           </div>
         </div>
         <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
@@ -669,15 +680,15 @@
           </video>
           <div style="position:relative;z-index:2">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 02</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Separate</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Centrifuged to isolate platelets and growth factors from the remaining components.</p>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Separate</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Centrifuged to isolate platelets and growth factors from the remaining components.</p>
           </div>
         </div>
         <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
           <div style="position:relative;z-index:2">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 03</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Activate</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Prepared as plasma, fibrin biofiller or exosome-enhanced formulation for the protocol.</p>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Activate</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Prepared as plasma, fibrin biofiller or exosome-enhanced formulation for the protocol.</p>
           </div>
         </div>
         <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
@@ -687,8 +698,8 @@
           </video>
           <div style="position:relative;z-index:2">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 04</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:22px;letter-spacing:.02em;color:#242424">Reintroduce</div>
-            <p style="margin:12px 0 0;font-size:14px;line-height:1.8;color:#6E6E6E">Delivered by injection or microneedling — frequently alongside RF or laser the same day.</p>
+            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Reintroduce</div>
+            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Delivered by injection or microneedling — frequently alongside RF or laser the same day.</p>
           </div>
         </div>
       </div>
@@ -700,7 +711,7 @@
   <section id="technology" class="tpl-sec" style="padding:120px 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(34px,4.4vw,68px);line-height:1;letter-spacing:-.01em;color:#242424">Technology index</h2>
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Technology index</h2>
         <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">18 treatments · one combined protocol</div>
       </div>
       <div data-reveal="1" class="tpl-m-3" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 72px">
@@ -741,7 +752,7 @@
         <div style="position:relative;z-index:3;height:100%;padding:44px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
           <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E8C89A">Location · Mayfair</div>
           <div>
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.5vw,52px);line-height:1.05;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,0.5)">22 Seymour Street<br /><span style="color:#E8C89A">London W1H 7HY</span></div>
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.05;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,0.5)">22 Seymour Street<br /><span style="color:#E8C89A">London W1H 7HY</span></div>
             <div style="margin-top:20px;border-top:1px solid rgba(232,200,154,.4);padding-top:16px;display:flex;justify-content:space-between;align-items:center">
               <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">By Appointment Only</span>
               <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A">TPL CLINIC MAYFAIR</span>
@@ -751,7 +762,7 @@
       </div>
       <div style="background:#ffffff;padding:56px 44px">
         <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The clinic</div>
-        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px,3vw,46px);line-height:1.1;color:#242424">Mayfair,<br />London W1</h2>
+        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.1;color:#242424">Mayfair,<br />London W1</h2>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:18px">
           <div style="border-top:1px solid rgba(36,36,36,.1);padding-top:14px">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Address</div>
@@ -783,26 +794,26 @@
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px 40px;flex-wrap:wrap">
         <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Practitioners registered with</div>
-        <a href="about.html#regulation" style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">How we are regulated &rarr;</a>
+        <a href="about.html#regulation" style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#B8925D">How we are regulated &rarr;</a>
       </div>
       <div data-reveal="1" class="tpl-accred-strip tpl-m-3" style="margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
         <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:center;gap:24px">
           <div style="height:88px;display:flex;align-items:center;justify-content:center">
             <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="192" height="152" style="height:84px;width:auto;object-fit:contain;display:block" />
           </div>
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Doctors &mdash; GMC registered</div>
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Doctors &mdash; GMC registered</div>
         </div>
         <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:center;gap:24px">
           <div style="height:88px;display:flex;align-items:center;justify-content:center">
             <img src="assets/images/about/general-dental-council.png" alt="General Dental Council" loading="lazy" width="259" height="139" style="height:84px;width:auto;object-fit:contain;display:block" />
           </div>
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentists &mdash; GDC registered</div>
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentists &mdash; GDC registered</div>
         </div>
         <div style="background:#F7F5F2;padding:42px 34px;display:flex;flex-direction:column;align-items:center;gap:24px">
           <div style="height:88px;display:flex;align-items:center;justify-content:center">
             <img src="assets/images/about/nursing-and-midwifery-council.png" alt="Nursing and Midwifery Council" loading="lazy" width="227" height="149" style="height:84px;width:auto;object-fit:contain;display:block" />
           </div>
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Nurses &mdash; NMC registered</div>
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Nurses &mdash; NMC registered</div>
         </div>
       </div>
     </div>
@@ -813,20 +824,20 @@
     <div class="tpl-m-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:start">
       <div data-reveal="1">
         <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Consultation</div>
-        <h2 style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px,4.6vw,72px);line-height:1.02;letter-spacing:-.01em;color:#ffffff">Speak to a <span style="color:#C7A470">practitioner</span></h2>
-        <p style="margin:26px 0 0;max-width:460px;font-size:16px;line-height:1.9;color:rgba(255,255,255,.72)">Consultations are booked by our team, not by an algorithm. Tell us what you'd like to address and we'll call you back to arrange a time with the right practitioner.</p>
+        <h2 style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.02;letter-spacing:-.01em;color:#ffffff">Speak to a <span style="color:#C7A470">practitioner</span></h2>
+        <p style="margin:26px 0 0;max-width:460px;font-size:15.5px;line-height:1.9;color:rgba(255,255,255,.72)">Consultations are booked by our team, not by an algorithm. Tell us what you'd like to address and we'll call you back to arrange a time with the right practitioner.</p>
         <div style="margin-top:44px;display:flex;flex-direction:column;gap:16px;max-width:460px">
           <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;color:#C7A470;letter-spacing:.18em">01</span>
-            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Consultations are paid in advance and fully refundable if cancelled 48 hours ahead.</span>
+            <span style="font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.78)">Consultations are paid in advance and fully refundable if cancelled 48 hours ahead.</span>
           </div>
           <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:14px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;color:#C7A470;letter-spacing:.18em">02</span>
-            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Surgical enquiries are booked directly with the operating surgeon.</span>
+            <span style="font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.78)">Surgical enquiries are booked directly with the operating surgeon.</span>
           </div>
           <div style="display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:14px 0">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;color:#C7A470;letter-spacing:.18em">03</span>
-            <span style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)">Out of hours? Leave your details — we call back the next working morning.</span>
+            <span style="font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.78)">Out of hours? Leave your details — we call back the next working morning.</span>
           </div>
         </div>
       </div>
@@ -835,24 +846,24 @@
         <div style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">Request a call back</div>
         <div class="tpl-m-form" style="margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
           <label style="display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
-            <input type="text" value="{{ firstName }}" onChange="{{ onFirstName }}" placeholder="" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">First name</span>
+            <input type="text" value="{{ firstName }}" onChange="{{ onFirstName }}" placeholder="" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Last name</span>
-            <input type="text" value="{{ lastName }}" onChange="{{ onLastName }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Last name</span>
+            <input type="text" value="{{ lastName }}" onChange="{{ onLastName }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Email</span>
-            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Email</span>
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Telephone</span>
-            <input type="tel" value="{{ phone }}" onChange="{{ onPhone }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Telephone</span>
+            <input type="tel" value="{{ phone }}" onChange="{{ onPhone }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none" style-focus="border-color:#B8925D" />
           </label>
           <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Area of interest</span>
-            <select value="{{ area }}" onChange="{{ onArea }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none" style-focus="border-color:#B8925D">
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Area of interest</span>
+            <select value="{{ area }}" onChange="{{ onArea }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none" style-focus="border-color:#B8925D">
               <option>Face — skin &amp; anti-ageing</option>
               <option>Hair — thinning or loss</option>
               <option>Body — skin quality</option>
@@ -862,13 +873,13 @@
             </select>
           </label>
           <label style="display:flex;flex-direction:column;gap:8px;grid-column:span 2">
-            <span style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Message</span>
-            <textarea rows="4" value="{{ message }}" onChange="{{ onMessage }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14px;color:#242424;outline:none;resize:vertical" style-focus="border-color:#B8925D"></textarea>
+            <span style="font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#6E6E6E">Message</span>
+            <textarea rows="4" value="{{ message }}" onChange="{{ onMessage }}" style="padding:13px 12px;background:#FAFAFA;border:1px solid #A9A9A9;border-radius:0;font-size:14.5px;color:#242424;outline:none;resize:vertical" style-focus="border-color:#B8925D"></textarea>
           </label>
         </div>
         <label style="margin-top:20px;display:flex;align-items:flex-start;gap:12px;cursor:pointer">
           <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="margin-top:3px;width:14px;height:14px;accent-color:#B8925D" />
-          <span style="font-size:12.5px;line-height:1.7;color:#6E6E6E">I consent to TPL Clinic contacting me about my enquiry, in line with the privacy policy.</span>
+          <span style="font-size:12px;line-height:1.7;color:#6E6E6E">I consent to TPL Clinic contacting me about my enquiry, in line with the privacy policy.</span>
         </label>
         <button data-submit="1" onClick="{{ onSubmit }}" style="margin-top:26px;width:100%;padding:17px 24px;background:#242424;color:#ffffff;border:1px solid #242424;border-radius:0;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background .3s ease,color .3s ease" style-hover="background:#B8925D;border-color:#B8925D">Send enquiry</button>
       </div>

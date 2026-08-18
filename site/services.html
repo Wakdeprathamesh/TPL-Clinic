@@ -425,6 +425,17 @@
   /* Footer link columns, under the already-centred mark. */
   .tpl-m-footer--links > div { text-align: center; }
   .tpl-m-footer--links > div > div { align-items: center; }
+
+  /* ══ Vertical rhythm ══
+     Same rule prp.html and sofwave.html already carry, so all five content
+     pages scroll at one beat. Sections here were on 80 / 96 / 100 / 110 / 120 /
+     130 / 190px of padding more or less at random, which is what made
+     band-to-band transitions read as accidental. */
+  @media (min-width: 1024px) {
+    .tpl-sec { padding-top: 120px !important; padding-bottom: 120px !important; }
+    .tpl-sec--head { padding-top: 84px !important; }
+    .tpl-sec--foot { padding-bottom: 120px !important; }
+  }
 </style>
 </helmet>
 
