@@ -509,8 +509,23 @@
   /* The four-step method. The watermark numeral behind each cell is absolutely
      positioned, so it is unaffected. */
   .tpl-steps > div { text-align: center; }
-  /* Treatment areas — caption centred under its photograph. */
-  .tpl-areas > div { text-align: center; }
+  /* Treatment areas stay LEFT — the symmetry pass centred them and it was wrong.
+     Three reasons, in order of how badly each one showed:
+
+     1. The heading row is display:flex ("01" beside "Scalp"), and text-align
+        does not reach a flex container's items. So the number and the heading
+        stayed hard left while the paragraph and the list underneath centred —
+        the column ended up aligned two ways at once, which is worse than either
+        choice made consistently.
+     2. The conditions under each heading are a LIST with a rule between every
+        item. A list is read by running down its left edge, and centred text
+        inside full-width rules reads as broken table cells rather than a list.
+     3. The descriptions are two lines with a short second line. Centred, they
+        close into a wedge under a heading that is not centred with them.
+
+     The rest of the symmetry pass stands; this section was audited against it
+     and is the only place a flex row was caught out this way. */
+  .tpl-areas > div { text-align: left; }
 
   /* The four-stage results timeline on the navy band. */
   .tpl-timeline > div { text-align: center; }
