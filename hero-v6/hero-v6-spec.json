@@ -1,0 +1,581 @@
+{
+  "film": {
+    "frames": 500,
+    "fps": 14.170227,
+    "width": 1920,
+    "height": 1080,
+    "durationSec": 35.28525,
+    "sourceFps": 23.976024,
+    "sourceFrames": 846
+  },
+  "motion": {
+    "mean": 9.586,
+    "meanRawAdjacent": 9.603,
+    "typicalTravel": 11.152,
+    "restThreshold": 4.314,
+    "settledFrames": 179,
+    "settledPct": 35.8,
+    "downsample": "192x108 luma",
+    "smoothing": "+/-2 frames (5-tap box)"
+  },
+  "cuts": [
+    {
+      "from": 119,
+      "to": 120,
+      "delta": 75.054,
+      "kind": "cross-dissolve boundary"
+    },
+    {
+      "from": 121,
+      "to": 122,
+      "delta": 71.985,
+      "kind": "cross-dissolve boundary"
+    },
+    {
+      "from": 144,
+      "to": 145,
+      "delta": 86.61,
+      "kind": "hard cut"
+    },
+    {
+      "from": 170,
+      "to": 171,
+      "delta": 86.21,
+      "kind": "hard cut"
+    }
+  ],
+  "plateaus": [
+    {
+      "a": 1,
+      "b": 8,
+      "frames": 8,
+      "avgMotion": 1.559,
+      "usableForCopy": false,
+      "shotDescription": "Reception. Three arches, the TPL roundel lit on the centre arch, two desk iMacs, two staff in black, a client arriving in cream. Client wears blue shoe covers."
+    },
+    {
+      "a": 30,
+      "b": 50,
+      "frames": 21,
+      "avgMotion": 1.983,
+      "usableForCopy": true,
+      "shotDescription": "Consultation. Wide white void; female client seated in a treatment chair, male clinician standing in a WHITE COAT with a clipboard. Both in blue shoe covers."
+    },
+    {
+      "a": 103,
+      "b": 109,
+      "frames": 7,
+      "avgMotion": 3.217,
+      "usableForCopy": false,
+      "shotDescription": "Diagnostics. Practitioner in black presents a tablet showing a scored analysis dashboard (reads as TrichoComp) to a seated male client; blood-tube rack on a stand behind."
+    },
+    {
+      "a": 129,
+      "b": 139,
+      "frames": 11,
+      "avgMotion": 1.374,
+      "usableForCopy": true,
+      "shotDescription": "Hair, wide. Practitioner in black works an applicator over the scalp of a reclined client; framed artwork on the back wall."
+    },
+    {
+      "a": 148,
+      "b": 165,
+      "frames": 18,
+      "avgMotion": 1.242,
+      "usableForCopy": true,
+      "shotDescription": "Hair, close. Over-shoulder on the crown: gloved hands, applicator and syringe placing platelet-rich plasma directly into the scalp."
+    },
+    {
+      "a": 175,
+      "b": 192,
+      "frames": 18,
+      "avgMotion": 0.988,
+      "usableForCopy": true,
+      "shotDescription": "Hair, wide (second angle after the cut at 170/171). Same treatment, camera further back and lower."
+    },
+    {
+      "a": 212,
+      "b": 226,
+      "frames": 15,
+      "avgMotion": 1.421,
+      "usableForCopy": true,
+      "shotDescription": "Body, wide. Client supine on a flat table under a large white ceiling; practitioner works a handpiece with the RF/laser trolley alongside."
+    },
+    {
+      "a": 234,
+      "b": 254,
+      "frames": 21,
+      "avgMotion": 2.476,
+      "usableForCopy": true,
+      "shotDescription": "Body, overhead. Plan view of the table; practitioner leans in to treat the forearm. Client in a white wrap, blue foot covers."
+    },
+    {
+      "a": 287,
+      "b": 307,
+      "frames": 21,
+      "avgMotion": 2.536,
+      "usableForCopy": true,
+      "shotDescription": "Surgical, wide. Four-person team in NAVY SCRUBS and masks around a reclined patient under a surgical light, working at the hairline. Hair transplantation."
+    },
+    {
+      "a": 362,
+      "b": 369,
+      "frames": 8,
+      "avgMotion": 3.848,
+      "usableForCopy": false,
+      "shotDescription": "Surgical, close (texture). Implanter pen at the hairline; bright blue gown sleeves fill the frame edges."
+    },
+    {
+      "a": 371,
+      "b": 388,
+      "frames": 18,
+      "avgMotion": 3.201,
+      "usableForCopy": false,
+      "shotDescription": "Surgical, close. Implanter pen placing grafts along a shaved, pink graft site. Full-bleed — the head fills the frame."
+    },
+    {
+      "a": 488,
+      "b": 500,
+      "frames": 13,
+      "avgMotion": 2.458,
+      "usableForCopy": true,
+      "shotDescription": "Dispensary end card. Five backlit brand plaques centred on the wall: SkinCeuticals, Korean Skincare, La Roche-Posay, CeraVe, Hair Care Products."
+    }
+  ],
+  "stops": [
+    {
+      "index": 0,
+      "label": "TITLE",
+      "frames": {
+        "a": 1,
+        "b": 8
+      },
+      "shotDescription": "Reception. Three arches, the TPL roundel lit on the centre arch, two desk iMacs, two staff in black, a client arriving in cream. Client wears blue shoe covers.",
+      "copyZone": {
+        "cell": "top-right",
+        "variance": 30.6,
+        "luma": 209.1,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 9.1,
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.449,
+          "contrastRatioWorstCaseUndarkened": 1.44
+        }
+      },
+      "kicker": "TPL Clinic — Mayfair",
+      "headline": "One specialty, followed all the way through.",
+      "sub": "",
+      "links": []
+    },
+    {
+      "index": 1,
+      "label": "01 — CONSULTATION",
+      "frames": {
+        "a": 30,
+        "b": 50
+      },
+      "shotDescription": "Consultation. Wide white void; female client seated in a treatment chair, male clinician standing in a WHITE COAT with a clipboard. Both in blue shoe covers.",
+      "copyZone": {
+        "cell": "mid-left",
+        "variance": 21.7,
+        "luma": 231.3,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 11.69,
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.499,
+          "contrastRatioWorstCaseUndarkened": 1.17
+        }
+      },
+      "kicker": "01 — Consultation",
+      "headline": "It begins with a conversation.",
+      "sub": "Assessment and diagnostics before anything is recommended.",
+      "links": [
+        {
+          "label": "Consultation",
+          "href": "prp.html"
+        },
+        {
+          "label": "Diagnostics",
+          "href": "services.html"
+        },
+        {
+          "label": "TrichoComp™",
+          "href": "services.html"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "label": "02 — HAIR",
+      "frames": {
+        "a": 148,
+        "b": 165
+      },
+      "shotDescription": "Hair, close. Over-shoulder on the crown: gloved hands, applicator and syringe placing platelet-rich plasma directly into the scalp.",
+      "copyZone": {
+        "cell": "bot-right",
+        "variance": 265.4,
+        "luma": 218.3,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 7.06,
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.486,
+          "contrastRatioWorstCaseUndarkened": 1.24
+        }
+      },
+      "kicker": "02 — Hair",
+      "headline": "Density, restored at the root.",
+      "sub": "Platelet-rich plasma placed directly into the scalp.",
+      "links": [
+        {
+          "label": "Enhanced PRP",
+          "href": "prp.html"
+        },
+        {
+          "label": "Regenera Activa®",
+          "href": "services.html"
+        },
+        {
+          "label": "Invisible Hair Transplant™",
+          "href": "https://treatment.tplclinic.com/hair-transplant/"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "label": "03 — BODY",
+      "frames": {
+        "a": 234,
+        "b": 254
+      },
+      "shotDescription": "Body, overhead. Plan view of the table; practitioner leans in to treat the forearm. Client in a white wrap, blue foot covers.",
+      "copyZone": {
+        "cell": "top-left",
+        "variance": 8.2,
+        "luma": 226.5,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 11.3,
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.483,
+          "contrastRatioWorstCaseUndarkened": 1.25
+        }
+      },
+      "kicker": "03 — Body",
+      "headline": "Skin quality, below the neck.",
+      "sub": "The same protocols, adjusted for depth and area.",
+      "links": [
+        {
+          "label": "Morpheus8®",
+          "href": "services.html"
+        },
+        {
+          "label": "Soprano Ice Titanium™",
+          "href": "services.html"
+        },
+        {
+          "label": "Mesotherapy",
+          "href": "services.html"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "label": "04 — SURGICAL",
+      "frames": {
+        "a": 287,
+        "b": 307
+      },
+      "shotDescription": "Surgical, wide. Four-person team in NAVY SCRUBS and masks around a reclined patient under a surgical light, working at the hairline. Hair transplantation.",
+      "copyZone": {
+        "cell": "top-left",
+        "variance": 17.0,
+        "luma": 228.0,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 11.51,
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.495,
+          "contrastRatioWorstCaseUndarkened": 1.19
+        }
+      },
+      "kicker": "04 — Surgical",
+      "headline": "The Invisible Hair Transplant™",
+      "sub": "Surgeon-led, and designed to be undetectable.",
+      "links": [
+        {
+          "label": "Invisible Hair Transplant™",
+          "href": "https://treatment.tplclinic.com/hair-transplant/"
+        },
+        {
+          "label": "Surgeon consultation",
+          "href": "https://treatment.tplclinic.com/hair-transplant/"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "label": "05 — DISPENSARY",
+      "frames": {
+        "a": 443,
+        "b": 461
+      },
+      "shotDescription": "Dispensary. Practitioner in black hands a product to a client at the retail counter, lit product shelves behind. Copy sits on the clear wall above the counter, upper right. Moved off the brand-plaque end card (488-500) so the plaques can close the film clean.",
+      "copyZone": {
+        "cell": "top-right",
+        "variance": 60.2,
+        "luma": 198.0,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 7.47,
+        "cellMotionMax": 2.37,
+        "cellMotionNote": "Per-cell motion in top-right stays below 2.4 across 443-461 while the frame averages 9.53 and never settles globally. Starts moving at 464.",
+        "varianceRangeAcrossRun": [
+          60.2,
+          952.6
+        ],
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.455,
+          "contrastRatioWorstCaseUndarkened": 1.17
+        }
+      },
+      "kicker": "05 — Dispensary",
+      "headline": "What you take home with you.",
+      "sub": "The regimen that holds the result between visits.",
+      "links": [
+        {
+          "label": "Skincare",
+          "href": "services.html"
+        },
+        {
+          "label": "Hair care",
+          "href": "services.html"
+        }
+      ]
+    }
+  ],
+  "textureBeats": [
+    {
+      "a": 362,
+      "b": 369,
+      "why": "8 frames — under the 10-frame rule, and a full-bleed close-up with no quiet zone."
+    },
+    {
+      "a": 371,
+      "b": 388,
+      "why": "18 frames, so a plateau by length, but full-bleed and dark: no cell reaches 4.5:1 for dark text and white text would need 0.12-0.47 darkening. Deliberately carries no copy."
+    },
+    {
+      "a": 471,
+      "b": 500,
+      "why": "The brand-plaque end card. Deliberately left clean: it lists SkinCeuticals, Korean Skincare, La Roche-Posay, CeraVe and Hair Care Products itself, so captioning it would duplicate it. It closes the film."
+    }
+  ],
+  "encode": {
+    "tool": "cwebp -q 98 -sharp_yuv -m 6",
+    "chosenQuality": 98,
+    "framesPath": "site/assets/hero-v6-frames-webp/  (single canonical copy)",
+    "frames": 500,
+    "totalBytes": 84093262,
+    "totalMB": 80.2,
+    "avgBytesPerFrame": 168187,
+    "avgKBPerFrame": 164.2,
+    "why": "Raised from q90 on the client's instruction that quality must not be reduced. Chosen by measuring each candidate AT THE SIZE IT IS ACTUALLY RASTERISED (3058x1720 on a 1440x860 DPR-2 stage), not at 1:1 — the hero upscales, so 1:1 numbers flatter every setting. q98 is the knee: WebP's own contribution to softness falls to 1.9% and -0.3% on the two busiest frames, i.e. into noise. q100 costs 12MB more and measures no better.",
+    "measuredAtDeliveredScale": [
+      {
+        "q": 90,
+        "psnr": 44.79,
+        "sharpnessLossPct": 11.2,
+        "frame": 156
+      },
+      {
+        "q": 95,
+        "psnr": 46.66,
+        "sharpnessLossPct": 4.4,
+        "frame": 156
+      },
+      {
+        "q": 98,
+        "psnr": 47.71,
+        "sharpnessLossPct": 1.9,
+        "frame": 156
+      },
+      {
+        "q": 100,
+        "psnr": 47.89,
+        "sharpnessLossPct": 3.0,
+        "frame": 156
+      },
+      {
+        "q": 90,
+        "psnr": 43.51,
+        "sharpnessLossPct": 5.4,
+        "frame": 364
+      },
+      {
+        "q": 95,
+        "psnr": 45.58,
+        "sharpnessLossPct": 2.0,
+        "frame": 364
+      },
+      {
+        "q": 98,
+        "psnr": 46.88,
+        "sharpnessLossPct": -0.3,
+        "frame": 364
+      },
+      {
+        "q": 100,
+        "psnr": 47.18,
+        "sharpnessLossPct": -0.1,
+        "frame": 364
+      }
+    ],
+    "projectedTotals": {
+      "q90MB": 37,
+      "q95MB": 62,
+      "q98MB": 84,
+      "q100MB": 96,
+      "losslessMB": 285
+    }
+  },
+  "notes": [
+    "MOTION: the type now carries the movement during a stop. Continuous 44px block drift across every beat (so a frozen frame still answers the wheel), a staggered build of kicker -> headline lines -> sub -> links, and line-by-line masked reveals matching the site's existing heading treatment. All of it is a pure function of scroll position — no transitions, no timers, fully reversible. The title card starts empty and arrives on the first scroll, per the client.",
+    "QUALITY: RE-ENCODED AT q98 (81MB, 166KB/frame), up from q90 (35MB). Chosen by measuring at the size the frames are actually rasterised rather than at 1:1. BUT the binding constraint is now the master, not the encoder: the film is 1920x1080 and a 1440px-wide Retina stage asks for 2880px, a 2.39x pixel deficit and a 59% upscale that costs ~30% of edge sharpness on its own. A 4K master is the only thing that fixes that.",
+    "DIAGNOSTICS IS A CAPTION, NOT A STOP — client's decision. Unnumbered, film keeps running, text fades in and out over frames 98-112. It carries no links (a fading link cannot be clicked reliably), so Diagnostics and TrichoComp are back on stop 01 exactly as the client's original table had them, and the 01-05 numbering is unchanged. The hero does NOT get 6% longer: no extra hold is added, the caption rides existing travel.",
+    "DIAGNOSTICS IS NOW A FULL STOP (98-112, 15 frames), not a caption over moving film. The 7-frame global plateau at 103-109 undersold it: measured per-cell, the top-centre wall holds still for 19 frames (94-112) with cell motion under 0.4 while the frame as a whole averages 16.17. Trimmed to 98-112 to stay clear of the cross-dissolve that starts at 115. Copy zone variance 0.0-0.3 and contrast 13.24:1 — the cleanest type surface in the film.",
+    "WHY NOT TEXT OVER A RUNNING FILM. It was considered and is not needed: there are 15 measurably still frames, so a proper freeze is available. Two reasons to prefer the freeze. First, the model rests on scroll driving one thing at a time; fading text while the film advances makes the same scroll input do two jobs and puts motion behind the words. Second and harder: CLICKABLE LINKS REQUIRE A STOP. A link that is fading or sliding while the film scrubs cannot be reliably hit, and this beat carries the Diagnostics and TrichoComp links. Any beat with links must freeze.",
+    "THE MOVING-CAPTION PATTERN IS STILL WORTH HAVING, for a different job: a kicker-only label of 2-4 words, no headline, no sub, NO LINKS, fading in and out over a travel run purely to name a shot. If the reception walk-in or the body overhead later needs naming without adding a stop, that is the pattern. It must never carry a link.",
+    "DISPENSARY MOVED OFF THE PLAQUES to the retail conversation (443-461, 19 frames). Same per-cell finding: the retail beat never settles globally (quietest 4.476 against a 4.314 threshold) but its top-right cell holds under 2.4 for 19 frames. This is the better call on three counts — it is a longer hold than the 13-frame plaque card, it is the better image for 'what you take home with you' because it shows the act rather than a sign, and it ends the five-links-over-five-identical-plaques duplication. The plaques now close the film with no text over them.",
+    "BRAND LINKS COLLAPSED FROM FIVE TO TWO. All five pointed at services.html — one destination behind five labels, and the brief notes the brand pages do not exist. Five links to the same page is not navigation. Replaced with Skincare and Hair care, both services.html. The film still names all five brands on the closing plaques, which is where brand names belong.",
+    "STOP NUMBERING SHIFTS. Adding diagnostics renumbers the client's kickers: Hair 02 to 03, Body 03 to 04, Surgical 04 to 05, Dispensary 05 to 06. If the original numbering must hold, diagnostics can run as an unnumbered sub-beat of 01 instead. Needs a decision.",
+    "STOP 01 NOW CARRIES ONE LINK, not three. Diagnostics and TrichoComp moved to the diagnostics stop, where the footage actually shows them — a tablet with a scored scalp analysis, and the blood-tube rack. Leaving them on the consultation shot was the same category of mistake as the V5 face mislabelling, just milder.",
+    "THE HERO GETS ~6% LONGER. Held frames rise from 102 to 123 of 500. At the 3x rest weighting V5 used, weighted scroll goes from 704 to 746 units, about 6% — roughly 760vh to 806vh. Cheap for a beat that was otherwise mute.",
+    "FACE IS STILL UNREPRESENTED. All 500 frames were reviewed on contact sheets; there is no face-treatment footage anywhere in V6, exactly as in V5. Face is a nav pillar, so the hero cannot speak to it from this film. Three options, all needing a human call: (a) shoot a face beat and re-cut; (b) drop Face from the hero and let it live in the nav and on services.html; (c) do NOT put face copy over the body or hair footage — that is precisely the mislabelling that shipped twice.",
+    "BLACK UNIFORM IS BROKEN IN TWO PLACES, not one. V5 broke it once with navy scrubs. V6 breaks it with a WHITE COAT in the consultation (frames 29–70) and with NAVY SCRUBS plus BRIGHT BLUE surgical gowns across 281–414. If black is the standard, both need addressing; if surgical dress is exempt, the consultation white coat is still an outlier.",
+    "BLUE SHOE COVERS APPEAR THROUGHOUT and are the most saturated colour in an otherwise white and black film — they draw the eye in almost every wide shot. Flagged as previously.",
+    "CUT COUNT DID NOT IMPROVE. The brief expected fewer than V5's two hard cuts. V6 has exactly two (144→145 at 9.02x mean, 170→171 at 8.98x), both inside the hair montage. The pair flagged at 119→120 and 121→122 bracket a 3-frame CROSS-DISSOLVE, not a cut — frame 120 carries a visible ghosted double image. Softer dissolves sit at 199–201, 340–341, 358–359 and 414–415, all between 3.7x and 5.5x mean.",
+    "WHITE TEXT IS NOT VIABLE ON THIS FILM. Measured across all nine cells of every stop, white text needs a black overlay of 0.441 to 0.528 to reach 4.5:1 — that is the global scrim again, just smaller. Dark ink (#242424) reaches AA with ZERO darkening in every chosen copy zone, from 7.06:1 to 11.69:1. Brand navy (#081359) is marginally better still. Recommend dark text and no scrim at all, which is what lets the 60% brightness cost die. The one place this reverses is the surgical close-ups (362–388), which are dark — but those carry no copy by design.",
+    "DISPENSARY LANDS ON THE END CARD, NOT THE CONVERSATION. The retail beat (415–487) never settles: its quietest smoothed motion is 4.476 against a rest threshold of 4.314, i.e. it comes within 3.8% and never crosses. So stop 05 sits on 488–500, the brand plaques — where five brand links would duplicate the five plaques already lit on the wall. Human call: keep the links and accept the duplication, run the headline alone and let the plaques do the work, or ask the editor for a two-second hold in the retail shot.",
+    "DIAGNOSTICS HAS NO STOP. The tablet beat (103–109) is 7 frames, under the 10-frame rule, so by the spec it is a texture beat with no text. It also holds the single cleanest copy cell in the entire film: top-centre, variance 0.2, ink contrast 13.24:1. If a diagnostics stop is wanted, either relax the rule to 7 frames for this beat or ask for a longer hold. As delivered, Diagnostics and TrichoComp are links on stop 01 instead.",
+    "THREE HAIR PLATEAUS, ONE USED. 129–139 (11f), 148–165 (18f) and 175–192 (18f) are separated by the two hard cuts. Stop 02 uses 148–165 because it is the only one with a genuinely quiet copy zone (bot-right, variance 265, 7.06:1); the other two have a single passing cell each at variance 1360 and 1357, which is busy enough that type would sit over moving detail.",
+    "371–388 IS A PLATEAU WITH NO COPY SPACE. Eighteen frames, so it qualifies by length, but it is a full-bleed close-up and dark: no cell reaches 4.5:1 for dark text, and white text would need 0.120 to 0.473 darkening. Marked usableForCopy false and left clean, per the full-bleed rule.",
+    "PATIENT CONTINUITY IN THE SURGICAL CLOSE-UP. The patient changes mid-beat: frames 342–357 show a bearded man, 359–414 a younger clean-shaven man. The 5.51x delta at 358→359 is that change, not camera movement. It reads as one continuous close-up, so the swap is visible on a slow scroll.",
+    "PNG COLOUR CHUNKS HAD TO BE STRIPPED. ffmpeg tags its PNG output with cICP, cHRM and gAMA from the source's bt709 flags, and decoders then apply a gamma transform — a lossless WebP round-trip came back with mean error 7.2/255 and max 11/255 before stripping, and 0 after. All 500 PNGs were stripped before encoding, so the frames match the film. Anyone re-running the extraction must strip them too or the whole sequence ships with a colour shift.",
+    "QUALITY IS q90, NOT q84. At 1:1 neither shows artefacts, but the hero canvas is drawn into a devicePixelRatio-2 backing store, so a 1920px frame is upscaled on any Retina display — the 2x view is the realistic one, and there q84 visibly smooths the follicle stipple on the graft close-ups while q90 does not. q90 lands at 35.4MB / 72.4KB per frame, the same budget as V5. q84 would save 12MB (23MB total) if the client prefers the lighter payload and accepts softer close-ups.",
+    "SUBHEADS ARE NEWLY WRITTEN. The five headlines and all link sets are the client's, re-mapped to what V6 shows. The one-sentence subs on each stop, and the entire title card, were written to fill the schema in the same voice and have not been signed off.",
+    "HeroV6.mp4 WAS NOT GITIGNORED. The existing pattern is 'Hero V*.mp4' with a space; the new master arrived as 'HeroV6.mp4' without one, so an 80MB file was staged for commit. .gitignore now covers both spellings."
+  ],
+  "contentVerification": {
+    "runningOrderConfirmed": true,
+    "receptionOpening": "CONFIRMED — frames 1–20. Three arches, TPL roundel lit on the centre arch, two desk iMacs.",
+    "consultation": "CONFIRMED — frames 29–70.",
+    "hair": "CONFIRMED — frames 121–200.",
+    "bodyLaser": "CONFIRMED — frames 205–280. Torso and forearm; nothing above the neck.",
+    "surgical": "CONFIRMED — frames 281–414. Hair transplantation, working at the hairline.",
+    "retailEndingOnPlaques": "CONFIRMED — frames 415–500, plaques 471–500.",
+    "faceTreatmentFootage": "NONE. Zero frames of face treatment in all 500. Same gap as V5.",
+    "blackUniformThroughout": "NO. Three variants: black (reception, diagnostics, hair, body, retail); WHITE COAT (consultation, 29–70); NAVY SCRUBS (281–341) and BRIGHT BLUE surgical gowns (342–414).",
+    "blueShoeCovers": "YES, throughout — on clients at reception, consultation, hair and body, and on the surgical team.",
+    "surgicalIsCorrectlyLabelled": "YES. The V5 error (frames 346–414 were hair-transplant surgery but shipped as '04 — FACE' with face links) does not recur here: stop 04 sits on 287–307, which is hair transplantation, and carries hair-transplant copy and links."
+  },
+  "method": {
+    "globalMotion": "mean abs luma diff, adjacent extracted frames, 192x108 downsample, smoothed +/-2",
+    "perCellMotion": "Same metric restricted to each of the 9 grid cells. Added after the first pass: a frame can be moving while the cell holding the copy is static, which is what makes the diagnostics and dispensary stops possible. Global motion asks 'is the picture still'; per-cell motion asks 'is the type still', which is the question that actually matters.",
+    "copySpace": "3x3 grid at full resolution, variance + mean luma, sampled across the whole run rather than only at the midpoint",
+    "contrast": "WCAG relative luminance; 95th percentile for white text (worst case is the brightest pixel), 5th for dark text (worst case is the darkest)"
+  },
+  "captions": [
+    {
+      "index": 0,
+      "label": "DIAGNOSTICS (unnumbered caption)",
+      "frames": {
+        "a": 98,
+        "b": 112
+      },
+      "behaviour": "film keeps advancing; text fades in, holds, fades out. No freeze, no links.",
+      "shotDescription": "Diagnostics. Practitioner in black presents a tablet showing a scored analysis dashboard to a seated male client; blood-tube rack behind. Copy sits on the blank wall in the gap between the two heads, directly above the dashboard.",
+      "copyZone": {
+        "cell": "top-centre",
+        "variance": 0.2,
+        "luma": 237.3,
+        "minDarkeningForAA": 0.0,
+        "textColour": "#242424",
+        "contrastRatioWorstCase": 13.24,
+        "cellMotionMax": 0.36,
+        "cellMotionNote": "Per-cell motion in top-centre stays below 0.4 across 98-112 while the frame as a whole averages 16.17 — the people move, the wall does not.",
+        "ifTextWereWhite": {
+          "minDarkeningForAA": 0.501,
+          "contrastRatioWorstCaseUndarkened": 1.16
+        }
+      },
+      "kicker": "Diagnostics",
+      "headline": "Measured before anything is recommended.",
+      "sub": "",
+      "links": [],
+      "why": "Client's decision: unnumbered, text comes and goes without stopping the film. Carries NO links, because a link that fades while the film scrubs cannot be reliably clicked — the Diagnostics and TrichoComp links therefore sit on stop 01. Kicker + headline only: a caption names a shot, it does not ask to be read at length. Safe to run over moving film because the per-cell measurement shows the top-centre wall holds under 0.36 motion across 98-112 while the frame averages 16.17."
+    }
+  ],
+  "resolutionCeiling": {
+    "masterResolution": "1920x1080",
+    "stageAt1440x860onDPR2": "2880x1720 device pixels requested",
+    "sourcePixels": 2073600,
+    "devicePixelsRequested": 4953600,
+    "deficitRatio": 2.39,
+    "upscaleApplied": "59.3%",
+    "sharpnessLostToUpscalingPct": [
+      31,
+      30
+    ],
+    "sharpnessLostToWebpAtQ98Pct": [
+      1.9,
+      -0.3
+    ],
+    "conclusion": "Encoding is no longer the limit — the master is. A 1080p film cannot fill a Retina hero: roughly 30% of edge sharpness is lost to upscaling alone, an order of magnitude more than the encoder now costs. The only fix that adds real detail is a higher-resolution export of HeroV6 (2560px wide removes most of it, 3840px removes all of it at any sane viewport). Re-encoding from the existing 1080p master at any quality cannot recover it.",
+    "actionNeeded": "Ask the client / the film's producer for a 4K or 2.5K master of HeroV6."
+  },
+  "motionDesign": {
+    "problem": "A stop freezes the film on purpose, and a frozen picture reads as a stall — the reader wonders whether the page has hung. The fix is not to move the film; it is to let the TYPE carry the motion, so scrolling always visibly produces something.",
+    "everythingIsScrollDriven": "No CSS transitions and no timers on the scrub path. Every value below is a function of scroll position, so scrolling back reverses it exactly. A CSS transition on a scrubbed property is a second animation fighting the first: it lags the wheel by its own duration and smears.",
+    "layers": [
+      {
+        "name": "continuous drift",
+        "what": "the whole copy block travels 44px across the beat, arrival to departure",
+        "why": "this is the one that kills the stall. Even mid-hold, with the film frozen, the block is at a different place for a different scroll position, so the wheel never feels disconnected."
+      },
+      {
+        "name": "staggered build",
+        "what": "kicker, then each headline line, then the sub, then the links, each taking its own slice of the arrival phase (SPREAD 0.55)",
+        "why": "a beat assembles as you scroll rather than appearing at once, which gives the arrival a direction and makes the stop feel like progress rather than a pause."
+      },
+      {
+        "name": "line masking",
+        "what": "each rendered line of a headline sits in its own overflow-hidden box and travels up 100% from its own baseline",
+        "why": "the reveal vocabulary the rest of the site already uses on section headings, so the hero matches the pages under it. Lines are re-split on resize because line breaks move with column width."
+      },
+      {
+        "name": "rise and fade",
+        "what": "kicker, sub and links rise 30px and fade in over their slice",
+        "why": "softer than the masked lines, so the headline stays the loudest thing arriving."
+      }
+    ],
+    "firstFrameIsSilent": "The title card no longer starts up. At the top of the page beat-local progress is exactly 0, so the film opens with no type on it and the card arrives as the reader begins to move — the hero's first act is a response to scrolling. Client's instruction.",
+    "config": {
+      "DRIFT_px": 44,
+      "RISE_px": 30,
+      "SPREAD": 0.55,
+      "IN": 0.3,
+      "OUT": 0.24,
+      "DAMPING": 0.14
+    },
+    "verified": {
+      "titleAtScrollZero": "kicker opacity 0; all 3 headline lines at translateY(100%), fully inside their masks",
+      "midArrival_local_0.08": "kicker 93% in, line 1 at 54.1%, lines 2-3 still at 100% — cascading",
+      "held_local_0.50": "everything at rest, block drift 0",
+      "captionBeat": "film advances 98->99->102->105->111->112 while the text builds and leaves, block drift +17.6 -> 0 -> -22px"
+    }
+  }
+}
