@@ -467,17 +467,59 @@
   </div>
   <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
 
-  <!-- ══ PAGE HEADER — navy band, mirrors services.html ══ -->
-  <section class="tpl-sec--hero" id="top" data-dark="1" data-screen-label="About — hero" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
-    <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;pointer-events:none" />
+  <!-- ══ PAGE HEADER — navy band, mirrors services.html ══
+       One section, where there used to be three: hero → accreditations →
+       philosophy. Measured before the merge, that was 2200px / 3.06 screens of
+       preamble before the reader met a single person, on a page whose subject is
+       the people — 41% of the document spent clearing its throat.
+
+       Philosophy gave a whole 518px section to 37 words, so it is gone as a
+       section and its substance is the second lede paragraph below; the line
+       worth keeping was always "enhance your features, not change them", and it
+       belongs in the opening statement rather than 1700px down.
+
+       The accreditation marks moved in as a rail at the foot of this band, which
+       serves the client's original note better than the old layout did — "this
+       has to be at the very top, when you first go in, you see the
+       accreditations" — because previously they were on screen two. The marks
+       are 100% dark ink (mean relative luminance 26–39 of 255), so they cannot
+       sit on the navy directly; they keep the #F7F5F2 tiles they already had.
+
+       Cut with them, and this was the real fat rather than the copy: every card
+       repeated its own logo as text — the wordmark reads "General Medical
+       Council" and we set "General Medical Council" underneath it — plus ~16
+       words explaining what each regulator is. The gold registration line is the
+       one part that says something the mark cannot, namely who it covers, so
+       that is what stayed. 49 words of boilerplate out, nothing lost. -->
+  <section class="tpl-sec--hero" id="top" data-dark="1" data-screen-label="About — opening" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
+    <!-- The photo is 1920x1080. It used to fill a section that was 853px tall at
+         1440 wide — a 1.69 ratio, near enough 16:9 that cover cropped only 38px
+         a side. Merging three sections into one made the band 1367px (ratio
+         1.05), so cover had to scale the image 1.27x and cut 495px off each
+         edge: the subject came out enlarged, sliced through the waist and
+         wrestling with the headline.
+         So the image is no longer asked to fill the band. It sits at the top at
+         its own proportion — 56.25vw is exactly 16:9, so at any width it lands
+         1:1 with no crop and no upscale — and masks out into the navy at the
+         bottom rather than ending on a hard edge. The 60vh floor is for tall
+         narrow phones, where 16:9 alone would leave too thin a sliver to read
+         as a photograph. min(100%, ...) keeps it inside the band if the section
+         is ever shorter than the image wants to be. -->
+    <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;top:0;left:0;width:100%;height:min(100%, max(56.25vw, 60vh));object-fit:cover;object-position:center top;opacity:.2;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.45) 82%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.45) 82%,transparent 100%)" />
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.62) 0%,rgba(8,19,89,.45) 40%,rgba(8,19,89,.92) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 80% -10%,rgba(184,146,93,.14),transparent 60%);pointer-events:none"></div>
-    <div aria-hidden="true" style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">ABOUT</div>
+    <!-- Pinned to 320px rather than 40%. It sat behind the headline when the
+         section was 826px tall; as a percentage of a section now ~1.6x that, it
+         would have drifted down into the claim tiles. -->
+    <div aria-hidden="true" style="position:absolute;left:50%;top:320px;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">ABOUT</div>
     <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
       <div data-reveal="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">About — Mayfair</div>
       <h1 data-reveal="1" style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:15ch">One specialty.<br />Everything built <span style="color:#C7A470">outward from it.</span></h1>
       <div data-reveal="1" style="margin-top:34px">
         <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.72)">The first clinic in the UK specialising in, and devoted to, Platelet Rich Plasma — led by Mr Kam Dogan.</p>
+        <!-- Was the philosophy section's whole payload. "Client-centred" went as
+             jargon; the natural-results line is the part that says something. -->
+        <p style="margin:16px 0 0;max-width:56ch;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.72)">Quality, results and safety run through every part of the clinic. Plans are built around individual needs, and we believe in natural-looking results — the aim is to enhance your features, not to change them.</p>
       </div>
 
       <!-- The four tiles read 5,000+ / 01 / 09 / W1. His words: "I'm looking
@@ -498,63 +540,49 @@
           <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.35;color:#C7A470">Central London location</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ ACCREDITATIONS ══
-       Moved here from the foot of the page: "this has to be at the very top…
-       when you first go in, you see the accreditations of the clinic." -->
-  <section class="tpl-sec" id="regulation" data-screen-label="About — accreditations" style="padding:100px 48px;background:#ffffff">
-    <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="padding-bottom:44px">
-        <div class="tpl-sec-label">Accreditations</div>
-        <h2 class="tpl-sec-title">Regulated, <em>registered</em></h2>
-      </div>
-      <div data-reveal="1" class="tpl-accred tpl-three" style="margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
-        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
-          <div style="height:136px;display:flex;align-items:center;justify-content:center">
-            <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="500" height="200" />
+      <!-- ══ ACCREDITATION RAIL ══
+           Claims above, third-party proof below: proof lands harder after the
+           claim than before it. #regulation is carried over so any deep link
+           still resolves — nothing on the site references it today, checked, but
+           it costs nothing to keep. The showAccreditations prop hides
+           [data-accred] rather than .tpl-accred, so the label goes with the
+           grid instead of being left behind as an orphan heading. -->
+      <div data-reveal="1" data-accred="1" id="regulation" style="margin-top:72px;padding-top:52px;border-top:1px solid rgba(232,200,154,.28);scroll-margin-top:146px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:10px 20px;text-align:center">
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Regulated, registered</div>
+          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(255,255,255,.66)">Every practitioner holds current registration with their own regulator.</p>
+        </div>
+        <div class="tpl-accred tpl-three" style="margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
+        <div style="background:#F7F5F2;padding:34px 30px 30px;display:flex;flex-direction:column;gap:20px">
+          <div style="height:124px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="192" height="152" />
           </div>
           <div>
-            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.25;color:#242424">General Medical Council</div>
-            <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Doctors — GMC registered</div>
-            <p style="margin:18px 0 0;font-size:15px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator that licenses doctors to practise in the UK. Our medical doctors hold current GMC registration.</p>
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#836742">Doctors — GMC registered</div>
           </div>
         </div>
-        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
-          <div style="height:136px;display:flex;align-items:center;justify-content:center">
-            <img src="assets/images/about/general-dental-council.png" alt="General Dental Council" loading="lazy" width="500" height="200" />
+        <div style="background:#F7F5F2;padding:34px 30px 30px;display:flex;flex-direction:column;gap:20px">
+          <div style="height:124px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/images/about/general-dental-council.png" alt="General Dental Council" loading="lazy" width="259" height="139" />
           </div>
           <div>
-            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.25;color:#242424">General Dental Council</div>
-            <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Dentists — GDC registered</div>
-            <p style="margin:18px 0 0;font-size:15px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator for dental professionals. Dentists treating at the clinic are registered and practise within their scope.</p>
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#836742">Dentists — GDC registered</div>
           </div>
         </div>
-        <div style="background:#F7F5F2;padding:46px 38px 42px;display:flex;flex-direction:column;gap:26px">
-          <div style="height:136px;display:flex;align-items:center;justify-content:center">
-            <img src="assets/images/about/nursing-and-midwifery-council.png" alt="Nursing and Midwifery Council" loading="lazy" width="500" height="200" />
+        <div style="background:#F7F5F2;padding:34px 30px 30px;display:flex;flex-direction:column;gap:20px">
+          <div style="height:124px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/images/about/nursing-and-midwifery-council.png" alt="Nursing and Midwifery Council" loading="lazy" width="227" height="149" />
           </div>
           <div>
-            <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.25;color:#242424">Nursing &amp; Midwifery Council</div>
-            <div style="margin-top:12px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8A6F44">Nurses — NMC registered</div>
-            <p style="margin:18px 0 0;font-size:15px;line-height:1.85;color:#6E6E6E;text-wrap:pretty">The regulator for nurses. Our Advanced and Registered Nurse Practitioners are on the NMC register.</p>
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#836742">Nurses — NMC registered</div>
           </div>
+        </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ PHILOSOPHY ══ -->
-  <section class="tpl-sec" id="philosophy" data-screen-label="About — philosophy" style="background:#F7F5F2;padding:96px 48px 100px">
-    <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1">
-        <div class="tpl-sec-label">Philosophy</div>
-        <h2 class="tpl-sec-title">Bespoke because the <em>evidence</em> differs</h2>
-        <p class="tpl-sec-lede">Client-centred quality, results and safety run through every part of the clinic. Treatment plans are built around individual needs, and we believe in natural-looking results — the aim is to enhance your features, not to change them.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ TEAM ══ -->
   <section class="tpl-sec--head" id="team" data-screen-label="About — team" style="padding:110px 48px 40px;background:#ffffff">
@@ -750,7 +778,7 @@ class Component extends DCLogic {
       document.querySelectorAll('[data-bio-extra]').forEach(p => { p.style.display = 'none'; });
     }
     if (this.props.showAccreditations === false) {
-      const acc = document.querySelector('.tpl-accred');
+      const acc = document.querySelector('[data-accred]');
       if (acc) acc.style.display = 'none';
     }
     const cols = this.props.teamColumns;
