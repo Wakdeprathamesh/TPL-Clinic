@@ -485,38 +485,53 @@
   </section>
 
   <!-- Philosophy Section -->
-  <section id="about" class="tpl-sec" style="scroll-margin-top:110px;padding:130px 48px 120px;background:#ffffff;border-top:1px solid rgba(36,36,36,.08)">
-    <div class="tpl-m-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:80px;align-items:start">
+  
+  <!-- ══════════════════════════════════════════════════════════════════════
+       Sections below the hero are ported from the V2 design build. The layout,
+       spacing and treatment are V2's; the hero above, the header, the
+       accreditation strip and the consultation form below are ours and were
+       deliberately not replaced.
+
+       Two things were changed on the way in: JetBrains Mono is swapped for Jost
+       throughout, because this site runs one typeface, and link targets point at
+       our real pages rather than V2's in-page anchors.
+       ══════════════════════════════════════════════════════════════════════ -->
+>
+
+  <!-- Philosophy Section -->
+  <section style="padding:130px 48px 120px;background:#ffffff;border-top:1px solid rgba(36,36,36,.08)">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:80px;align-items:start">
       <div data-reveal="1">
-        <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">Philosophy</div>
-        <div style="margin-top:24px;width:56px;height:1px;background:#242424"></div>
-        <p style="margin:24px 0 0;font-size:15px;line-height:1.9;color:#5E5E5E;max-width:340px">Founded as The PRP Lab. Still the only clinic in the country whose entire protocol library is built outward from regenerative plasma.</p>
-        <div style="margin-top:36px;position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);margin-bottom:20px">
+          <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
+          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Philosophy</span>
+        </div>
+        <p style="margin:16px 0 0;font-family:Jost,sans-serif;font-size:15px;line-height:1.85;color:#5E5E5E;max-width:360px">Founded as The PRP Lab. The UK's premier clinic built entirely around natural regenerative plasma.</p>
+        <div style="margin-top:32px;position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 16px 40px rgba(8,19,89,.06)">
           <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/philosophy/philosophy-ambient-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
             <source src="assets/videos/philosophy/philosophy-ambient-loop.webm" type="video/webm">
             <source src="assets/videos/philosophy/philosophy-ambient-loop.mp4" type="video/mp4">
           </video>
-          <div style="position:absolute;inset:0;background:rgba(8,19,89,0.15);pointer-events:none"></div>
-          <div style="position:absolute;inset:16px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          <div style="position:absolute;inset:0;background:rgba(8,19,89,0.12);pointer-events:none"></div>
         </div>
       </div>
       <div data-reveal="1">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.16;letter-spacing:-.01em;color:#242424;text-wrap:pretty">One treatment rarely changes a face. A <span style="color:#B8925D">combination</span> of the right ones, sequenced correctly, always does.</h2>
-        <div class="tpl-m-3 tpl-cells" style="margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12)">
-          <div style="background:#ffffff;padding:32px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">01</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Diagnose</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Consultation, imaging and — for hair — TrichoComp analysis before anything is recommended.</p>
+        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,56px);line-height:1.14;letter-spacing:-.01em;color:#081359;text-wrap:pretty">One treatment rarely changes a face. A <span style="font-weight:400;color:#B8925D">combination</span> of the right ones, sequenced correctly, always does.</h2>
+        <div style="margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+          <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-left:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);transition:transform .3s ease" style-hover="transform:translateY(-4px)">
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D;font-weight:600">01</div>
+            <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#081359">Diagnose</div>
+            <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Comprehensive imaging & scalp TrichoComp analysis before treatment.</p>
           </div>
-          <div style="background:#ffffff;padding:32px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">02</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Combine</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Plasma with radiofrequency, laser, injectables or light — layered for compounding effect.</p>
+          <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-left:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);transition:transform .3s ease" style-hover="transform:translateY(-4px)">
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D;font-weight:600">02</div>
+            <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#081359">Combine</div>
+            <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Plasma layered with radiofrequency, lasers or exosomes for compounding results.</p>
           </div>
-          <div style="background:#ffffff;padding:32px 26px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D">03</div>
-            <div style="margin-top:16px;font-family:Jost,sans-serif;font-size:14.5px;letter-spacing:.2em;text-transform:uppercase;color:#242424">Sustain</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Results maintained over a calendar, not chased with one-off appointments.</p>
+          <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-left:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);transition:transform .3s ease" style-hover="transform:translateY(-4px)">
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D;font-weight:600">03</div>
+            <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#081359">Sustain</div>
+            <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Long-lasting results maintained on a structured annual calendar.</p>
           </div>
         </div>
       </div>
@@ -526,32 +541,32 @@
   <!-- Face Section -->
   <section id="face" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
-      <div data-reveal="1" class="tpl-m-split tpl-band" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0;align-items:center">
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden">
-            <img src="assets/section-images-webp/section-face.webp" alt="Face treatment protocol" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0;align-items:center">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+            <img src="assets/section-images-webp/section-face.webp" alt="Face treatment protocol" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-top:40px">
-            <img src="assets/section-images-webp/frame-04-rising.webp" alt="Facial contour & profile" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-top:40px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+            <img src="assets/section-images-webp/frame-04-rising.webp" alt="Facial contour & profile" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
         </div>
-        <div class="tpl-m-first">
-          <div style="display:flex;align-items:baseline;gap:18px">
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">01</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Face</h3>
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D;font-weight:600">01 PROTOCOL</span>
+            <span style="width:28px;height:1px;background:#B8925D"></span>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Fine lines and wrinkles, acne, pigmentation, sun damage, enlarged pores, rosacea, scarring, laxity and facial volume loss — addressed at the level of collagen, not concealed at the surface.</p>
-          <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">PRP &amp; PRF biofiller</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Sofwave™ lifting</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Morpheus8® Burst</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">LaseMD Ultra® resurfacing</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Dermal fillers</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Wrinkle relaxation</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">HydraFacial® &amp; peels</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Korean glass skin</div>
+          <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#081359">Face</h3>
+          <p style="margin:20px 0 0;max-width:500px;font-family:Jost,sans-serif;font-size:15px;line-height:1.8;color:#5E5E5E">Collagen remodelling for lines, pigmentation, laxity and scarring — addressed at the cellular level, never concealed.</p>
+          
+          <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:10px">
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">PRP &amp; PRF Biofiller</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Sofwave™ Lifting</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Morpheus8® Burst</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">LaseMD Ultra® Resurfacing</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Dermal Fillers</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Wrinkle Relaxation</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">HydraFacial® &amp; Peels</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Korean Glass Skin</span>
           </div>
         </div>
       </div>
@@ -561,34 +576,34 @@
   <!-- Hair Section -->
   <section id="hair" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
-      <div data-reveal="1" class="tpl-m-split tpl-band" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding:88px 0;align-items:center">
+      <div data-reveal="1" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding:88px 0;align-items:center">
         <div>
-          <div style="display:flex;align-items:baseline;gap:18px">
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">02</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Hair</h3>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D;font-weight:600">02 PROTOCOL</span>
+            <span style="width:28px;height:1px;background:#B8925D"></span>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Thinning, receding hairlines and pattern loss. Every plan starts with diagnostics — because restoring a follicle that is still alive is a different problem from replacing one that isn't.</p>
-          <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Enhanced PRP &amp; exosomes</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Regenera Activa®</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">TrichoComp diagnostics</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">LED phototherapy</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Invisible Hair Transplant™</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Surgeon consultation</div>
+          <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#081359">Hair</h3>
+          <p style="margin:20px 0 0;max-width:500px;font-family:Jost,sans-serif;font-size:15px;line-height:1.8;color:#5E5E5E">Targeted therapy for thinning, hairline recession & pattern loss. Every protocol starts with diagnostic TrichoComp scalp analysis.</p>
+          
+          <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:10px">
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Enhanced PRP &amp; Exosomes</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Regenera Activa®</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">TrichoComp Diagnostics</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">LED Phototherapy</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Invisible Hair Transplant™</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Surgeon Consultation</span>
           </div>
         </div>
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.avif 400w, assets/images/hair/hair-hairline-profile-portrait-800w.avif 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.avif 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 50vw">
               <source type="image/webp" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.webp 400w, assets/images/hair/hair-hairline-profile-portrait-800w.webp 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.webp 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 50vw">
-              <img src="assets/images/hair/hair-hairline-profile-portrait-800w.jpg" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.jpg 400w, assets/images/hair/hair-hairline-profile-portrait-800w.jpg 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.jpg 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Hair restoration diagnostics & hairline profile" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+              <img src="assets/images/hair/hair-hairline-profile-portrait-800w.jpg" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.jpg 400w, assets/images/hair/hair-hairline-profile-portrait-800w.jpg 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.jpg 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Hair restoration diagnostics & hairline profile" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
             </picture>
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
           </div>
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;margin-top:40px">
-            <img src="assets/section-images-webp/frame-06-retreat-begins.webp" alt="Hair follicle diagnostics" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;margin-top:40px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+            <img src="assets/section-images-webp/frame-06-retreat-begins.webp" alt="Hair follicle diagnostics" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
         </div>
       </div>
@@ -598,38 +613,37 @@
   <!-- Body Section -->
   <section id="body" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
-      <div data-reveal="1" class="tpl-m-split tpl-band" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0 100px;align-items:center">
-        <div class="tpl-m-rail" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden">
-            <img src="assets/section-images-webp/section-body.webp" alt="Body skin quality protocol" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0 100px;align-items:center">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+            <img src="assets/section-images-webp/section-body.webp" alt="Body skin quality protocol" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;margin-top:24px">
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;margin-top:24px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/body/body-skin-texture-closeup-400w.avif 400w, assets/images/body/body-skin-texture-closeup-800w.avif 800w, assets/images/body/body-skin-texture-closeup-1200w.avif 1200w, assets/images/body/body-skin-texture-closeup-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 33vw">
               <source type="image/webp" srcset="assets/images/body/body-skin-texture-closeup-400w.webp 400w, assets/images/body/body-skin-texture-closeup-800w.webp 800w, assets/images/body/body-skin-texture-closeup-1200w.webp 1200w, assets/images/body/body-skin-texture-closeup-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 33vw">
-              <img src="assets/images/body/body-skin-texture-closeup-800w.jpg" srcset="assets/images/body/body-skin-texture-closeup-400w.jpg 400w, assets/images/body/body-skin-texture-closeup-800w.jpg 800w, assets/images/body/body-skin-texture-closeup-1200w.jpg 1200w, assets/images/body/body-skin-texture-closeup-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 33vw" alt="Body skin texture closeup" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+              <img src="assets/images/body/body-skin-texture-closeup-800w.jpg" srcset="assets/images/body/body-skin-texture-closeup-400w.jpg 400w, assets/images/body/body-skin-texture-closeup-800w.jpg 800w, assets/images/body/body-skin-texture-closeup-1200w.jpg 1200w, assets/images/body/body-skin-texture-closeup-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 33vw" alt="Body skin texture closeup" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
             </picture>
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
           </div>
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;margin-top:48px">
-            <img src="assets/section-images-webp/frame-09-return.webp" alt="Body contour & remodeling" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
+          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;margin-top:48px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+            <img src="assets/section-images-webp/frame-09-return.webp" alt="Body contour & remodeling" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
         </div>
-        <div class="tpl-m-first">
-          <div style="display:flex;align-items:baseline;gap:18px">
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D">03</span>
-            <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Body</h3>
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D;font-weight:600">03 PROTOCOL</span>
+            <span style="width:28px;height:1px;background:#B8925D"></span>
           </div>
-          <p style="margin:26px 0 0;max-width:520px;font-size:15.5px;line-height:1.9;color:#5E5E5E">Cellulite, scarring and stretch marks. Skin below the neck responds to the same regenerative logic — it simply needs more depth, more energy and more patience.</p>
-          <div class="tpl-m-list" style="margin-top:38px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid rgba(36,36,36,.12)">
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">PRP body protocols</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Morpheus8® RF</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Mesotherapy</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Microneedling</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Chemical peels</div>
-            <div style="padding:14px 0;border-bottom:1px solid rgba(36,36,36,.08);font-size:14.5px;color:#242424">Soprano Ice Titanium™</div>
+          <h3 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:1;letter-spacing:-.01em;color:#081359">Body</h3>
+          <p style="margin:20px 0 0;max-width:500px;font-family:Jost,sans-serif;font-size:15px;line-height:1.8;color:#5E5E5E">Subdermal radiofrequency & growth factor protocols for skin quality, tightening, scarring & stretch mark reduction.</p>
+          
+          <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:10px">
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">PRP Body Protocols</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Morpheus8® RF Tightening</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Mesotherapy</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Microneedling</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Chemical Peels</span>
+            <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Soprano Ice Titanium™</span>
           </div>
         </div>
       </div>
@@ -637,69 +651,66 @@
   </section>
 
   <!-- PRP Section -->
-  <section id="prp" class="tpl-sec" style="background:#F7F5F2;padding:120px 48px">
+  <section id="prp" style="background:#F7F5F2;padding:120px 48px">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" class="tpl-m-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
+      <div data-reveal="1" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
         <div>
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The specialty</div>
-          <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:.98;letter-spacing:-.02em;color:#242424">Platelet<br />Rich Plasma</h2>
-          <p style="margin:26px 0 0;font-size:15.5px;line-height:1.9;color:#5E5E5E">A small volume of your own blood, separated in-clinic into its platelet-rich fraction and reintroduced where regeneration is needed. No donor material. No synthetic filler. The signal your tissue already responds to, concentrated.</p>
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#ffffff;border:1px solid rgba(184,146,93,0.3);margin-bottom:20px">
+            <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">The Specialty</span>
+          </div>
+          <h2 style="margin:16px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.6vw,88px);line-height:.98;letter-spacing:-.02em;color:#081359">Platelet<br /><span style="color:#B8925D">Rich Plasma</span></h2>
+          <p style="margin:22px 0 0;font-family:Jost,sans-serif;font-size:15px;line-height:1.85;color:#5E5E5E;max-width:480px">Concentrated autologous plasma separated in-clinic to stimulate natural cellular regeneration. No synthetics. No fillers. Pure regenerative signals.</p>
         </div>
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.avif 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.avif 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.avif 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 50vw">
               <source type="image/webp" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.webp 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.webp 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.webp 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 50vw">
-              <img src="assets/images/prp-method/prp-plasma-vial-macro-800w.jpg" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.jpg 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.jpg 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.jpg 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Platelet Rich Plasma vial macro" loading="lazy" width="1280" height="960" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+              <img src="assets/images/prp-method/prp-plasma-vial-macro-800w.jpg" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.jpg 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.jpg 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.jpg 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Platelet Rich Plasma vial macro" loading="lazy" width="1280" height="960" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
             </picture>
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
           </div>
-          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;margin-top:24px">
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;margin-top:24px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/prp-method/prp-syringe-closeup-400w.avif 400w, assets/images/prp-method/prp-syringe-closeup-800w.avif 800w, assets/images/prp-method/prp-syringe-closeup-1200w.avif 1200w, assets/images/prp-method/prp-syringe-closeup-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 50vw">
               <source type="image/webp" srcset="assets/images/prp-method/prp-syringe-closeup-400w.webp 400w, assets/images/prp-method/prp-syringe-closeup-800w.webp 800w, assets/images/prp-method/prp-syringe-closeup-1200w.webp 1200w, assets/images/prp-method/prp-syringe-closeup-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 50vw">
-              <img src="assets/images/prp-method/prp-syringe-closeup-800w.jpg" srcset="assets/images/prp-method/prp-syringe-closeup-400w.jpg 400w, assets/images/prp-method/prp-syringe-closeup-800w.jpg 800w, assets/images/prp-method/prp-syringe-closeup-1200w.jpg 1200w, assets/images/prp-method/prp-syringe-closeup-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="PRP syringe closeup fraction" loading="lazy" width="1280" height="960" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+              <img src="assets/images/prp-method/prp-syringe-closeup-800w.jpg" srcset="assets/images/prp-method/prp-syringe-closeup-400w.jpg 400w, assets/images/prp-method/prp-syringe-closeup-800w.jpg 800w, assets/images/prp-method/prp-syringe-closeup-1200w.jpg 1200w, assets/images/prp-method/prp-syringe-closeup-1600w.jpg 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="PRP syringe closeup fraction" loading="lazy" width="1280" height="960" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
             </picture>
-            <div style="position:absolute;inset:12px;border:1px solid rgba(184,146,93,.3);pointer-events:none;z-index:2"></div>
           </div>
         </div>
       </div>
 
-      <div data-reveal="1" class="tpl-m-4 tpl-cells" style="margin-top:72px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
-        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
-          <div style="position:relative;z-index:2">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 01</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Draw</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">A standard blood draw, taken by a medical practitioner in the treatment room.</p>
-          </div>
+      <div data-reveal="1" style="margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+        <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03)">
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D;font-weight:600">STEP 01</div>
+          <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;color:#081359">Draw</div>
+          <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Standard blood draw conducted in-clinic by an experienced practitioner.</p>
         </div>
-        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
-          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-plasma-separation-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none">
+        <div style="position:relative;background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);overflow:hidden">
+          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-plasma-separation-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.12;pointer-events:none">
             <source src="assets/videos/prp-method/prp-plasma-separation-loop.webm" type="video/webm">
             <source src="assets/videos/prp-method/prp-plasma-separation-loop.mp4" type="video/mp4">
           </video>
           <div style="position:relative;z-index:2">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 02</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Separate</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Centrifuged to isolate platelets and growth factors from the remaining components.</p>
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D;font-weight:600">STEP 02</div>
+            <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;color:#081359">Separate</div>
+            <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Centrifuged to isolate high-concentration growth factors.</p>
           </div>
         </div>
-        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
-          <div style="position:relative;z-index:2">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 03</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Activate</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Prepared as plasma, fibrin biofiller or exosome-enhanced formulation for the protocol.</p>
-          </div>
+        <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03)">
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D;font-weight:600">STEP 03</div>
+          <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;color:#081359">Activate</div>
+          <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Formulated as plasma, PRF biofiller or exosome enhancement.</p>
         </div>
-        <div style="position:relative;background:#F7F5F2;padding:38px 28px 44px;overflow:hidden">
-          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-syringe-drop-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;pointer-events:none">
+        <div style="position:relative;background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);overflow:hidden">
+          <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/prp-method/prp-syringe-drop-loop-poster-800w.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.12;pointer-events:none">
             <source src="assets/videos/prp-method/prp-syringe-drop-loop.webm" type="video/webm">
             <source src="assets/videos/prp-method/prp-syringe-drop-loop.mp4" type="video/mp4">
           </video>
           <div style="position:relative;z-index:2">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D">STEP 04</div>
-            <div style="margin-top:20px;font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.02em;color:#242424">Reintroduce</div>
-            <p style="margin:12px 0 0;font-size:14.5px;line-height:1.8;color:#6E6E6E">Delivered by injection or microneedling — frequently alongside RF or laser the same day.</p>
+            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D;font-weight:600">STEP 04</div>
+            <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;color:#081359">Reintroduce</div>
+            <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Targeted delivery via microneedling or precision injection.</p>
           </div>
         </div>
       </div>
@@ -708,51 +719,56 @@
 
   <!-- Technology Section -->
   <sc-if value="{{ showTechnologyIndex }}" hint-placeholder-val="{{ true }}">
-  <section id="technology" class="tpl-sec" style="padding:120px 48px;background:#ffffff">
+  <section id="technology" style="padding:120px 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(36,36,36,.12);padding-bottom:28px">
-        <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1;letter-spacing:-.01em;color:#242424">Technology index</h2>
-        <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#8A8A8A">18 treatments · one combined protocol</div>
+      <div data-reveal="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(184,146,93,.3);padding-bottom:24px">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);margin-bottom:14px">
+            <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Equipments &amp; Devices</span>
+          </div>
+          <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(34px,4.4vw,68px);line-height:1;letter-spacing:-.01em;color:#081359">Technology Index</h2>
+        </div>
+        <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">18 Advanced Clinical Technologies</div>
       </div>
-      <div data-reveal="1" class="tpl-m-3" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 72px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 72px">
         <div style="display:flex;flex-direction:column">
           <sc-for list="{{ techLeft }}" as="t" hint-placeholder-count="9">
-            <a href="{{ t.url }}" style="display:flex;align-items:baseline;gap:20px;padding:20px 6px;border-bottom:1px solid rgba(36,36,36,.08);transition:background .3s ease,padding .3s ease;color:inherit" style-hover="background:#FAF8F5;padding-left:14px">
-              <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px">{{ t.n }}</span>
-              <span style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.01em;color:#242424;flex:1">{{ t.name }}</span>
-              <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9A9A9A">{{ t.tag }}</span>
-            </a>
+            <div style="display:flex;align-items:center;gap:20px;padding:18px 8px;border-bottom:1px solid rgba(36,36,36,.08);transition:all .3s ease" style-hover="background:#FDFBF8;padding-left:16px">
+              <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px;font-weight:600">{{ t.n }}</span>
+              <span style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;letter-spacing:.01em;color:#081359;flex:1">{{ t.name }}</span>
+              <span style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>
+            </div>
           </sc-for>
         </div>
         <div style="display:flex;flex-direction:column">
           <sc-for list="{{ techRight }}" as="t" hint-placeholder-count="9">
-            <a href="{{ t.url }}" style="display:flex;align-items:baseline;gap:20px;padding:20px 6px;border-bottom:1px solid rgba(36,36,36,.08);transition:background .3s ease,padding .3s ease;color:inherit" style-hover="background:#FAF8F5;padding-left:14px">
-              <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px">{{ t.n }}</span>
-              <span style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;letter-spacing:.01em;color:#242424;flex:1">{{ t.name }}</span>
-              <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9A9A9A">{{ t.tag }}</span>
-            </a>
+            <div style="display:flex;align-items:center;gap:20px;padding:18px 8px;border-bottom:1px solid rgba(36,36,36,.08);transition:all .3s ease" style-hover="background:#FDFBF8;padding-left:16px">
+              <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px;font-weight:600">{{ t.n }}</span>
+              <span style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;letter-spacing:.01em;color:#081359;flex:1">{{ t.name }}</span>
+              <span style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>
+            </div>
           </sc-for>
         </div>
       </div>
-      <div data-reveal="1" style="margin-top:40px;display:flex;align-items:center;gap:14px">
-        <span style="width:6px;height:6px;background:#B8925D;display:inline-block"></span>
-        <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A6F44">XERF™ appointments available from September</span>
+      <div data-reveal="1" style="margin-top:36px;display:flex;align-items:center;gap:12px">
+        <span style="width:6px;height:6px;background:#B8925D;display:inline-block;border-radius:50%"></span>
+        <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#081359">XERF™ appointments available from September</span>
       </div>
     </div>
   </section>
   </sc-if>
 
   <!-- Clinic Section -->
-  <section id="clinic" style="padding:0 48px;background:#ffffff">
-    <div data-reveal="1" class="tpl-m-3" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
-      <div style="position:relative;background:linear-gradient(150deg,#FBFAF8 0%,#F3EFEA 100%);min-height:440px;overflow:hidden">
+  <section id="clinic" style="padding:0 48px 120px;background:#ffffff">
+    <div data-reveal="1" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px">
+      <div style="position:relative;background:linear-gradient(150deg,#FBFAF8 0%,#F3EFEA 100%);min-height:440px;overflow:hidden;border:1px solid rgba(184,146,93,.3);box-shadow:0 16px 40px rgba(8,19,89,.06)">
         <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="TPL Clinic Mayfair premises" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.2) 0%,rgba(8,19,89,.7) 100%);pointer-events:none"></div>
-        <div style="position:absolute;inset:16px;border:1px solid rgba(184,146,93,.35);pointer-events:none;z-index:2"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.2) 0%,rgba(8,19,89,.82) 100%);pointer-events:none"></div>
         <div style="position:relative;z-index:3;height:100%;padding:44px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E8C89A">Location · Mayfair</div>
+          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E8C89A">Mayfair · London</div>
           <div>
-            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.05;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,0.5)">22 Seymour Street<br /><span style="color:#E8C89A">London W1H 7HY</span></div>
+            <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.5vw,52px);line-height:1.05;color:#ffffff">22 Seymour Street<br /><span style="color:#E8C89A">London W1H 7HY</span></div>
             <div style="margin-top:20px;border-top:1px solid rgba(232,200,154,.4);padding-top:16px;display:flex;justify-content:space-between;align-items:center">
               <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">By Appointment Only</span>
               <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A">TPL CLINIC MAYFAIR</span>
@@ -760,36 +776,29 @@
           </div>
         </div>
       </div>
-      <div style="background:#ffffff;padding:56px 44px">
-        <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D">The clinic</div>
-        <h2 style="margin:22px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(38px, 4.6vw, 68px);line-height:1.1;color:#242424">Mayfair,<br />London W1</h2>
-        <div style="margin-top:32px;display:flex;flex-direction:column;gap:18px">
-          <div style="border-top:1px solid rgba(36,36,36,.1);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Address</div>
-            <div style="margin-top:8px;font-size:15px;line-height:1.7;color:#242424">22 Seymour Street<br />London W1H 7HY</div>
+      <div style="background:#FDFBF8;padding:48px 40px;border:1px solid rgba(184,146,93,.3);box-shadow:0 12px 35px rgba(8,19,89,.03)">
+        <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#B8925D;font-weight:600">The Clinic</div>
+        <h2 style="margin:16px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(28px,2.8vw,42px);line-height:1.1;color:#081359">Mayfair,<br />London W1</h2>
+        <div style="margin-top:28px;display:flex;flex-direction:column;gap:16px">
+          <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
+            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Address</div>
+            <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;line-height:1.6;color:#081359">22 Seymour Street, London W1H 7HY</div>
           </div>
-          <div style="border-top:1px solid rgba(36,36,36,.1);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Telephone</div>
-            <div style="margin-top:8px;font-size:15px;color:#242424">020 7998 7077</div>
+          <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
+            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Telephone</div>
+            <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;color:#081359">020 7998 7077</div>
           </div>
-          <div style="border-top:1px solid rgba(36,36,36,.1);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#9A9A9A">Email</div>
-            <div style="margin-top:8px;font-size:15px;color:#242424">info@tplclinic.com</div>
+          <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
+            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Email</div>
+            <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;color:#081359">info@tplclinic.com</div>
           </div>
         </div>
-        <a class="tpl-cta-wa" href="https://wa.me/442079987077" style="margin-top:36px;display:inline-block;padding:15px 26px;border:1px solid #242424;color:#242424;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,color .3s ease" style-hover="background:#242424;color:#ffffff"><svg class="tpl-wa-mark" viewBox="0 0 24 24" width="16" height="16" fill="#25D366" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Message us on WhatsApp</a>
+        <a href="https://wa.me/442079987077" style="margin-top:32px;display:inline-block;padding:14px 24px;background:#081359;border:1px solid #081359;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s ease,color .3s ease" style-hover="background:#B8925D;border-color:#B8925D">Message on WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- ══ REGULATORS ══
-       The last thing before the enquiry form: the reassurance a visitor wants
-       at the point of handing over their details. No hairline rule here — the
-       clinic card above is already a bordered block, and a full-width rule
-       under it reads as a stray line. Height-matched, not width-matched: the three
-       lockups run 1.26 to 1.86 in aspect, so equal height is what makes the
-       wordmarks read at the same size. Detail of who holds what lives on
-       about.html#regulation. -->
+  <!-- Consultation Section -->
   <section id="regulated" class="tpl-sec" style="padding:110px 48px 120px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto">
       <div data-reveal="1" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px 40px;flex-wrap:wrap">
