@@ -28,3 +28,9 @@ hero-master*.mp4
 .claude/
 .DS_Store
 **/.DS_Store
+
+# The V2 design reference, unzipped into the repo root. 157MB, and it carries its
+# own copy of the hero frames and a 93MB fallback video — none of which ships.
+# It is a thing to read from, not a thing to deploy.
+tpl-clinic-version-2-main/
+tpl-clinic-version-2-main*.zip
