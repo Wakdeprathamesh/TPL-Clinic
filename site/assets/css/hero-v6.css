@@ -139,4 +139,14 @@
   .hv6-cell { grid-row: 1 !important; grid-column: 1 !important; align-items: flex-end !important; justify-content: flex-start !important; text-align: left !important; }
   .hv6-block { max-width: none !important; }
   .hv6-cell--top-right .hv6-links, .hv6-cell--bot-right .hv6-links, .hv6-cell--top-centre .hv6-links { justify-content: flex-start; }
+  /* These are the hero's calls to action, and on a phone they are the first
+     thing a thumb reaches for. The desktop padding builds a 36px pill, which is
+     under the 44px a finger needs — so the height is set outright rather than
+     left to fall out of the padding. */
+  .hv6-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 11px 18px;
+  }
 }
