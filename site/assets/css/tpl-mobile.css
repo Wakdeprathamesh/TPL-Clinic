@@ -509,6 +509,20 @@ body.tpl-locked {
   }
   /* Where the media block comes first in source but the argument should lead. */
   .tpl-m-split > .tpl-m-first { order: -1; }
+
+  /* The services hero rail sits to the right of the headline on a desktop and is
+     hung off a left hairline. Stacked underneath, that hairline reads as a stray
+     vertical rule against nothing, so it becomes the seam above the rail. */
+  .tpl-hero-rail {
+    border-left: 0 !important;
+    border-top: 1px solid rgba(232, 200, 154, 0.3);
+    padding-left: 0 !important;
+    padding-top: 26px;
+  }
+  /* Its rows are padded in vh so they breathe with a laptop screen. Stacked
+     full-width on a 1180px-tall tablet that same vh reads as a gappy list, so
+     below the split the rows go back to a fixed rhythm. */
+  .tpl-hero-rail a[data-hero-region] { padding: 13px 0 !important; }
 }
 
 @media (max-width: 767px) {

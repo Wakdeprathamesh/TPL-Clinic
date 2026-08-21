@@ -566,7 +566,13 @@
   <!-- ═══════════════════════ END SHARED CHROME ═══════════════════════ -->
 
   <!-- Page Header — navy band, mirrors the homepage's dark-first paint -->
-  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
+  <!-- One screen, exactly. The band used to be a fixed 190/110 pad stack that ran
+       to ~1000px whatever the window was, so the stats strip fell below the fold on
+       a laptop and the middle of the band was dead navy. It is now a flex column
+       held to the viewport: the pads are vh-relative, the headline block and the
+       stats strip are its two children, and the space between them is whatever the
+       screen has left rather than a fixed 72px gap. -->
+  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:clamp(104px, 13vh, 148px) 48px clamp(26px, 4.5vh, 54px);color:#ffffff;position:relative;overflow:hidden;min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
     <!-- Purpose-shot establishing plate: empty treatment room, held right back -->
     <picture>
       <source type="image/avif" srcset="assets/images/services/services-hero-800w.avif 800w, assets/images/services/services-hero-1200w.avif 1200w, assets/images/services/services-hero-1920w.avif 1920w" sizes="100vw">
@@ -576,39 +582,59 @@
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.62) 0%,rgba(8,19,89,.45) 40%,rgba(8,19,89,.92) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 80% -10%,rgba(184,146,93,.14),transparent 60%);pointer-events:none"></div>
     <!-- Oversized ghost word — same device as the homepage hero -->
-    <div aria-hidden="true" style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">SERVICES</div>
-    <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
-      <div data-reveal="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Services — Mayfair</div>
-      <h1 data-reveal="1" style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:13ch">Every treatment.<br />One <span style="color:#C7A470">protocol library.</span></h1>
-      <div data-reveal="1" style="margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:24px 48px">
-        <p style="margin:0;max-width:480px;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.72)">Treatments here are rarely booked alone. Each one below is an instrument — your plan is the combination, sequenced after diagnostics.</p>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">20 treatments · Face, Hair &amp; Body</span>
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#C7A470">One specialty: Platelet Rich Plasma</span>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:clamp(200px, 20vw, 380px);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">SERVICES</div>
+    <div style="width:100%;max-width:1280px;margin:0 auto;position:relative;z-index:2">
+      <!-- Headline left, region rail right. The rail is what fills the half of the
+           band the 13ch headline used to leave empty, and it earns the space: each
+           row drives the index filter below. -->
+      <div class="tpl-hero-grid" style="display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,.68fr);gap:clamp(28px, 4vw, 72px);align-items:end">
+        <div>
+          <div data-reveal="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Services — Mayfair</div>
+          <!-- 18ch, not 13ch: at 13 the second line broke after "protocol" and cost a
+               third line of 80px type for no editorial reason. The 84px cap is set
+               where it is for the same reason — at 96px the line breaks again on a
+               1920 screen, because the column, not the character count, is the limit. -->
+          <h1 data-reveal="1" style="margin:clamp(16px, 2.4vh, 24px) 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(42px, 5.4vw, 84px);line-height:1.04;letter-spacing:-.015em;color:#ffffff;max-width:18ch">Every treatment.<br />One <span style="color:#C7A470">protocol library.</span></h1>
+          <p data-reveal="1" style="margin:clamp(18px, 2.8vh, 30px) 0 0;max-width:52ch;font-size:clamp(15.5px, .95vw, 17.5px);line-height:1.8;color:rgba(255,255,255,.72)">Treatments here are rarely booked alone. Each one below is an instrument — your plan is the combination, sequenced after diagnostics.</p>
+          <div data-reveal="1" style="margin-top:clamp(22px, 3.4vh, 38px);display:flex;flex-wrap:wrap;gap:14px">
+            <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
+            <a href="prp.html" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)">The Signature — PRP</a>
+          </div>
         </div>
-      </div>
-      <div data-reveal="1" style="margin-top:44px;display:flex;flex-wrap:wrap;gap:14px">
-        <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
-        <a href="prp.html" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)">The Signature — PRP</a>
+
+        <aside data-reveal="1" class="tpl-hero-rail" style="border-left:1px solid rgba(232,200,154,.3);padding-left:clamp(18px, 2vw, 30px)">
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">20 treatments · Face, Hair &amp; Body</span>
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#C7A470">One specialty: Platelet Rich Plasma</span>
+          </div>
+          <!-- Counts sum past 20 on purpose: PRP, consultation and several others
+               sit in more than one region. The line below says so. -->
+          <div style="margin-top:clamp(16px, 2.4vh, 24px)">
+            <a href="#index" data-hero-region="face" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>01 — Face</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">17</span></a>
+            <a href="#index" data-hero-region="hair" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>02 — Hair</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">06</span></a>
+            <a href="#index" data-hero-region="body" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>03 — Body</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">06</span></a>
+            <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45)">Several treat more than one region</div>
+          </div>
+        </aside>
       </div>
 
       <!-- Hero data strip — hairline-seam, sits on the fold edge -->
-      <div data-reveal="1" class="tpl-hero-stats" style="margin-top:72px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
-        <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;line-height:1;color:#ffffff">20</div>
-          <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Treatments</div>
+      <div data-reveal="1" class="tpl-hero-stats" style="margin-top:clamp(30px, 6.5vh, 84px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
+        <div style="background:#081359;padding:clamp(18px, 2.6vh, 28px) 26px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px, 3.6vh, 38px);line-height:1;color:#ffffff">20</div>
+          <div style="margin-top:8px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Treatments</div>
         </div>
-        <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;line-height:1;color:#ffffff">03</div>
-          <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Regions — face, hair, body</div>
+        <div style="background:#081359;padding:clamp(18px, 2.6vh, 28px) 26px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px, 3.6vh, 38px);line-height:1;color:#ffffff">03</div>
+          <div style="margin-top:8px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Regions — face, hair, body</div>
         </div>
-        <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;line-height:1;color:#ffffff">01</div>
-          <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Foundation — your own plasma</div>
+        <div style="background:#081359;padding:clamp(18px, 2.6vh, 28px) 26px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px, 3.6vh, 38px);line-height:1;color:#ffffff">01</div>
+          <div style="margin-top:8px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">Foundation — your own plasma</div>
         </div>
-        <div style="background:#081359;padding:28px 26px">
-          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:38px;line-height:1;color:#C7A470">W1</div>
-          <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">22 Seymour Street, Mayfair</div>
+        <div style="background:#081359;padding:clamp(18px, 2.6vh, 28px) 26px">
+          <div style="font-family:Jost,sans-serif;font-weight:200;font-size:clamp(30px, 3.6vh, 38px);line-height:1;color:#C7A470">W1</div>
+          <div style="margin-top:8px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,200,154,.85)">22 Seymour Street, Mayfair</div>
         </div>
       </div>
     </div>
@@ -909,6 +935,10 @@ class Component extends DCLogic {
       // allowed to be transparent — see the dark branch below.
       const heroEl = document.querySelector('.tpl-sec--hero');
       const inHero = heroEl ? heroEl.getBoundingClientRect().bottom > navHeight : false;
+      // ...and has the page actually moved? The bar is only allowed to disappear
+      // at rest on first paint; the moment the visitor scrolls, it has to become
+      // a bar again (see the dark branch below).
+      const atRest = (window.scrollY || window.pageYOffset || 0) <= 4;
 
       const logo = this.nav.querySelector('[data-logo]');
       const logoTpl = logo ? logo.querySelector('span:first-child') : null;
@@ -920,15 +950,16 @@ class Component extends DCLogic {
 
       if (overDark) {
         this.nav.classList.remove('is-light');
-        // The header may only be transparent while it is floating over the hero.
-        // The old test was "is ANY dark band under the nav", with no reference to
-        // scroll position, so the bar stayed at alpha 0 with no backdrop filter
-        // over every mid-page navy section — the results timeline, the
-        // consultation form. The page scrolled straight through the header and
-        // the nav labels collided with whatever was behind them, which is the
-        // overlap the client photographed. Past the hero the bar takes a solid
-        // navy fill so content passes behind it, not through it.
-        const floating = inHero;
+        // The header may only be transparent while it is sitting, unscrolled, at
+        // the very top of the hero. The first version of this test was "is ANY
+        // dark band under the nav", with no reference to scroll position, so the
+        // bar stayed at alpha 0 over every mid-page navy section. Scoping it to
+        // the hero fixed the mid-page bands but not the hero itself: the whole
+        // hero is one navy field, so scrolling through it left the bar invisible
+        // and the nav labels ran straight into the headline. Both are the same
+        // bug — a transparent bar over moving content — so the transparency is
+        // now tied to being at rest, not to which section is underneath.
+        const floating = inHero && atRest;
         this.nav.style.background = floating ? 'rgba(8,19,89,0)' : 'rgba(8,19,89,.94)';
         this.nav.style.backdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
         this.nav.style.webkitBackdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
@@ -992,6 +1023,13 @@ class Component extends DCLogic {
       if (countEl) countEl.textContent = String(shown).padStart(2, '0') + ' of 20';
     };
     pills.forEach(p => p.addEventListener('click', () => applyFilter(p.getAttribute('data-filter'))));
+
+    // Hero region rail → the same filter. The href is #index, so the anchor
+    // handler registered above does the scrolling; this only sets the filter,
+    // and must not preventDefault or the scroll is lost.
+    document.querySelectorAll('[data-hero-region]').forEach(a => {
+      a.addEventListener('click', () => applyFilter(a.getAttribute('data-hero-region')));
+    });
 
     // Mobile drawer
     const drawer = document.querySelector('.tpl-mobile-drawer');
