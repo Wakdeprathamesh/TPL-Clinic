@@ -1496,3 +1496,99 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   section p,
   .tpl-faq-a p { font-size: 16px !important; line-height: 1.75 !important; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SOFWAVE'S COMPARISON TABLE — stacked, not scrolled
+   ══════════════════════════════════════════════════════════════════════════
+   Three separate faults on a phone, all visible at once:
+
+   1. The sticky header row was parked at top:140px — "the 92px fixed header
+      plus the 48px anchor rail". Those are DESKTOP numbers. On a phone the
+      header is 69px and the rail is 87px, so the row sat 140px down inside the
+      table with live data showing above it.
+
+   2. Sticky could not have worked here anyway, which is the same trap the
+      desktop comment documents. `overflow-x: auto` forces the other axis to
+      compute to `auto` too, so the wrapper becomes a scroll container and a
+      sticky child sticks to THAT — a box exactly as tall as the table. The
+      desktop fix was to scope the horizontal scroll to below 1024px, which is
+      precisely where phones live, so the bug was moved onto phones rather than
+      removed. It is unfixable in place: you cannot have overflow-x: auto and
+      overflow-y: visible on the same element.
+
+   3. The mobile stylesheet gave this scroller scroll-snap-type: x mandatory
+      with scroll-snap-align: center on its child — a rule written for the
+      before/after image pair. With one 682px child in a 390px viewport,
+      mandatory centre-snap makes the left edge unreachable: the first column,
+      the one naming the technology, could not be scrolled to.
+
+   So the table stops being a table. Four technologies by three attributes
+   becomes four stacked cards with the column headings repeated inline as
+   labels, which is the standard responsive-table pattern and removes the
+   horizontal axis — and with it all three faults — rather than tuning it.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .tpl-compare-scroll {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    scroll-snap-type: none !important;
+  }
+  .tpl-measure-compare .tpl-compare { min-width: 0 !important; }
+  .tpl-compare {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    background: transparent !important;
+    border: 1px solid rgba(36, 36, 36, .12) !important;
+  }
+  /* The header row's labels are repeated inside each card below, so the row
+     itself is redundant — and it was the broken sticky element. */
+  .tpl-compare-h { display: none !important; }
+
+  /* Cell 1 of each row is the technology name. It carries its own type from
+     the markup, so this only sets the card's spacing and its divider. */
+  .tpl-compare > div:nth-child(4n+1):not(.tpl-compare-h) {
+    padding: 20px 18px 14px !important;
+    position: static !important;
+  }
+  .tpl-compare > div:nth-child(4n+1):not(.tpl-compare-h):not(:nth-child(5)) {
+    border-top: 1px solid rgba(36, 36, 36, .12);
+  }
+  /* Cells 2-4 become labelled rows: heading on the left, value on the right. */
+  .tpl-compare > div:nth-child(4n+2):not(.tpl-compare-h),
+  .tpl-compare > div:nth-child(4n+3):not(.tpl-compare-h),
+  .tpl-compare > div:nth-child(4n+4):not(.tpl-compare-h) {
+    display: flex !important;
+    position: static !important;
+    align-items: baseline;
+    gap: 16px;
+    text-align: left !important;
+    padding: 9px 18px !important;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+  .tpl-compare > div:nth-child(4n+4):not(.tpl-compare-h) { padding-bottom: 22px !important; }
+  .tpl-compare > div:nth-child(4n+2):not(.tpl-compare-h)::before { content: 'Effect'; }
+  .tpl-compare > div:nth-child(4n+3):not(.tpl-compare-h)::before { content: 'Downtime'; }
+  .tpl-compare > div:nth-child(4n+4):not(.tpl-compare-h)::before { content: 'Discomfort'; }
+  .tpl-compare > div:nth-child(4n+2):not(.tpl-compare-h)::before,
+  .tpl-compare > div:nth-child(4n+3):not(.tpl-compare-h)::before,
+  .tpl-compare > div:nth-child(4n+4):not(.tpl-compare-h)::before {
+    flex: 0 0 88px;
+    font-family: Jost, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    /* #6E6E6E, not the desktop header's #8A8A8A: at 11px the label has to
+       clear AA against white, and 8A does not (3.2:1 against 5.1:1). */
+    color: #6E6E6E;
+  }
+  /* The highlighted row keeps its navy, so its labels take the gold the rest
+     of that card already uses — 7.8:1 on navy. */
+  .tpl-compare > div[style*="rgb(8, 19, 89)"]::before {
+    color: rgba(232, 200, 154, .9) !important;
+  }
+}
