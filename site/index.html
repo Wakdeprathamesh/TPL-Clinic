@@ -9,8 +9,8 @@
 <meta property="og:title" content="TPL Clinic Mayfair — The UK's First Platelet Rich Plasma Clinic">
 <meta property="og:description" content="Regenerative medicine combined with advanced technology. Twenty treatments, one combined protocol. Mayfair, London.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/hero-v6/hero-poster.webp">
-<link rel="preload" as="image" href="assets/hero-v6/hero-poster.webp" fetchpriority="high">
+<meta property="og:image" content="assets/hero-v7/hero-poster.webp">
+<link rel="preload" as="image" href="assets/hero-v7/hero-poster.webp" fetchpriority="high">
 <!-- ══ Runtime ══
      React, ReactDOM and Lenis are served from this repo rather than unpkg.
      They were render-blocking third-party requests on the critical path, and
@@ -35,11 +35,11 @@
     document.head.appendChild(l);
   }
 </script>
-<link rel="stylesheet" href="assets/css/hero-v6.css">
+<link rel="stylesheet" href="assets/css/hero-film.css">
 <link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
 <script src="assets/js/tpl-mobile.js" defer></script>
-<script src="assets/js/hero-v6.js" defer></script>
+<script src="assets/js/hero-film.js" defer></script>
 <style>
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -54,7 +54,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link rel="preload" as="image" href="assets/hero-v6-frames-webp/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-webp/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-webp/frame-0058.webp" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
   html { scroll-behavior: smooth; }
@@ -390,37 +391,41 @@
        on a phone. -->
   <!-- ══════════════════════════════════════════════════════════════════════
        HERO V6 — the scroll film
-       Markup only. The engine is assets/js/hero-v6.js, which waits for <x-dc>
+       Markup only. The engine is assets/js/hero-film.js, which waits for <x-dc>
        to leave the document before it binds: the render-once runtime discards
        the template copy, taking any listener bound to it along with it.
        Beat timings, copy zones and contrast all come from
-       hero-v6/hero-v6-spec.json. Height is set by the engine from its own
+       hero-v7/hero-v7-spec.json. Height is set by the engine from its own
        timeline, not here.
        ══════════════════════════════════════════════════════════════════════ -->
   <section class="hv6" id="top" data-hv6 data-hero="1" aria-label="TPL Clinic — the clinic on film">
     <div class="hv6-stage" data-hv6-stage>
       <canvas data-hv6-canvas aria-hidden="true"></canvas>
       <div data-hv6-copy></div>
-      <div class="hv6-frame" data-hv6-frame>FRAME 0001 / 500</div>
+      <div class="hv6-frame" data-hv6-frame>FRAME 0001 / 598</div>
       <div class="hv6-cue" data-hv6-cue><i></i>Scroll<i></i></div>
     </div>
   </section>
 
-  <!-- ══ THE FOUR BEATS — phones only ══
-       The desktop hero is a 460vh scroll stage: 499 frames of film that walk
-       the clinic in its own order — the plasma diagnostics first, then Hair,
-       Body, and Face — with a line of copy floating over each. Phones are served a
-       looping video instead of the scrub, and the copy panels are driven by
-       the same scroll engine — which never runs on a phone. So the argument
-       the hero exists to make reached nobody on a phone at all.
+  <!-- ══ WHERE WE TREAT — phones only ══
+       The desktop hero is a 1066vh scroll stage: 598 frames of film that walk
+       the clinic end to end — reception, consultation, diagnostics, hair, body,
+       surgical, dispensary — with a line of copy over each. Phones are served a
+       looping video instead of the scrub, and the copy panels are driven by the
+       same scroll engine, which never runs on a phone. So the argument the hero
+       exists to make reached nobody on a phone at all.
 
-       This is that argument, rebuilt as something you swipe. The copy is the
-       hero's own, word for word; the stills are the same frames the film cuts
-       between. On a page this long it earns its place twice, because it is
-       also the fastest way into the section you came for. -->
+       This deck is the way in, rebuilt as something you swipe. Note what it is
+       NOT: it is not the film's beats. It used to claim to be — "the film, in
+       four beats", "the copy is the hero's own, word for word" — and that was
+       untrue on V6 and is untrue on V7. The film's beats are the seven above;
+       this deck is the four treatment areas, which is a different cut of the
+       same clinic and the faster route to the section you actually came for.
+       Face is here and is deliberately absent from the film: there is no face
+       footage in any master we have been given. -->
   <section class="tpl-mstory" data-dark="1" aria-label="Where we treat">
     <div class="tpl-mstory-head">
-      <span class="eyebrow">The film, in four beats</span>
+      <span class="eyebrow">Where we treat</span>
       <span class="hint">Swipe &rarr;</span>
     </div>
     <h2>Everything we do begins in one of four places.</h2>
@@ -958,7 +963,7 @@ class Component extends DCLogic {
   state = { firstName:"", lastName:"", email:"", phone:"", area:"Face — skin & anti-ageing", message:"", consent:false, submitted:false, mobileMenuOpen:false, megaMenuOpen:false };
 
   componentDidMount() {
-    /* The hero is Hero V6 and it runs itself — assets/js/hero-v6.js owns the
+    /* The hero is Hero V7 and it runs itself — assets/js/hero-film.js owns the
        canvas, the frames, the copy, the beat timeline and its own phone and
        reduced-motion fallbacks. Everything that used to live here (frame
        counts, cut lists, the scrim, the copy rail, the frame ramp) went with
@@ -1263,7 +1268,7 @@ class Component extends DCLogic {
   /* ── Header theme ─────────────────────────────────────────────────────────
      All that survives of the old hero engine's render loop. This was the top of
      renderFrame(p), which also drew the canvas, moved the hero copy and ran the
-     rail — all of which now belongs to assets/js/hero-v6.js. It is bound to
+     rail — all of which now belongs to assets/js/hero-film.js. It is bound to
      scroll directly rather than riding a frame loop it no longer needs. */
   syncNavTheme() {
     if (!this.nav || !this.hero) return;

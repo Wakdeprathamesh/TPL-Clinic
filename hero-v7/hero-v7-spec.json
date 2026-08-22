@@ -1,0 +1,237 @@
+{
+ "film": {
+  "frames": 598,
+  "fps": 14.181664,
+  "width": 1920,
+  "height": 1080,
+  "durationSec": 42.167125,
+  "sourceFps": 23.976024,
+  "sourceFrames": 1011,
+  "master": "Hero V7.mp4 (94MB, h264, yuv420p, bt709) \u2014 not in the repo, see .gitignore"
+ },
+ "relationshipToV6": {
+  "verdict": "Same shoot, re-cut longer. Not new footage.",
+  "evidence": "All seven beats present in the same order with the same shots, including the graphic surgical close-up that V6 already had. 42.167s vs 35.285s (+19.5%), 1011 vs 846 source frames.",
+  "consequence": "Every line of copy carried over unchanged. The work was re-extract, re-time, re-point \u2014 not re-write."
+ },
+ "frameBudget": {
+  "chosen": 598,
+  "why": "Holds V6's exact temporal density (14.18 fps vs 14.17) so the scrub feels identical. Client chose this over 550 and 500 when shown the payload cost.",
+  "measuredEncode": {
+   "tool": "cwebp -q 98 -sharp_yuv -m 6",
+   "totalMB": 93.4,
+   "avgKBPerFrame": 152.5,
+   "vsV6": {
+    "totalMB": 80.2,
+    "avgKBPerFrame": 164.2
+   },
+   "note": "V7 is 16% heavier in total but 7% LIGHTER per frame than V6. The early estimate of 105MB came from a 14-frame sample that over-weighted the two extreme close-ups (315KB and 497KB); the full run came in below it."
+  },
+  "rejected": [
+   {
+    "frames": 550,
+    "fps": 13.04,
+    "MB": 96.8
+   },
+   {
+    "frames": 500,
+    "fps": 11.86,
+    "MB": 88.0
+   }
+  ]
+ },
+ "cuts": [
+  {
+   "at": 395,
+   "kind": "hard cut"
+  },
+  {
+   "at": 424,
+   "kind": "cut cluster 421-424"
+  },
+  {
+   "at": 468,
+   "kind": "cut cluster 466-468"
+  },
+  {
+   "at": 516,
+   "kind": "hard cut"
+  },
+  {
+   "at": 704,
+   "kind": "cut cluster 701-704"
+  },
+  {
+   "at": 768,
+   "kind": "hard cut"
+  }
+ ],
+ "beats": [
+  {
+   "id": "title",
+   "type": "stop",
+   "freeze": 1,
+   "a": 1,
+   "b": 4,
+   "cell": "top-right",
+   "ink": 11.94,
+   "srcWindow": [
+    0,
+    6
+   ],
+   "shot": "Reception. Three arches, TPL roundel lit on the centre arch, two desk iMacs, two staff in black, a client arriving in cream."
+  },
+  {
+   "id": "consultation",
+   "type": "stop",
+   "freeze": 58,
+   "a": 50,
+   "b": 65,
+   "cell": "mid-left",
+   "ink": 13.19,
+   "srcWindow": [
+    85,
+    110
+   ],
+   "shot": "Consultation. Wide white void; female client seated, male clinician standing in a white coat with a clipboard."
+  },
+  {
+   "id": "diagnostics",
+   "type": "caption",
+   "a": 110,
+   "b": 139,
+   "cell": "top-left",
+   "ink": 13.38,
+   "srcWindow": [
+    186,
+    235
+   ],
+   "shot": "Diagnostics. Practitioner in black presents a scored analysis dashboard on a tablet to a seated male client; blood-tube rack on a stand behind.",
+   "behaviour": "Film keeps advancing; text fades in, holds, fades out. No freeze, no links.",
+   "motion": {
+    "footprintMean": 0.28,
+    "footprintMax": 0.7,
+    "wholeFrameMean": 2.64,
+    "wholeFrameMax": 5.71,
+    "ratio": 9.3,
+    "worstCRAcrossSpan": 13.38
+   },
+   "why": "Client's decision on V6, kept: unnumbered, comes and goes without stopping the film. Carries no links, because a link that fades while the film scrubs cannot be clicked reliably."
+  },
+  {
+   "id": "hair",
+   "type": "stop",
+   "freeze": 259,
+   "a": 255,
+   "b": 263,
+   "cell": "bot-right",
+   "ink": 10.69,
+   "srcWindow": [
+    431,
+    444
+   ],
+   "shot": "Hair, extreme close-up. Gloved hands placing an applicator and syringe into the scalp; practitioner's head left, client's head centre.",
+   "why": "The wide hair shots leave only ONE cell clearing AA. All 121 frames of the shot were swept in sliding 14-frame windows; 431-444 bottom-right was the lowest-variance window that clears (261-290 variance vs 1343 in the wides). It is also the stronger shot."
+  },
+  {
+   "id": "body",
+   "type": "stop",
+   "freeze": 325,
+   "a": 320,
+   "b": 330,
+   "cell": "mid-right",
+   "ink": 11.9,
+   "srcWindow": [
+    541,
+    558
+   ],
+   "shot": "Body. Client lying on a treatment table, practitioner applying a handheld device, console at frame right.",
+   "why": "Cell analysis said top-centre (luma 234, variance 1.4, 12.79:1). In the browser that measured 1.22:1, because the block is 432px tall in a 242px cell and its lower half sat over the practitioner. Right column measured 11.90 and was taken instead. The top-down body shot (out 357) was tested and rejected: best cell there is 4.84:1."
+  },
+  {
+   "id": "surgical",
+   "type": "stop",
+   "freeze": 396,
+   "a": 386,
+   "b": 405,
+   "cell": "top-left",
+   "ink": 12.61,
+   "srcWindow": [
+    652,
+    685
+   ],
+   "shot": "Theatre, wide. Three staff in blue scrubs around a client on a table under a surgical light."
+  },
+  {
+   "id": "dispensary",
+   "type": "stop",
+   "freeze": 590,
+   "a": 583,
+   "b": 597,
+   "cell": "top-right",
+   "ink": 11.36,
+   "srcWindow": [
+    986,
+    1009
+   ],
+   "shot": "Dispensary. Product shelf, brand boards \u2014 SkinCeuticals, Korean Skincare, La Roche-Posay, CeraVe, Hair Care Products."
+  }
+ ],
+ "timeline": {
+  "totalScreens": 10.66,
+  "travelScreens": 4.06,
+  "beatScreens": 6.6,
+  "v6TotalScreens": 9.96,
+  "deltaPct": 7.0,
+  "note": "The 460vh figure that used to sit in index.html was V5's and had been stale through all of V6."
+ },
+ "method": {
+  "globalMotion": "mean abs luma diff between adjacent source frames, 480x270 greyscale, smoothed +/-2",
+  "cuts": "single-frame delta above max(25, p99)",
+  "plateaus": "runs of >=6 source frames under the 25th percentile of smoothed motion",
+  "copySpaceFirstPass": "3x3 grid at full resolution; per-cell mean luma, variance, 5th percentile, per-cell motion",
+  "copySpaceCorrected": "THE CELL IS THE WRONG REGION. Blocks overflow their cells (432px block, 242px cell), so cell statistics miss what is below. Final ink figures are the 5th-percentile contrast of the BLOCK'S OWN FOOTPRINT sampled off the painted canvas via getImageData, which is also the only measurement that accounts for the cover-crop (the canvas shows the middle 1728 of 1920 at 1440x900).",
+  "contrast": "WCAG relative luminance, dark ink #242424, worst case = darkest end of the background distribution"
+ },
+ "verification": {
+  "encodeFidelity": {
+   "framesChecked": [
+    1,
+    58,
+    120,
+    259,
+    325,
+    396,
+    590
+   ],
+   "psnrRange": [
+    46.63,
+    50.56
+   ],
+   "meanAbsErrRange": [
+    0.386,
+    0.72
+   ],
+   "lumaDriftRange": [
+    0.043,
+    0.266
+   ],
+   "note": "V6 shipped a gamma bug once: ffmpeg's PNG muxer stamps cICP/cHRM/gAMA and decoders applied a shift worth 7.2/255. V7 writes PNG via Pillow, which emits no colour chunks, so the bug cannot occur. Drift here is under 0.27/255 \u2014 rounding noise, not a shift."
+  },
+  "inBrowser": {
+   "allBeatsClearAA": true,
+   "worstP5": 10.69,
+   "worstP1": 9.01,
+   "scrimRequired": 0.0,
+   "silentFirstFrame": true,
+   "consoleErrors": 0,
+   "failedRequests": 0
+  }
+ },
+ "notes": [
+  "No scrim. Every beat clears WCAG AA for #242424 with ZERO darkening; the worst is hair at 10.69:1 (5th pct) / 9.01:1 (1st pct).",
+  "Resolution ceiling unchanged from V6: the master is 1920x1080 and the stage rasterises larger on a DPR-2 display, so the engine caps its backing store rather than upscaling. A 4K master is still the only real fix.",
+  "Face has no footage in any master supplied. It is a nav pillar and a card in the phone deck, not a film beat.",
+  "'Hero V7 (1).mp4' in the repo root is byte-identical to 'Hero V7.mp4' (MD5 21fe86116de8dfa8b4a99f7cf3baf29c) \u2014 94MB of duplicate."
+ ]
+}
