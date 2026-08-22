@@ -94,7 +94,16 @@
     var apply = function () {
       if (!isHandheld()) { nav.removeAttribute('data-theme'); return; }
       var probe = 46; // a point just below the middle of the bar
-      var bands = document.querySelectorAll('[data-dark], [data-hero="1"]');
+      /* [data-dark] only. This list used to include [data-hero="1"], which was
+         true when the homepage hero was navy — V5. The hero is now a white
+         film, so counting it as a dark band stamped data-theme="dark" and put a
+         navy bar with white labels over a white picture on phones, while the
+         desktop bar was frosted white. The two read as different sites.
+
+         Every genuinely dark hero on the other pages already carries
+         data-dark="1" on the same element, so dropping [data-hero="1"] changes
+         nothing for them — it only stops the white hero being called dark. */
+      var bands = document.querySelectorAll('[data-dark]');
       var overDark = Array.prototype.some.call(bands, function (el) {
         var r = el.getBoundingClientRect();
         return r.top <= probe && r.bottom >= probe;

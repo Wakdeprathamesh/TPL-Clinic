@@ -38,7 +38,7 @@
 
   var TOTAL_FRAMES = 598;
   var FRAME_URL = function (n) {
-    return 'assets/hero-v7-frames-webp/frame-' + String(n).padStart(4, '0') + '.webp';
+    return 'assets/hero-v7-frames-nl/frame-' + String(n).padStart(4, '0') + '.webp';
   };
 
   /* ── Scroll budget ─────────────────────────────────────────────────────────

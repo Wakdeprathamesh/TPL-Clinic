@@ -54,8 +54,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link rel="preload" as="image" href="assets/hero-v7-frames-webp/frame-0001.webp" />
-<link rel="preload" as="image" href="assets/hero-v7-frames-webp/frame-0058.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0058.webp" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
   html { scroll-behavior: smooth; }
@@ -176,46 +176,6 @@
   .tpl-logo-light { display: none; }
   header.is-light .tpl-logo-dark { display: none; }
   header.is-light .tpl-logo-light { display: block; }
-
-  /* ── The bar's veil over the hero ──────────────────────────────────────────
-     The header no longer auto-hides, so it sits on the film for all 10.66
-     screens of it. That was measured before it was accepted. Across all 598
-     frames, on the three strips the bar actually occupies (logo, links,
-     WhatsApp): dark #242424 labels clear WCAG AA on 482 frames, white labels on
-     NONE — the clinic is too bright for white — and on 116 frames, 19.4%, every
-     one of them an extreme close-up where a dark head or a blue gown fills the
-     top of the frame, NEITHER colour works. Flipping colour per frame cannot
-     rescue that: the failing band is light behind the logo and dark behind the
-     links at the same instant.
-
-     So the glyphs are given a floor to stand on. The minimum white alpha that
-     clears AA on every one of the 598 frames is 0.532, computed against the
-     darkest 5th-percentile pixel under each strip; this gradient holds about
-     0.68 through the glyph band (y 25-54) for margin, then falls away to
-     nothing by 150px.
-
-     The falloff is the whole point. There is no hard bar edge, so the film
-     still runs to the top of the screen — it is veiled where the type is and
-     open everywhere else. A frosted bar would be provably AA and would also put
-     a lid on the picture, which is the thing this hero was built to avoid.
-
-     Only over the hero. Past it the bar is properly frosted, and over the navy
-     consultation band the dark theme takes over and the veil comes off. */
-  header[data-nav]::before {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; top: 0;
-    height: 150px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .35s ease;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,.74) 0%,
-      rgba(255,255,255,.68) 40%,
-      rgba(255,255,255,.34) 68%,
-      rgba(255,255,255,0) 100%);
-  }
-  header[data-nav].is-veiled::before { opacity: 1; }
 
   .tpl-mobile-drawer {
     position: fixed;
@@ -1305,32 +1265,22 @@ class Component extends DCLogic {
       const consultRect = this.consultSection ? this.consultSection.getBoundingClientRect() : null;
       const isOverConsultation = consultRect ? (consultRect.top <= navHeight && consultRect.bottom >= 0) : false;
 
-      /* Over the hero the bar is TRANSPARENT — the client's call, so the film
-         reads edge to edge with no chrome sitting on it.
+      /* The bar was transparent over the hero for a while, on the client's
+         call, so the film could read edge to edge. That is over: it is frosted
+         everywhere now, matching every other page.
 
-         The legibility problem that creates is real and was measured across all
-         500 frames, on the three strips the bar actually occupies (logo, links,
-         CTAs). Dark labels clear AA on 323 of 500. White labels clear it on
-         NONE — the clinic is too bright. And on 177 frames (35%) neither colour
-         works in all three strips at once, because the band is mixed: white
-         wall behind the logo, a dark head behind the links. So switching colour
-         per frame does not rescue it either; that was tried first.
+         Keeping the measurement, because it is the reason not to try it again.
+         Across all 598 frames, on the three strips the bar occupies (logo,
+         links, WhatsApp): dark #242424 labels clear WCAG AA on 482 frames,
+         white labels on NONE — the clinic is too bright for white — and on 116
+         frames, 19.4%, NEITHER colour works. Every one of those is an extreme
+         close-up where a dark head or a blue gown fills the top of the picture.
+         Switching colour per frame cannot rescue it either: the failing band is
+         light behind the logo and dark behind the links at the same instant.
 
-         Two things make a transparent bar work anyway:
-
-         1. The bar auto-hides on the way down, so for most of a ten-screen
-            hero it is not on the film at all — see the hide logic below.
-         2. When it is showing, the labels carry a soft WHITE halo. It is
-            self-masking: invisible against a white wall, and on the frames
-            where something dark passes under the bar it lifts the glyphs off
-            it. That is the technique cinematic sites use for type over film.
-
-         Worth knowing: WCAG gives no formal credit for a text shadow. If the
-         nav has to be provably AA on every frame, the frosted bar is the only
-         option — this is legible, but it is legible by craft, not by the
-         contrast formula. */
-      const heroRect = this.hero.getBoundingClientRect();
-      const isOverHero = heroRect.bottom > navHeight;
+         A transparent bar over this film can only be made readable by craft —
+         a halo, a veil — and neither earns any credit under the contrast
+         formula. The frosted bar is provably AA and needs no argument. */
 
       const isDarkTheme = isOverConsultation;
 
@@ -1359,7 +1309,6 @@ class Component extends DCLogic {
         if (logoTpl) logoTpl.style.color = '#ffffff';
         if (logoClinic) logoClinic.style.color = '#C7A470';
 
-        this.nav.classList.remove('is-veiled');   // navy band: the dark theme carries it
         navLinks.forEach(link => { link.style.color = '#ffffff'; });
         if (whatsappLink) whatsappLink.style.color = 'rgba(255,255,255,.9)';
         if (toggleBtn) toggleBtn.style.color = '#ffffff';
@@ -1371,27 +1320,33 @@ class Component extends DCLogic {
         }
       } else {
         this.nav.classList.add('is-light');
-        /* Transparent on the film, frosted once the film is behind you. Past the
-           hero the page is white sections and a frosted bar is the right read;
-           on the film it would be chrome laid over the picture. */
-        this.nav.classList.toggle('is-veiled', isOverHero);
-        this.nav.style.background = isOverHero ? 'transparent' : 'rgba(255, 255, 255, 0.88)';
-        this.nav.style.backdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
-        this.nav.style.webkitBackdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
-        this.nav.style.borderBottom = isOverHero ? '1px solid transparent' : '1px solid rgba(184, 146, 93, 0.3)';
-        this.nav.style.boxShadow = isOverHero ? 'none' : '0 10px 30px rgba(8, 19, 89, 0.08)';
-        this.nav.style.padding = isOverHero ? '22px 40px' : '16px 40px';
+        /* Frosted, always — including over the film. This is the same treatment
+           about.html, services.html, sofwave.html and prp.html use, so the bar
+           now reads identically on every page of the site.
+
+           It replaces a transparent-over-the-hero bar that needed two tricks to
+           stay readable: a white halo on the labels and a gradient veil behind
+           them. Both are gone, and that is a straight win rather than a
+           compromise. The transparent bar was legible by craft — measured
+           against the composited result, but with no formal WCAG standing,
+           because neither a text shadow nor a gradient counts toward contrast.
+           A frosted bar is provably AA on every frame of the film, and it does
+           not have to be argued for. */
+        this.nav.style.background = 'rgba(255, 255, 255, 0.88)';
+        this.nav.style.backdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.borderBottom = '1px solid rgba(184, 146, 93, 0.3)';
+        this.nav.style.boxShadow = '0 10px 30px rgba(8, 19, 89, 0.08)';
+        this.nav.style.padding = '16px 40px';
 
         if (logoTpl) logoTpl.style.color = '#242424';
         if (logoClinic) logoClinic.style.color = '#B8925D';
 
-        /* Self-masking halo. On a white wall a white glow is invisible; on the
-           frames where something dark passes under the bar it lifts the glyphs
-           off it. Only applied while the bar is transparent — over a frosted
-           bar it would just soften the type. */
-        const halo = isOverHero
-          ? '0 1px 2px rgba(255,255,255,.95), 0 0 14px rgba(255,255,255,.85)'
-          : 'none';
+        /* No halo any more. It existed to lift dark glyphs off dark frames while
+           the bar was transparent; over a frosted bar it would only soften the
+           type. The markup carries an inline dark text-shadow from the original
+           navy-hero design, so this has to be set rather than left alone. */
+        const halo = 'none';
         navLinks.forEach(link => { link.style.color = '#242424'; link.style.textShadow = halo; });
         if (whatsappLink) { whatsappLink.style.color = '#242424'; whatsappLink.style.textShadow = halo; }
         if (toggleBtn) { toggleBtn.style.color = '#242424'; toggleBtn.style.textShadow = halo; }
