@@ -177,6 +177,32 @@ textarea:focus-visible,
   header[data-nav="1"][data-theme="dark"] a[data-logo="1"] span:last-child { color: var(--tpl-gold-light) !important; }
 }
 
+/* The desktop nav — including the WhatsApp link that sits beside it — is hidden
+   below 1024px by each page's own `.tpl-desktop-nav { display: none }`. That rule
+   is a bare class, so on any page whose `.tpl-cta-wa { display: inline-flex
+   !important }` happens to be declared after it the two tie on specificity and
+   the later one wins: prp.html was the one page where the header kept a WhatsApp
+   label, crowding the hamburger. Qualifying by the header element outranks both,
+   so source order stops deciding it. */
+@media (max-width: 1023px) {
+  header[data-nav="1"] .tpl-desktop-nav { display: none !important; }
+
+  /* Tablets keep the booking pill, and its desktop padding builds a 38px
+     target — a finger short. Sized here rather than in §8 with the other touch
+     targets, and deliberately ABOVE the phone rule below: the two selectors are
+     identical, so whichever is written last wins, and the phone has to be the
+     one that gets the final say. Written the other way round — which is how
+     this first went in — the tablet sizing switched the pill back on at 390px
+     and it fought the hamburger for the corner again. */
+  header[data-nav="1"] [data-btn="1"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+}
+
 @media (max-width: 767px) {
   /* The header CTA moves to the action bar. Tablets keep it — they have room. */
   header[data-nav="1"] [data-btn="1"] { display: none !important; }
@@ -359,9 +385,11 @@ textarea:focus-visible,
     margin-top: 6px;
     font-family: Jost, sans-serif;
     font-weight: 500;
-    font-size: 10.5px;
-    line-height: 1.9;
-    letter-spacing: .16em;
+    /* The address and the phone number are content, not chrome — this is where
+       a visitor reads where the clinic actually is. */
+    font-size: 11.5px;
+    line-height: 1.85;
+    letter-spacing: .12em;
     color: rgba(255, 255, 255, .55);
     text-align: center;
   }
@@ -419,19 +447,24 @@ body.tpl-locked {
     gap: 4px;
     min-height: 58px;
     font-family: Jost, sans-serif;
-    font-size: 9.5px;
-    letter-spacing: .2em;
+    /* This bar is the site's primary navigation on a phone and is on screen the
+       whole way down a 12,000px page, so it is the last place to be precious
+       about label size. 9.5px at .2em was below the 11px floor the rest of this
+       file holds to; the tracking gives back the width the larger size costs,
+       and "WhatsApp" — the longest label — still sits on one line at 320px. */
+    font-size: 10.5px;
+    letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--tpl-ink) !important;
     text-decoration: none;
     border-right: 1px solid rgba(36, 36, 36, .1);
   }
-  .tpl-actionbar a svg { width: 17px; height: 17px; display: block; }
+  .tpl-actionbar a svg { width: 18px; height: 18px; display: block; }
   .tpl-actionbar a:last-child {
     background: var(--tpl-navy);
     color: #ffffff !important;
     border-right: 0;
-    letter-spacing: .22em;
+    letter-spacing: .16em;
   }
 
   /* Nothing at the foot of the page may sit under the bar. */
@@ -678,6 +711,16 @@ body.tpl-locked {
   }
   textarea { min-height: 118px !important; }
 
+  /* Field labels. Set at 10px to sit quietly above a field on a desktop form —
+     but on a phone the label is the only thing distinguishing one identical
+     grey box from the next, and it is being read at arm's length by someone who
+     has already decided to hand over their phone number. It comes up to the
+     11px floor and gives back the width in tracking. */
+  .tpl-m-form label > span {
+    font-size: 11.5px !important;
+    letter-spacing: .16em !important;
+  }
+
   input[type="checkbox"] {
     width: 22px !important;
     height: 22px !important;
@@ -706,8 +749,20 @@ body.tpl-locked {
   footer a {
     display: inline-flex;
     align-items: center;
-    min-height: 40px;
+    min-height: 44px;
   }
+
+  /* The services filter pills. The phone rule that used to carry this height
+     lives in the ≤767 scroller block, so at 768–1023 — where the row is still
+     a wrapped flex line but the pointer is already a finger — the pills stayed
+     at their 36px desktop height. Set once, for the whole touch range. */
+  .tpl-filter-row button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px !important;
+  }
+
   /* Scoped to page content on purpose. Unscoped, this caught the tel: link in
      the action bar and replaced its flex centring with inline-block, which
      pushed the Call icon off the left edge of the bar. */
@@ -716,7 +771,7 @@ body.tpl-locked {
   footer a[href^="tel:"],
   footer a[href^="mailto:"] {
     display: inline-block;
-    padding: 11px 0;
+    padding: 13px 0;
   }
   section a[style*="text-transform:uppercase"],
   section a[style*="text-transform: uppercase"] {
@@ -769,8 +824,10 @@ body.tpl-locked {
     padding: 13px 14px !important;
     margin-right: 4px;
     scroll-snap-align: center;
-    font-size: 10px !important;
-    letter-spacing: .18em !important;
+    /* The rail is a scroller, so a larger chip costs scroll distance, not
+       layout — cheap in exchange for a label that can be read at arm's length. */
+    font-size: 11px !important;
+    letter-spacing: .14em !important;
     border-bottom: 0 !important;
     border: 1px solid rgba(36, 36, 36, .14) !important;
     border-radius: 999px;
@@ -825,8 +882,8 @@ body.tpl-locked {
   .tpl-mstory-head .hint {
     font-family: Jost, sans-serif;
     font-weight: 500;
-    font-size: 10px;
-    letter-spacing: .2em;
+    font-size: 11px;
+    letter-spacing: .16em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, .45);
   }
@@ -916,17 +973,17 @@ body.tpl-locked {
     padding-top: 14px;
     border-top: 1px solid rgba(255, 255, 255, .14);
     font-family: Jost, sans-serif;
-    font-size: 10px;
-    letter-spacing: .18em;
+    font-size: 11px;
+    letter-spacing: .14em;
     text-transform: uppercase;
-    line-height: 1.9;
+    line-height: 1.85;
     color: #E8C89A;
   }
   .tpl-mstory-body .go {
     margin-top: 16px;
     font-family: Jost, sans-serif;
-    font-size: 10px;
-    letter-spacing: .24em;
+    font-size: 11px;
+    letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--tpl-gold-light);
   }
@@ -1072,7 +1129,6 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   .tpl-filter-row button {
     flex: none !important;
     white-space: nowrap;
-    min-height: 44px !important;
     scroll-snap-align: start;
   }
 
@@ -1215,8 +1271,8 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
     border: 1px solid rgba(184, 146, 93, .7);
     color: #ffffff;
     font-family: Jost, sans-serif;
-    font-size: 10px;
-    letter-spacing: .24em;
+    font-size: 11px;
+    letter-spacing: .2em;
     text-transform: uppercase;
     cursor: pointer;
   }
@@ -1289,212 +1345,163 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
      this file was holding them at 64px, below the 74px they started at. */
   .tpl-card-icon { width: 96px !important; height: 96px !important; }
 
+  /* about.html gives these inner blocks `width: 100%` so that centring has a
+     width to bite on. Their padding is authored inline, and the page has no
+     global border-box, so 100% + 30px a side put every team bio and every
+     accreditation caption 60px past the right edge of its own card — the text
+     ran under the card border and off the screen. The width is what the
+     centring needs; border-box is what makes it true. */
+  .tpl-team-card > div,
+  .tpl-accred > div > div { box-sizing: border-box !important; }
+
   /* WhatsApp CTAs keep the mark and label on one line at any width. */
   .tpl-cta-wa { display: inline-flex !important; align-items: center; gap: 9px; }
   .tpl-wa-mark { flex: none; }
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   THE PORTED V2 SECTIONS — collapsing them below 1024px
-   ══════════════════════════════════════════════════════════════════════════
-   The homepage's below-hero sections came from the V2 design as desktop grids
-   with grid-template-columns set INLINE and no class on any of them. Inline
-   values cannot be reached without !important, and with no class there was
-   nothing to aim at either, so none of them collapsed: two-column splits stayed
-   two columns, the three- and four-up rows stayed three and four across, and
-   the copy was clipped mid-word — "DIAG", "COM", "SUST", "Separat", "Reintroc".
 
-   These rules are keyed on WIDTH ALONE. The first attempt prefixed every one of
-   them with html[data-tpl-mobile="1"], which is set by index.html — and set
-   only at (max-width: 767px), and only once JavaScript has run. So the rules
-   were dead on every tablet and every narrow desktop window between 768 and
-   1023, and dead anywhere the script had not executed yet. A layout that
-   collapses by width should not depend on a script to tell it the width.
-   ══════════════════════════════════════════════════════════════════════════ */
+/* ══ 16. The homepage's editorial bands ════════════════════════════════════
+   Everything below the hero on index.html — Philosophy, the three protocol
+   bands, the PRP method, the Technology index and the Clinic card — was
+   rebuilt on the V2 layout after this file was written, and came back as
+   inline two-column grids with no collapse class on them. On a 390px screen
+   that read as a 150px column of text broken three words to the line, beside
+   a 90px thumbnail, with the headings running off the right edge; at 768px
+   the three Diagnose/Combine/Sustain cards were clipped mid-word.
+
+   The classes below finish that job. Every one of them is declared inside a
+   max-width query and has no desktop counterpart anywhere, so adding them to
+   the markup cannot move a pixel above 1024px — which is the whole point,
+   the desktop layout being signed off.
+
+   Naming: .tpl-m-* is the shared vocabulary from §6, extended here with the
+   two shapes that were missing (a two-up grid, and a card). .tpl-msec and
+   .tpl-mrow carry vertical rhythm for bands that hold their padding inline
+   and so cannot use .tpl-sec, whose desktop values would rewrite theirs. */
+
 @media (max-width: 1023px) {
-  /* One column for the splits, the card rows, the steps and the index. */
-  .tpl-v2-split,
-  .tpl-v2-cards,
-  .tpl-v2-steps,
-  .tpl-v2-index {
-    grid-template-columns: minmax(0, 1fr) !important;
+  /* Two-column grids the shared .tpl-m-split does not fit — the technology
+     index is a pair of lists, not an editorial split, so it collapses without
+     inheriting the split's 40px gap. */
+  .tpl-m-2 { grid-template-columns: minmax(0, 1fr) !important; }
+
+  /* Bands carrying 110–130px of vertical padding inline. Halved here; the
+     two modifiers exist because #clinic opens flush against the band above it
+     and #face..#body close flush against the one below, and collapsing an edge
+     that was deliberately zero would open a seam the desktop layout has not
+     got. */
+  .tpl-msec { padding-top: 84px !important; padding-bottom: 84px !important; }
+  .tpl-msec--head { padding-top: 84px !important; }
+  .tpl-msec--foot { padding-bottom: 84px !important; }
+
+  /* The protocol bands hold their rhythm on an inner row (padding:88px 0),
+     because the rule above them is a border on the wrapper. */
+  .tpl-mrow { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+  /* Cards whose desktop padding is set for a 420px column. */
+  .tpl-m-card { padding: 32px 24px !important; }
+
+  /* A lede sized to a 400px desktop column. Once the split has collapsed the
+     column is the screen, and the old cap left the line breaking short of the
+     measure while the film beneath it ran the full width. */
+  .tpl-m-lede { max-width: 46ch !important; }
+
+  /* Ambient film in a collapsed column. At 768px, full width and 4:3 is most
+     of a screen given to a loop that is atmosphere, not argument — so it is
+     held to the measure of the text it sits under. Below ~560px the cap is
+     wider than the screen and the film is full width again, which is right:
+     on a phone it is the only thing on the line. */
+  .tpl-m-media { max-width: 560px !important; }
+}
+
+@media (max-width: 767px) {
+  .tpl-msec { padding-top: 62px !important; padding-bottom: 62px !important; }
+  .tpl-msec--head { padding-top: 62px !important; }
+  .tpl-msec--foot { padding-bottom: 62px !important; }
+  .tpl-mrow { padding-top: 52px !important; padding-bottom: 52px !important; }
+  .tpl-m-card { padding: 28px 22px !important; }
+
+  /* The card's field labels — Address, Telephone, Email — are set at 10px to
+     sit quietly under a 42px heading on a desktop. On a phone they are the
+     only thing telling a reader which line is the phone number, so they come
+     up to the 11px floor the rest of this file holds to. Both spellings, per
+     the note in §7: the runtime re-serialises every style attribute. */
+  .tpl-m-card [style*="font-size:10px"],
+  .tpl-m-card [style*="font-size: 10px"] {
+    font-size: 11px !important;
+    letter-spacing: .2em !important;
   }
-  .tpl-v2-split { gap: 28px !important; }
-  .tpl-v2-cards,
-  .tpl-v2-steps { gap: 16px !important; }
-  .tpl-v2-index { gap: 0 !important; }
 
-  /* Paired stills stay two-up: at 375px that is still ~155px each, which reads
-     as a composed pair rather than two stamps. The decorative 40px stagger on
-     the second one comes off — at this width it reads as a mistake. */
-  .tpl-v2-media { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
-  .tpl-v2-media > * { margin-top: 0 !important; }
-
-  /* Vertical rhythm has to be set per section, not in one rule. These sections
-     split it two ways: #philosophy, #prp and #technology carry 120-130px on the
-     section itself, while #face, #hair and #body carry 0 there and 88px on the
-     split instead. A blanket rule stacks on top of whichever one is in use —
-     the first attempt added 56px to #philosophy, which already had 130px, and
-     opened a 190px hole above the headline. */
-  #philosophy, #prp, #technology { padding-top: 60px !important; padding-bottom: 60px !important; }
-  #clinic { padding-bottom: 60px !important; }
-  #philosophy .tpl-v2-split,
-  #prp .tpl-v2-split,
-  #clinic .tpl-v2-split { padding-top: 0 !important; padding-bottom: 0 !important; }
-  #face .tpl-v2-split,
-  #hair .tpl-v2-split,
-  #body .tpl-v2-split { padding-top: 52px !important; padding-bottom: 52px !important; }
-
-  /* Side padding: the ported sections carry 48px from the desktop layout, the
-     rest of the phone layout is on 20px. */
-  #philosophy, #face, #hair, #body, #prp, #technology, #clinic {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+  /* An inline-block call to action at the foot of a card. On a phone it is the
+     only thing being asked of the reader in that card, so it gets the full
+     width and a thumb-sized target rather than sitting in the corner. */
+  .tpl-m-wide {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 54px;
+    box-sizing: border-box;
+    text-align: center;
   }
 
-  /* ── #philosophy, in the order it should actually be read ────────────────
-     The desktop layout is a two-column split: the left column holds the
-     PHILOSOPHY pill, the standfirst and the video, and the right column holds
-     the statement. Stacked as-is you get pill, standfirst, video, statement —
-     the video wedged between the standfirst and the thing it introduces.
+  /* — Technology index ————————————————————————————————————————
+     The desktop row is number · name · tag on one line, which at 350px leaves
+     the name about nine characters before the tag pushes it into a stack of
+     single words. The tag drops under the name instead, aligned to it, so the
+     number keeps its rail and the list stays scannable. */
+  .tpl-techrow {
+    display: grid !important;
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 7px;
+    align-items: baseline !important;
+    padding: 15px 0 !important;
+  }
+  .tpl-tech-n { grid-column: 1; grid-row: 1; min-width: 0 !important; }
+  .tpl-tech-name { grid-column: 2; grid-row: 1; font-size: 17px !important; }
+  .tpl-tech-tag { grid-column: 2; grid-row: 2; justify-self: start; }
 
-     display:contents dissolves the left column so its three children become
-     grid items in their own right, which is what makes them individually
-     orderable. Then: pill, standfirst, statement, video — and the three cards
-     follow, being a sibling of the split. */
-  #philosophy .tpl-v2-split > div:first-child { display: contents; }
-  #philosophy .tpl-v2-split > div:first-child > div:first-child { order: 1; }  /* pill */
-  #philosophy .tpl-v2-split > div:first-child > p              { order: 2; }  /* standfirst */
-  #philosophy .tpl-v2-split > div:last-child                   { order: 3; }  /* statement */
-  #philosophy .tpl-v2-split > div:first-child > div:last-child  { order: 4; }  /* video */
-  /* The statement is set to shrink on a phone; 32px was tuned for a column
-     half this wide. */
-  #philosophy .tpl-v2-split > div:last-child h2 { font-size: clamp(28px, 7.4vw, 40px) !important; }
-  /* These three were siblings inside one column and carried their own margins
-     for that. As grid items the 28px gap already spaces them, so the margins
-     double it. */
-  #philosophy .tpl-v2-split > div:first-child > p { margin-top: 0 !important; }
-  #philosophy .tpl-v2-split > div:first-child > div:last-child { margin-top: 4px !important; }
+  /* — Clinic card ——————————————————————————————————————————————
+     The portrait is 440px tall to balance a half-width info card beside it.
+     Stacked, that is most of a screen spent on one image before the address
+     it illustrates, so it comes down to a letterbox. */
+  .tpl-m-portrait { min-height: 0 !important; aspect-ratio: 4 / 3; }
+  .tpl-m-portrait > div[style*="padding:44px"],
+  .tpl-m-portrait > div[style*="padding: 44px"] { padding: 24px 20px !important; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   MOBILE UX PASS — tap targets, type size, and a phantom tab order
+   HERO V7 + SOFWAVE — the parts main's mobile pass could not have covered
    ══════════════════════════════════════════════════════════════════════════
-   Audited at 390x844 against the usual references: Apple's 44x44pt minimum
-   touch target, Material's 48dp, and the 16px floor for body copy that keeps
-   phone reading comfortable (and stops iOS zooming a focused field — already
-   satisfied here, every input was 16px).
-
-   Several things were already right and are left alone: the fixed action bar is
-   59px against 58px of body padding, so nothing hides behind it; the story deck
-   already has scroll-snap-type: x mandatory; the viewport meta carries
-   viewport-fit=cover without disabling pinch zoom; and a phone downloads the
-   fallback video rather than the 598 hero frames.
+   Everything above came from the mobile work already on main. The rules below
+   are the ones that arrived with Hero V7 and with the Sofwave audit, so they
+   had nothing to collide with. The duplicate half of this branch's own mobile
+   layer — a second set of collapse classes doing what .tpl-m-* already does —
+   was dropped rather than merged: two class systems for one job is worse than
+   either of them alone.
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
   /* ── The hero's copy overlay ────────────────────────────────────────────
-     A phone gets the fallback video and the scroll engine never starts, so
-     nothing ever positions this. It was left in the document at y=-4157 —
-     invisible, but still 13 focusable links. Tab through the page on a phone
-     keyboard, or run a screen reader over it, and you would walk 13 stops that
-     are not on screen. The mobile stylesheet already hid [data-hero-copy="1"],
-     which was V5's attribute; V6 renamed it to data-hv6-copy and this never
-     followed. */
+     V7 only. A phone gets the fallback video and the scroll engine never
+     starts, so nothing positions this: it sat at y=-4157, invisible, but still
+     13 focusable links. Tab through the page or run a screen reader over it and
+     you walked 13 stops that were not on screen. The stylesheet already hid
+     [data-hero-copy="1"], which was V5's attribute; V6 renamed it data-hv6-copy
+     and the rule never followed. */
   [data-hv6-copy] { display: none !important; }
 
-  /* ── Footer links: 44px, and the whole row ───────────────────────────────
-     These were 40px tall — 4px under the minimum — and, worse, only as wide as
-     their text: "Hair" was a 26x40 target. In a stacked list the row is the
-     natural target, so they now fill it. */
-  footer a[href] {
-    min-height: 44px;
-    display: flex !important;
-    align-items: center;
-    width: 100%;
-  }
-
-  /* ── The consent checkbox ────────────────────────────────────────────────
-     22x22 is half the minimum, and it is the one control standing between a
-     filled-in form and a sent enquiry. */
-  .tpl-m-consent input[type="checkbox"] {
-    width: 24px !important;
-    height: 24px !important;
-    flex: 0 0 24px;
-  }
-  .tpl-m-consent {
-    min-height: 44px;
-    align-items: center;
-    gap: 12px !important;
-  }
-
-  /* ── Body copy to 16px ───────────────────────────────────────────────────
-     The ported sections set their copy at 14-15px, which is a desktop measure.
-     At 390px this is the text people actually read, so it goes to the 16px
-     floor with the line-height opened to match. */
-  .tpl-v2-split > div > p,
-  .tpl-v2-cards p,
-  .tpl-v2-steps p,
-  .tpl-mstory-body p {
-    font-size: 16px !important;
-    line-height: 1.75 !important;
-  }
-  /* 10px is below anything defensible, even for a letterspaced kit list. The
-     11px uppercase labels are left as they are: set in caps with wide tracking
-     they read larger than their nominal size, and they are the type device the
-     whole site is built on. */
-  .tpl-mstory-body .kit,
-  .tpl-mstory-body .go { font-size: 11.5px !important; }
-}
-
-@media (max-width: 1023px) {
-  /* The action bar is the conversion path on a phone — the clinic takes no
-     online bookings, so CALL / WHATSAPP / BOOK is the whole funnel. Its labels
-     were set at 9.5px, the smallest type anywhere on the site. */
-  .tpl-actionbar a span { font-size: 11px !important; letter-spacing: .14em !important; }
-
-  /* An 11px floor for the letterspaced labels. Caps with wide tracking read
-     larger than their nominal size, which is why 11px is fine and why the site
-     leans on it — but 9.5px and 10px are past the point where that holds. */
-  .tpl-mstory-head .eyebrow,
-  .tpl-mstory-head .hint,
-  .tpl-drawer-eyebrow,
-  .tpl-mobile-toggle span { font-size: 11px !important; }
-
-  /* Two real paragraphs still under the floor. */
-  .tpl-m-split > div > p,
-  footer > div > p { font-size: 16px !important; line-height: 1.7 !important; }
+  /* ── An 11px floor for the smallest labels ───────────────────────────────
+     Caps with wide tracking read larger than their nominal size, which is why
+     11px holds and why the site leans on it. 10 and 10.5px are past the point
+     where that argument works. .tpl-microlabel is stamped in the markup on the
+     elements that set those sizes inline; .sc-interp is the technology index's
+     tags. Scoped to the media query, so desktop keeps its approved sizes. */
+  .tpl-microlabel,
+  .sc-interp { font-size: 11px !important; }
 
   /* The drawer's home link was a 40px-wide target. */
   .tpl-drawer-head a { min-width: 44px; }
-}
-
-@media (max-width: 1023px) {
-  /* The last of the sub-11px type: section eyebrows, the technology index tags,
-     the address/telephone/email field labels and the video's Play label. All
-     uppercase and letterspaced, all 10-10.5px. The 11px floor applies here too
-     — tracking buys some apparent size, but not two whole points of it.
-     Scoped to the media query so the approved desktop sizes are untouched. */
-  .tpl-microlabel,
-  .sc-interp { font-size: 11px !important; }
-}
-
-@media (max-width: 1023px) {
-  /* 42px, and it is the primary call to action. */
-  header[data-nav="1"] [data-btn] { min-height: 44px; display: inline-flex; align-items: center; }
-}
-
-@media (max-width: 1023px) {
-  /* ── 16px body copy, every page ──────────────────────────────────────────
-     The site sets its running copy at 15 and 15.5px, which is a desktop
-     measure. 16px is the phone floor — comfortable reading, and the size below
-     which iOS zooms a focused field (already satisfied on the forms, but the
-     same reasoning applies to the prose people read for longer).
-
-     A flat value rather than a floor is safe here, and was checked rather than
-     assumed: across index, prp, about, sofwave and services, no section
-     paragraph is set above 16px at this width, so this can only ever raise. */
-  section p,
-  .tpl-faq-a p { font-size: 16px !important; line-height: 1.75 !important; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
