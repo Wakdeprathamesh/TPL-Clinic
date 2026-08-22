@@ -1293,3 +1293,95 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   .tpl-cta-wa { display: inline-flex !important; align-items: center; gap: 9px; }
   .tpl-wa-mark { flex: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THE PORTED V2 SECTIONS — collapsing them for phones
+   ══════════════════════════════════════════════════════════════════════════
+   The homepage's below-hero sections were ported from the V2 design, and they
+   arrived as desktop grids with grid-template-columns set INLINE and no class
+   on any of them. Inline styles cannot be reached by a stylesheet without
+   !important, and with no class there was nothing to aim at either, so none of
+   them ever collapsed: on a phone the two-column splits stayed two columns
+   about 150px wide, the three- and four-up card rows stayed three and four
+   across, and the copy inside them was clipped mid-word — "DIAG", "COM",
+   "SUST", "Separat", "Reintroc".
+
+   It is worth being precise about why this was missed. The check that was run
+   was "does the document scroll horizontally" and "does any section collapse
+   to zero height". Both passed, and both would pass for this: the overflow is
+   inside the grid tracks, so the page width never grows and the sections keep
+   their height. Squeezed and clipped is not the same as overflowing, and only
+   the first was being tested.
+
+   The classes are added in the markup purely as hooks for this block.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  /* Two-column splits go to one column. Padding is NOT set here: the ported
+     sections split the vertical rhythm two different ways, and a blanket rule
+     stacks on top of whichever one a section uses. #philosophy carries
+     130px/120px on the section itself, so adding 56px to its split opened a
+     190px hole above the headline. #face, #hair and #body carry 0 on the
+     section and 88px on the split instead. Both cases are set below, by name. */
+  html[data-tpl-mobile="1"] .tpl-v2-split {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+  }
+  /* Sections that hold their own vertical rhythm: bring 120-130px down to the
+     60px the rest of the phone layout uses, and zero their split. */
+  html[data-tpl-mobile="1"] #philosophy,
+  html[data-tpl-mobile="1"] #prp,
+  html[data-tpl-mobile="1"] #technology {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  html[data-tpl-mobile="1"] #clinic { padding-bottom: 60px !important; }
+  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split,
+  html[data-tpl-mobile="1"] #prp .tpl-v2-split,
+  html[data-tpl-mobile="1"] #clinic .tpl-v2-split {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* Sections whose split holds the rhythm instead. */
+  html[data-tpl-mobile="1"] #face .tpl-v2-split,
+  html[data-tpl-mobile="1"] #hair .tpl-v2-split,
+  html[data-tpl-mobile="1"] #body .tpl-v2-split {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+  /* Card rows, step rows and the technology index all stack. */
+  html[data-tpl-mobile="1"] .tpl-v2-cards,
+  html[data-tpl-mobile="1"] .tpl-v2-steps,
+  html[data-tpl-mobile="1"] .tpl-v2-index {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+  /* The paired stills stay two-up — at 375px that is still ~155px each, which
+     reads as a composed pair rather than two stamps. Only the decorative 40px
+     stagger on the second one comes off, because at this width it reads as a
+     mistake rather than as rhythm. */
+  html[data-tpl-mobile="1"] .tpl-v2-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  html[data-tpl-mobile="1"] .tpl-v2-media > * { margin-top: 0 !important; }
+
+  /* Philosophy leads with its standfirst and image in the DOM and puts the
+     statement second, which is right for a side-by-side and wrong stacked —
+     you would read the supporting line before the thing it supports. The
+     statement comes first on a phone. */
+  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split > *:first-child { order: 2; }
+  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split > *:last-child { order: 1; }
+
+  /* The ported sections carry 48px side padding from the desktop layout; the
+     rest of the phone layout is on 20px. */
+  html[data-tpl-mobile="1"] #philosophy,
+  html[data-tpl-mobile="1"] #face,
+  html[data-tpl-mobile="1"] #hair,
+  html[data-tpl-mobile="1"] #body,
+  html[data-tpl-mobile="1"] #prp,
+  html[data-tpl-mobile="1"] #technology,
+  html[data-tpl-mobile="1"] #clinic {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
