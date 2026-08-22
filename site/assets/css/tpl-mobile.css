@@ -1295,93 +1295,84 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   THE PORTED V2 SECTIONS — collapsing them for phones
+   THE PORTED V2 SECTIONS — collapsing them below 1024px
    ══════════════════════════════════════════════════════════════════════════
-   The homepage's below-hero sections were ported from the V2 design, and they
-   arrived as desktop grids with grid-template-columns set INLINE and no class
-   on any of them. Inline styles cannot be reached by a stylesheet without
-   !important, and with no class there was nothing to aim at either, so none of
-   them ever collapsed: on a phone the two-column splits stayed two columns
-   about 150px wide, the three- and four-up card rows stayed three and four
-   across, and the copy inside them was clipped mid-word — "DIAG", "COM",
-   "SUST", "Separat", "Reintroc".
+   The homepage's below-hero sections came from the V2 design as desktop grids
+   with grid-template-columns set INLINE and no class on any of them. Inline
+   values cannot be reached without !important, and with no class there was
+   nothing to aim at either, so none of them collapsed: two-column splits stayed
+   two columns, the three- and four-up rows stayed three and four across, and
+   the copy was clipped mid-word — "DIAG", "COM", "SUST", "Separat", "Reintroc".
 
-   It is worth being precise about why this was missed. The check that was run
-   was "does the document scroll horizontally" and "does any section collapse
-   to zero height". Both passed, and both would pass for this: the overflow is
-   inside the grid tracks, so the page width never grows and the sections keep
-   their height. Squeezed and clipped is not the same as overflowing, and only
-   the first was being tested.
-
-   The classes are added in the markup purely as hooks for this block.
+   These rules are keyed on WIDTH ALONE. The first attempt prefixed every one of
+   them with html[data-tpl-mobile="1"], which is set by index.html — and set
+   only at (max-width: 767px), and only once JavaScript has run. So the rules
+   were dead on every tablet and every narrow desktop window between 768 and
+   1023, and dead anywhere the script had not executed yet. A layout that
+   collapses by width should not depend on a script to tell it the width.
    ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
-  /* Two-column splits go to one column. Padding is NOT set here: the ported
-     sections split the vertical rhythm two different ways, and a blanket rule
-     stacks on top of whichever one a section uses. #philosophy carries
-     130px/120px on the section itself, so adding 56px to its split opened a
-     190px hole above the headline. #face, #hair and #body carry 0 on the
-     section and 88px on the split instead. Both cases are set below, by name. */
-  html[data-tpl-mobile="1"] .tpl-v2-split {
+  /* One column for the splits, the card rows, the steps and the index. */
+  .tpl-v2-split,
+  .tpl-v2-cards,
+  .tpl-v2-steps,
+  .tpl-v2-index {
     grid-template-columns: minmax(0, 1fr) !important;
-    gap: 32px !important;
   }
-  /* Sections that hold their own vertical rhythm: bring 120-130px down to the
-     60px the rest of the phone layout uses, and zero their split. */
-  html[data-tpl-mobile="1"] #philosophy,
-  html[data-tpl-mobile="1"] #prp,
-  html[data-tpl-mobile="1"] #technology {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-  html[data-tpl-mobile="1"] #clinic { padding-bottom: 60px !important; }
-  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split,
-  html[data-tpl-mobile="1"] #prp .tpl-v2-split,
-  html[data-tpl-mobile="1"] #clinic .tpl-v2-split {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  /* Sections whose split holds the rhythm instead. */
-  html[data-tpl-mobile="1"] #face .tpl-v2-split,
-  html[data-tpl-mobile="1"] #hair .tpl-v2-split,
-  html[data-tpl-mobile="1"] #body .tpl-v2-split {
-    padding-top: 56px !important;
-    padding-bottom: 56px !important;
-  }
-  /* Card rows, step rows and the technology index all stack. */
-  html[data-tpl-mobile="1"] .tpl-v2-cards,
-  html[data-tpl-mobile="1"] .tpl-v2-steps,
-  html[data-tpl-mobile="1"] .tpl-v2-index {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 16px !important;
-  }
-  /* The paired stills stay two-up — at 375px that is still ~155px each, which
-     reads as a composed pair rather than two stamps. Only the decorative 40px
-     stagger on the second one comes off, because at this width it reads as a
-     mistake rather than as rhythm. */
-  html[data-tpl-mobile="1"] .tpl-v2-media {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-  }
-  html[data-tpl-mobile="1"] .tpl-v2-media > * { margin-top: 0 !important; }
+  .tpl-v2-split { gap: 28px !important; }
+  .tpl-v2-cards,
+  .tpl-v2-steps { gap: 16px !important; }
+  .tpl-v2-index { gap: 0 !important; }
 
-  /* Philosophy leads with its standfirst and image in the DOM and puts the
-     statement second, which is right for a side-by-side and wrong stacked —
-     you would read the supporting line before the thing it supports. The
-     statement comes first on a phone. */
-  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split > *:first-child { order: 2; }
-  html[data-tpl-mobile="1"] #philosophy .tpl-v2-split > *:last-child { order: 1; }
+  /* Paired stills stay two-up: at 375px that is still ~155px each, which reads
+     as a composed pair rather than two stamps. The decorative 40px stagger on
+     the second one comes off — at this width it reads as a mistake. */
+  .tpl-v2-media { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  .tpl-v2-media > * { margin-top: 0 !important; }
 
-  /* The ported sections carry 48px side padding from the desktop layout; the
+  /* Vertical rhythm has to be set per section, not in one rule. These sections
+     split it two ways: #philosophy, #prp and #technology carry 120-130px on the
+     section itself, while #face, #hair and #body carry 0 there and 88px on the
+     split instead. A blanket rule stacks on top of whichever one is in use —
+     the first attempt added 56px to #philosophy, which already had 130px, and
+     opened a 190px hole above the headline. */
+  #philosophy, #prp, #technology { padding-top: 60px !important; padding-bottom: 60px !important; }
+  #clinic { padding-bottom: 60px !important; }
+  #philosophy .tpl-v2-split,
+  #prp .tpl-v2-split,
+  #clinic .tpl-v2-split { padding-top: 0 !important; padding-bottom: 0 !important; }
+  #face .tpl-v2-split,
+  #hair .tpl-v2-split,
+  #body .tpl-v2-split { padding-top: 52px !important; padding-bottom: 52px !important; }
+
+  /* Side padding: the ported sections carry 48px from the desktop layout, the
      rest of the phone layout is on 20px. */
-  html[data-tpl-mobile="1"] #philosophy,
-  html[data-tpl-mobile="1"] #face,
-  html[data-tpl-mobile="1"] #hair,
-  html[data-tpl-mobile="1"] #body,
-  html[data-tpl-mobile="1"] #prp,
-  html[data-tpl-mobile="1"] #technology,
-  html[data-tpl-mobile="1"] #clinic {
+  #philosophy, #face, #hair, #body, #prp, #technology, #clinic {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+
+  /* ── #philosophy, in the order it should actually be read ────────────────
+     The desktop layout is a two-column split: the left column holds the
+     PHILOSOPHY pill, the standfirst and the video, and the right column holds
+     the statement. Stacked as-is you get pill, standfirst, video, statement —
+     the video wedged between the standfirst and the thing it introduces.
+
+     display:contents dissolves the left column so its three children become
+     grid items in their own right, which is what makes them individually
+     orderable. Then: pill, standfirst, statement, video — and the three cards
+     follow, being a sibling of the split. */
+  #philosophy .tpl-v2-split > div:first-child { display: contents; }
+  #philosophy .tpl-v2-split > div:first-child > div:first-child { order: 1; }  /* pill */
+  #philosophy .tpl-v2-split > div:first-child > p              { order: 2; }  /* standfirst */
+  #philosophy .tpl-v2-split > div:last-child                   { order: 3; }  /* statement */
+  #philosophy .tpl-v2-split > div:first-child > div:last-child  { order: 4; }  /* video */
+  /* The statement is set to shrink on a phone; 32px was tuned for a column
+     half this wide. */
+  #philosophy .tpl-v2-split > div:last-child h2 { font-size: clamp(28px, 7.4vw, 40px) !important; }
+  /* These three were siblings inside one column and carried their own margins
+     for that. As grid items the 28px gap already spaces them, so the margins
+     double it. */
+  #philosophy .tpl-v2-split > div:first-child > p { margin-top: 0 !important; }
+  #philosophy .tpl-v2-split > div:first-child > div:last-child { margin-top: 4px !important; }
 }
