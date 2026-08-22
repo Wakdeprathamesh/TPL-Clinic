@@ -1,5 +1,5 @@
 /* ============================================================================
-   HeroV6 — scroll-driven film hero
+   The scroll film — scroll-driven hero (currently Hero V7)
    ----------------------------------------------------------------------------
    The model, from the spec:
 
