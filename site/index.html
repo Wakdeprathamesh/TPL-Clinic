@@ -9,8 +9,8 @@
 <meta property="og:title" content="TPL Clinic Mayfair — The UK's First Platelet Rich Plasma Clinic">
 <meta property="og:description" content="Regenerative medicine combined with advanced technology. Twenty treatments, one combined protocol. Mayfair, London.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/hero-v6/hero-poster.webp">
-<link rel="preload" as="image" href="assets/hero-v6/hero-poster.webp" fetchpriority="high">
+<meta property="og:image" content="assets/hero-v7/hero-poster.webp">
+<link rel="preload" as="image" href="assets/hero-v7/hero-poster.webp" fetchpriority="high">
 <!-- ══ Runtime ══
      React, ReactDOM and Lenis are served from this repo rather than unpkg.
      They were render-blocking third-party requests on the critical path, and
@@ -35,11 +35,11 @@
     document.head.appendChild(l);
   }
 </script>
-<link rel="stylesheet" href="assets/css/hero-v6.css">
+<link rel="stylesheet" href="assets/css/hero-film.css">
 <link rel="stylesheet" href="assets/css/tpl-mobile.css">
 <script src="./support.js"></script>
 <script src="assets/js/tpl-mobile.js" defer></script>
-<script src="assets/js/hero-v6.js" defer></script>
+<script src="assets/js/hero-film.js" defer></script>
 <style>
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -54,7 +54,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link rel="preload" as="image" href="assets/hero-v6-frames-webp/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0058.webp" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
   html { scroll-behavior: smooth; }
@@ -390,37 +391,41 @@
        on a phone. -->
   <!-- ══════════════════════════════════════════════════════════════════════
        HERO V6 — the scroll film
-       Markup only. The engine is assets/js/hero-v6.js, which waits for <x-dc>
+       Markup only. The engine is assets/js/hero-film.js, which waits for <x-dc>
        to leave the document before it binds: the render-once runtime discards
        the template copy, taking any listener bound to it along with it.
        Beat timings, copy zones and contrast all come from
-       hero-v6/hero-v6-spec.json. Height is set by the engine from its own
+       hero-v7/hero-v7-spec.json. Height is set by the engine from its own
        timeline, not here.
        ══════════════════════════════════════════════════════════════════════ -->
   <section class="hv6" id="top" data-hv6 data-hero="1" aria-label="TPL Clinic — the clinic on film">
     <div class="hv6-stage" data-hv6-stage>
       <canvas data-hv6-canvas aria-hidden="true"></canvas>
       <div data-hv6-copy></div>
-      <div class="hv6-frame" data-hv6-frame>FRAME 0001 / 500</div>
+      <div class="hv6-frame" data-hv6-frame>FRAME 0001 / 598</div>
       <div class="hv6-cue" data-hv6-cue><i></i>Scroll<i></i></div>
     </div>
   </section>
 
-  <!-- ══ THE FOUR BEATS — phones only ══
-       The desktop hero is a 460vh scroll stage: 499 frames of film that walk
-       the clinic in its own order — the plasma diagnostics first, then Hair,
-       Body, and Face — with a line of copy floating over each. Phones are served a
-       looping video instead of the scrub, and the copy panels are driven by
-       the same scroll engine — which never runs on a phone. So the argument
-       the hero exists to make reached nobody on a phone at all.
+  <!-- ══ WHERE WE TREAT — phones only ══
+       The desktop hero is a 1066vh scroll stage: 598 frames of film that walk
+       the clinic end to end — reception, consultation, diagnostics, hair, body,
+       surgical, dispensary — with a line of copy over each. Phones are served a
+       looping video instead of the scrub, and the copy panels are driven by the
+       same scroll engine, which never runs on a phone. So the argument the hero
+       exists to make reached nobody on a phone at all.
 
-       This is that argument, rebuilt as something you swipe. The copy is the
-       hero's own, word for word; the stills are the same frames the film cuts
-       between. On a page this long it earns its place twice, because it is
-       also the fastest way into the section you came for. -->
+       This deck is the way in, rebuilt as something you swipe. Note what it is
+       NOT: it is not the film's beats. It used to claim to be — "the film, in
+       four beats", "the copy is the hero's own, word for word" — and that was
+       untrue on V6 and is untrue on V7. The film's beats are the seven above;
+       this deck is the four treatment areas, which is a different cut of the
+       same clinic and the faster route to the section you actually came for.
+       Face is here and is deliberately absent from the film: there is no face
+       footage in any master we have been given. -->
   <section class="tpl-mstory" data-dark="1" aria-label="Where we treat">
     <div class="tpl-mstory-head">
-      <span class="eyebrow">The film, in four beats</span>
+      <span class="eyebrow">Where we treat</span>
       <span class="hint">Swipe &rarr;</span>
     </div>
     <h2>Everything we do begins in one of four places.</h2>
@@ -499,12 +504,11 @@
 >
 
   <!-- Philosophy Section -->
-  <section class="tpl-msec" style="padding:130px 48px 120px;background:#ffffff;border-top:1px solid rgba(36,36,36,.08)">
-    <div class="tpl-m-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:80px;align-items:start">
-      <div data-reveal="1">
+  <section id="philosophy" class="tpl-msec" style="padding:130px 48px 120px;background:#ffffff;border-top:1px solid rgba(36,36,36,.08)">
+    <div class="tpl-m-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:80px;align-items:start">      <div data-reveal="1">
         <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);margin-bottom:20px">
           <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
-          <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Philosophy</span>
+          <span class="tpl-microlabel" style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Philosophy</span>
         </div>
         <p class="tpl-m-lede" style="margin:16px 0 0;font-family:Jost,sans-serif;font-size:15px;line-height:1.85;color:#5E5E5E;max-width:360px">Founded as The PRP Lab. The UK's premier clinic built entirely around natural regenerative plasma.</p>
         <div class="tpl-m-media" style="margin-top:32px;position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 16px 40px rgba(8,19,89,.06)">
@@ -517,8 +521,7 @@
       </div>
       <div data-reveal="1">
         <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,56px);line-height:1.14;letter-spacing:-.01em;color:#081359;text-wrap:pretty">One treatment rarely changes a face. A <span style="font-weight:400;color:#B8925D">combination</span> of the right ones, sequenced correctly, always does.</h2>
-        <div class="tpl-m-3" style="margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
-          <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-left:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);transition:transform .3s ease" style-hover="transform:translateY(-4px)">
+        <div class="tpl-m-3" style="margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">          <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-left:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03);transition:transform .3s ease" style-hover="transform:translateY(-4px)">
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.24em;color:#B8925D;font-weight:600">01</div>
             <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#081359">Diagnose</div>
             <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Comprehensive imaging & scalp TrichoComp analysis before treatment.</p>
@@ -542,8 +545,7 @@
   <section id="face" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
       <div data-reveal="1" class="tpl-m-split tpl-mrow" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0;align-items:center">
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <img src="assets/section-images-webp/section-face.webp" alt="Face treatment protocol" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
           <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#EBE7E0);overflow:hidden;margin-top:40px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
@@ -576,8 +578,7 @@
   <!-- Hair Section -->
   <section id="hair" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
-      <div data-reveal="1" class="tpl-m-split tpl-mrow" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding:88px 0;align-items:center">
-        <div>
+      <div data-reveal="1" class="tpl-m-split tpl-mrow" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;padding:88px 0;align-items:center">        <div>
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
             <span style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;color:#B8925D;font-weight:600">02 PROTOCOL</span>
             <span style="width:28px;height:1px;background:#B8925D"></span>
@@ -594,8 +595,7 @@
             <span style="padding:9px 16px;background:#FDFBF8;border:1px solid rgba(184,146,93,.35);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.04em;color:#081359;transition:all .25s ease" style-hover="background:#081359;color:#ffffff;border-color:#081359">Surgeon Consultation</span>
           </div>
         </div>
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.avif 400w, assets/images/hair/hair-hairline-profile-portrait-800w.avif 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.avif 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 50vw">
               <source type="image/webp" srcset="assets/images/hair/hair-hairline-profile-portrait-400w.webp 400w, assets/images/hair/hair-hairline-profile-portrait-800w.webp 800w, assets/images/hair/hair-hairline-profile-portrait-1200w.webp 1200w, assets/images/hair/hair-hairline-profile-portrait-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 50vw">
@@ -614,8 +614,7 @@
   <section id="body" style="padding:0 48px;background:#ffffff">
     <div style="max-width:1280px;margin:0 auto;border-top:1px solid rgba(36,36,36,.12)">
       <div data-reveal="1" class="tpl-m-split tpl-mrow" style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;padding:88px 0 100px;align-items:center">
-        <div class="tpl-m-rail" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+        <div class="tpl-m-rail" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">          <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <img src="assets/section-images-webp/section-body.webp" alt="Body skin quality protocol" loading="lazy" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease" style-hover="transform:scale(1.04)" />
           </div>
           <div style="position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#F8F7F5,#EDE9E3);overflow:hidden;margin-top:24px;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
@@ -653,17 +652,15 @@
   <!-- PRP Section -->
   <section id="prp" class="tpl-msec" style="background:#F7F5F2;padding:120px 48px">
     <div style="max-width:1280px;margin:0 auto">
-      <div data-reveal="1" class="tpl-m-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
-        <div>
+      <div data-reveal="1" class="tpl-m-split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">        <div>
           <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#ffffff;border:1px solid rgba(184,146,93,0.3);margin-bottom:20px">
             <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">The Specialty</span>
+            <span class="tpl-microlabel" style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">The Specialty</span>
           </div>
           <h2 style="margin:16px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px,5.6vw,88px);line-height:.98;letter-spacing:-.02em;color:#081359">Platelet<br /><span style="color:#B8925D">Rich Plasma</span></h2>
           <p style="margin:22px 0 0;font-family:Jost,sans-serif;font-size:15px;line-height:1.85;color:#5E5E5E;max-width:480px">Concentrated autologous plasma separated in-clinic to stimulate natural cellular regeneration. No synthetics. No fillers. Pure regenerative signals.</p>
         </div>
-        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
+        <div class="tpl-m-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden;border:1px solid rgba(184,146,93,.25);box-shadow:0 12px 30px rgba(8,19,89,.05)">
             <picture>
               <source type="image/avif" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.avif 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.avif 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.avif 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.avif 1600w" sizes="(max-width: 768px) 100vw, 50vw">
               <source type="image/webp" srcset="assets/images/prp-method/prp-plasma-vial-macro-400w.webp 400w, assets/images/prp-method/prp-plasma-vial-macro-800w.webp 800w, assets/images/prp-method/prp-plasma-vial-macro-1200w.webp 1200w, assets/images/prp-method/prp-plasma-vial-macro-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 50vw">
@@ -680,8 +677,7 @@
         </div>
       </div>
 
-      <div data-reveal="1" class="tpl-m-4" style="margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
-        <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03)">
+      <div data-reveal="1" class="tpl-m-4" style="margin-top:64px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">        <div style="background:#FDFBF8;padding:32px 24px;border:1px solid rgba(184,146,93,.25);border-top:3px solid #B8925D;box-shadow:0 8px 24px rgba(8,19,89,.03)">
           <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.26em;color:#B8925D;font-weight:600">STEP 01</div>
           <div style="margin-top:14px;font-family:Jost,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;color:#081359">Draw</div>
           <p style="margin:10px 0 0;font-family:Jost,sans-serif;font-size:13.5px;line-height:1.75;color:#5E5E5E">Standard blood draw conducted in-clinic by an experienced practitioner.</p>
@@ -725,7 +721,7 @@
         <div>
           <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);margin-bottom:14px">
             <span style="width:5px;height:5px;background:#B8925D;border-radius:50%"></span>
-            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Equipments &amp; Devices</span>
+            <span class="tpl-microlabel" style="font-family:Jost,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#081359">Equipments &amp; Devices</span>
           </div>
           <h2 style="margin:0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(34px,4.4vw,68px);line-height:1;letter-spacing:-.01em;color:#081359">Technology Index</h2>
         </div>
@@ -737,8 +733,7 @@
             <div class="tpl-techrow" style="display:flex;align-items:center;gap:20px;padding:18px 8px;border-bottom:1px solid rgba(36,36,36,.08);transition:all .3s ease" style-hover="background:#FDFBF8;padding-left:16px">
               <span class="tpl-tech-n" style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px;font-weight:600">{{ t.n }}</span>
               <span class="tpl-tech-name" style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;letter-spacing:.01em;color:#081359;flex:1">{{ t.name }}</span>
-              <span class="tpl-tech-tag" style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>
-            </div>
+              <span class="tpl-tech-tag" style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>            </div>
           </sc-for>
         </div>
         <div style="display:flex;flex-direction:column">
@@ -746,8 +741,7 @@
             <div class="tpl-techrow" style="display:flex;align-items:center;gap:20px;padding:18px 8px;border-bottom:1px solid rgba(36,36,36,.08);transition:all .3s ease" style-hover="background:#FDFBF8;padding-left:16px">
               <span class="tpl-tech-n" style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;color:#B8925D;min-width:26px;font-weight:600">{{ t.n }}</span>
               <span class="tpl-tech-name" style="font-family:Jost,sans-serif;font-weight:300;font-size:18px;letter-spacing:.01em;color:#081359;flex:1">{{ t.name }}</span>
-              <span class="tpl-tech-tag" style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>
-            </div>
+              <span class="tpl-tech-tag" style="padding:4px 10px;background:#F8F6F3;border:1px solid rgba(184,146,93,0.3);font-family:Jost,sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#081359">{{ t.tag }}</span>            </div>
           </sc-for>
         </div>
       </div>
@@ -762,8 +756,7 @@
   <!-- Clinic Section -->
   <section id="clinic" class="tpl-msec--foot" style="padding:0 48px 120px;background:#ffffff">
     <div data-reveal="1" class="tpl-m-split" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px">
-      <div class="tpl-m-portrait" style="position:relative;background:linear-gradient(150deg,#FBFAF8 0%,#F3EFEA 100%);min-height:440px;overflow:hidden;border:1px solid rgba(184,146,93,.3);box-shadow:0 16px 40px rgba(8,19,89,.06)">
-        <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="TPL Clinic Mayfair premises" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+      <div class="tpl-m-portrait" style="position:relative;background:linear-gradient(150deg,#FBFAF8 0%,#F3EFEA 100%);min-height:440px;overflow:hidden;border:1px solid rgba(184,146,93,.3);box-shadow:0 16px 40px rgba(8,19,89,.06)">        <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="TPL Clinic Mayfair premises" loading="lazy" fetchpriority="low" width="800" height="1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.2) 0%,rgba(8,19,89,.82) 100%);pointer-events:none"></div>
         <div style="position:relative;z-index:3;height:100%;padding:44px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
           <div style="font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E8C89A">Mayfair · London</div>
@@ -781,15 +774,15 @@
         <h2 style="margin:16px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(28px,2.8vw,42px);line-height:1.1;color:#081359">Mayfair,<br />London W1</h2>
         <div style="margin-top:28px;display:flex;flex-direction:column;gap:16px">
           <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Address</div>
+            <div class="tpl-microlabel" style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Address</div>
             <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;line-height:1.6;color:#081359">22 Seymour Street, London W1H 7HY</div>
           </div>
           <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Telephone</div>
+            <div class="tpl-microlabel" style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Telephone</div>
             <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;color:#081359">020 7998 7077</div>
           </div>
           <div style="border-top:1px solid rgba(184,146,93,.2);padding-top:14px">
-            <div style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Email</div>
+            <div class="tpl-microlabel" style="font-family:Jost,sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B8925D">Email</div>
             <div style="margin-top:6px;font-family:Jost,sans-serif;font-size:15px;color:#081359">info@tplclinic.com</div>
           </div>
         </div>
@@ -958,7 +951,7 @@ class Component extends DCLogic {
   state = { firstName:"", lastName:"", email:"", phone:"", area:"Face — skin & anti-ageing", message:"", consent:false, submitted:false, mobileMenuOpen:false, megaMenuOpen:false };
 
   componentDidMount() {
-    /* The hero is Hero V6 and it runs itself — assets/js/hero-v6.js owns the
+    /* The hero is Hero V7 and it runs itself — assets/js/hero-film.js owns the
        canvas, the frames, the copy, the beat timeline and its own phone and
        reduced-motion fallbacks. Everything that used to live here (frame
        counts, cut lists, the scrim, the copy rail, the frame ramp) went with
@@ -1058,44 +1051,21 @@ class Component extends DCLogic {
        listener now, so it keeps working on a page whose hero is a separate
        script — and on phones and under reduced motion, where that loop never
        ran at all. */
-    /* ── Auto-hide ─────────────────────────────────────────────────────────
-       Away on the way down, back on the way up. The hero is ten screens; a bar
-       pinned over the film for all of it stops being chrome and starts being
-       furniture. Hiding it while the reader moves forward gives the film the
-       screen, and one flick of the wheel brings it back — which matters here
-       more than on most sites, because the clinic takes no online bookings, so
-       the WhatsApp and Book buttons in that bar ARE the conversion path. They
-       cannot be ten screens away.
+    /* ── Always present ────────────────────────────────────────────────────
+       The bar used to auto-hide on the way down and return on the way up. It
+       does not any more: the client wants it on screen at all times. That is
+       defensible on its own terms — the clinic takes no online bookings, so the
+       WhatsApp and Book buttons in this bar ARE the conversion path, and a
+       reader who decides to act eight screens into the film should not have to
+       discover that scrolling up is what summons the button.
 
-       The 6px threshold is deliberate: a smooth-scroll library emits a lot of
-       sub-pixel deltas, and reacting to every one makes the bar flicker. The bar
-       is also always shown near the top, so the page never opens hidden. */
-    this.navHidden = false;
-    this.lastNavY = window.scrollY;
-    this.setNavHidden = (hide) => {
-      if (this.navHidden === hide) return;
-      this.navHidden = hide;
-      this.nav.style.transform = hide ? 'translateY(-100%)' : 'translateY(0)';
-    };
-    this.nav.style.transition =
-      (this.nav.style.transition ? this.nav.style.transition + ',' : '') +
-      'transform .45s cubic-bezier(.22,1,.36,1)';
-    this.nav.style.willChange = 'transform';
-
-    this.onNavScroll = () => {
-      const y = window.scrollY;
-      const dy = y - this.lastNavY;
-      if (y < 120) this.setNavHidden(false);          // never hidden at the top
-      else if (dy > 6) this.setNavHidden(true);       // moving down
-      else if (dy < -6) this.setNavHidden(false);     // moving up
-      if (Math.abs(dy) > 1) this.lastNavY = y;
-      this.syncNavTheme();
-    };
+       What it costs is legibility over the hero, and the cost is real rather
+       than theoretical. Auto-hide was one of two things holding the transparent
+       bar up; see syncNavTheme() for what is left doing that job alone, and for
+       the frame-by-frame numbers. */
+    this.onNavScroll = () => { this.syncNavTheme(); };
     window.addEventListener('scroll', this.onNavScroll, { passive: true });
     window.addEventListener('resize', this.onNavScroll);
-    /* The mega menu and the drawer are useless if the bar they live in has
-       slid away, so any attempt to open one brings it back first. */
-    this.nav.addEventListener('focusin', () => this.setNavHidden(false));
     this.syncNavTheme();
 
     // Reveal animations setup
@@ -1263,7 +1233,7 @@ class Component extends DCLogic {
   /* ── Header theme ─────────────────────────────────────────────────────────
      All that survives of the old hero engine's render loop. This was the top of
      renderFrame(p), which also drew the canvas, moved the hero copy and ran the
-     rail — all of which now belongs to assets/js/hero-v6.js. It is bound to
+     rail — all of which now belongs to assets/js/hero-film.js. It is bound to
      scroll directly rather than riding a frame loop it no longer needs. */
   syncNavTheme() {
     if (!this.nav || !this.hero) return;
@@ -1271,7 +1241,8 @@ class Component extends DCLogic {
     if (this.nav) {
       const navHeight = 80;
 
-      /* Hero V5 was navy, so "over the hero" meant "go dark". Hero V6 is the
+      /* Hero V5 was navy, so "over the hero" meant "go dark". The film since
+         V6 — and V7 with it — is the
          opposite — white rooms, mean luma above 200 — and carrying the old rule
          over put WHITE nav labels on a WHITE film, which is invisible. The hero
          is no longer a reason to go dark at all.
@@ -1283,32 +1254,22 @@ class Component extends DCLogic {
       const consultRect = this.consultSection ? this.consultSection.getBoundingClientRect() : null;
       const isOverConsultation = consultRect ? (consultRect.top <= navHeight && consultRect.bottom >= 0) : false;
 
-      /* Over the hero the bar is TRANSPARENT — the client's call, so the film
-         reads edge to edge with no chrome sitting on it.
+      /* The bar was transparent over the hero for a while, on the client's
+         call, so the film could read edge to edge. That is over: it is frosted
+         everywhere now, matching every other page.
 
-         The legibility problem that creates is real and was measured across all
-         500 frames, on the three strips the bar actually occupies (logo, links,
-         CTAs). Dark labels clear AA on 323 of 500. White labels clear it on
-         NONE — the clinic is too bright. And on 177 frames (35%) neither colour
-         works in all three strips at once, because the band is mixed: white
-         wall behind the logo, a dark head behind the links. So switching colour
-         per frame does not rescue it either; that was tried first.
+         Keeping the measurement, because it is the reason not to try it again.
+         Across all 598 frames, on the three strips the bar occupies (logo,
+         links, WhatsApp): dark #242424 labels clear WCAG AA on 482 frames,
+         white labels on NONE — the clinic is too bright for white — and on 116
+         frames, 19.4%, NEITHER colour works. Every one of those is an extreme
+         close-up where a dark head or a blue gown fills the top of the picture.
+         Switching colour per frame cannot rescue it either: the failing band is
+         light behind the logo and dark behind the links at the same instant.
 
-         Two things make a transparent bar work anyway:
-
-         1. The bar auto-hides on the way down, so for most of a ten-screen
-            hero it is not on the film at all — see the hide logic below.
-         2. When it is showing, the labels carry a soft WHITE halo. It is
-            self-masking: invisible against a white wall, and on the frames
-            where something dark passes under the bar it lifts the glyphs off
-            it. That is the technique cinematic sites use for type over film.
-
-         Worth knowing: WCAG gives no formal credit for a text shadow. If the
-         nav has to be provably AA on every frame, the frosted bar is the only
-         option — this is legible, but it is legible by craft, not by the
-         contrast formula. */
-      const heroRect = this.hero.getBoundingClientRect();
-      const isOverHero = heroRect.bottom > navHeight;
+         A transparent bar over this film can only be made readable by craft —
+         a halo, a veil — and neither earns any credit under the contrast
+         formula. The frosted bar is provably AA and needs no argument. */
 
       const isDarkTheme = isOverConsultation;
 
@@ -1348,26 +1309,33 @@ class Component extends DCLogic {
         }
       } else {
         this.nav.classList.add('is-light');
-        /* Transparent on the film, frosted once the film is behind you. Past the
-           hero the page is white sections and a frosted bar is the right read;
-           on the film it would be chrome laid over the picture. */
-        this.nav.style.background = isOverHero ? 'transparent' : 'rgba(255, 255, 255, 0.88)';
-        this.nav.style.backdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
-        this.nav.style.webkitBackdropFilter = isOverHero ? 'none' : 'blur(20px) saturate(180%)';
-        this.nav.style.borderBottom = isOverHero ? '1px solid transparent' : '1px solid rgba(184, 146, 93, 0.3)';
-        this.nav.style.boxShadow = isOverHero ? 'none' : '0 10px 30px rgba(8, 19, 89, 0.08)';
-        this.nav.style.padding = isOverHero ? '22px 40px' : '16px 40px';
+        /* Frosted, always — including over the film. This is the same treatment
+           about.html, services.html, sofwave.html and prp.html use, so the bar
+           now reads identically on every page of the site.
+
+           It replaces a transparent-over-the-hero bar that needed two tricks to
+           stay readable: a white halo on the labels and a gradient veil behind
+           them. Both are gone, and that is a straight win rather than a
+           compromise. The transparent bar was legible by craft — measured
+           against the composited result, but with no formal WCAG standing,
+           because neither a text shadow nor a gradient counts toward contrast.
+           A frosted bar is provably AA on every frame of the film, and it does
+           not have to be argued for. */
+        this.nav.style.background = 'rgba(255, 255, 255, 0.88)';
+        this.nav.style.backdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
+        this.nav.style.borderBottom = '1px solid rgba(184, 146, 93, 0.3)';
+        this.nav.style.boxShadow = '0 10px 30px rgba(8, 19, 89, 0.08)';
+        this.nav.style.padding = '16px 40px';
 
         if (logoTpl) logoTpl.style.color = '#242424';
         if (logoClinic) logoClinic.style.color = '#B8925D';
 
-        /* Self-masking halo. On a white wall a white glow is invisible; on the
-           frames where something dark passes under the bar it lifts the glyphs
-           off it. Only applied while the bar is transparent — over a frosted
-           bar it would just soften the type. */
-        const halo = isOverHero
-          ? '0 1px 2px rgba(255,255,255,.95), 0 0 14px rgba(255,255,255,.85)'
-          : 'none';
+        /* No halo any more. It existed to lift dark glyphs off dark frames while
+           the bar was transparent; over a frosted bar it would only soften the
+           type. The markup carries an inline dark text-shadow from the original
+           navy-hero design, so this has to be set rather than left alone. */
+        const halo = 'none';
         navLinks.forEach(link => { link.style.color = '#242424'; link.style.textShadow = halo; });
         if (whatsappLink) { whatsappLink.style.color = '#242424'; whatsappLink.style.textShadow = halo; }
         if (toggleBtn) { toggleBtn.style.color = '#242424'; toggleBtn.style.textShadow = halo; }
