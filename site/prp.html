@@ -1402,6 +1402,10 @@ class Component extends DCLogic {
       // allowed to be transparent — see the dark branch below.
       const heroEl = document.querySelector('.tpl-sec--hero');
       const inHero = heroEl ? heroEl.getBoundingClientRect().bottom > navHeight : false;
+      // ...and has the page actually moved? The bar is only allowed to disappear
+      // at rest on first paint; the moment the visitor scrolls, it has to become
+      // a bar again (see the dark branch below).
+      const atRest = (window.scrollY || window.pageYOffset || 0) <= 4;
       const logo = this.nav.querySelector('[data-logo]');
       const logoTpl = logo ? logo.querySelector('span:first-child') : null;
       const logoClinic = logo ? logo.querySelector('span:last-child') : null;
@@ -1412,15 +1416,16 @@ class Component extends DCLogic {
 
       if (overDark) {
         this.nav.classList.remove('is-light');
-        // The header may only be transparent while it is floating over the hero.
-        // The old test was "is ANY dark band under the nav", with no reference to
-        // scroll position, so the bar stayed at alpha 0 with no backdrop filter
-        // over every mid-page navy section — the results timeline, the
-        // consultation form. The page scrolled straight through the header and
-        // the nav labels collided with whatever was behind them, which is the
-        // overlap the client photographed. Past the hero the bar takes a solid
-        // navy fill so content passes behind it, not through it.
-        const floating = inHero;
+        // The header may only be transparent while it is sitting, unscrolled, at
+        // the very top of the hero. The first version of this test was "is ANY
+        // dark band under the nav", with no reference to scroll position, so the
+        // bar stayed at alpha 0 over every mid-page navy section. Scoping it to
+        // the hero fixed the mid-page bands but not the hero itself: the whole
+        // hero is one navy field, so scrolling through it left the bar invisible
+        // and the nav labels ran straight into the headline. Both are the same
+        // bug — a transparent bar over moving content — so the transparency is
+        // now tied to being at rest, not to which section is underneath.
+        const floating = inHero && atRest;
         this.nav.style.background = floating ? 'rgba(8,19,89,0)' : 'rgba(8,19,89,.94)';
         this.nav.style.backdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
         this.nav.style.webkitBackdropFilter = floating ? 'none' : 'blur(20px) saturate(160%)';
