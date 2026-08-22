@@ -492,6 +492,11 @@
     link.rel = 'noopener';
     link.textContent = 'Get directions';
     link.setAttribute('style', wa.getAttribute('style') || '');
+    /* The button is a copy of the WhatsApp one standing next to it, so it has
+       to copy the classes as well as the inline style — those are what carry
+       the mobile treatment. Without this the WhatsApp button went full width on
+       a phone and Get directions, sitting directly beneath it, did not. */
+    link.className = wa.className;
     link.style.marginTop = '12px';
     link.style.display = 'inline-block';
     wa.parentNode.insertBefore(link, wa.nextSibling);
