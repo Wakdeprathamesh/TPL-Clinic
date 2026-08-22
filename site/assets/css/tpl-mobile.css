@@ -1376,3 +1376,123 @@ html[data-tpl-mobile="1"] [data-hero="1"] [data-progress="1"] { display: none !i
   #philosophy .tpl-v2-split > div:first-child > p { margin-top: 0 !important; }
   #philosophy .tpl-v2-split > div:first-child > div:last-child { margin-top: 4px !important; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MOBILE UX PASS — tap targets, type size, and a phantom tab order
+   ══════════════════════════════════════════════════════════════════════════
+   Audited at 390x844 against the usual references: Apple's 44x44pt minimum
+   touch target, Material's 48dp, and the 16px floor for body copy that keeps
+   phone reading comfortable (and stops iOS zooming a focused field — already
+   satisfied here, every input was 16px).
+
+   Several things were already right and are left alone: the fixed action bar is
+   59px against 58px of body padding, so nothing hides behind it; the story deck
+   already has scroll-snap-type: x mandatory; the viewport meta carries
+   viewport-fit=cover without disabling pinch zoom; and a phone downloads the
+   fallback video rather than the 598 hero frames.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  /* ── The hero's copy overlay ────────────────────────────────────────────
+     A phone gets the fallback video and the scroll engine never starts, so
+     nothing ever positions this. It was left in the document at y=-4157 —
+     invisible, but still 13 focusable links. Tab through the page on a phone
+     keyboard, or run a screen reader over it, and you would walk 13 stops that
+     are not on screen. The mobile stylesheet already hid [data-hero-copy="1"],
+     which was V5's attribute; V6 renamed it to data-hv6-copy and this never
+     followed. */
+  [data-hv6-copy] { display: none !important; }
+
+  /* ── Footer links: 44px, and the whole row ───────────────────────────────
+     These were 40px tall — 4px under the minimum — and, worse, only as wide as
+     their text: "Hair" was a 26x40 target. In a stacked list the row is the
+     natural target, so they now fill it. */
+  footer a[href] {
+    min-height: 44px;
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* ── The consent checkbox ────────────────────────────────────────────────
+     22x22 is half the minimum, and it is the one control standing between a
+     filled-in form and a sent enquiry. */
+  .tpl-m-consent input[type="checkbox"] {
+    width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px;
+  }
+  .tpl-m-consent {
+    min-height: 44px;
+    align-items: center;
+    gap: 12px !important;
+  }
+
+  /* ── Body copy to 16px ───────────────────────────────────────────────────
+     The ported sections set their copy at 14-15px, which is a desktop measure.
+     At 390px this is the text people actually read, so it goes to the 16px
+     floor with the line-height opened to match. */
+  .tpl-v2-split > div > p,
+  .tpl-v2-cards p,
+  .tpl-v2-steps p,
+  .tpl-mstory-body p {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+  }
+  /* 10px is below anything defensible, even for a letterspaced kit list. The
+     11px uppercase labels are left as they are: set in caps with wide tracking
+     they read larger than their nominal size, and they are the type device the
+     whole site is built on. */
+  .tpl-mstory-body .kit,
+  .tpl-mstory-body .go { font-size: 11.5px !important; }
+}
+
+@media (max-width: 1023px) {
+  /* The action bar is the conversion path on a phone — the clinic takes no
+     online bookings, so CALL / WHATSAPP / BOOK is the whole funnel. Its labels
+     were set at 9.5px, the smallest type anywhere on the site. */
+  .tpl-actionbar a span { font-size: 11px !important; letter-spacing: .14em !important; }
+
+  /* An 11px floor for the letterspaced labels. Caps with wide tracking read
+     larger than their nominal size, which is why 11px is fine and why the site
+     leans on it — but 9.5px and 10px are past the point where that holds. */
+  .tpl-mstory-head .eyebrow,
+  .tpl-mstory-head .hint,
+  .tpl-drawer-eyebrow,
+  .tpl-mobile-toggle span { font-size: 11px !important; }
+
+  /* Two real paragraphs still under the floor. */
+  .tpl-m-split > div > p,
+  footer > div > p { font-size: 16px !important; line-height: 1.7 !important; }
+
+  /* The drawer's home link was a 40px-wide target. */
+  .tpl-drawer-head a { min-width: 44px; }
+}
+
+@media (max-width: 1023px) {
+  /* The last of the sub-11px type: section eyebrows, the technology index tags,
+     the address/telephone/email field labels and the video's Play label. All
+     uppercase and letterspaced, all 10-10.5px. The 11px floor applies here too
+     — tracking buys some apparent size, but not two whole points of it.
+     Scoped to the media query so the approved desktop sizes are untouched. */
+  .tpl-microlabel,
+  .sc-interp { font-size: 11px !important; }
+}
+
+@media (max-width: 1023px) {
+  /* 42px, and it is the primary call to action. */
+  header[data-nav="1"] [data-btn] { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+@media (max-width: 1023px) {
+  /* ── 16px body copy, every page ──────────────────────────────────────────
+     The site sets its running copy at 15 and 15.5px, which is a desktop
+     measure. 16px is the phone floor — comfortable reading, and the size below
+     which iOS zooms a focused field (already satisfied on the forms, but the
+     same reasoning applies to the prose people read for longer).
+
+     A flat value rather than a floor is safe here, and was checked rather than
+     assumed: across index, prp, about, sofwave and services, no section
+     paragraph is set above 16px at this width, so this can only ever raise. */
+  section p,
+  .tpl-faq-a p { font-size: 16px !important; line-height: 1.75 !important; }
+}
