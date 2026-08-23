@@ -491,42 +491,72 @@
        words explaining what each regulator is. The gold registration line is the
        one part that says something the mark cannot, namely who it covers, so
        that is what stayed. 49 words of boilerplate out, nothing lost. -->
-  <section class="tpl-sec--hero" id="top" data-dark="1" data-screen-label="About — opening" style="background:#081359;padding:190px 48px 110px;color:#ffffff;position:relative;overflow:hidden">
-    <!-- The photo is 1920x1080. It used to fill a section that was 853px tall at
-         1440 wide — a 1.69 ratio, near enough 16:9 that cover cropped only 38px
-         a side. Merging three sections into one made the band 1367px (ratio
-         1.05), so cover had to scale the image 1.27x and cut 495px off each
-         edge: the subject came out enlarged, sliced through the waist and
-         wrestling with the headline.
-         So the image is no longer asked to fill the band. It sits at the top at
-         its own proportion — 56.25vw is exactly 16:9, so at any width it lands
-         1:1 with no crop and no upscale — and masks out into the navy at the
-         bottom rather than ending on a hard edge. The 60vh floor is for tall
-         narrow phones, where 16:9 alone would leave too thin a sliver to read
-         as a photograph. min(100%, ...) keeps it inside the band if the section
-         is ever shorter than the image wants to be. -->
+  <!-- One screen, exactly — the same fix services.html got. This band used to be
+       a fixed 190/110 pad stack with a single full-width column, so the headline
+       left two-thirds of the width empty on the right and the four claim tiles
+       fell below the fold: open the page and you saw a wall of navy either side
+       of the words. It is now held to the viewport the same way services.html
+       is — vh-relative pads, flex column, the space between headline and tiles
+       is whatever the screen has left rather than a fixed 56px gap — and the
+       dead width beside the headline is filled with a rail, exactly like
+       services.html fills its own with the region breakdown. -->
+  <section class="tpl-sec--hero" id="top" data-dark="1" data-screen-label="About — opening" style="background:#081359;padding:clamp(104px, 13vh, 148px) 48px clamp(26px, 4.5vh, 54px);color:#ffffff;position:relative;overflow:hidden;min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+    <!-- The photo is 1920x1080. It sits at the top at its own proportion —
+         56.25vw is exactly 16:9, so at any width it lands 1:1 with no crop and
+         no upscale — and masks out into the navy rather than ending on a hard
+         edge. The 60vh floor is for tall narrow phones, where 16:9 alone would
+         leave too thin a sliver to read as a photograph. -->
     <img src="assets/section-images-webp/section-clinic-portrait.webp" alt="" aria-hidden="true" width="1920" height="1080" style="position:absolute;top:0;left:0;width:100%;height:min(100%, max(56.25vw, 60vh));object-fit:cover;object-position:center top;opacity:.2;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.45) 82%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.45) 82%,transparent 100%)" />
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,89,.62) 0%,rgba(8,19,89,.45) 40%,rgba(8,19,89,.92) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 80% -10%,rgba(184,146,93,.14),transparent 60%);pointer-events:none"></div>
-    <!-- Pinned to 320px rather than 40%. It sat behind the headline when the
-         section was 826px tall; as a percentage of a section now ~1.6x that, it
-         would have drifted down into the claim tiles. -->
-    <div aria-hidden="true" style="position:absolute;left:50%;top:320px;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">ABOUT</div>
-    <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
-      <div data-reveal="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">About — Mayfair</div>
-      <h1 data-reveal="1" style="margin:26px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:15ch">One specialty.<br />Everything built <span style="color:#C7A470">outward from it.</span></h1>
-      <div data-reveal="1" style="margin-top:34px">
-        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.72)">The first clinic in the UK specialising in, and devoted to, Platelet Rich Plasma — led by Mr Kam Dogan.</p>
-        <!-- Was the philosophy section's whole payload. "Client-centred" went as
-             jargon; the natural-results line is the part that says something. -->
-        <p style="margin:16px 0 0;max-width:56ch;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.72)">Quality, results and safety run through every part of the clinic. Plans are built around individual needs, and we believe in natural-looking results — the aim is to enhance your features, not to change them.</p>
+    <!-- 44%, matching services.html's watermark — the section is viewport-held
+         now rather than a fixed height, so a percentage anchor is what keeps it
+         centred behind the headline at any screen size. -->
+    <div aria-hidden="true" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-family:Jost,sans-serif;font-weight:200;font-size:22vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;user-select:none;pointer-events:none">ABOUT</div>
+    <div style="width:100%;max-width:1280px;margin:0 auto;position:relative;z-index:2">
+      <!-- Headline left, regulator rail right — the same split services.html
+           uses. The rail teases the accreditation section below (three rows,
+           one per regulator, each linking to #regulation) exactly the way
+           services.html's region rail teases its treatment index. -->
+      <div class="tpl-hero-grid" style="display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,.68fr);gap:clamp(28px, 4vw, 72px);align-items:end">
+        <div>
+          <div data-reveal="1" style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">About — Mayfair</div>
+          <h1 data-reveal="1" style="margin:clamp(16px, 2.4vh, 24px) 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(40px, 5vw, 80px);line-height:1;letter-spacing:-.015em;color:#ffffff;max-width:15ch">One specialty.<br />Everything built <span style="color:#C7A470">outward from it.</span></h1>
+          <div data-reveal="1" style="margin-top:clamp(16px, 2.4vh, 24px)">
+            <p style="margin:0;max-width:52ch;font-size:clamp(15px, .95vw, 15.5px);line-height:1.8;color:rgba(255,255,255,.72)">The first clinic in the UK specialising in, and devoted to, Platelet Rich Plasma — led by Mr Kam Dogan.</p>
+            <!-- Was the philosophy section's whole payload. "Client-centred" went
+                 as jargon; the natural-results line is the part that says
+                 something. -->
+            <p style="margin:14px 0 0;max-width:52ch;font-size:clamp(15px, .95vw, 15.5px);line-height:1.8;color:rgba(255,255,255,.72)">Quality, results and safety run through every part of the clinic. Plans are built around individual needs, and we believe in natural-looking results — the aim is to enhance your features, not to change them.</p>
+          </div>
+        </div>
+
+        <aside data-reveal="1" class="tpl-hero-rail" style="border-left:1px solid rgba(232,200,154,.3);padding-left:clamp(18px, 2vw, 30px)">
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)">Doctors · Dentists · Nurses</span>
+            <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#C7A470">One specialty: Platelet Rich Plasma</span>
+          </div>
+          <div style="margin-top:clamp(16px, 2.4vh, 24px)">
+            <a href="#regulation" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>Doctors</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">GMC</span></a>
+            <a href="#regulation" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>Dentists</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">GDC</span></a>
+            <a href="#regulation" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:clamp(11px, 1.7vh, 17px) 0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);font-family:Jost,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;transition:color .3s ease" style-hover="color:#C7A470"><span>Nurses</span><span style="font-weight:200;font-size:16px;letter-spacing:.06em;color:rgba(232,200,154,.9)">NMC</span></a>
+            <!-- .55, not services.html's .45 that this line was copied from: at
+                 11px on navy .45 measures 4.21:1, under the 4.5 AA floor. .55
+                 clears it at 5.73:1. Services.html carries the same miss on its
+                 own closer line — flagged, not fixed here, since that page is
+                 out of scope for this change. -->
+            <div style="margin-top:10px;font-family:Jost,sans-serif;font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)">All registrations current</div>
+          </div>
+        </aside>
       </div>
 
       <!-- The four tiles read 5,000+ / 01 / 09 / W1. His words: "I'm looking
            at this, I'm like what is this one nine double, I'm trying to make
            sense of what these mean." Replaced with the four phrases he
-           dictated on the call, set as claims rather than figures. -->
-      <div data-reveal="1" class="tpl-hero-stats" style="margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
+           dictated on the call, set as claims rather than figures. Margin above
+           is vh-clamped now, matching services.html's hero-data-strip, so the
+           gap breathes with the screen instead of holding a fixed 56px. -->
+      <div data-reveal="1" class="tpl-hero-stats" style="margin-top:clamp(30px, 6.5vh, 84px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
         <div style="background:#081359;padding:32px 26px;display:flex;align-items:center">
           <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.35;color:#ffffff">500 treatments a year</div>
         </div>
@@ -540,20 +570,30 @@
           <div style="font-family:Jost,sans-serif;font-weight:300;font-size:20px;line-height:1.35;color:#C7A470">Central London location</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- ══ ACCREDITATION RAIL ══
-           Claims above, third-party proof below: proof lands harder after the
-           claim than before it. #regulation is carried over so any deep link
-           still resolves — nothing on the site references it today, checked, but
-           it costs nothing to keep. The showAccreditations prop hides
-           [data-accred] rather than .tpl-accred, so the label goes with the
-           grid instead of being left behind as an orphan heading. -->
-      <div data-reveal="1" data-accred="1" id="regulation" style="margin-top:72px;padding-top:52px;border-top:1px solid rgba(232,200,154,.28);scroll-margin-top:146px">
-        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:10px 20px;text-align:center">
-          <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Regulated, registered</div>
-          <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(255,255,255,.66)">Every practitioner holds current registration with their own regulator.</p>
-        </div>
-        <div class="tpl-accred tpl-three" style="margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(232,200,154,.28);border:1px solid rgba(232,200,154,.28)">
+  <!-- ══ ACCREDITATIONS ══
+       Split back out to its own section. It had been folded into the hero so
+       accreditations sat "at the very top, when you first go in" — that is
+       unaffected, it is still the very next thing on the page — but a section
+       carrying three logo cards is never going to fit in one viewport screen
+       alongside a headline, and keeping it inside the hero meant the hero could
+       not be held to one screen the way services.html's is. Standalone, it uses
+       the site's shared section-header system (.tpl-sec-label / .tpl-sec-title)
+       rather than the ad-hoc navy styling it needed while it lived on the hero
+       background.
+       showAccreditations now hides this whole section rather than [data-accred]
+       alone — cleaner than a bare grid, since it removes the heading with it
+       instead of leaving an orphan title with nothing underneath. -->
+  <section class="tpl-sec" id="regulation" data-accred="1" data-screen-label="About — accreditations" style="padding:100px 48px;background:#ffffff;scroll-margin-top:146px">
+    <div style="max-width:1280px;margin:0 auto">
+      <div data-reveal="1" style="padding-bottom:44px">
+        <div class="tpl-sec-label">Accreditations</div>
+        <h2 class="tpl-sec-title">Regulated, <em>registered</em></h2>
+        <p style="margin:18px auto 0;max-width:56ch;text-align:center;font-size:15px;line-height:1.7;color:#6E6E6E">Every practitioner holds current registration with their own regulator.</p>
+      </div>
+      <div data-reveal="1" class="tpl-accred tpl-three" style="margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(36,36,36,.12);border:1px solid rgba(36,36,36,.12)">
         <div style="background:#F7F5F2;padding:34px 30px 30px;display:flex;flex-direction:column;gap:20px">
           <div style="height:124px;display:flex;align-items:center;justify-content:center">
             <img src="assets/images/about/general-medical-council.png" alt="General Medical Council" loading="lazy" width="192" height="152" />
@@ -577,7 +617,6 @@
           <div>
             <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#836742">Nurses — NMC registered</div>
           </div>
-        </div>
         </div>
       </div>
     </div>
