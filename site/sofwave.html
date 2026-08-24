@@ -614,22 +614,31 @@
        ══════════════════════════════════════════════════════════════════ -->
 
   <!-- Treatment Hero — navy band -->
-  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:180px 48px 100px;color:#ffffff;position:relative;overflow:hidden">
+  <!-- One screen, exactly — the same fix services.html and about.html got. This
+       band was a fixed 180/100 pad stack, so its actual height had no relation
+       to the viewport: on a tall browser window the content ended and left dead
+       navy before the tab bar; on a short one it could run past the fold. It is
+       held to the viewport now the same way — vh-relative pads, flex column,
+       justify-content:center — so it always fills exactly one screen regardless
+       of window height. Unlike services.html and about.html this hero had no
+       dead width to fill beside the headline in the first place: the video
+       already occupies the second column, so no rail was needed here. -->
+  <section class="tpl-sec--hero" id="top" data-dark="1" style="background:#081359;padding:clamp(96px, 13vh, 140px) 48px clamp(26px, 4.5vh, 54px);color:#ffffff;position:relative;overflow:hidden;min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
     <div style="position:absolute;inset:0;background:radial-gradient(1100px 500px at 85% -10%,rgba(184,146,93,.16),transparent 60%);pointer-events:none"></div>
-    <div class="tpl-hero-grid" style="max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:64px;align-items:center">
+    <div class="tpl-hero-grid" style="width:100%;max-width:1280px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:64px;align-items:center">
       <div>
         <div data-reveal="1" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C7A470">Treatment 05 — Lifting · Ultrasound</span>
           <span style="width:5px;height:5px;background:#B8925D;display:inline-block"></span>
           <span style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)">Face · Neck · Brow</span>
         </div>
-        <h1 data-reveal="1" style="margin:24px 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:.98;letter-spacing:-.02em;color:#ffffff">Sofwave™</h1>
-        <p data-reveal="1" style="margin:26px 0 0;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.75)">Lift, tighten and rejuvenate — non-invasive ultrasound that rebuilds collagen, elastin and hyaluronic acid where ageing begins. Usually one session. No needles, no surgery.</p>
-        <div data-reveal="1" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:14px">
+        <h1 data-reveal="1" style="margin:clamp(18px, 2.4vh, 24px) 0 0;font-family:Jost,sans-serif;font-weight:200;font-size:clamp(44px, 5.6vw, 88px);line-height:.98;letter-spacing:-.02em;color:#ffffff">Sofwave™</h1>
+        <p data-reveal="1" style="margin:clamp(18px, 2.8vh, 26px) 0 0;font-size:15.5px;line-height:1.85;color:rgba(255,255,255,.75)">Lift, tighten and rejuvenate — non-invasive ultrasound that rebuilds collagen, elastin and hyaluronic acid where ageing begins. Usually one session. No needles, no surgery.</p>
+        <div data-reveal="1" style="margin-top:clamp(22px, 3.4vh, 40px);display:flex;flex-wrap:wrap;gap:14px">
           <a href="#consultation" style="display:inline-block;padding:15px 28px;background:#B8925D;border:1px solid #B8925D;color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="background:#A07C4B;border-color:#A07C4B">Book Consultation</a>
           <a class="tpl-cta-wa" href="https://wa.me/442079987077" style="display:inline-block;padding:15px 28px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .3s ease,border-color .3s ease" style-hover="border-color:#C7A470;background:rgba(184,146,93,.15)"><svg class="tpl-wa-mark" viewBox="0 0 24 24" width="16" height="16" fill="#25D366" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
         </div>
-        <div data-reveal="1" style="margin-top:36px;font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A">Introductory offers — save up to £1,000</div>
+        <div data-reveal="1" style="margin-top:clamp(22px, 3.4vh, 36px);font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#E8C89A">Introductory offers — save up to £1,000</div>
       </div>
       <div data-reveal="1" style="position:relative;aspect-ratio:16/10.5;background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden">
         <video autoplay loop muted playsinline preload="metadata" poster="assets/videos/sofwave/sofwave-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
@@ -766,8 +775,16 @@
       </div>
       <!-- The result photograph was sharing the row with the copy at roughly
            600px wide. Full width under a centred header it runs at 960px, so
-           the picture carries the weight the words were carrying alone. -->
-      <div data-reveal="1" style="position:relative;margin:56px auto 0;max-width:960px;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+           the picture carries the weight the words were carrying alone.
+
+           16/9, not the 4/3 it was: at 960px wide, 4/3 made this 720px tall,
+           and the usable height here is the viewport minus the 92px header and
+           the 48px sticky anchor rail — so it needed a 860px-tall window just
+           to be seen whole, and was cut off on any laptop below that. 16/9
+           brings it to 540px, which clears the same chrome on a 680px window.
+           The max-height is a second guard: whatever the aspect ratio, this can
+           never grow past the space the fixed chrome leaves it. -->
+      <div data-reveal="1" style="position:relative;margin:56px auto 0;max-width:960px;aspect-ratio:16/9;max-height:calc(100svh - 200px);background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center">
             <div>
               <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#8A6F44">Insert treatment photograph</div>
