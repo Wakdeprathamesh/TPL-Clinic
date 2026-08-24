@@ -775,8 +775,16 @@
       </div>
       <!-- The result photograph was sharing the row with the copy at roughly
            600px wide. Full width under a centred header it runs at 960px, so
-           the picture carries the weight the words were carrying alone. -->
-      <div data-reveal="1" style="position:relative;margin:56px auto 0;max-width:960px;aspect-ratio:4/3;background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
+           the picture carries the weight the words were carrying alone.
+
+           16/9, not the 4/3 it was: at 960px wide, 4/3 made this 720px tall,
+           and the usable height here is the viewport minus the 92px header and
+           the 48px sticky anchor rail — so it needed a 860px-tall window just
+           to be seen whole, and was cut off on any laptop below that. 16/9
+           brings it to 540px, which clears the same chrome on a 680px window.
+           The max-height is a second guard: whatever the aspect ratio, this can
+           never grow past the space the fixed chrome leaves it. -->
+      <div data-reveal="1" style="position:relative;margin:56px auto 0;max-width:960px;aspect-ratio:16/9;max-height:calc(100svh - 200px);background:linear-gradient(150deg,#F8F6F3,#E9E5DE);overflow:hidden">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center">
             <div>
               <div style="font-family:Jost,sans-serif;font-weight:500;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#8A6F44">Insert treatment photograph</div>
