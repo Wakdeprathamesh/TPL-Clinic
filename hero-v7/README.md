@@ -128,16 +128,48 @@ second blit is skipped, so a freeze is still one exact frame. Proven live with
 two positions sharing the same floor AND round frame: the old path painted
 them identically, the new one interpolates between neighbours.
 
-**Paint-time filtering to 'high'.** The 3840-wide frame is downscaled at paint
-time, and the canvas default filter is 'low' — plain bilinear, which shimmers
-on fine detail. 'high' measured 0.76ms flushed on the 2880x1800 backing store.
-Assigning canvas.width resets ALL context state, so the setting is restored
-inside resize() — verified by dispatching a resize and reading the quality
-back. (Decode-time resize was measured and REJECTED: createImageBitmap with
-resizeQuality 'high' takes 258ms against 92ms plain — it would starve fast
-scrubs for a memory win the eviction window already covers.)
+**Paint-time filtering to 'high' — RETRACTED a day later.** The 0.76ms figure
+came from a broken microbenchmark (fifty draws of the same bitmap amortised
+over one flush). Measured honestly — distinct bitmaps, flushed per tick — the
+'high' filter cost 33ms A BLIT on the 2880-wide backing store, 81.5ms a tick
+with the crossfade's two blits, and the client felt it immediately: "quality
+is good but it lags while scrolling." The 258ms decode-resize figure that
+justified rejecting the alternative was also wrong (a cold-path outlier;
+steady-state is ~125ms at any resizeQuality). See §The lag fix below for what
+replaced it. The lesson is recorded in both directions: the same bad yardstick
+first shipped a laggy filter and nearly buried the right architecture.
 
 **dt-normalised easing.** The scroll->progress damping was 0.14 per rAF tick,
 which is twice as stiff on a 120Hz display as on 60Hz. It is now a time
 constant (SMOOTH_MS: 110, chosen so 60Hz behaviour is bit-identical to the old
 feel), so a ProMotion MacBook gets the same glide as everything else.
+
+## The lag fix (2026-08-26, same day)
+
+The 4K remaster made the scrub lag, and the cause was painting: every tick
+downscaled a 3840-wide bitmap into the 2880-wide backing store — twice, with
+the crossfade — through the 'high' filter shipped that morning. Measured with
+an honest per-tick flush: **81.5ms a tick**, five times the 60Hz budget.
+
+The fix is to resample ONCE, at decode, and never filter at paint again:
+
+- `createImageBitmap(blob, {resizeWidth, resizeHeight, resizeQuality:'high'})`
+  produces the frame already at the backing store's cover size (3200×1800 on a
+  1440-CSS DPR-2 stage). Cost ~125ms against 90ms plain — a 1.4x hit the
+  12-deep decode queue absorbs — and 'high' costs the same as 'low' there.
+- Every paint is then a **1:1 blit at (geom.x, geom.y)**: 15.1ms a tick with
+  the crossfade under the flush-forced yardstick (the readback overstates
+  steady state), against 81.5 shipped. Quality goes UP at the same time: one
+  proper multi-tap resample beats any per-paint filter.
+- Memory per resident frame drops ~35% (3200×1800 vs 3840×2160 RGBA).
+- `store.rescale()` handles window resizes: stale-size bitmaps still paint
+  (the draw path scales any mismatch), get dropped, and the window refills at
+  the new size — verified live by resizing the viewport and watching the pins
+  come back at the new cover width.
+- Browsers that ignore the resize options are detected off the first decode
+  (returned width != requested) and fall back to plain decodes with cheap
+  scaled paints for the session.
+- `store.start()` now waits for the first `resize()`, so decodes never begin
+  before the target size exists.
+- The background byte-warming loop stands aside while the reader is actively
+  scrubbing (350ms of want() silence before it resumes).
