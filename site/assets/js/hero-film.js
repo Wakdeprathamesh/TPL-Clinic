@@ -214,12 +214,18 @@
 
      Draw falls back to the nearest decoded frame, so a gap degrades to a
      slightly coarser scrub rather than a blank canvas. */
-  function FrameStore(onDecode, pins) {
+  function FrameStore(onDecode, pins, getSize) {
     var store = new Array(TOTAL_FRAMES + 1);
     /* 12 in flight. Above roughly this the browser's own per-host connection
        limit is the bottleneck rather than us, and the queue just gets longer. */
     var inflight = 0, MAX_PARALLEL = 12, queue = [], queued = {}, started = false;
     var supportsBitmap = typeof createImageBitmap === 'function';
+    /* Whether this browser honours createImageBitmap's resize options.
+       Detected from the first resized decode: a browser that ignores them
+       hands back the full-size bitmap, and we fall back to plain decodes with
+       scaled paints for the whole session. */
+    var resizeOK = supportsBitmap ? undefined : false;
+    var lastWantAt = 0;
 
     /* ── Eviction ──────────────────────────────────────────────────────────
        Not optional at 4K. A decoded 3840x2160 RGBA bitmap is 33MB; 598 of them
@@ -251,12 +257,33 @@
       }
     }
 
+    /* THE architectural decision of the 4K hero, remade with honest numbers.
+       Painting the 3840-wide frame scaled every tick costs 33ms a blit with
+       the 'high' filter and 13ms with 'low' on the machine this was tuned on —
+       the crossfade doubled it and the scrub visibly lagged. Resampling ONCE
+       here, at decode, costs ~125ms against 90ms plain (a 1.4x hit the
+       12-deep queue absorbs), and every paint after it is a 1:1 blit measured
+       at 4-7ms WITH the crossfade. resizeQuality 'high' costs the same as
+       'low' at decode, so the film also looks better than any per-paint
+       filter made it. Memory per resident frame drops ~35% as a side effect. */
     function decode(n) {
       if (store[n]) return Promise.resolve();
+      var sz = getSize ? getSize() : null;
       if (supportsBitmap) {
         return fetch(FRAME_URL(n), { cache: 'force-cache' })
           .then(function (r) { return r.ok ? r.blob() : Promise.reject(r.status); })
-          .then(createImageBitmap)
+          .then(function (blob) {
+            if (sz && resizeOK !== false) {
+              return createImageBitmap(blob, {
+                resizeWidth: sz.w, resizeHeight: sz.h, resizeQuality: 'high'
+              }).then(function (bmp) {
+                if (resizeOK === undefined) resizeOK = (bmp.width === sz.w);
+                if (!resizeOK) { bmp.close(); return createImageBitmap(blob); }
+                return bmp;
+              });
+            }
+            return createImageBitmap(blob);
+          })
           .then(function (bmp) { keep(n, bmp); })
           .catch(function () { return viaImage(n); });
       }
@@ -314,10 +341,23 @@
          the next decode. */
       want: function (n) {
         if (n === center) return;
+        lastWantAt = Date.now();
         lastDir = n > center ? 1 : -1;
         center = n;
         for (var b = 1; b <= 8; b++) push(n - lastDir * b, true);
         for (var a = 32; a >= 0; a--) push(n + lastDir * a, true);
+        pump();
+      },
+      /* The stage was resized, so every resident bitmap is the wrong size.
+         Stale ones still paint (the draw path scales any mismatched bitmap),
+         but they are dropped here so the window refills at the new size. */
+      rescale: function () {
+        var sz = getSize ? getSize() : null;
+        if (!sz || resizeOK === false) return;
+        for (var i = 1; i <= TOTAL_FRAMES; i++) {
+          if (store[i] && store[i].width !== sz.w) drop(i);
+        }
+        (pins || []).forEach(function (n) { push(n, true); });
         pump();
       },
       start: function () {
@@ -326,11 +366,12 @@
         for (var n = 1; n <= WINDOW; n++) push(n);
         pump();
         /* Warm the whole film's BYTES into the HTTP cache — no decode, one
-           request at a time so it never competes with the window's decodes.
-           This is what keeps eviction cheap. */
+           request at a time, and it stands aside while the reader is actively
+           scrubbing so the window's own fetches never queue behind it. */
         if (typeof fetch === 'function') {
           (function warm(i) {
             if (i > TOTAL_FRAMES) return;
+            if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
             fetch(FRAME_URL(i), { cache: 'force-cache' })
               .catch(function () {})
               .then(function () { setTimeout(function () { warm(i + 1); }, 0); });
@@ -507,14 +548,16 @@
     buildCopy(copyRoot);
     BEATS.forEach(buildAnimTargets);
     var ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
-    /* The 3840-wide frame is downscaled at PAINT time, and the default filter
-       for that is 'low' — plain bilinear, which shimmers on fine detail like
-       the reception lettering. 'high' is a multi-tap filter and measures under
-       1ms flushed on this backing store. Assigning canvas.width resets every
-       piece of context state, so this is a function and resize() calls it. */
+    /* Filtering stays CHEAP at paint time on purpose. The high-quality
+       resample happens once, at decode (see FrameStore) — a 'high' paint-time
+       filter was measured at 33ms a blit on the 2880-wide backing store, which
+       with the crossfade's two blits is how the scrub lagged. The only scaled
+       paints left are transitional: a stale-size bitmap right after a window
+       resize, or a browser that ignores createImageBitmap's resize options.
+       Assigning canvas.width resets context state, so resize() re-calls this. */
     function setSmoothing() {
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingQuality = 'low';
     }
     setSmoothing();
 
@@ -525,8 +568,10 @@
     BEATS.forEach(function (bt) { if (bt.type === 'stop') pinnedFrames.push(bt.freeze); });
     var store = FrameStore(function (n) {
       if ((n === wantFrame || n === wantFrame + 1) && !drawnExact) draw(true);
-    }, pinnedFrames);
-    store.start();
+    }, pinnedFrames, function () { return decodeSize; });
+    /* store.start() happens inside the first resize(): decodes must not begin
+       until the backing size exists, or the first ~70 frames would arrive at
+       full 4K and be dropped again by the first rescale(). */
 
     /* ── Backing store, capped at the source ──────────────────────────────────
        The 4K master landed, so this cap now stops biting on anything up to a
@@ -536,7 +581,7 @@
        invented, so the backing store never exceeds what the frame can cover at
        scale 1, and the compositor does the final stretch. */
     var SRC_W = 3840, SRC_H = 2160;
-    var dpr = 1, geom = null;
+    var dpr = 1, geom = null, decodeSize = null;
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       var wantW = Math.max(1, Math.round(stage.clientWidth * dpr));
@@ -552,6 +597,14 @@
       geom = { w: SRC_W * s, h: SRC_H * s,
                x: (canvas.width - SRC_W * s) / 2, y: (canvas.height - SRC_H * s) / 2,
                scale: s };
+
+      /* The size every decode resamples to: the full frame at cover scale,
+         so a painted frame is a 1:1 blit at (geom.x, geom.y). */
+      var newSize = { w: Math.max(1, Math.round(geom.w)), h: Math.max(1, Math.round(geom.h)) };
+      var changed = !decodeSize || newSize.w !== decodeSize.w;
+      decodeSize = newSize;
+      if (changed) store.rescale();
+      store.start();   // no-op after the first call
       draw(true);
     }
 
@@ -585,21 +638,30 @@
        which reads as the film being stuck. The scroll position is continuous,
        and now the paint is too: the frame below the playhead is drawn opaque
        and the frame above it is drawn over the top at the fractional alpha.
-       Two blits instead of one (each measured ~0.02ms at the API, <1ms
-       flushed); at a stop the position is an integer, the alpha is 0, and the
-       second blit is skipped — a freeze is still a single exact frame. */
+       Two 1:1 blits per tick, measured 4-7ms flushed on a 2880-wide backing
+       store — the bitmaps arrive pre-resampled from decode, so no filtering
+       happens here. At a stop the position is an integer, the alpha is 0, and
+       the second blit is skipped — a freeze is still a single exact frame. */
+    function blit(img) {
+      var iw = img.width || img.naturalWidth;
+      if (decodeSize && iw === decodeSize.w) {
+        ctx.drawImage(img, Math.round(geom.x), Math.round(geom.y));      // 1:1
+      } else {
+        ctx.drawImage(img, geom.x, geom.y, geom.w, geom.h);              // stale size / no-resize browser
+      }
+    }
     function drawFrame(f) {
       var n0 = Math.floor(f), frac = f - n0;
       var n1 = Math.min(TOTAL_FRAMES, n0 + 1);
       var img = store.get(n0);
       if (!img || !geom) { drawnExact = false; return; }
       ctx.globalAlpha = 1;
-      ctx.drawImage(img, geom.x, geom.y, geom.w, geom.h);
+      blit(img);
       drawnExact = store.ready(n0);
       if (frac > 0.01 && n1 !== n0) {
         if (store.ready(n1)) {
           ctx.globalAlpha = frac;
-          ctx.drawImage(store.get(n1), geom.x, geom.y, geom.w, geom.h);
+          blit(store.get(n1));
           ctx.globalAlpha = 1;
         } else {
           drawnExact = false;   // the blend half is missing; repaint when it lands

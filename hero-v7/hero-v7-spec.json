@@ -252,10 +252,17 @@
  "smoothnessPass": {
   "date": "2026-08-26",
   "crossfade": "frame floor drawn opaque + frame above at fractional alpha; repaint threshold 0.003 of a frame; stops stay single exact frames (frac 0). Verified: same-floor-same-round positions paint different pixels.",
-  "paintFilter": "imageSmoothingQuality 'high' (default 'low' = bilinear shimmer on the 3840->2880 paint-time downscale); restored inside resize() because canvas.width assignment resets ctx state; 0.76ms flushed.",
+  "paintFilter": "RETRACTED: 'high' paint filter measured 33ms/blit honestly (81.5ms/tick with crossfade) \u2014 the 0.76ms figure was a same-bitmap amortised-flush artefact. Replaced by decode-time resample; paint filter back to 'low' and only touches transitional scaled paints.",
   "easing": "SMOOTH_MS 110 time-constant replaces DAMPING 0.14/tick; 1-e^(-16.7/110)=0.14 so 60Hz feel is unchanged, 120Hz no longer runs twice as stiff.",
   "rejected": {
-   "decodeTimeResize": "createImageBitmap resizeQuality high = 258ms vs 92ms plain at 4K: 2.8x decode cost starves fast scrubs for a memory win the \u00b164 eviction window already covers."
+   "decodeTimeResize": "RETRACTED with the lag fix: the 258ms figure was a cold-path outlier; steady state ~125ms at any resizeQuality. Decode-time resample is now the shipped architecture."
   }
+ },
+ "lagFix": {
+  "date": "2026-08-26",
+  "symptom": "client: quality good, lags while scrolling",
+  "cause": "per-tick 3840->2880 downscale x2 blits through 'high' filter = 81.5ms/tick flushed (5x the 60Hz budget)",
+  "fix": "resample once at decode to the cover size (resizeQuality 'high', ~125ms vs 90 plain), 1:1 blits at paint (15.1ms/tick flushed incl. crossfade and the readback overhead), paint filter 'low', store.rescale() on viewport change, start() deferred until first resize, warm loop yields while scrubbing",
+  "verified": "bitmaps arrive 3200x1800 at 1440-CSS DPR-2; blend alive (same-floor-same-round sigs differ); rescale refills pins at 2844x1600 after a 1200x800 resize; 0 failed requests"
  }
 }
