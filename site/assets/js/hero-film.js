@@ -55,7 +55,13 @@
     CAPTION_SCREENS: 0.75, // kicker + headline only, film still moving
     // Share of a beat's scroll spent arriving / holding / leaving.
     IN: 0.30, OUT: 0.24,
-    DAMPING: 0.14,         // frame-to-frame easing of scroll -> progress
+    /* Scroll -> progress easing as a TIME CONSTANT, not a per-tick factor.
+       The old form (current += delta * 0.14 per rAF) ran twice as stiff on a
+       120Hz display as on a 60Hz one, because it eased per frame painted, not
+       per millisecond elapsed. 110ms reproduces the old 60Hz feel exactly
+       (1 - e^(-16.7/110) = 0.14) and now a ProMotion MacBook gets the same
+       glide instead of a stiffer one. */
+    SMOOTH_MS: 110,
 
     /* ── Motion ────────────────────────────────────────────────────────────
        A frozen film reads as a stall unless something is still answering the
@@ -501,6 +507,16 @@
     buildCopy(copyRoot);
     BEATS.forEach(buildAnimTargets);
     var ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
+    /* The 3840-wide frame is downscaled at PAINT time, and the default filter
+       for that is 'low' — plain bilinear, which shimmers on fine detail like
+       the reception lettering. 'high' is a multi-tap filter and measures under
+       1ms flushed on this backing store. Assigning canvas.width resets every
+       piece of context state, so this is a function and resize() calls it. */
+    function setSmoothing() {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+    }
+    setSmoothing();
 
     /* Repaint when the frame we actually want lands, if what is on screen is a
        stand-in. Cheap: one comparison per decode, and it only ever draws when
@@ -508,7 +524,7 @@
     var pinnedFrames = [1];
     BEATS.forEach(function (bt) { if (bt.type === 'stop') pinnedFrames.push(bt.freeze); });
     var store = FrameStore(function (n) {
-      if (n === wantFrame && !drawnExact) draw(true);
+      if ((n === wantFrame || n === wantFrame + 1) && !drawnExact) draw(true);
     }, pinnedFrames);
     store.start();
 
@@ -528,6 +544,7 @@
       var cap = Math.min(1, SRC_W / wantW, SRC_H / wantH);
       canvas.width = Math.max(1, Math.round(wantW * cap));
       canvas.height = Math.max(1, Math.round(wantH * cap));
+      setSmoothing();   // assigning width/height wiped every ctx setting
 
       /* Cover geometry is a function of canvas size and source size only, so it
          is computed here and not per drawn frame. */
@@ -563,13 +580,31 @@
       return { seg: segs[segs.length - 1], local: 1 };
     }
 
-    /* One drawImage against pre-computed geometry. No maths, no allocation, no
-       DOM read — the whole per-frame cost is the blit. */
-    function drawFrame(n) {
-      var img = store.get(n);
+    /* Sub-frame crossfade. The film is 598 frames over 42 seconds — 14fps of
+       temporal density — so a slow scroll used to STEP from frame to frame,
+       which reads as the film being stuck. The scroll position is continuous,
+       and now the paint is too: the frame below the playhead is drawn opaque
+       and the frame above it is drawn over the top at the fractional alpha.
+       Two blits instead of one (each measured ~0.02ms at the API, <1ms
+       flushed); at a stop the position is an integer, the alpha is 0, and the
+       second blit is skipped — a freeze is still a single exact frame. */
+    function drawFrame(f) {
+      var n0 = Math.floor(f), frac = f - n0;
+      var n1 = Math.min(TOTAL_FRAMES, n0 + 1);
+      var img = store.get(n0);
       if (!img || !geom) { drawnExact = false; return; }
-      drawnExact = store.ready(n);
+      ctx.globalAlpha = 1;
       ctx.drawImage(img, geom.x, geom.y, geom.w, geom.h);
+      drawnExact = store.ready(n0);
+      if (frac > 0.01 && n1 !== n0) {
+        if (store.ready(n1)) {
+          ctx.globalAlpha = frac;
+          ctx.drawImage(store.get(n1), geom.x, geom.y, geom.w, geom.h);
+          ctx.globalAlpha = 1;
+        } else {
+          drawnExact = false;   // the blend half is missing; repaint when it lands
+        }
+      }
     }
 
     function draw(force) {
@@ -588,11 +623,13 @@
         env = envelope(local); active = seg.beat;
       }
 
-      var n = Math.max(1, Math.min(TOTAL_FRAMES, Math.round(frame)));
+      var f = Math.max(1, Math.min(TOTAL_FRAMES, frame));
+      var n = Math.floor(f);
       wantFrame = n;
       store.want(n);   // slide the decode window with the playhead
-      // repaint on a new frame, when forced, or when the last paint was a stand-in
-      if (force || n !== lastFrame || !drawnExact) { drawFrame(n); lastFrame = n; }
+      // repaint on any visible movement (a 1/300th-frame change is sub-alpha),
+      // when forced, or when the last paint was a stand-in
+      if (force || Math.abs(f - lastFrame) > 0.003 || !drawnExact) { drawFrame(f); lastFrame = f; }
 
       BEATS.forEach(function (b) {
         var on = b === active;
@@ -644,17 +681,20 @@
 
     /* One rAF loop, easing toward the scroll target, parked when settled. The
        scroll handler never draws and never decodes — it records a number. */
-    function loop() {
+    var lastTick = 0;
+    function loop(ts) {
       var delta = target - current;
       if (Math.abs(delta) < 0.00002) {
         current = target; draw(false); looping = false; return;
       }
-      current += delta * CFG.DAMPING;
+      var dt = lastTick ? Math.min(100, ts - lastTick) : 16.7;
+      lastTick = ts;
+      current += delta * (1 - Math.exp(-dt / CFG.SMOOTH_MS));
       draw(false);
       requestAnimationFrame(loop);
     }
     function kick() {
-      if (!looping) { looping = true; requestAnimationFrame(loop); }
+      if (!looping) { looping = true; lastTick = 0; requestAnimationFrame(loop); }
     }
     function onScroll() { target = readScroll(); kick(); }
 

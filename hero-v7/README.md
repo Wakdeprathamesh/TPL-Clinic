@@ -114,3 +114,30 @@ documented "if a 4K master ever lands" path.
 The 1080p near-lossless set is deleted from the tree (history keeps it); the
 frames URL moved to `hero-v7-4k-frames/` because the old path carries a
 one-year immutable cache header.
+
+## The smoothness pass (2026-08-26)
+
+Three engine changes, each against a measured defect:
+
+**Sub-frame crossfade.** The film is 14.2fps of temporal density, so a slow
+scroll used to STEP from frame to frame — the "film is stuck" feel. The scroll
+position was always continuous; now the paint is too. The frame below the
+playhead draws opaque, the frame above draws over it at the fractional alpha
+(two blits, ~0.02ms each at the API). At a stop the fraction is 0 and the
+second blit is skipped, so a freeze is still one exact frame. Proven live with
+two positions sharing the same floor AND round frame: the old path painted
+them identically, the new one interpolates between neighbours.
+
+**Paint-time filtering to 'high'.** The 3840-wide frame is downscaled at paint
+time, and the canvas default filter is 'low' — plain bilinear, which shimmers
+on fine detail. 'high' measured 0.76ms flushed on the 2880x1800 backing store.
+Assigning canvas.width resets ALL context state, so the setting is restored
+inside resize() — verified by dispatching a resize and reading the quality
+back. (Decode-time resize was measured and REJECTED: createImageBitmap with
+resizeQuality 'high' takes 258ms against 92ms plain — it would starve fast
+scrubs for a memory win the eviction window already covers.)
+
+**dt-normalised easing.** The scroll->progress damping was 0.14 per rAF tick,
+which is twice as stiff on a 120Hz display as on 60Hz. It is now a time
+constant (SMOOTH_MS: 110, chosen so 60Hz behaviour is bit-identical to the old
+feel), so a ProMotion MacBook gets the same glide as everything else.
