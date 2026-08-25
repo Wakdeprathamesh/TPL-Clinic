@@ -1,12 +1,12 @@
 # HeroV7 — the scroll film
 
-The homepage hero. `Hero V7.mp4` is scrubbed by scroll as a sequence of 598 WebP
+The homepage hero. `Hero V7 4K.mp4` is scrubbed by scroll as a sequence of 598 WebP
 frames, with seven beats of copy set as dark ink directly on the picture — no
 scrim anywhere.
 
 - **Engine** — `site/assets/js/hero-film.js`
 - **Stylesheet** — `site/assets/css/hero-film.css` (shared by the live hero and the preview page)
-- **Frames** — `site/assets/hero-v7-frames-webp/` — 598 files, 93.4 MB
+- **Frames** — `site/assets/hero-v7-4k-frames/` — 598 files, 3840×2160, q98 (see §4K below)
 - **Preview** — `site/hero-v7.html`, with a debug strip and `?beat=` / `?seek=` review URLs
 - **Numbers** — `hero-v7-spec.json`, and the reasoning in `hero-v7-analysis.md`
 
@@ -75,11 +75,42 @@ the machine this was built on had under 3 GB free.
 
 ## Known limits
 
-- **Resolution ceiling**, unchanged from V6. The master is 1920×1080 and the
-  stage rasterises larger than that on a DPR-2 display, so the engine caps its
-  backing store rather than upscaling. A 4K master is still the only real fix.
+- **Resolution ceiling — resolved.** The 4K master landed 2026-08-25; see §The
+  4K remaster below. The cap logic stayed, it just stopped biting.
 - **Face has no footage** in any master supplied. It is a nav pillar and a card
   in the phone deck — never a beat of the film.
 - **`Hero V7 (1).mp4`** in the repo root is byte-identical to `Hero V7.mp4`
   (MD5 `21fe86116de8dfa8b4a99f7cf3baf29c`). 94 MB of duplicate, ignored by git,
   safe to delete.
+
+
+## The 4K remaster (2026-08-25)
+
+The client supplied `Hero V7 4K.mp4` — the **same cut, same grade** as the
+1080p master (1011 frames, 42.167125s; frame-500 diff vs the 1080p master is
+mean 1.54/255, codec noise) at 3840×2160, 45 Mbps. Everything beat-related
+carried over untouched; only the pixels changed.
+
+**Encode: q98 -sharp_yuv, chosen by looking, not by PSNR.** At 4K the h264
+master's own grain dominates every metric — PSNR ranks grain reproduction, not
+sharpness, and near-lossless spends 1.19 GB reproducing that grain (its error
+tolerance also widens at 4K density: mean 3.0/255 vs the 1080p run's near-zero).
+Side-by-side crops at true raster scale (2880×1620, what a DPR-2 laptop
+actually paints) showed q95 ≈ q98 ≈ near-lossless, while today's 1080p was
+visibly softer on the lettering. The client picked q98 from the measured
+ladder: q95 362 MB · **q98** · nl60 1.19 GB (projected; the run came in under).
+
+**The engine now EVICTS — this is not optional at 4K.** A decoded 3840×2160
+RGBA bitmap is 33 MB; 598 resident at once would be 19.8 GB. Decoded frames
+live in a ±64-frame window around the playhead, frame 1 and every stop freeze
+stay pinned (a stop must land instantly from anywhere), evicted bitmaps are
+close()d, and the whole film's bytes are fetch-warmed into the HTTP cache in
+the background so re-decodes read from disk, not the network. Peak residency is
+~137 frames ≈ the same 5 GB envelope the 1080p hero shipped with. The backing
+store cap (`SRC_W/SRC_H`) went to 3840×2160, so a 1440-CSS DPR-2 stage now
+downscales the frame instead of upscaling 1080p by 59% — this was the
+documented "if a 4K master ever lands" path.
+
+The 1080p near-lossless set is deleted from the tree (history keeps it); the
+frames URL moved to `hero-v7-4k-frames/` because the old path carries a
+one-year immutable cache header.

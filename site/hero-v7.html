@@ -15,8 +15,8 @@
 <!-- the first frame and the frames the stops freeze on: these are what must not
      be late, so they are asked for in the document head rather than by the
      engine's queue -->
-<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0001.webp" />
-<link rel="preload" as="image" href="assets/hero-v7-frames-nl/frame-0058.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-4k-frames/frame-0001.webp" />
+<link rel="preload" as="image" href="assets/hero-v7-4k-frames/frame-0058.webp" />
 
 <style>
   *, *::before, *::after { box-sizing: border-box; }
@@ -115,7 +115,7 @@
 <div class="dbg">
   <span>beat <b data-dbg-beat>—</b></span>
   <span>frame <b data-dbg-frame>—</b></span>
-  <span>decoded <b data-dbg-loaded>0</b>/598</span>
+  <span>resident <b data-dbg-loaded>0</b> (window ±64 of 598)</span>
   <span>hero <b data-dbg-height>—</b></span>
   <button data-dbg-jump>next beat →</button>
 </div>

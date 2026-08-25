@@ -233,5 +233,20 @@
   "Resolution ceiling unchanged from V6: the master is 1920x1080 and the stage rasterises larger on a DPR-2 display, so the engine caps its backing store rather than upscaling. A 4K master is still the only real fix.",
   "Face has no footage in any master supplied. It is a nav pillar and a card in the phone deck, not a film beat.",
   "'Hero V7 (1).mp4' in the repo root is byte-identical to 'Hero V7.mp4' (MD5 21fe86116de8dfa8b4a99f7cf3baf29c) \u2014 94MB of duplicate."
- ]
+ ],
+ "remaster4k": {
+  "date": "2026-08-25",
+  "master": "Hero V7 4K.mp4 (226MB, 3840x2160, h264 45Mbps, bt709) \u2014 gitignored, local only",
+  "sameCutVerification": "1011 frames / 42.167125s on both masters; frame-500 downscale diff vs 1080p master mean 1.54/255 (codec noise) \u2014 same cut, same grade, so the beat table carried over unchanged",
+  "encode": {
+   "tool": "cwebp -mt -q 98 -sharp_yuv -m 6",
+   "framesPath": "site/assets/hero-v7-4k-frames/",
+   "why": "At 4K, PSNR ranks reproduction of the h264 master's own grain, not sharpness \u2014 near-lossless spends 1.19GB (projected) on that grain and its error tolerance widens at 4K density (mean 3.0/255 vs near-zero at 1080p). Chosen by crops at true raster scale (2880x1620): q95 \u2248 q98 \u2248 near-lossless visually, all visibly sharper than the shipped 1080p on lettering. Client picked q98 from the measured ladder (q95 362MB / q98 474MB / nl60 1190MB, 4-frame projections)."
+  },
+  "engine": {
+   "srcDims": "3840x2160 (cap now stops biting: a 1440-CSS DPR-2 stage downscales the frame instead of upscaling 1080p by 59%)",
+   "eviction": "REQUIRED at 4K: 598 decoded 3840x2160 RGBA bitmaps would be 19.8GB resident. Sliding window \u00b164 frames around the playhead; frame 1 + every stop freeze pinned; evicted ImageBitmaps close()d; whole film's bytes fetch-warmed into the HTTP cache in the background so re-decodes read from disk. Peak residency ~137 frames \u2248 the 1080p hero's always-resident envelope."
+  },
+  "nav": "Transparent over the film again, on the client's explicit instruction (2026-08-25), permanently visible, frosted past the hero, navy over consultation. The self-masking white halo carries the 116/598 frames where no flat ink colour clears AA; legible by craft, not by the contrast formula \u2014 caveat restated to the client at the time of the decision."
+ }
 }
