@@ -264,5 +264,25 @@
   "cause": "per-tick 3840->2880 downscale x2 blits through 'high' filter = 81.5ms/tick flushed (5x the 60Hz budget)",
   "fix": "resample once at decode to the cover size (resizeQuality 'high', ~125ms vs 90 plain), 1:1 blits at paint (15.1ms/tick flushed incl. crossfade and the readback overhead), paint filter 'low', store.rescale() on viewport change, start() deferred until first resize, warm loop yields while scrubbing",
   "verified": "bitmaps arrive 3200x1800 at 1440-CSS DPR-2; blend alive (same-floor-same-round sigs differ); rescale refills pins at 2844x1600 after a 1200x800 resize; 0 failed requests"
+ },
+ "pyramid": {
+  "date": "2026-08-26",
+  "lo": {
+   "path": "site/assets/hero-v7-lo-frames/",
+   "dims": "960x540",
+   "encode": "cwebp -q 87 -sharp_yuv -m 4",
+   "totalMB": 16.4,
+   "avgKB": 26.8,
+   "decodeMs": "~8"
+  },
+  "why": "hi-only supply ~96 frames/s vs 200+/s demand at medium scroll = starvation = the reported skips/jumps. lo supply ~700/s cannot starve; hi swaps in as the playhead slows.",
+  "rules": [
+   "blend only within a tier",
+   "decode-driven repaints only at rest",
+   "stops pinned in both tiers",
+   "queues rebuilt nearest-first per playhead change; busy-map prevents double decodes",
+   "warm loop: lo bytes first, then hi; yields while scrubbing"
+  ],
+  "verified": "fast sweep 220 samples: 179 hi / 42 lo / 0 miss; cold-load immediate scroll: 155 hi / 26 lo / 0 miss; blend alive; 0 failed requests"
  }
 }

@@ -40,6 +40,12 @@
   var FRAME_URL = function (n) {
     return 'assets/hero-v7-4k-frames/frame-' + String(n).padStart(4, '0') + '.webp';
   };
+  /* The motion rung: 960x540, ~27KB, decodes in ~10-15ms. Fast travel paints
+     from this tier so the film can NEVER starve; the 4K tier swaps in the
+     moment the playhead slows, which is when sharpness is perceptible. */
+  var LO_URL = function (n) {
+    return 'assets/hero-v7-lo-frames/frame-' + String(n).padStart(4, '0') + '.webp';
+  };
 
   /* ── Scroll budget ─────────────────────────────────────────────────────────
      Everything is measured in SCREENS (1 screen = 100vh of scroll). The hero's
@@ -215,63 +221,62 @@
      Draw falls back to the nearest decoded frame, so a gap degrades to a
      slightly coarser scrub rather than a blank canvas. */
   function FrameStore(onDecode, pins, getSize) {
-    var store = new Array(TOTAL_FRAMES + 1);
-    /* 12 in flight. Above roughly this the browser's own per-host connection
-       limit is the bottleneck rather than us, and the queue just gets longer. */
-    var inflight = 0, MAX_PARALLEL = 12, queue = [], queued = {}, started = false;
+    /* Two tiers.
+
+       HI — the 4K frames, resampled at decode to the backing store's cover
+       size so every paint is a 1:1 blit. ~125ms a decode, 12 in flight:
+       ~96 frames/s of supply. A medium scroll through travel (140 frames a
+       screen) DEMANDS 200+/s, so hi alone starves, the nearest-decoded
+       fallback holds, and the film visibly chunks — which is the "skips
+       frames and jumps" the client reported.
+
+       LO — the same film at 960x540, ~27KB a frame, ~10-15ms a decode:
+       ~600+/s of supply, unstarvable at any scroll speed a human produces.
+       Fast travel paints lo (softness is invisible in motion); the moment
+       the playhead slows, hi is already landing and takes over. Stops are
+       pinned in BOTH tiers, so a freeze is never soft and never late. */
+    var hi = new Array(TOTAL_FRAMES + 1), lo = new Array(TOTAL_FRAMES + 1);
+    var hiQ = [], hiQd = {}, hiIn = 0, hiBusy = {}, HI_PAR = 10;
+    var loQ = [], loQd = {}, loIn = 0, loBusy = {}, LO_PAR = 6;
+    var started = false;
     var supportsBitmap = typeof createImageBitmap === 'function';
-    /* Whether this browser honours createImageBitmap's resize options.
-       Detected from the first resized decode: a browser that ignores them
-       hands back the full-size bitmap, and we fall back to plain decodes with
-       scaled paints for the whole session. */
     var resizeOK = supportsBitmap ? undefined : false;
     var lastWantAt = 0;
 
-    /* ── Eviction ──────────────────────────────────────────────────────────
-       Not optional at 4K. A decoded 3840x2160 RGBA bitmap is 33MB; 598 of them
-       resident at once would be 19.8GB, and the 1080p set's always-resident
-       5GB was already the ceiling of what a laptop forgives. WINDOW frames
-       either side of the playhead stay warm — 129 frames plus the pins is the
-       same ~5GB envelope the 1080p hero shipped with — and everything else is
-       close()d as the playhead moves away. */
-    var WINDOW = 64;
+    var WINDOW_HI = 64, WINDOW_LO = 176;
     var pinned = {};
     (pins || []).forEach(function (n) { pinned[n] = 1; });
-    var BUDGET = (2 * WINDOW + 1) + (pins ? pins.length : 0) + 16;
-    var decodedCount = 0, center = 1, lastDir = 1;
+    var BUDGET_HI = (2 * WINDOW_HI + 1) + (pins ? pins.length : 0) + 16;
+    var BUDGET_LO = (2 * WINDOW_LO + 1) + (pins ? pins.length : 0) + 16;
+    var hiCount = 0, loCount = 0, center = 1, lastDir = 1;
 
-    function keep(n, img) {
-      if (!store[n]) decodedCount++;
-      store[n] = img;
-    }
-    function drop(n) {
-      var b = store[n];
+    function drop(arr, n, isHi) {
+      var b = arr[n];
       if (!b) return;
       if (b.close) { try { b.close(); } catch (e) {} }
-      store[n] = null; decodedCount--;
+      arr[n] = null;
+      if (isHi) hiCount--; else loCount--;
     }
     function evict() {
-      if (decodedCount <= BUDGET) return;
-      for (var i = 1; i <= TOTAL_FRAMES; i++) {
-        if (store[i] && !pinned[i] && Math.abs(i - center) > WINDOW) drop(i);
+      if (hiCount > BUDGET_HI) {
+        for (var i = 1; i <= TOTAL_FRAMES; i++)
+          if (hi[i] && !pinned[i] && Math.abs(i - center) > WINDOW_HI) drop(hi, i, true);
+      }
+      if (loCount > BUDGET_LO) {
+        for (var j = 1; j <= TOTAL_FRAMES; j++)
+          if (lo[j] && !pinned[j] && Math.abs(j - center) > WINDOW_LO) drop(lo, j, false);
       }
     }
 
-    /* THE architectural decision of the 4K hero, remade with honest numbers.
-       Painting the 3840-wide frame scaled every tick costs 33ms a blit with
-       the 'high' filter and 13ms with 'low' on the machine this was tuned on —
-       the crossfade doubled it and the scrub visibly lagged. Resampling ONCE
-       here, at decode, costs ~125ms against 90ms plain (a 1.4x hit the
-       12-deep queue absorbs), and every paint after it is a 1:1 blit measured
-       at 4-7ms WITH the crossfade. resizeQuality 'high' costs the same as
-       'low' at decode, so the film also looks better than any per-paint
-       filter made it. Memory per resident frame drops ~35% as a side effect. */
-    function decode(n) {
-      if (store[n]) return Promise.resolve();
+    function fetchBlob(url) {
+      return fetch(url, { cache: 'force-cache' })
+        .then(function (r) { return r.ok ? r.blob() : Promise.reject(r.status); });
+    }
+    function decodeHi(n) {
+      if (hi[n]) return Promise.resolve();
       var sz = getSize ? getSize() : null;
       if (supportsBitmap) {
-        return fetch(FRAME_URL(n), { cache: 'force-cache' })
-          .then(function (r) { return r.ok ? r.blob() : Promise.reject(r.status); })
+        return fetchBlob(FRAME_URL(n))
           .then(function (blob) {
             if (sz && resizeOK !== false) {
               return createImageBitmap(blob, {
@@ -284,7 +289,7 @@
             }
             return createImageBitmap(blob);
           })
-          .then(function (bmp) { keep(n, bmp); })
+          .then(function (bmp) { if (!hi[n]) hiCount++; hi[n] = bmp; })
           .catch(function () { return viaImage(n); });
       }
       return viaImage(n);
@@ -293,86 +298,131 @@
       return new Promise(function (res) {
         var im = new Image();
         im.decoding = 'async';
-        im.onload = function () { keep(n, im); res(); };
+        im.onload = function () { if (!hi[n]) hiCount++; hi[n] = im; res(); };
         im.onerror = function () { res(); };
         im.src = FRAME_URL(n);
       });
     }
-    /* Every decode reports back, not just the first. The draw path is allowed
-       to fall back to the nearest decoded frame, which means an early paint can
-       be showing the wrong shot entirely — without a per-decode signal the
-       canvas has no reason to ever repaint, and the hero opens on the wrong
-       picture until the first scroll. */
-    function pump() {
-      while (inflight < MAX_PARALLEL && queue.length) {
-        var n = queue.shift(); delete queued[n];
-        if (store[n]) continue;
-        inflight++;
+    function decodeLo(n) {
+      if (lo[n] || !supportsBitmap) return Promise.resolve();
+      return fetchBlob(LO_URL(n))
+        .then(function (blob) { return createImageBitmap(blob); })
+        .then(function (bmp) { if (!lo[n]) loCount++; lo[n] = bmp; })
+        .catch(function () {});
+    }
+    /* Every decode reports back, not just the first: the draw path may be
+       showing a stand-in, and the repaint has to happen when the real frame
+       lands. */
+    function pumpHi() {
+      while (hiIn < HI_PAR && hiQ.length) {
+        var n = hiQ.shift(); delete hiQd[n];
+        if (hi[n] || hiBusy[n]) continue;
+        hiIn++; hiBusy[n] = 1;
         (function (which) {
-          decode(which).then(function () {
-            inflight--;
-            onDecode && onDecode(which);
-            pump();
+          decodeHi(which).then(function () {
+            hiIn--; delete hiBusy[which];
+            onDecode && onDecode(which); pumpHi();
           });
         })(n);
       }
       evict();
     }
-    function push(n, front) {
-      n = Math.round(n);
-      if (n < 1 || n > TOTAL_FRAMES || store[n] || queued[n]) return;
-      queued[n] = 1;
-      if (front) queue.unshift(n); else queue.push(n);
+    function pumpLo() {
+      while (loIn < LO_PAR && loQ.length) {
+        var n = loQ.shift(); delete loQd[n];
+        if (lo[n] || loBusy[n]) continue;
+        loIn++; loBusy[n] = 1;
+        (function (which) {
+          decodeLo(which).then(function () {
+            loIn--; delete loBusy[which];
+            onDecode && onDecode(which); pumpLo();
+          });
+        })(n);
+      }
     }
+    function pushHi(n, front) {
+      n = Math.round(n);
+      if (n < 1 || n > TOTAL_FRAMES || hi[n] || hiQd[n]) return;
+      hiQd[n] = 1;
+      if (front) hiQ.unshift(n); else hiQ.push(n);
+    }
+    function pushLo(n, front) {
+      n = Math.round(n);
+      if (n < 1 || n > TOTAL_FRAMES || lo[n] || loQd[n]) return;
+      loQd[n] = 1;
+      if (front) loQ.unshift(n); else loQ.push(n);
+    }
+
     return {
-      get: function (n) {
-        if (store[n]) return store[n];
+      /* Exact frame at the best tier, else the nearest anything. The draw
+         path blends only within a tier, so the tier is reported. */
+      pick: function (n) {
+        if (hi[n]) return { img: hi[n], tier: 'hi', exact: true };
+        if (lo[n]) return { img: lo[n], tier: 'lo', exact: true };
         for (var d = 1; d < TOTAL_FRAMES; d++) {
-          if (n - d >= 1 && store[n - d]) return store[n - d];
-          if (n + d <= TOTAL_FRAMES && store[n + d]) return store[n + d];
+          if (n - d >= 1) { if (hi[n - d]) return { img: hi[n - d], tier: 'hi', exact: false };
+                            if (lo[n - d]) return { img: lo[n - d], tier: 'lo', exact: false }; }
+          if (n + d <= TOTAL_FRAMES) { if (hi[n + d]) return { img: hi[n + d], tier: 'hi', exact: false };
+                                       if (lo[n + d]) return { img: lo[n + d], tier: 'lo', exact: false }; }
         }
         return null;
       },
-      ready: function (n) { return !!store[n]; },
-      count: function () { return decodedCount; },
-      /* The draw path calls this with every frame it asks for. Requests are
-         biased in the direction of travel — a short tail behind the playhead,
-         a long head in front — and unshifted so the nearest frame is always
-         the next decode. */
+      tier: function (n, t) { return t === 'hi' ? hi[n] : lo[n]; },
+      get: function (n) { var p = this.pick(n); return p && p.img; },
+      ready: function (n) { return !!hi[n]; },
+      count: function () { return hiCount; },
+      loCount: function () { return loCount; },
+      /* Rebuilt from scratch on every new playhead position, nearest-first
+         in the direction of travel. The first version pushed increments to
+         the queue FRONT with a seen-map — which meant each tick's far-ahead
+         tail (n+96...) jumped the line in front of the near frames the
+         previous tick had queued, and the playhead's immediate needs sat
+         buried mid-queue. Measured: 20 starved steps in a 50-step cold ramp.
+         A rebuild is ~140 pushes against arrays this size — nothing — and the
+         queue is always exactly the current priority order. */
       want: function (n) {
         if (n === center) return;
         lastWantAt = Date.now();
         lastDir = n > center ? 1 : -1;
         center = n;
-        for (var b = 1; b <= 8; b++) push(n - lastDir * b, true);
-        for (var a = 32; a >= 0; a--) push(n + lastDir * a, true);
-        pump();
+        var k, d;
+        hiQ = []; hiQd = {};
+        for (d = 0; d <= 32; d++) { k = n + lastDir * d;
+          if (k >= 1 && k <= TOTAL_FRAMES && !hi[k] && !hiBusy[k]) { hiQ.push(k); hiQd[k] = 1; } }
+        for (d = 1; d <= 8; d++) { k = n - lastDir * d;
+          if (k >= 1 && k <= TOTAL_FRAMES && !hi[k] && !hiBusy[k] && !hiQd[k]) { hiQ.push(k); hiQd[k] = 1; } }
+        loQ = []; loQd = {};
+        for (d = 0; d <= 96; d++) { k = n + lastDir * d;
+          if (k >= 1 && k <= TOTAL_FRAMES && !lo[k] && !loBusy[k]) { loQ.push(k); loQd[k] = 1; } }
+        for (d = 1; d <= 12; d++) { k = n - lastDir * d;
+          if (k >= 1 && k <= TOTAL_FRAMES && !lo[k] && !loBusy[k] && !loQd[k]) { loQ.push(k); loQd[k] = 1; } }
+        pumpHi(); pumpLo();
       },
-      /* The stage was resized, so every resident bitmap is the wrong size.
-         Stale ones still paint (the draw path scales any mismatched bitmap),
-         but they are dropped here so the window refills at the new size. */
       rescale: function () {
         var sz = getSize ? getSize() : null;
         if (!sz || resizeOK === false) return;
         for (var i = 1; i <= TOTAL_FRAMES; i++) {
-          if (store[i] && store[i].width !== sz.w) drop(i);
+          if (hi[i] && hi[i].width !== sz.w) drop(hi, i, true);
         }
-        (pins || []).forEach(function (n) { push(n, true); });
-        pump();
+        (pins || []).forEach(function (n) { pushHi(n, true); });
+        pumpHi();
       },
       start: function () {
         if (started) return; started = true;
-        (pins || []).forEach(function (n) { push(n); });
-        for (var n = 1; n <= WINDOW; n++) push(n);
-        pump();
-        /* Warm the whole film's BYTES into the HTTP cache — no decode, one
-           request at a time, and it stands aside while the reader is actively
-           scrubbing so the window's own fetches never queue behind it. */
+        (pins || []).forEach(function (n) { pushLo(n); });
+        for (var m = 1; m <= WINDOW_LO; m++) pushLo(m);
+        (pins || []).forEach(function (n) { pushHi(n); });
+        for (var n = 1; n <= WINDOW_HI; n++) pushHi(n);
+        pumpLo(); pumpHi();
+        /* Warm the film's BYTES into the HTTP cache — lo first (17MB, the
+           tier that guarantees continuity), then hi. One request at a time,
+           and it stands aside while the reader is actively scrubbing. */
         if (typeof fetch === 'function') {
           (function warm(i) {
-            if (i > TOTAL_FRAMES) return;
+            if (i > TOTAL_FRAMES * 2) return;
             if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
-            fetch(FRAME_URL(i), { cache: 'force-cache' })
+            var url = i <= TOTAL_FRAMES ? LO_URL(i) : FRAME_URL(i - TOTAL_FRAMES);
+            fetch(url, { cache: 'force-cache' })
               .catch(function () {})
               .then(function () { setTimeout(function () { warm(i + 1); }, 0); });
           })(1);
@@ -567,7 +617,12 @@
     var pinnedFrames = [1];
     BEATS.forEach(function (bt) { if (bt.type === 'stop') pinnedFrames.push(bt.freeze); });
     var store = FrameStore(function (n) {
-      if ((n === wantFrame || n === wantFrame + 1) && !drawnExact) draw(true);
+      /* While the scrub is moving, the loop already repaints every tick and
+         will pick the frame up itself — stacking a forced paint per landed
+         decode on top of that (up to 16/s) is how repaints saturated the main
+         thread. Decode-driven repaints now happen only at rest, which is
+         exactly when they are visible: the lo->hi sharpen at a stop. */
+      if (!looping && (n === wantFrame || n === wantFrame + 1) && !drawnExact) draw(true);
     }, pinnedFrames, function () { return decodeSize; });
     /* store.start() happens inside the first resize(): decodes must not begin
        until the backing size exists, or the first ~70 frames would arrive at
@@ -653,19 +708,23 @@
     function drawFrame(f) {
       var n0 = Math.floor(f), frac = f - n0;
       var n1 = Math.min(TOTAL_FRAMES, n0 + 1);
-      var img = store.get(n0);
-      if (!img || !geom) { drawnExact = false; return; }
+      var p = store.pick(n0);
+      if (!p || !geom) { drawnExact = false; return; }
       ctx.globalAlpha = 1;
-      blit(img);
-      drawnExact = store.ready(n0);
+      blit(p.img);
+      /* Exact means: the 4K tier, this precise frame, and the blend half too
+         if one is owed. Anything less repaints when the real thing lands. */
+      drawnExact = (p.tier === 'hi' && p.exact);
       if (frac > 0.01 && n1 !== n0) {
-        if (store.ready(n1)) {
+        /* Blend only within the tier that got painted — a sharp frame faded
+           over a soft one reads as ghosting, not motion. */
+        var b = p.exact ? store.tier(n1, p.tier) : null;
+        if (b) {
           ctx.globalAlpha = frac;
-          blit(store.get(n1));
+          blit(b);
           ctx.globalAlpha = 1;
-        } else {
-          drawnExact = false;   // the blend half is missing; repaint when it lands
         }
+        if (!b || p.tier !== 'hi') drawnExact = false;
       }
     }
 
