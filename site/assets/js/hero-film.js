@@ -38,7 +38,7 @@
 
   var TOTAL_FRAMES = 598;
   var FRAME_URL = function (n) {
-    return 'assets/hero-v7-frames-nl/frame-' + String(n).padStart(4, '0') + '.webp';
+    return 'assets/hero-v7-4k-frames/frame-' + String(n).padStart(4, '0') + '.webp';
   };
 
   /* ── Scroll budget ─────────────────────────────────────────────────────────
@@ -55,7 +55,13 @@
     CAPTION_SCREENS: 0.75, // kicker + headline only, film still moving
     // Share of a beat's scroll spent arriving / holding / leaving.
     IN: 0.30, OUT: 0.24,
-    DAMPING: 0.14,         // frame-to-frame easing of scroll -> progress
+    /* Scroll -> progress easing as a TIME CONSTANT, not a per-tick factor.
+       The old form (current += delta * 0.14 per rAF) ran twice as stiff on a
+       120Hz display as on a 60Hz one, because it eased per frame painted, not
+       per millisecond elapsed. 110ms reproduces the old 60Hz feel exactly
+       (1 - e^(-16.7/110) = 0.14) and now a ProMotion MacBook gets the same
+       glide instead of a stiffer one. */
+    SMOOTH_MS: 110,
 
     /* ── Motion ────────────────────────────────────────────────────────────
        A frozen film reads as a stall unless something is still answering the
@@ -200,23 +206,50 @@
   }
 
   /* ── Frame store ───────────────────────────────────────────────────────────
-     Decode off the main thread where the browser allows it (createImageBitmap),
-     and load in priority order so the beats are never the thing you are
-     waiting for:
+     Decode off the main thread where the browser allows it (createImageBitmap).
+     With the 4K frames the store EVICTS: decoded frames live in a sliding
+     window around the playhead, the beat freezes and frame 1 stay pinned, and
+     the whole film's bytes are fetch-warmed into the HTTP cache in the
+     background so a re-decode after eviction reads from disk, not the network.
 
-       1  every freeze frame + frame 1        stops are instant
-       2  the caption's frames               the one beat that moves under text
-       3  every 4th frame                    scrubbing always has something
-       4  everything else                    fills in behind you
-
-     Draw falls back to the nearest decoded frame, so an incomplete load
-     degrades to a slightly coarser scrub rather than a blank canvas. */
-  function FrameStore(onDecode) {
+     Draw falls back to the nearest decoded frame, so a gap degrades to a
+     slightly coarser scrub rather than a blank canvas. */
+  function FrameStore(onDecode, pins) {
     var store = new Array(TOTAL_FRAMES + 1);
     /* 12 in flight. Above roughly this the browser's own per-host connection
        limit is the bottleneck rather than us, and the queue just gets longer. */
-    var pending = 0, MAX_PARALLEL = 12, queue = [], started = false;
+    var inflight = 0, MAX_PARALLEL = 12, queue = [], queued = {}, started = false;
     var supportsBitmap = typeof createImageBitmap === 'function';
+
+    /* ── Eviction ──────────────────────────────────────────────────────────
+       Not optional at 4K. A decoded 3840x2160 RGBA bitmap is 33MB; 598 of them
+       resident at once would be 19.8GB, and the 1080p set's always-resident
+       5GB was already the ceiling of what a laptop forgives. WINDOW frames
+       either side of the playhead stay warm — 129 frames plus the pins is the
+       same ~5GB envelope the 1080p hero shipped with — and everything else is
+       close()d as the playhead moves away. */
+    var WINDOW = 64;
+    var pinned = {};
+    (pins || []).forEach(function (n) { pinned[n] = 1; });
+    var BUDGET = (2 * WINDOW + 1) + (pins ? pins.length : 0) + 16;
+    var decodedCount = 0, center = 1, lastDir = 1;
+
+    function keep(n, img) {
+      if (!store[n]) decodedCount++;
+      store[n] = img;
+    }
+    function drop(n) {
+      var b = store[n];
+      if (!b) return;
+      if (b.close) { try { b.close(); } catch (e) {} }
+      store[n] = null; decodedCount--;
+    }
+    function evict() {
+      if (decodedCount <= BUDGET) return;
+      for (var i = 1; i <= TOTAL_FRAMES; i++) {
+        if (store[i] && !pinned[i] && Math.abs(i - center) > WINDOW) drop(i);
+      }
+    }
 
     function decode(n) {
       if (store[n]) return Promise.resolve();
@@ -224,7 +257,7 @@
         return fetch(FRAME_URL(n), { cache: 'force-cache' })
           .then(function (r) { return r.ok ? r.blob() : Promise.reject(r.status); })
           .then(createImageBitmap)
-          .then(function (bmp) { store[n] = bmp; })
+          .then(function (bmp) { keep(n, bmp); })
           .catch(function () { return viaImage(n); });
       }
       return viaImage(n);
@@ -233,29 +266,36 @@
       return new Promise(function (res) {
         var im = new Image();
         im.decoding = 'async';
-        im.onload = function () { store[n] = im; res(); };
+        im.onload = function () { keep(n, im); res(); };
         im.onerror = function () { res(); };
         im.src = FRAME_URL(n);
       });
     }
-    /* Every decode reports back, not just the first. The draw path is allowed to
-       fall back to the nearest decoded frame, which means an early paint can be
-       showing the wrong shot entirely — frame 452 stood in for frame 1 on first
-       load, because the priority queue starts eight decodes at once and whichever
-       lands first is what the fallback finds. Without a per-decode signal the
+    /* Every decode reports back, not just the first. The draw path is allowed
+       to fall back to the nearest decoded frame, which means an early paint can
+       be showing the wrong shot entirely — without a per-decode signal the
        canvas has no reason to ever repaint, and the hero opens on the wrong
        picture until the first scroll. */
     function pump() {
-      while (pending < MAX_PARALLEL && queue.length) {
-        var n = queue.shift(); pending++;
+      while (inflight < MAX_PARALLEL && queue.length) {
+        var n = queue.shift(); delete queued[n];
+        if (store[n]) continue;
+        inflight++;
         (function (which) {
           decode(which).then(function () {
-            pending--;
+            inflight--;
             onDecode && onDecode(which);
             pump();
           });
         })(n);
       }
+      evict();
+    }
+    function push(n, front) {
+      n = Math.round(n);
+      if (n < 1 || n > TOTAL_FRAMES || store[n] || queued[n]) return;
+      queued[n] = 1;
+      if (front) queue.unshift(n); else queue.push(n);
     }
     return {
       get: function (n) {
@@ -267,22 +307,35 @@
         return null;
       },
       ready: function (n) { return !!store[n]; },
-      count: function () { var c = 0; for (var i = 1; i <= TOTAL_FRAMES; i++) if (store[i]) c++; return c; },
+      count: function () { return decodedCount; },
+      /* The draw path calls this with every frame it asks for. Requests are
+         biased in the direction of travel — a short tail behind the playhead,
+         a long head in front — and unshifted so the nearest frame is always
+         the next decode. */
+      want: function (n) {
+        if (n === center) return;
+        lastDir = n > center ? 1 : -1;
+        center = n;
+        for (var b = 1; b <= 8; b++) push(n - lastDir * b, true);
+        for (var a = 32; a >= 0; a--) push(n + lastDir * a, true);
+        pump();
+      },
       start: function () {
         if (started) return; started = true;
-        var seen = {};
-        function push(n) {
-          n = Math.max(1, Math.min(TOTAL_FRAMES, Math.round(n)));
-          if (!seen[n]) { seen[n] = 1; queue.push(n); }
-        }
-        push(1);
-        BEATS.forEach(function (b) { if (b.type === 'stop') push(b.freeze); });
-        BEATS.forEach(function (b) {
-          if (b.type === 'caption') for (var n = b.a; n <= b.b; n++) push(n);
-        });
-        for (var n = 1; n <= TOTAL_FRAMES; n += 4) push(n);
-        for (var m = 1; m <= TOTAL_FRAMES; m++) push(m);
+        (pins || []).forEach(function (n) { push(n); });
+        for (var n = 1; n <= WINDOW; n++) push(n);
         pump();
+        /* Warm the whole film's BYTES into the HTTP cache — no decode, one
+           request at a time so it never competes with the window's decodes.
+           This is what keeps eviction cheap. */
+        if (typeof fetch === 'function') {
+          (function warm(i) {
+            if (i > TOTAL_FRAMES) return;
+            fetch(FRAME_URL(i), { cache: 'force-cache' })
+              .catch(function () {})
+              .then(function () { setTimeout(function () { warm(i + 1); }, 0); });
+          })(1);
+        }
       }
     };
   }
@@ -454,34 +507,35 @@
     buildCopy(copyRoot);
     BEATS.forEach(buildAnimTargets);
     var ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
+    /* The 3840-wide frame is downscaled at PAINT time, and the default filter
+       for that is 'low' — plain bilinear, which shimmers on fine detail like
+       the reception lettering. 'high' is a multi-tap filter and measures under
+       1ms flushed on this backing store. Assigning canvas.width resets every
+       piece of context state, so this is a function and resize() calls it. */
+    function setSmoothing() {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+    }
+    setSmoothing();
 
     /* Repaint when the frame we actually want lands, if what is on screen is a
        stand-in. Cheap: one comparison per decode, and it only ever draws when
        the picture would otherwise be wrong. */
+    var pinnedFrames = [1];
+    BEATS.forEach(function (bt) { if (bt.type === 'stop') pinnedFrames.push(bt.freeze); });
     var store = FrameStore(function (n) {
-      if (n === wantFrame && !drawnExact) draw(true);
-    });
+      if ((n === wantFrame || n === wantFrame + 1) && !drawnExact) draw(true);
+    }, pinnedFrames);
     store.start();
 
-    /* ── Backing store, and why it is capped at the source ────────────────────
-       The master is 1920x1080. A 1440px-wide stage on a DPR-2 display wants a
-       2880x1720 canvas — 4.95M device pixels asked of a 2.07M pixel frame, a
-       2.39x deficit and a 59% upscale. Those pixels cannot be invented: painting
-       them only costs fill rate and memory.
-
-       So the backing store is capped at the largest size the source can cover at
-       scale 1. The frame is then blitted 1:1 (a crop, no resampling in canvas)
-       and the compositor scales the canvas element up — the same single
-       resample as before, at ~40% of the pixels. Sharpness is unchanged;
-       the GPU does far less work, which is where smoothness comes from.
-
-       If a 4K master ever lands, SRC_W/SRC_H go up and the cap stops biting on
-       its own — nothing else here changes.
-
-       (This is also why devicePixelRatio should NOT be raised to 2.5: it would
-       ask for 3600px of width from a 1920px source, a 87% upscale, for no
-       possible gain in detail.) */
-    var SRC_W = 1920, SRC_H = 1080;
+    /* ── Backing store, capped at the source ──────────────────────────────────
+       The 4K master landed, so this cap now stops biting on anything up to a
+       4K-raster display — a 1440px DPR-2 stage (2880px wanted) draws the
+       3840px frame DOWN for the first time instead of upscaling 1080p by 59%.
+       The cap still matters above that: pixels past the source's cannot be
+       invented, so the backing store never exceeds what the frame can cover at
+       scale 1, and the compositor does the final stretch. */
+    var SRC_W = 3840, SRC_H = 2160;
     var dpr = 1, geom = null;
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -490,6 +544,7 @@
       var cap = Math.min(1, SRC_W / wantW, SRC_H / wantH);
       canvas.width = Math.max(1, Math.round(wantW * cap));
       canvas.height = Math.max(1, Math.round(wantH * cap));
+      setSmoothing();   // assigning width/height wiped every ctx setting
 
       /* Cover geometry is a function of canvas size and source size only, so it
          is computed here and not per drawn frame. */
@@ -525,13 +580,31 @@
       return { seg: segs[segs.length - 1], local: 1 };
     }
 
-    /* One drawImage against pre-computed geometry. No maths, no allocation, no
-       DOM read — the whole per-frame cost is the blit. */
-    function drawFrame(n) {
-      var img = store.get(n);
+    /* Sub-frame crossfade. The film is 598 frames over 42 seconds — 14fps of
+       temporal density — so a slow scroll used to STEP from frame to frame,
+       which reads as the film being stuck. The scroll position is continuous,
+       and now the paint is too: the frame below the playhead is drawn opaque
+       and the frame above it is drawn over the top at the fractional alpha.
+       Two blits instead of one (each measured ~0.02ms at the API, <1ms
+       flushed); at a stop the position is an integer, the alpha is 0, and the
+       second blit is skipped — a freeze is still a single exact frame. */
+    function drawFrame(f) {
+      var n0 = Math.floor(f), frac = f - n0;
+      var n1 = Math.min(TOTAL_FRAMES, n0 + 1);
+      var img = store.get(n0);
       if (!img || !geom) { drawnExact = false; return; }
-      drawnExact = store.ready(n);
+      ctx.globalAlpha = 1;
       ctx.drawImage(img, geom.x, geom.y, geom.w, geom.h);
+      drawnExact = store.ready(n0);
+      if (frac > 0.01 && n1 !== n0) {
+        if (store.ready(n1)) {
+          ctx.globalAlpha = frac;
+          ctx.drawImage(store.get(n1), geom.x, geom.y, geom.w, geom.h);
+          ctx.globalAlpha = 1;
+        } else {
+          drawnExact = false;   // the blend half is missing; repaint when it lands
+        }
+      }
     }
 
     function draw(force) {
@@ -550,10 +623,13 @@
         env = envelope(local); active = seg.beat;
       }
 
-      var n = Math.max(1, Math.min(TOTAL_FRAMES, Math.round(frame)));
+      var f = Math.max(1, Math.min(TOTAL_FRAMES, frame));
+      var n = Math.floor(f);
       wantFrame = n;
-      // repaint on a new frame, when forced, or when the last paint was a stand-in
-      if (force || n !== lastFrame || !drawnExact) { drawFrame(n); lastFrame = n; }
+      store.want(n);   // slide the decode window with the playhead
+      // repaint on any visible movement (a 1/300th-frame change is sub-alpha),
+      // when forced, or when the last paint was a stand-in
+      if (force || Math.abs(f - lastFrame) > 0.003 || !drawnExact) { drawFrame(f); lastFrame = f; }
 
       BEATS.forEach(function (b) {
         var on = b === active;
@@ -605,17 +681,20 @@
 
     /* One rAF loop, easing toward the scroll target, parked when settled. The
        scroll handler never draws and never decodes — it records a number. */
-    function loop() {
+    var lastTick = 0;
+    function loop(ts) {
       var delta = target - current;
       if (Math.abs(delta) < 0.00002) {
         current = target; draw(false); looping = false; return;
       }
-      current += delta * CFG.DAMPING;
+      var dt = lastTick ? Math.min(100, ts - lastTick) : 16.7;
+      lastTick = ts;
+      current += delta * (1 - Math.exp(-dt / CFG.SMOOTH_MS));
       draw(false);
       requestAnimationFrame(loop);
     }
     function kick() {
-      if (!looping) { looping = true; requestAnimationFrame(loop); }
+      if (!looping) { looping = true; lastTick = 0; requestAnimationFrame(loop); }
     }
     function onScroll() { target = readScroll(); kick(); }
 
