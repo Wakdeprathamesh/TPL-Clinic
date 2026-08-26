@@ -237,7 +237,13 @@
        pinned in BOTH tiers, so a freeze is never soft and never late. */
     var hi = new Array(TOTAL_FRAMES + 1), lo = new Array(TOTAL_FRAMES + 1);
     var hiQ = [], hiQd = {}, hiIn = 0, hiBusy = {}, HI_PAR = 10;
-    var loQ = [], loQd = {}, loIn = 0, loBusy = {}, LO_PAR = 6;
+    /* 24, not 6. A lo frame is 28KB — its fetch is dominated by round-trip
+       latency, not bytes, and HTTP/2 multiplexes them all over one connection.
+       At 6 in flight against a measured 486ms cold RTT the tier could only
+       supply ~12 frames/s, and a fast sweep demands 100+. Raising the count
+       costs nothing per request and is the difference between the motion tier
+       keeping up and not. */
+    var loQ = [], loQd = {}, loIn = 0, loBusy = {}, LO_PAR = 24;
     var started = false;
     var supportsBitmap = typeof createImageBitmap === 'function';
     var resizeOK = supportsBitmap ? undefined : false;
@@ -400,7 +406,7 @@
         for (d = 1; d <= 8; d++) { k = n - lastDir * d;
           if (k >= 1 && k <= TOTAL_FRAMES && !hi[k] && !hiBusy[k] && !hiQd[k]) { hiQ.push(k); hiQd[k] = 1; } }
         loQ = []; loQd = {};
-        for (d = 0; d <= 96; d++) { k = n + lastDir * d;
+        for (d = 0; d <= 150; d++) { k = n + lastDir * d;
           if (k >= 1 && k <= TOTAL_FRAMES && !lo[k] && !loBusy[k]) { loQ.push(k); loQd[k] = 1; } }
         for (d = 1; d <= 12; d++) { k = n - lastDir * d;
           if (k >= 1 && k <= TOTAL_FRAMES && !lo[k] && !loBusy[k] && !loQd[k]) { loQ.push(k); loQd[k] = 1; } }
@@ -437,13 +443,22 @@
            One request at a time, and it stands aside while the reader is
            actively scrubbing. */
         if (typeof fetch === 'function') {
-          (function warm(i) {
-            if (i > TOTAL_FRAMES) return;
-            if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
-            fetch(LO_URL(i), { cache: 'force-cache' })
-              .catch(function () {})
-              .then(function () { setTimeout(function () { warm(i + 1); }, 0); });
-          })(1);
+          /* Eight chains, not one. Serially, at the ~486ms round trip measured
+             on a cold production visit, warming 598 frames would have taken
+             about five MINUTES — so the tier that is supposed to guarantee
+             continuity was still trickling in long after the reader had gone.
+             Eight interleaved chains bring it to well under a minute, and each
+             still yields while the reader is actively scrubbing. */
+          var CHAINS = 8;
+          for (var c = 0; c < CHAINS; c++) {
+            (function warm(i) {
+              if (i > TOTAL_FRAMES) return;
+              if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
+              fetch(LO_URL(i), { cache: 'force-cache' })
+                .catch(function () {})
+                .then(function () { setTimeout(function () { warm(i + CHAINS); }, 0); });
+            })(c + 1);
+          }
         }
       }
     };
