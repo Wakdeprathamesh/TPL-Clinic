@@ -173,3 +173,40 @@ The fix is to resample ONCE, at decode, and never filter at paint again:
   before the target size exists.
 - The background byte-warming loop stands aside while the reader is actively
   scrubbing (350ms of want() silence before it resumes).
+
+## The pyramid (2026-08-26, following the lag fix)
+
+The 1:1 blits fixed the paint cost and the client still felt skips: the scrub
+would hold, then jump. Second diagnosis, right one this time — **decode
+starvation**. A sized 4K decode is ~125ms; twelve in flight is ~96 frames/s of
+supply. Travel is 140 frames a screen, so a medium scroll demands 200+/s. The
+playhead outran the decoder, the nearest-decoded fallback held, and each
+landing batch made the film visibly jump.
+
+No amount of paint tuning fixes a supply deficit, so the film is now a
+two-tier pyramid:
+
+- **hi** — the 4K frames as before, resampled at decode to the cover size.
+- **lo** — the same 598 frames at 960×540, q87: 16.4MB TOTAL, ~27KB and
+  ~8ms a frame. Supply ~700/s: unstarvable at any human scroll speed.
+
+Fast travel paints lo (softness is invisible in motion); the moment the
+playhead slows, hi has already landed and takes over — sharpness returns
+exactly when the eye can use it. Stops are pinned in both tiers. The
+crossfade blends only within a tier — a sharp frame faded over a soft one
+reads as ghosting. Decode-driven repaints fire only at rest, so mid-motion
+ticks are never doubled.
+
+**A scheduler lesson recorded:** the prefetch queue was originally grown
+incrementally — push the new window to the FRONT, dedupe with a seen-map.
+Under motion that buries the playhead's immediate needs behind the previous
+tick's far tail (n+96 ends up ahead of n+2). The queue is now REBUILT
+nearest-first around the playhead on every change, ~140 pushes, always the
+exact priority order. In-flight decodes are tracked in a busy-map so a
+rebuild can never double-decode.
+
+Verified on the engine's own playhead (not a synthetic want() driver, which
+fights the real draw loop and measures nothing): a fast 3.5s sweep sampling
+220 positions painted 179 hi + 42 lo + **0 misses**, and a cold-load
+immediate-scroll run painted 155 hi + 26 lo + **0 misses**. The film no
+longer has a frame it cannot show.
