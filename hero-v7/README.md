@@ -210,3 +210,56 @@ fights the real draw loop and measures nothing): a fast 3.5s sweep sampling
 220 positions painted 179 hi + 42 lo + **0 misses**, and a cold-load
 immediate-scroll run painted 155 hi + 26 lo + **0 misses**. The film no
 longer has a frame it cannot show.
+
+## Production readiness (2026-08-26, tested against the live deployment)
+
+Everything before this was measured on localhost, where every fetch is
+instant and no CDN or cache header exists. Testing the deployed site found
+three defects localhost structurally could not show.
+
+**1. The motion tier was 404 in production.** The pyramid commit was
+orphaned — PR #21 was merged at 01:28 and that commit landed on the branch
+at 01:54, so the merge took the branch at the previous commit. Production
+was running 4K-only: the exact starving configuration the pyramid exists to
+prevent. (Same trap as PR #13 earlier in this project. Check `git
+merge-base --is-ancestor` after someone merges while work is in flight.)
+
+**2. The cache headers were never applied.** Every asset came back with
+Vercel's default `max-age=0, must-revalidate` — not the immutable year on
+the frames. A returning visitor revalidated all 598 frames every visit. The
+cause was not syntax: **Vercel's Root Directory for this project is `site`**,
+so the repo-root `vercel.json` is outside the deployment and never read.
+`outputDirectory: "site"` only ever LOOKED like it worked because site/ was
+already the root. The live config is now `site/vercel.json`; the root copy
+is kept in sync so either setting works.
+
+**3. The 4K tier was taking the whole pipe on a cold visit** — 70 requests
+averaging 3.07 SECONDS each while the motion tier was still filling. A 4K
+frame that lands three seconds late is worthless. It now yields to lo, and
+the warm loop no longer speculates 280MB per visitor.
+
+Two of my own design errors surfaced in the same test:
+
+- The lo warm loop was **serial**. At the ~486ms round trip a cold visit
+  actually sees, 598 sequential fetches is about five minutes. Now eight
+  interleaved chains.
+- It also **stood aside while the reader was scrubbing** — but `want()`
+  fires every tick, so through an eleven-second read it never ran once,
+  having fetched 209 of 598 frames by the end of the film. It gates on the
+  window's queue depth now, not on whether the reader is moving.
+
+### Measured on production, real CDN, real latency
+
+| Pass | Continuous | Misses / 681 |
+|---|---|---|
+| Cold first visit, whole film in ~11s | **99.3%** | 5 |
+| Second read | 98.2% | 12 |
+| Third read | **100%** | 0 |
+
+When a miss does happen the fallback is 2–6 frames away (median 4) — a brief
+held frame, not a jump. Measured edge bandwidth was ~26 Mbps from the bom1
+edge; slower connections will hold longer on the first pass.
+
+**Not yet verified:** Safari (all of the above is one Chromium engine), and
+anything below ~10 Mbps. The 4K tier is still 280MB, which the AVIF
+evaluation in this file's sibling notes could cut by roughly three quarters.
