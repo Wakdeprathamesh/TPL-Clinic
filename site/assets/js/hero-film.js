@@ -453,7 +453,20 @@
           for (var c = 0; c < CHAINS; c++) {
             (function warm(i) {
               if (i > TOTAL_FRAMES) return;
-              if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
+              /* Gate on the QUEUE, not on whether the reader is moving. The
+                 first version stood aside for 350ms after any want(), which
+                 during a continuous scroll fires every tick — so the warm
+                 loop never ran at all through an 11-second read, and the
+                 tier that guarantees continuity had fetched 208 of 598
+                 frames by the end of the film. Exactly backwards: a long
+                 scroll is when warming matters most.
+
+                 The window's own queue is the honest signal. While it has
+                 real work the window is behind and gets the connection;
+                 when it is satisfied — which is most ticks of a steady
+                 scroll — warming continues underneath. Same rule the 4K
+                 tier yields by. */
+              if (loQ.length > 8) { setTimeout(function () { warm(i); }, 120); return; }
               fetch(LO_URL(i), { cache: 'force-cache' })
                 .catch(function () {})
                 .then(function () { setTimeout(function () { warm(i + CHAINS); }, 0); });
