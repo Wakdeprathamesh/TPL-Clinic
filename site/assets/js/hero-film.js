@@ -314,6 +314,13 @@
        showing a stand-in, and the repaint has to happen when the real frame
        lands. */
     function pumpHi() {
+      /* The 4K tier YIELDS to the motion tier. Measured on a production cold
+         load: 70 hi requests averaging 3.07s each, saturating the pipe while
+         the lo tier was still filling — and a 4K frame that arrives 3s late
+         is worthless, the playhead is long past it. lo is 1/17th the bytes
+         and is what guarantees continuity, so it goes first and hi fills in
+         behind it. pumpLo() calls back here as its queue drains. */
+      if (loQ.length > 8) { evict(); return; }
       while (hiIn < HI_PAR && hiQ.length) {
         var n = hiQ.shift(); delete hiQd[n];
         if (hi[n] || hiBusy[n]) continue;
@@ -336,6 +343,7 @@
           decodeLo(which).then(function () {
             loIn--; delete loBusy[which];
             onDecode && onDecode(which); pumpLo();
+            if (loQ.length <= 8) pumpHi();   // motion tier satisfied — let 4K run
           });
         })(n);
       }
@@ -414,15 +422,25 @@
         (pins || []).forEach(function (n) { pushHi(n); });
         for (var n = 1; n <= WINDOW_HI; n++) pushHi(n);
         pumpLo(); pumpHi();
-        /* Warm the film's BYTES into the HTTP cache — lo first (17MB, the
-           tier that guarantees continuity), then hi. One request at a time,
-           and it stands aside while the reader is actively scrubbing. */
+        /* Warm the MOTION tier's bytes into the HTTP cache — all 598 lo
+           frames, 16.4MB, about five seconds of a normal connection. After
+           that the film is guaranteed continuous end to end forever, however
+           the reader moves, because eviction can always re-decode from disk.
+
+           The 4K tier is deliberately NOT warmed. It was, and that speculated
+           280MB of bandwidth on every visitor for frames most of them never
+           reach — while competing with the tier that actually carries
+           motion. Its bytes now arrive the way they are used: fetched by the
+           sliding window as the playhead approaches, then held by the
+           immutable cache header for a year, so scrolling back is free.
+
+           One request at a time, and it stands aside while the reader is
+           actively scrubbing. */
         if (typeof fetch === 'function') {
           (function warm(i) {
-            if (i > TOTAL_FRAMES * 2) return;
+            if (i > TOTAL_FRAMES) return;
             if (Date.now() - lastWantAt < 350) { setTimeout(function () { warm(i); }, 400); return; }
-            var url = i <= TOTAL_FRAMES ? LO_URL(i) : FRAME_URL(i - TOTAL_FRAMES);
-            fetch(url, { cache: 'force-cache' })
+            fetch(LO_URL(i), { cache: 'force-cache' })
               .catch(function () {})
               .then(function () { setTimeout(function () { warm(i + 1); }, 0); });
           })(1);
